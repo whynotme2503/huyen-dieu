@@ -36,6 +36,7 @@
     swap: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg>',
     match: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="6" height="6" rx="1.5"/><rect x="15" y="14" width="6" height="6" rx="1.5"/><path d="M9 7h3a3 3 0 0 1 3 3v4"/></svg>',
     cards: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="14" rx="2.5"/><path d="M7 3h12a2 2 0 0 1 2 2v12"/></svg>',
+    pen: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
     keys: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6.5 10h.01M10 10h.01M13.5 10h.01M17 10h.01M7 14h10"/></svg>',
     shuffle: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h4v4M4 20 20 4M20 16v4h-4M4 4l5 5M15 15l5 5"/></svg>'
   };
@@ -129,6 +130,7 @@
     { id: "pinyin-hanzi", name: "Pinyin → chữ Hán", desc: "Đọc pinyin, nhận ra mặt chữ.", icon: "abc", kind: "quiz", prompt: "pinyin", answer: "hanzi", type: "Pinyin" },
     { id: "match", name: "Ghép cặp", desc: "Nối chữ Hán với pinyin tương ứng.", icon: "match", kind: "match", type: "Mặt chữ" },
     { id: "dictation", name: "Nghe → gõ chữ Hán", desc: "Nghe rồi gõ lại bằng chữ Hán (cần bàn phím tiếng Trung).", icon: "keys", kind: "type", type: "Nghe" },
+    { id: "write", name: "Tập viết chữ Hán", desc: "Xem thứ tự nét, tập viết ngay trên màn hình.", icon: "pen", kind: "write", type: "Viết" },
     { id: "flash", name: "Thẻ ghi nhớ", desc: "Lật thẻ, tự chấm đã nhớ hay chưa.", icon: "cards", kind: "flash", type: "Ôn nhanh" }
   ];
   window.HD_GAMES = GAMES;
@@ -147,7 +149,7 @@
   /* ---------- điều hướng ---------- */
   function nav(h) { if (location.hash === h) route(); else location.hash = h; }
   function route() {
-    stopTimer();
+    stopTimer(); if (window.HD_WRITE) window.HD_WRITE.stop();
     try { if (hasTTS) speechSynthesis.cancel(); } catch (e) { /* bỏ qua */ }
     var h = location.hash.replace("#", "");
     if (!SESSION) return renderLogin();
@@ -238,7 +240,7 @@
     S.view = "lesson"; S.lesson = L;
     setRight('<span class="chip">' + L.words.length + " từ</span>");
     var rows = L.words.map(function (w, i) {
-      return '<div class="wrow"><span class="hz">' + esc(w.hanzi) + '</span><span><span class="py">' + esc(w.pinyin) + (L.id === "all" ? '<span class="tag">B' + w.lesson + "</span>" : "") + '</span><br><span class="vi">' + esc(w.vi) + '</span></span><button class="spk" data-say="' + i + '" aria-label="Nghe ' + esc(w.hanzi) + '">' + ICONS.speaker + "</button></div>";
+      return '<div class="wrow"><span class="hz">' + esc(w.hanzi) + '</span><span><span class="py">' + esc(w.pinyin) + (L.id === "all" ? '<span class="tag">B' + w.lesson + "</span>" : "") + '</span><br><span class="vi">' + esc(w.vi) + '</span></span><span class="rowbtns"><button class="spk" data-write="' + i + '" aria-label="Tập viết ' + esc(w.hanzi) + '" title="Tập viết">' + ICONS.pen + '</button><button class="spk" data-say="' + i + '" aria-label="Nghe ' + esc(w.hanzi) + '">' + ICONS.speaker + "</button></span></div>";
     }).join("");
     var cards = GAMES.map(function (g) {
       var b = bestOf(L.id, g.id);
@@ -260,6 +262,12 @@
     stopTimer();
     setRight('<span class="chip mono">' + ICONS.clock + '<span id="timer">00:00</span></span>');
     timerId = setInterval(function () { var t = $("#timer"); if (t) t.textContent = fmtTime(Math.floor((Date.now() - S.t0) / 1000)); }, 1000);
+    if (g.kind === "write") {
+      S.view = "write";
+      var okw = window.HD_WRITE && window.HD_WRITE.start({ target: words || pool, words: pool, lessonId: S.lesson.id, onRecord: record, onExit: function () { stopTimer(); renderLesson(S.lesson); } });
+      if (!okw) { stopTimer(); renderLesson(S.lesson); }
+      return;
+    }
     if (g.kind === "match") return renderMatch();
     if (g.kind === "flash") { S.flipped = false; return renderFlash(); }
     if (g.kind === "type") return renderType();
@@ -464,8 +472,9 @@
     if (t.dataset.mq !== undefined && MQ.q && !MQ.answered) { var o = MQ.q.opts[+t.dataset.mq]; o.picked = true; MQ.answered = true; sfx(o.ok ? "ok" : "no"); $("#mini").innerHTML = miniHtml(); return; }
     if (t.dataset.game) return startGame(t.dataset.game);
     if (t.dataset.say !== undefined) return speak(S.lesson.words[+t.dataset.say]);
+    if (t.dataset.write !== undefined) return startGame("write", [S.lesson.words[+t.dataset.write]]);
     if (t.dataset.saym !== undefined) return speak(S.finalMist[+t.dataset.saym]);
-    if (t.dataset.leave) return renderLesson(S.lesson) || stopTimer();
+    if (t.dataset.leave) { if (window.HD_WRITE) window.HD_WRITE.stop(); return renderLesson(S.lesson) || stopTimer(); }
     if (t.dataset.opt !== undefined) return pick(+t.dataset.opt);
     if (t.dataset.replay) return replay();
     if (t.dataset.side) return tilePick(t);
@@ -629,8 +638,9 @@
   document.addEventListener("click", function (e) { if (!e.target.closest("#umenu") && !e.target.closest("#userbtn")) $("#umenu").hidden = true; });
   window.addEventListener("online", function () { flush(); });
 
-  window.HD = { app: app, esc: esc, toast: toast, GAMES: GAMES, LESSONS: LESSONS, ALL: ALL, api: api, get session() { return SESSION; }, view: function () { return S.view; } };
+  window.HD = { app: app, esc: esc, toast: toast, topBar: topBar, speak: speak, sfx: sfx, ICONS: ICONS, GAMES: GAMES, LESSONS: LESSONS, ALL: ALL, api: api, get session() { return SESSION; }, view: function () { return S.view; } };
   if (window.HD_TEACHER) window.HD_TEACHER.init(window.HD);
+  if (window.HD_WRITE) window.HD_WRITE.init(window.HD);
 
   /* ---------- khởi động ---------- */
   paintMute();

@@ -30,6 +30,16 @@ Cách dễ nhất (miễn phí): vào https://app.netlify.com/drop, kéo cả th
   - Lọc theo lớp và theo thời gian (7 ngày, 30 ngày, tất cả).
 - **Google Sheet:** tab `KetQua` có từng lượt làm bài, tab `TongHop` tự tính điểm trung bình theo học sinh và bài. Bạn có thể lọc, tạo biểu đồ hoặc xuất Excel như Sheet bình thường.
 
+## 4b. Lớp học và file quản lý riêng
+- Tab **Lớp**: tạo lớp, xem nhanh từng lớp (số học sinh, điểm TB, bài tập đang mở), bấm **Tạo file quản lý riêng** để sinh một file Google Sheet riêng cho lớp (tab Tổng quan, Kết quả, Bài tập). Bấm **Cập nhật file** để làm mới.
+- Google Sheet gốc cũng có sẵn tab `KQ - Tên lớp` cho từng lớp, tự cập nhật mỗi khi học sinh làm bài.
+- Tab **Tài khoản**: chọn lớp khi thêm học sinh, đổi lớp bằng ô chọn ở từng dòng.
+- Tab **Bài tập**: tick nhiều lớp, mỗi lớp một hạn nộp riêng, lọc theo lớp và theo trạng thái (đang mở, đã hết hạn).
+- **Sau khi nâng cấp Code.gs**: dán lại Code.gs, chạy lại hàm `setup` (cấp thêm quyền tạo file), rồi Triển khai → Quản lý bản triển khai → Sửa → Phiên bản mới.
+
+## 4c. Tập viết chữ Hán
+Ở trang bài học, bấm biểu tượng bút cạnh từng từ để tập viết chữ của từ đó, hoặc bấm game **Tập viết chữ Hán** để tập tất cả chữ của bài. Có xem hoạt ảnh thứ tự nét, tập viết theo nét mờ và tự viết có chấm lỗi. Dữ liệu nét nằm trong `chars/` (thư viện Hanzi Writer, dữ liệu Make Me a Hanzi, giấy phép Arphic). Chữ mới chưa có trong `chars/` sẽ tự tải qua Internet.
+
 ## 5. Thêm bài mới
 Mở `data.js`, tìm bài cần thêm (Bài 3 đến Bài 15 có sẵn khung), điền `topic` và thêm dòng:
 `["chữ Hán", "pinyin có dấu", "nghĩa", "audio/31.mp3"],`

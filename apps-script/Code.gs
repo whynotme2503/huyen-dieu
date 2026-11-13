@@ -8,11 +8,14 @@ var DEF = {
   HS: { name: "HocSinh", head: ["Mã", "Họ tên", "Lớp", "Trạng thái", "Ngày tạo"] },
   KQ: { name: "KetQua", head: ["Thời gian", "Mã", "Họ tên", "Lớp", "Bài", "Game", "Điểm", "Tổng", "Phần trăm", "Giây", "Từ đã làm", "Từ sai", "Mã bài tập", "Mã game"] },
   BT: { name: "BaiTap", head: ["ID", "Tiêu đề", "Bài", "Game", "Hạn nộp", "Lớp", "Ghi chú", "Ngày giao"] },
+  LOP: { name: "Lop", head: ["Tên lớp", "Ghi chú", "Ngày tạo", "File quản lý"] },
   CD: { name: "CaiDat", head: [] }
 };
 
 function setup() {
-  sheet_("HS"); sheet_("KQ"); sheet_("BT");
+  sheet_("HS"); sheet_("KQ"); sheet_("BT"); sheet_("LOP");
+  syncClasses_();
+  SpreadsheetApp.create; // cần quyền tạo file riêng cho từng lớp
   var cd = sheet_("CD");
   if (!cd.getRange("B1").getValue()) {
     cd.getRange("A1").setValue("Mã giáo viên");
@@ -44,7 +47,9 @@ function handle_(req) {
       lock.waitLock(20000);
       try {
         var r = req.rec || {};
-        sheet_("KQ").appendRow([new Date(), u.code, u.name, u.cls, String(r.lesson), r.gameName || r.game, num_(r.score), num_(r.total), num_(r.pct), num_(r.secs), (r.words || []).join("|"), (r.wrong || []).join("|"), r.assignmentId || "", r.game || ""]);
+        var row = [new Date(), u.code, u.name, u.cls, String(r.lesson), r.gameName || r.game, num_(r.score), num_(r.total), num_(r.pct), num_(r.secs), (r.words || []).join("|"), (r.wrong || []).join("|"), r.assignmentId || "", r.game || ""];
+        sheet_("KQ").appendRow(row);
+        if (u.cls) classSheet_(u.cls).appendRow(row);
       } finally { lock.releaseLock(); }
       return { ok: true };
     case "me":
@@ -53,7 +58,34 @@ function handle_(req) {
   if (u.role !== "teacher") return { ok: false, error: "role" };
   switch (req.action) {
     case "admin":
-      return { ok: true, students: students_(), results: results_(null), assignments: assignments_() };
+      return { ok: true, students: students_(), results: results_(null), assignments: assignments_(), classes: classes_() };
+    case "addClass":
+      lock.waitLock(20000);
+      try {
+        var nm = String(req.name || "").trim().slice(0, 40);
+        if (!nm) return { ok: false, error: "name" };
+        if (classes_().some(function (c) { return c.name.toLowerCase() === nm.toLowerCase(); })) return { ok: false, error: "exists" };
+        sheet_("LOP").appendRow([nm, String(req.note || "").slice(0, 80), new Date(), ""]);
+        classSheet_(nm);
+        return { ok: true };
+      } finally { lock.releaseLock(); }
+    case "deleteClass":
+      lock.waitLock(20000);
+      try {
+        if (students_().some(function (s) { return s.cls === req.name; })) return { ok: false, error: "notEmpty" };
+        var lp = sheet_("LOP"), lv = lp.getDataRange().getValues();
+        for (var k = lv.length - 1; k >= 1; k--) if (String(lv[k][0]) === String(req.name)) lp.deleteRow(k + 1);
+        return { ok: true };
+      } finally { lock.releaseLock(); }
+    case "moveStudent":
+      lock.waitLock(20000);
+      try {
+        var hs2 = sheet_("HS"), v2 = hs2.getDataRange().getValues();
+        for (var m = 1; m < v2.length; m++) if (norm_(v2[m][0]) === norm_(req.studentCode)) hs2.getRange(m + 1, 3).setValue(String(req.cls || ""));
+        return { ok: true };
+      } finally { lock.releaseLock(); }
+    case "exportClass":
+      return { ok: true, url: exportClass_(String(req.name || "")) };
     case "addStudents":
       lock.waitLock(20000);
       try {
@@ -66,6 +98,7 @@ function handle_(req) {
           sh.appendRow([code, String(x.name).slice(0, 60), String(x.cls || "").slice(0, 30), "Hoạt động", new Date()]);
           made.push({ code: code, name: x.name, cls: x.cls || "", active: true });
         });
+        syncClasses_();
         return { ok: true, created: made };
       } finally { lock.releaseLock(); }
     case "setActive":
@@ -119,6 +152,72 @@ function assignments_() {
   var v = sheet_("BT").getDataRange().getValues(), out = [];
   for (var i = 1; i < v.length; i++) if (v[i][0]) out.push({ id: String(v[i][0]), title: String(v[i][1]), lesson: String(v[i][2]), game: String(v[i][3] || ""), due: dueStr_(v[i][4]), cls: String(v[i][5] || "all"), note: String(v[i][6] || ""), created: iso_(v[i][7]) });
   return out;
+}
+
+/* ---------- lớp học ---------- */
+function classes_() {
+  var v = sheet_("LOP").getDataRange().getValues(), out = [];
+  for (var i = 1; i < v.length; i++) if (v[i][0]) out.push({ name: String(v[i][0]), note: String(v[i][1] || ""), url: String(v[i][3] || "") });
+  return out;
+}
+function syncClasses_() {
+  var have = {}; classes_().forEach(function (c) { have[c.name] = 1; });
+  students_().forEach(function (s) { if (s.cls && !have[s.cls]) { have[s.cls] = 1; sheet_("LOP").appendRow([s.cls, "", new Date(), ""]); } });
+}
+function classSheet_(cls) {
+  var name = ("KQ - " + cls).replace(/[\[\]\*\?\:\/\\]/g, "-").slice(0, 99), s = ss_().getSheetByName(name);
+  if (!s) {
+    s = ss_().insertSheet(name);
+    var h = DEF.KQ.head; s.getRange(1, 1, 1, h.length).setValues([h]).setFontWeight("bold").setBackground("#e5eee8"); s.setFrozenRows(1);
+    s.getRange("E:E").setNumberFormat("@"); s.getRange("A:A").setNumberFormat("dd/MM/yyyy HH:mm:ss");
+  }
+  return s;
+}
+function writeTab_(file, title, rows, first) {
+  var t = first ? file.getSheets()[0] : (file.getSheetByName(title) || file.insertSheet(title));
+  if (first) t.setName(title);
+  t.clear();
+  if (rows.length) {
+    var w = Math.max.apply(null, rows.map(function (r) { return r.length; }));
+    rows = rows.map(function (r) { while (r.length < w) r.push(""); return r; });
+    t.getRange(1, 1, rows.length, w).setValues(rows);
+    t.getRange(1, 1, 1, w).setFontWeight("bold").setBackground("#e5eee8");
+    t.setFrozenRows(1);
+  }
+}
+/** Tạo (hoặc cập nhật) một file Google Sheet riêng cho một lớp: Tổng quan, Kết quả, Bài tập. */
+function exportClass_(cls) {
+  if (!cls) throw "Thiếu tên lớp";
+  var info = classes_().filter(function (c) { return c.name === cls; })[0], file = null;
+  if (info && info.url) { try { file = SpreadsheetApp.openByUrl(info.url); } catch (e) { file = null; } }
+  if (!file) file = SpreadsheetApp.create("Huyen Dieu - " + cls);
+  var st = students_().filter(function (s) { return s.cls === cls; }), codes = {};
+  st.forEach(function (s) { codes[s.code] = 1; });
+  var rs = results_(null).filter(function (r) { return codes[r.code]; }), as = assignments_().filter(function (a) { return a.cls === "all" || a.cls === cls; });
+  var tz = Session.getScriptTimeZone(), fmt = function (iso) { return iso ? Utilities.formatDate(new Date(iso), tz, "dd/MM/yyyy HH:mm") : ""; };
+  var sum = [["Học sinh", "Mã", "Trạng thái", "Số lượt", "Điểm TB (%)", "Điểm cao nhất (%)", "Lần cuối", "Bài tập đã nộp"]];
+  st.forEach(function (s) {
+    var mine = rs.filter(function (r) { return r.code === s.code; }), avg = mine.length ? Math.round(mine.reduce(function (a, r) { return a + r.pct; }, 0) / mine.length) : "";
+    var best = mine.length ? Math.max.apply(null, mine.map(function (r) { return r.pct; })) : "", last = mine.length ? mine[mine.length - 1].t : "";
+    var done = as.filter(function (a) { return mine.some(function (r) { return r.assignmentId === a.id; }); }).length;
+    sum.push([s.name, s.code, s.active ? "Hoạt động" : "Khóa", mine.length, avg, best, fmt(last), done + "/" + as.length]);
+  });
+  writeTab_(file, "Tổng quan", sum, true);
+  var res = [["Thời gian", "Học sinh", "Bài", "Game", "Đúng", "Tổng", "Điểm (%)", "Giây", "Từ sai", "Bài tập"]];
+  rs.slice().reverse().forEach(function (r) { res.push([fmt(r.t), r.name, r.lesson === "all" ? "Tổng hợp" : "Bài " + r.lesson, r.gameName, r.score, r.total, r.pct, r.secs, r.wrong.join(" "), r.assignmentId]); });
+  writeTab_(file, "Kết quả", res, false);
+  var head = ["Học sinh"]; as.forEach(function (a) { head.push(a.title + " (hạn " + a.due + ")"); });
+  var mat = [head];
+  st.forEach(function (s) {
+    var row = [s.name];
+    as.forEach(function (a) { var m = rs.filter(function (r) { return r.code === s.code && r.assignmentId === a.id; }); row.push(m.length ? Math.max.apply(null, m.map(function (r) { return r.pct; })) + "%" : "chưa nộp"); });
+    mat.push(row);
+  });
+  writeTab_(file, "Bài tập", mat, false);
+  var url = file.getUrl(), lp = sheet_("LOP"), v = lp.getDataRange().getValues(), found = false;
+  for (var i = 1; i < v.length; i++) if (String(v[i][0]) === cls) { lp.getRange(i + 1, 4).setValue(url); found = true; }
+  if (!found) lp.appendRow([cls, "", new Date(), url]);
+  return url;
 }
 
 /* ---------- tiện ích ---------- */

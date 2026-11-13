@@ -19,7 +19,7 @@
   function seed() {
     var R = rng(20261113), L = window.HD_LESSONS, G = window.HD_GAMES || [];
     var names = [["Học sinh mẫu 1", "Lớp A", .93], ["Học sinh mẫu 2", "Lớp A", .78], ["Học sinh mẫu 3", "Lớp A", .55], ["Học sinh mẫu 4", "Lớp B", .86], ["Học sinh mẫu 5", "Lớp B", .66], ["Học sinh mẫu 6", "Lớp B", .72]];
-    var D = { teacherCode: "GV-DEMO", students: [], results: [], assignments: [], seq: 0 };
+    var D = { teacherCode: "GV-DEMO", students: [], results: [], assignments: [], classes: [{ name: "Lớp A", note: "Ví dụ", url: "" }, { name: "Lớp B", note: "Ví dụ", url: "" }], seq: 0 };
     names.forEach(function (n, i) {
       var code = "HS-000" + (i + 1); D.students.push({ code: code, name: n[0], cls: n[1], active: true, created: new Date(Date.now() - 25 * DAY).toISOString() });
       var count = i === 2 ? 5 : 8 + Math.floor(R() * 8);
@@ -65,7 +65,18 @@
       return { ok: true, results: D.results.filter(function (x) { return x.code === u.code; }), assignments: D.assignments.filter(function (a) { return !a.cls || a.cls === "all" || a.cls === u.cls; }) };
     }
     if (u.role !== "teacher") return { ok: false, error: "role" };
-    if (action === "admin") return { ok: true, students: D.students, results: D.results, assignments: D.assignments };
+    if (action === "admin") return { ok: true, students: D.students, results: D.results, assignments: D.assignments, classes: D.classes || [] };
+    if (action === "addClass") {
+      var nm = String(req.name || "").trim().slice(0, 40); if (!nm) return { ok: false, error: "name" };
+      D.classes = D.classes || []; if (D.classes.some(function (c) { return c.name.toLowerCase() === nm.toLowerCase(); })) return { ok: false, error: "exists" };
+      D.classes.push({ name: nm, note: String(req.note || "").slice(0, 80), url: "" }); persist(); return { ok: true };
+    }
+    if (action === "deleteClass") {
+      if (D.students.some(function (s) { return s.cls === req.name; })) return { ok: false, error: "notEmpty" };
+      D.classes = (D.classes || []).filter(function (c) { return c.name !== req.name; }); persist(); return { ok: true };
+    }
+    if (action === "moveStudent") { D.students.forEach(function (s) { if (s.code === req.studentCode) s.cls = String(req.cls || ""); }); persist(); return { ok: true }; }
+    if (action === "exportClass") return { ok: true, url: "", demo: true };
     if (action === "addStudents") {
       var made = (req.list || []).map(function (x) { var s = { code: genCode(D), name: String(x.name).slice(0, 60), cls: String(x.cls || "").slice(0, 30), active: true, created: new Date().toISOString() }; D.students.push(s); return s; });
       persist(); return { ok: true, created: made };
