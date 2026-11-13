@@ -128,7 +128,7 @@
     { id: "hanzi-pinyin", name: "Chữ Hán → pinyin", desc: "Nhìn chữ, chọn phiên âm đúng.", icon: "chars", kind: "quiz", prompt: "hanzi", answer: "pinyin", type: "Mặt chữ" },
     { id: "pinyin-hanzi", name: "Pinyin → chữ Hán", desc: "Đọc pinyin, nhận ra mặt chữ.", icon: "abc", kind: "quiz", prompt: "pinyin", answer: "hanzi", type: "Pinyin" },
     { id: "match", name: "Ghép cặp", desc: "Nối chữ Hán với pinyin tương ứng.", icon: "match", kind: "match", type: "Mặt chữ" },
-    { id: "dictation", name: "Nghe → gõ pinyin", desc: "Nghe rồi gõ pinyin, không cần gõ dấu.", icon: "keys", kind: "type", type: "Nghe" },
+    { id: "dictation", name: "Nghe → gõ chữ Hán", desc: "Nghe rồi gõ lại bằng chữ Hán (cần bàn phím tiếng Trung).", icon: "keys", kind: "type", type: "Nghe" },
     { id: "flash", name: "Thẻ ghi nhớ", desc: "Lật thẻ, tự chấm đã nhớ hay chưa.", icon: "cards", kind: "flash", type: "Ôn nhanh" }
   ];
   window.HD_GAMES = GAMES;
@@ -142,7 +142,7 @@
     var l = LESSONS.filter(function (x) { return String(x.id) === String(id); })[0];
     return l ? { id: l.id, title: "Bài " + l.id, topic: l.topic, words: l.words } : null;
   }
-  function setRight(html) { $("#hdr-right").innerHTML = html || ""; }
+  function setRight(html) { $("#hdr-right").innerHTML = html || ""; paintNav(); }
 
   /* ---------- điều hướng ---------- */
   function nav(h) { if (location.hash === h) route(); else location.hash = h; }
@@ -154,6 +154,8 @@
     if (!h && SESSION.role === "teacher") h = "giao-vien";
     if (h === "giao-vien" && SESSION.role === "teacher") { S.view = "teacher"; setRight(""); return window.HD_TEACHER.render(); }
     if (h === "lich-su" && SESSION.role === "student") return renderHistory();
+    if (h === "tu-vung") return renderVocab();
+    if (h === "bai-tap") return renderAssignments();
     if (!/^(bai-\d+|tong-hop)$/.test(h)) curAssign = null;
     var m = /^bai-(\d+)$/.exec(h);
     if (m && lessonById(m[1]) && lessonById(m[1]).words.length) return renderLesson(lessonById(m[1]));
@@ -164,10 +166,10 @@
 
   /* ---------- trang chủ ---------- */
   function playedCount(lid) { return GAMES.filter(function (g) { return bestOf(lid, g.id); }).length; }
-  function renderHome() {
-    S.view = "home";
+  function renderVocab() {
+    S.view = "vocab"; curAssign = null;
     setRight('<span class="chip">HSK 1 · ' + openLessons.length + "/" + LESSONS.length + " bài</span>");
-    var html = previewBanner() + assignHtml() + '<div class="home-head"><h1 class="h1">Chọn bài để ôn</h1><p class="sub">Mỗi bài có nhiều trò chơi khác nhau: nghe, mặt chữ và pinyin.</p></div><div class="lesson-grid">';
+    var html = previewBanner() + '<div class="home-head"><h1 class="h1">Từ vựng HSK 1</h1><p class="sub">Chọn một bài, mỗi bài có nhiều trò chơi: nghe, mặt chữ và pinyin.</p></div><div class="lesson-grid">';
     if (openLessons.length > 1) {
       html += '<button class="lcard all" data-go="tong-hop"><span class="ico">' + ICONS.shuffle + '</span><span><span class="name">Ôn tổng hợp</span><br><span class="meta">Trộn ' + ALL.length + " từ của " + openLessons.length + ' bài đã học</span></span><span class="go pill" style="background:var(--panel-2);color:var(--panel-ink)">Chơi ngay</span></button>';
     }
@@ -182,6 +184,55 @@
     app.innerHTML = html + "</div>";
   }
 
+
+  /* ---------- trang chủ (trang chào) và thanh điều hướng ---------- */
+  var MQ = { q: null, answered: false }, qShift = 0;
+  var NAV = [
+    { id: "home", label: "Trang chủ", href: "#home" },
+    { id: "tu-vung", label: "Từ vựng", href: "#tu-vung" },
+    { id: "bai-tap", label: "Bài tập", href: "#bai-tap" },
+    { id: "bai-khoa", label: "Bài khóa", soon: true },
+    { id: "luyen-nghe", label: "Luyện nghe", soon: true }
+  ];
+  function paintNav() {
+    var n = $("#mainnav"); if (!n) return;
+    if (!SESSION || S.view === "login" || S.view === "teacher") { n.hidden = true; return; }
+    n.hidden = false;
+    var act = S.view === "home" ? "home" : S.view === "assign" ? "bai-tap" : S.view === "history" ? "" : (curAssign ? "bai-tap" : "tu-vung"), pend = pendingCount();
+    n.innerHTML = NAV.map(function (it) {
+      if (it.soon) return '<span class="nv soon" aria-disabled="true">' + it.label + "<small>Sắp có</small></span>";
+      return '<a class="nv' + (it.id === act ? " on" : "") + '" href="' + it.href + '"' + (it.id === act ? ' aria-current="page"' : "") + ">" + it.label + (it.id === "bai-tap" && pend ? '<b class="dot">' + pend + "</b>" : "") + "</a>";
+    }).join("");
+  }
+  function dayNum() { var d = new Date(); return Math.floor(new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime() / 86400000); }
+  function greeting() { var h = new Date().getHours(); return h < 11 ? "Chào buổi sáng" : h < 14 ? "Chào buổi trưa" : h < 18 ? "Chào buổi chiều" : "Chào buổi tối"; }
+  function dailyQuote() { var Q = window.HD_QUOTES || []; return Q.length ? Q[(dayNum() + qShift) % Q.length] : null; }
+  function newMini() {
+    if (!ALL.length) { MQ.q = null; return; }
+    var w = ALL[(dayNum() * 7 + qShift * 3 + Math.floor(Math.random() * 1000)) % ALL.length];
+    MQ.q = buildQuestion(gameById("listen-hanzi"), w, ALL); MQ.answered = false;
+  }
+  function miniHtml() {
+    if (!MQ.q) return '<p class="sub" style="margin:0">Chưa có từ vựng để luyện.</p>';
+    var q = MQ.q;
+    return '<p class="sub" style="margin:0 0 10px">Nghe và chọn chữ Hán đúng.</p><button class="mq-spk" data-mqspeak="1">' + ICONS.speaker + ' Nghe</button><div class="mq-opts">' + q.opts.map(function (o, i) {
+      var cl = MQ.answered ? (o.ok ? " correct" : (o.picked ? " wrong" : " dim")) : "";
+      return '<button class="mq-opt' + cl + '" data-mq="' + i + '"' + (MQ.answered ? " disabled" : "") + ">" + esc(o.text) + "</button>";
+    }).join("") + '</div><div class="mq-fb">' + (MQ.answered ? (q.opts.filter(function (o) { return o.picked; })[0].ok ? '<b class="ok">Chính xác!</b> ' : '<b class="no">Chưa đúng.</b> ') + '<span class="hzs">' + esc(q.w.hanzi) + "</span> · " + esc(q.w.pinyin) + " — " + esc(q.w.vi) : "") + "</div>";
+  }
+  function renderHome() {
+    S.view = "home"; curAssign = null; setRight("");
+    var first = SESSION.role === "teacher" ? "thầy/cô" : SESSION.name.trim().split(/\s+/).slice(-1)[0];
+    var q = dailyQuote(), pend = pendingCount();
+    if (!MQ.q) newMini();
+    var hero = q ? '<section class="hero" data-char="' + esc(q[0].charAt(0)) + '"><div class="hero-top"><span class="pchip">CÂU NÓI HÔM NAY</span></div><div class="hero-q">' + esc(q[0]) + '</div><div class="hero-py">' + esc(q[1]) + '</div><div class="hero-vi">' + esc(q[2]) + '</div><div class="hero-btns"><button class="hbtn" data-quote="speak">' + ICONS.speaker + 'Nghe</button><button class="hbtn ghost" data-quote="next">Câu khác</button></div></section>' : "";
+    var tiles = '<div class="hub-tiles"><a class="htile" href="#tu-vung"><span class="hn">' + openLessons.length + '</span><span class="hl">Từ vựng</span><span class="hs">' + ALL.length + ' từ · ' + GAMES.length + ' game</span></a>' +
+      '<a class="htile' + (pend ? " alert" : "") + '" href="#bai-tap"><span class="hn">' + pend + '</span><span class="hl">Bài tập</span><span class="hs">' + (pend ? "bài chưa làm" : "đã làm hết") + '</span></a>' +
+      '<span class="htile soon"><span class="hn">…</span><span class="hl">Bài khóa</span><span class="hs">Sắp có</span></span><span class="htile soon"><span class="hn">…</span><span class="hl">Luyện nghe</span><span class="hs">Sắp có</span></span></div>';
+    app.innerHTML = previewBanner() + '<div class="home-head"><h1 class="h1">' + greeting() + ", " + esc(first) + '!</h1><p class="sub">' + (SESSION.role === "student" && pend ? "Bạn có " + pend + " bài tập chưa làm. " : "") + 'Hôm nay học một chút nhé.</p></div>' + hero +
+      '<div class="hub-grid"><section class="card hub-card"><div class="eyebrow">Bài tập nhỏ hôm nay</div><div id="mini">' + miniHtml() + '</div><button class="btn ghost small" data-mq-new="1" style="margin-top:12px">Câu khác</button></section><section class="card hub-card"><div class="eyebrow">Đi tới</div>' + tiles + "</section></div>";
+  }
+
   /* ---------- trang bài học ---------- */
   function renderLesson(L) {
     S.view = "lesson"; S.lesson = L;
@@ -194,7 +245,7 @@
       var best = b && b.plays ? "Điểm cao nhất: <b>" + b.best + "%</b> · " + b.plays + " lượt" : "Chưa chơi";
       return '<button class="gcard" data-game="' + g.id + '"><span class="gico">' + ICONS[g.icon] + '</span><span class="gtype">' + g.type + '</span><span class="gname">' + g.name + '</span><span class="gdesc">' + g.desc + '</span><span class="gbest">' + best + "</span></button>";
     }).join("");
-    app.innerHTML = '<button class="back" data-go="home">' + ICONS.back + 'Tất cả các bài</button>' +
+    app.innerHTML = '<button class="back" data-go="tu-vung">' + ICONS.back + 'Từ vựng</button>' +
       '<div class="lesson-title"><h1 class="h1">' + (L.id === "all" ? "Ôn tổng hợp" : "Bài " + L.id + (L.topic ? " · " + esc(L.topic) : "")) + '</h1><p class="sub">Chọn một trò chơi để bắt đầu.</p></div>' +
       '<div class="lesson-wrap"><section class="card"><div class="eyebrow">Từ vựng · nhấn loa để nghe</div><div class="wlist">' + rows + '</div></section>' +
       '<section><div class="eyebrow section-label">Trò chơi</div><div class="games">' + cards + "</div></section></div>";
@@ -286,7 +337,7 @@
   function useHint() {
     if (S.answered) return;
     if (S.game.kind === "type") {
-      var w = S.round[S.i], t = $("#hinttxt"); if (t) t.textContent = "Gợi ý: bắt đầu bằng \"" + plain(w.pinyin).charAt(0) + "\", nghĩa là: " + w.vi + ".";
+      var w = S.round[S.i], t = $("#hinttxt"); if (t) t.textContent = "Gợi ý: " + w.hanzi.length + " chữ, bắt đầu bằng “" + w.hanzi.charAt(0) + "”, nghĩa là: " + w.vi + ".";
       var hb = $("#hint"); if (hb) hb.disabled = true; var inp = $("#ans"); if (inp) inp.focus(); return;
     }
     if (S.game.kind !== "quiz" || S.hints <= 0) return;
@@ -308,15 +359,16 @@
   function renderType() {
     var w = S.round[S.i], N = S.round.length;
     app.innerHTML = topBar('<span class="eyebrow" style="margin-left:8px">' + S.game.name + "</span>") +
-      '<section class="card play-card" style="margin-top:10px"><div class="play-meta"><span class="qchip">Câu ' + (S.i + 1) + "/" + N + '</span><span class="tip">Gõ pinyin không cần dấu. Nhấn <kbd>Enter</kbd> để kiểm tra.</span><span class="done-count">Đã làm: ' + S.i + "/" + N + '</span></div><div class="progress"><i style="width:' + (S.i / N * 100) + '%"></i></div>' +
-      '<div class="play"><div class="panel"><span class="pchip">NGHE &amp; GÕ</span><button class="bigspk" data-replay="1" aria-label="Phát âm thanh">' + ICONS.speaker + '</button><div><div class="ptitle">Nghe và gõ pinyin</div><div class="psub">Ví dụ: nǐ hǎo → nihao</div></div><div class="feedback" id="fb"></div><button class="play-btn" data-replay="1">' + ICONS.play + "Nghe lại</button></div>" +
-      '<div class="answers"><div class="alabel">Gõ phiên âm pinyin:</div><div class="typebox"><input class="inp" id="ans" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="nihao"><div class="hint" id="hinttxt">Từ này có ' + w.hanzi.length + ' chữ Hán.</div></div><div class="afoot"><button class="btn ghost" id="hint">Gợi ý</button><button class="btn ghost" id="skip" style="margin-right:auto">Bỏ qua</button><button class="btn" id="check">Kiểm tra</button></div></div></div></section>';
+      '<section class="card play-card" style="margin-top:10px"><div class="play-meta"><span class="qchip">Câu ' + (S.i + 1) + "/" + N + '</span><span class="tip">Bật bàn phím tiếng Trung để gõ. Nhấn <kbd>Enter</kbd> để kiểm tra.</span><span class="done-count">Đã làm: ' + S.i + "/" + N + '</span></div><div class="progress"><i style="width:' + (S.i / N * 100) + '%"></i></div>' +
+      '<div class="play"><div class="panel"><span class="pchip">NGHE &amp; GÕ</span><button class="bigspk" data-replay="1" aria-label="Phát âm thanh">' + ICONS.speaker + '</button><div><div class="ptitle">Nghe và gõ chữ Hán</div><div class="psub">Ví dụ: nghe “nǐ hǎo” → gõ 你好</div></div><div class="feedback" id="fb"></div><button class="play-btn" data-replay="1">' + ICONS.play + "Nghe lại</button></div>" +
+      '<div class="answers"><div class="alabel">Gõ chữ Hán bạn nghe được:</div><div class="typebox"><input class="inp hz" id="ans" type="text" lang="zh-CN" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Gõ chữ Hán ở đây"><div class="hint" id="hinttxt">Từ này có ' + w.hanzi.length + ' chữ Hán.</div></div><div class="afoot"><button class="btn ghost" id="hint">Gợi ý</button><button class="btn ghost" id="skip" style="margin-right:auto">Bỏ qua</button><button class="btn" id="check">Kiểm tra</button></div></div></div></section>';
     S.answered = false;
     setTimeout(function () { speak(w); var i = $("#ans"); if (i) i.focus(); }, 150);
   }
+  function cleanHan(s) { return String(s).replace(/[\s，。！？、；：“”‘’,.!?;:'"]/g, ""); }
   function checkType(skip) {
     if (S.answered) return;
-    var w = S.round[S.i], inp = $("#ans"), ok = !skip && plain(inp.value) === plain(w.pinyin);
+    var w = S.round[S.i], inp = $("#ans"), ok = !skip && cleanHan(inp.value) === cleanHan(w.hanzi);
     if (!skip && !inp.value.trim()) return;
     S.answered = true; inp.disabled = true; inp.classList.add(ok ? "correct" : "wrong");
     if (ok) { S.score++; S.streak++; } else { S.mistakes.push(w); S.streak = 0; }
@@ -405,6 +457,11 @@
     var t = e.target.closest("button"); if (!t) return;
     if (t.dataset.go) return nav("#" + t.dataset.go);
     if (t.dataset.assign) return startAssignment(t.dataset.assign);
+    if (t.dataset.quote === "speak") { var qq = dailyQuote(); if (qq) speak({ hanzi: qq[0], audio: "" }); return; }
+    if (t.dataset.quote === "next") { qShift++; return renderHome(); }
+    if (t.dataset.mqspeak && MQ.q) return speak(MQ.q.w);
+    if (t.dataset.mqNew) { newMini(); $("#mini").innerHTML = miniHtml(); return; }
+    if (t.dataset.mq !== undefined && MQ.q && !MQ.answered) { var o = MQ.q.opts[+t.dataset.mq]; o.picked = true; MQ.answered = true; sfx(o.ok ? "ok" : "no"); $("#mini").innerHTML = miniHtml(); return; }
     if (t.dataset.game) return startGame(t.dataset.game);
     if (t.dataset.say !== undefined) return speak(S.lesson.words[+t.dataset.say]);
     if (t.dataset.saym !== undefined) return speak(S.finalMist[+t.dataset.saym]);
@@ -483,7 +540,7 @@
       MY.results = (r.results || []).map(function (x) { x.pct = +x.pct || 0; x.lesson = String(x.lesson); return x; });
       queue.forEach(function (q) { MY.results.push({ t: new Date().toISOString(), lesson: String(q.lesson), game: q.game, gameName: q.gameName, score: q.score, total: q.total, pct: q.pct, secs: q.secs, assignmentId: q.assignmentId }); });
       MY.assignments = r.assignments || [];
-      if (S.view === "home" || S.view === "lesson") route();
+      if (S.view === "home" || S.view === "vocab" || S.view === "assign" || S.view === "lesson") route();
     });
   }
   function paintUser() {
@@ -530,16 +587,24 @@
     if (done) return { t: "Hạn " + a.due.split("-").reverse().join("/"), k: "" };
     return days < 0 ? { t: "Quá hạn " + (-days) + " ngày", k: "bad" } : days === 0 ? { t: "Hạn hôm nay", k: "warn" } : { t: "Còn " + days + " ngày", k: days <= 2 ? "warn" : "" };
   }
-  function assignHtml() {
-    if (!SESSION || SESSION.role !== "student" || !MY.assignments.length) return "";
-    var items = MY.assignments.map(function (a) {
+  function assignItems() {
+    if (!SESSION || SESSION.role !== "student") return [];
+    return MY.assignments.map(function (a) {
       var mine = MY.results.filter(function (r) { return r.assignmentId === a.id; });
       return { a: a, done: mine.length > 0, best: mine.length ? Math.max.apply(null, mine.map(function (r) { return r.pct; })) : 0 };
     }).sort(function (x, y) { return (x.done - y.done) || String(x.a.due).localeCompare(String(y.a.due)); });
-    return '<section class="asg-home"><div class="eyebrow">Bài tập của giáo viên</div><div class="acards">' + items.map(function (it) {
-      var a = it.a, g = a.game ? gameById(a.game) : null, d = dueInfo(a, it.done), L = lessonById(a.lesson);
-      return '<button class="acard' + (it.done ? " done" : "") + '" data-assign="' + esc(a.id) + '"><span class="at"><b>' + esc(a.title) + "</b><span>" + (L ? L.title : "Bài " + esc(a.lesson)) + " · " + (g ? esc(g.name) : "Tự chọn game") + "</span>" + (a.note ? '<span class="an">' + esc(a.note) + "</span>" : "") + '</span><span class="as"><span class="tp ' + (it.done ? "good" : d.k) + '">' + (it.done ? "Đã làm · " + it.best + "%" : d.t) + "</span><span class=\"go\">" + (it.done ? "Làm lại" : "Làm bài") + "</span></span></button>";
-    }).join("") + "</div></section>";
+  }
+  function pendingCount() { return assignItems().filter(function (it) { return !it.done; }).length; }
+  function assignCard(it) {
+    var a = it.a, g = a.game ? gameById(a.game) : null, d = dueInfo(a, it.done), L = lessonById(a.lesson);
+    return '<button class="acard' + (it.done ? " done" : "") + '" data-assign="' + esc(a.id) + '"><span class="at"><b>' + esc(a.title) + "</b><span>" + (L ? L.title : "Bài " + esc(a.lesson)) + " · " + (g ? esc(g.name) : "Tự chọn game") + "</span>" + (a.note ? '<span class="an">' + esc(a.note) + "</span>" : "") + '</span><span class="as"><span class="tp ' + (it.done ? "good" : d.k) + '">' + (it.done ? "Đã làm · " + it.best + "%" : d.t) + '</span><span class="go">' + (it.done ? "Làm lại" : "Làm bài") + "</span></span></button>";
+  }
+  function renderAssignments() {
+    S.view = "assign"; curAssign = null; setRight('<span class="chip">' + pendingCount() + " bài chưa làm</span>");
+    var items = assignItems(), todo = items.filter(function (x) { return !x.done; }), done = items.filter(function (x) { return x.done; });
+    var empty = SESSION && SESSION.role === "teacher" ? "Giáo viên giao và theo dõi bài tập ở Bảng giáo viên." : "Giáo viên chưa giao bài tập nào. Bạn có thể luyện thêm ở mục Từ vựng.";
+    app.innerHTML = previewBanner() + '<div class="home-head"><h1 class="h1">Bài tập</h1><p class="sub">Bài tập giáo viên giao cho bạn. Làm xong, kết quả tự gửi về cho giáo viên.</p></div>' +
+      (items.length ? (todo.length ? '<div class="eyebrow">Cần làm (' + todo.length + ')</div><div class="acards" style="margin:8px 0 22px">' + todo.map(assignCard).join("") + "</div>" : '<p class="sub" style="margin-bottom:18px">Bạn đã làm hết bài tập được giao.</p>') + (done.length ? '<div class="eyebrow">Đã làm (' + done.length + ')</div><div class="acards" style="margin-top:8px">' + done.map(assignCard).join("") + "</div>" : "") : '<section class="card"><p class="sub" style="margin:0">' + empty + "</p></section>");
   }
   function startAssignment(id) {
     var a = MY.assignments.filter(function (x) { return x.id === id; })[0]; if (!a) return;

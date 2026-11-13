@@ -74,3 +74,25 @@ window.HD_LESSONS = [
   { id: 14, topic: "", words: [] },
   { id: 15, topic: "", words: [] }
 ];
+
+/* ===========================================================
+   CÂU NÓI Ở TRANG CHỦ (mỗi ngày hiện một câu, học sinh bấm "Câu khác" để đổi)
+   Thêm câu mới: ["chữ Hán", "pinyin", "nghĩa tiếng Việt"],
+   =========================================================== */
+window.HD_QUOTES = [
+  ["加油！", "jiāyóu", "Cố lên!"],
+  ["每天进步一点点", "měitiān jìnbù yìdiǎndiǎn", "Mỗi ngày tiến bộ thêm một chút"],
+  ["慢慢来，比较快", "mànman lái, bǐjiào kuài", "Cứ từ từ thì lại nhanh hơn"],
+  ["有志者事竟成", "yǒu zhì zhě shì jìng chéng", "Có chí thì nên"],
+  ["千里之行，始于足下", "qiān lǐ zhī xíng, shǐ yú zúxià", "Hành trình ngàn dặm bắt đầu từ một bước chân"],
+  ["天天向上", "tiāntiān xiàng shàng", "Mỗi ngày một tiến bộ"],
+  ["好好学习，天天向上", "hǎohǎo xuéxí, tiāntiān xiàng shàng", "Chăm chỉ học tập, ngày ngày tiến bộ"],
+  ["坚持就是胜利", "jiānchí jiù shì shènglì", "Kiên trì chính là chiến thắng"],
+  ["祝你今天开心", "zhù nǐ jīntiān kāixīn", "Chúc bạn hôm nay vui vẻ"],
+  ["今天也要加油", "jīntiān yě yào jiāyóu", "Hôm nay cũng cố lên nhé"],
+  ["学而时习之，不亦说乎", "xué ér shí xí zhī, bú yì yuè hū", "Học rồi thường xuyên ôn tập, chẳng phải vui sao"],
+  ["熟能生巧", "shú néng shēng qiǎo", "Quen tay hay việc"],
+  ["谢谢你，辛苦了", "xièxie nǐ, xīnkǔ le", "Cảm ơn bạn, vất vả rồi"],
+  ["祝你学习进步", "zhù nǐ xuéxí jìnbù", "Chúc bạn học tập tiến bộ"],
+  ["你真棒", "nǐ zhēn bàng", "Bạn giỏi quá!"]
+];
