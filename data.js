@@ -96,7 +96,32 @@ window.HD_LESSONS = [
       ["想", "xiǎng", "muốn, nhớ", "audio/62.mp3"]
     ]
   },
-  { id: 4, topic: "", words: [] },
+  {
+    id: 4, topic: "Gia đình, tuổi tác", words: [
+      ["有", "yǒu", "có", "audio/63.mp3"],
+      ["没有", "méiyǒu", "không có", "audio/64.mp3"],
+      ["多少", "duōshao", "bao nhiêu", "audio/65.mp3"],
+      ["个", "gè", "cái, người (lượng từ)", "audio/66.mp3"],
+      ["呢", "ne", "còn … thì sao? (trợ từ)", "audio/67.mp3"],
+      ["家", "jiā", "nhà, gia đình", "audio/68.mp3"],
+      ["房子", "fángzi", "căn nhà", "audio/69.mp3"],
+      ["几", "jǐ", "mấy", "audio/70.mp3"],
+      ["口", "kǒu", "khẩu (lượng từ chỉ số người trong gia đình)", "audio/71.mp3"],
+      ["爸爸", "bàba", "bố", "audio/72.mp3"],
+      ["妈妈", "māma", "mẹ", "audio/73.mp3"],
+      ["和", "hé", "và", "audio/74.mp3"],
+      ["儿子", "érzi", "con trai", "audio/75.mp3"],
+      ["孩子", "háizi", "con, trẻ em", "audio/76.mp3"],
+      ["女儿", "nǚ'ér", "con gái", "audio/77.mp3"],
+      ["岁", "suì", "tuổi", "audio/78.mp3"],
+      ["今年", "jīnnián", "năm nay", "audio/79.mp3"],
+      ["去年", "qùnián", "năm ngoái", "audio/80.mp3"],
+      ["明年", "míngnián", "năm sau", "audio/81.mp3"],
+      ["多大", "duō dà", "bao nhiêu tuổi", "audio/82.mp3"],
+      ["多", "duō", "nhiều, bao nhiêu", "audio/83.mp3"],
+      ["大", "dà", "lớn", "audio/84.mp3"]
+    ]
+  },
   { id: 5, topic: "", words: [] },
   { id: 6, topic: "", words: [] },
   { id: 7, topic: "", words: [] },

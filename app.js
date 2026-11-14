@@ -129,7 +129,7 @@
     { id: "listen-pinyin", name: "Nghe → chọn pinyin", desc: "Nghe và phân biệt thanh điệu.", icon: "list", kind: "quiz", prompt: "audio", answer: "pinyin", type: "Nghe" },
     { id: "hanzi-pinyin", name: "Chữ Hán → pinyin", desc: "Nhìn chữ, chọn phiên âm đúng.", icon: "chars", kind: "quiz", prompt: "hanzi", answer: "pinyin", type: "Mặt chữ" },
     { id: "pinyin-hanzi", name: "Pinyin → chữ Hán", desc: "Đọc pinyin, nhận ra mặt chữ.", icon: "abc", kind: "quiz", prompt: "pinyin", answer: "hanzi", type: "Pinyin" },
-    { id: "match", name: "Ghép cặp", desc: "Nối chữ Hán với pinyin tương ứng.", icon: "match", kind: "match", type: "Mặt chữ" },
+    { id: "match", name: "Ghép cặp", desc: "Nối chữ Hán với nghĩa tiếng Việt tương ứng.", icon: "match", kind: "match", type: "Mặt chữ" },
     { id: "dictation", name: "Nghe → gõ chữ Hán", desc: "Nghe rồi gõ lại bằng chữ Hán (cần bàn phím tiếng Trung).", icon: "keys", kind: "type", type: "Nghe" },
     { id: "write", name: "Tập viết chữ Hán", desc: "Xem thứ tự nét, tập viết ngay trên màn hình.", icon: "pen", kind: "write", type: "Viết" },
     { id: "flash", name: "Thẻ ghi nhớ", desc: "Lật thẻ, tự chấm đã nhớ hay chưa.", icon: "cards", kind: "flash", type: "Ôn nhanh" }
@@ -422,9 +422,9 @@
     var ws = S.round, hz = shuffle(ws.map(function (w, i) { return { i: i, w: w }; })), py = shuffle(ws.map(function (w, i) { return { i: i, w: w }; }));
     S.matchSel = null; S.matched = 0; S.missed = {};
     var colH = hz.map(function (x) { return '<button class="tile hz" data-side="h" data-idx="' + x.i + '">' + esc(x.w.hanzi) + "</button>"; }).join("");
-    var colP = py.map(function (x) { return '<button class="tile py" data-side="p" data-idx="' + x.i + '">' + esc(x.w.pinyin) + "</button>"; }).join("");
+    var colP = py.map(function (x) { return '<button class="tile py" data-side="p" data-idx="' + x.i + '">' + esc(x.w.vi) + "</button>"; }).join("");
     app.innerHTML = topBar('<span class="eyebrow" style="margin-left:8px">' + S.game.name + "</span>") +
-      '<section class="card play-card" style="margin-top:10px"><div class="play-meta"><span class="qchip">' + ws.length + ' cặp</span><span class="tip">Chọn một chữ Hán rồi chọn pinyin tương ứng. Bấm chữ Hán sẽ nghe đọc.</span><span class="done-count" id="mcount">Đã ghép: 0/' + ws.length + '</span></div><div class="progress"><i id="mbar" style="width:0%"></i></div>' +
+      '<section class="card play-card" style="margin-top:10px"><div class="play-meta"><span class="qchip">' + ws.length + ' cặp</span><span class="tip">Chọn một chữ Hán rồi chọn nghĩa tương ứng. Bấm chữ Hán sẽ nghe đọc.</span><span class="done-count" id="mcount">Đã ghép: 0/' + ws.length + '</span></div><div class="progress"><i id="mbar" style="width:0%"></i></div>' +
       '<div class="match"><div class="col">' + colH + '</div><div class="col">' + colP + "</div></div></section>";
   }
   function tilePick(btn) {
@@ -439,7 +439,7 @@
     }
     var a = sel, b = { side: side, idx: idx, btn: btn };
     var wa = S.round[a.idx], wb = S.round[b.idx];
-    var ok = wa.pinyin === wb.pinyin;
+    var ok = a.idx === b.idx;
     S.matchSel = null;
     if (ok) {
       [a.btn, b.btn].forEach(function (t) { t.classList.remove("sel"); t.classList.add("done"); t.disabled = true; });
