@@ -197,7 +197,6 @@
   var NAV = [
     { id: "home", label: "Trang chủ", href: "#home" },
     { id: "tu-vung", label: "Từ vựng", href: "#tu-vung" },
-    { id: "tra-tu", label: "Tra từ", href: "#tra-tu" },
     { id: "bai-tap", label: "Bài tập", href: "#bai-tap" },
     { id: "bai-khoa", label: "Bài khóa", soon: true },
     { id: "luyen-nghe", label: "Luyện nghe", soon: true }
@@ -206,7 +205,8 @@
     var n = $("#mainnav"); if (!n) return;
     if (!SESSION || S.view === "login" || S.view === "teacher") { n.hidden = true; return; }
     n.hidden = false;
-    var act = S.view === "search" ? "tra-tu" : S.view === "home" ? "home" : S.view === "assign" ? "bai-tap" : S.view === "history" ? "" : (curAssign ? "bai-tap" : "tu-vung"), pend = pendingCount();
+    var sb = $("#srchbtn"); if (sb) sb.classList.toggle("on", S.view === "search");
+    var act = S.view === "home" ? "home" : S.view === "assign" ? "bai-tap" : S.view === "history" ? "" : (curAssign ? "bai-tap" : "tu-vung"), pend = pendingCount();
     n.innerHTML = NAV.map(function (it) {
       if (it.soon) return '<span class="nv soon" aria-disabled="true">' + it.label + "<small>Sắp có</small></span>";
       return '<a class="nv' + (it.id === act ? " on" : "") + '" href="' + it.href + '"' + (it.id === act ? ' aria-current="page"' : "") + ">" + it.label + (it.id === "bai-tap" && pend ? '<b class="dot">' + pend + "</b>" : "") + "</a>";
@@ -266,7 +266,7 @@
     var first = SESSION.role === "teacher" ? "thầy/cô" : SESSION.name.trim().split(/\s+/).slice(-1)[0];
     var q = dailyQuote(), pend = pendingCount();
     if (!MQ.q) newMini();
-    var hero = q ? '<section class="hero" data-char="' + esc(q[0].charAt(0)) + '"><div class="hero-top"><span class="pchip">LỜI CHÚC HÔM NAY</span></div><div class="hero-q">' + esc(q[0]) + '</div><div class="hero-py">' + esc(q[1]) + '</div><div class="hero-vi">' + esc(q[2]) + '</div><div class="hero-btns"><button class="hbtn ghost" data-quote="next">Câu khác</button></div></section>' : "";
+    var hero = q ? '<section class="hero" data-char="' + esc(q[0].charAt(0)) + '"><div class="hero-top"><span class="pchip">LỜI CHÚC HÔM NAY</span></div><div class="hero-q">' + esc(q[0]) + '</div><div class="hero-py">' + esc(q[1]) + '</div><div class="hero-vi">' + esc(q[2]) + '</div></section>' : "";
     var tiles = '<div class="hub-tiles"><a class="htile" href="#tu-vung"><span class="hn">' + openLessons.length + '</span><span class="hl">Từ vựng</span><span class="hs">' + ALL.length + ' từ · ' + GAMES.length + ' game</span></a>' +
       '<a class="htile' + (pend ? " alert" : "") + '" href="#bai-tap"><span class="hn">' + pend + '</span><span class="hl">Bài tập</span><span class="hs">' + (pend ? "bài chưa làm" : "đã làm hết") + '</span></a>' +
       '<span class="htile soon"><span class="hn">…</span><span class="hl">Bài khóa</span><span class="hs">Sắp có</span></span><span class="htile soon"><span class="hn">…</span><span class="hl">Luyện nghe</span><span class="hs">Sắp có</span></span></div>';
@@ -508,7 +508,6 @@
     if (t.dataset.go) return nav("#" + t.dataset.go);
     if (t.dataset.assign) return startAssignment(t.dataset.assign);
     if (t.dataset.weak) return startWeak();
-    if (t.dataset.quote === "next") { qShift++; return renderHome(); }
     if (t.dataset.mqspeak && MQ.q) return speak(MQ.q.w);
     if (t.dataset.mqNew) { newMini(); $("#mini").innerHTML = miniHtml(); return; }
     if (t.dataset.mq !== undefined && MQ.q && !MQ.answered) { var o = MQ.q.opts[+t.dataset.mq]; o.picked = true; MQ.answered = true; sfx(o.ok ? "ok" : "no"); $("#mini").innerHTML = miniHtml(); return; }
@@ -595,7 +594,8 @@
     });
   }
   function paintUser() {
-    var b = $("#userbtn"), m = $("#umenu"); m.hidden = true;
+    var b = $("#userbtn"), m = $("#umenu"), sb = $("#srchbtn"); m.hidden = true;
+    if (sb) sb.hidden = !SESSION;
     if (!SESSION) { b.hidden = true; return; }
     b.hidden = false;
     b.innerHTML = '<span class="uav">' + esc((SESSION.name || "?").trim().charAt(0).toUpperCase()) + '</span><span class="uname">' + esc(SESSION.name) + (SESSION.cls ? " · " + esc(SESSION.cls) : "") + "</span>";

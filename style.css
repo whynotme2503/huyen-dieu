@@ -612,3 +612,6 @@ a.htile:hover { transform: translateY(-2px); border-color: var(--accent); }
 .wi-side { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
 .wi-ch { font: 500 30px var(--f-han); color: var(--ink); }
 .wi-th { margin-top: 10px; }
+
+a.sndbtn { display: inline-flex; align-items: center; color: inherit; text-decoration: none; }
+.sndbtn.on { background: var(--accent-soft); color: var(--accent); }
