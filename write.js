@@ -107,7 +107,25 @@
     if (a === "next") { if (W.i + 1 >= W.chars.length) { var cb = W.onExit; W = null; return cb && cb(); } W.i++; return render(); }
   }
 
+  /* hình cách viết thu gọn (dùng trong mục Tra từ): thứ tự nét + nút xem lại hoạt ảnh cho từng chữ */
+  function inline(el, word) {
+    var chars = uniqueChars([{ hanzi: word }]);
+    el.innerHTML = chars.map(function (c, i) { return '<div class="wi" data-i="' + i + '"><div class="wi-top"><div class="wi-box" id="wi-' + i + '"></div><div class="wi-side"><span class="wi-ch">' + esc(c) + '</span><button class="btn ghost small" data-wi="' + i + '">Xem lại</button><span class="t-sub wi-n"></span></div></div><div class="wi-th"><p class="t-empty">Đang tải…</p></div></div>'; }).join("");
+    chars.forEach(function (c, i) {
+      var host = el.querySelector(".wi[data-i='" + i + "']");
+      loadChar(c).then(function (data) {
+        host.querySelector(".wi-th").innerHTML = strokeThumbs(data);
+        host.querySelector(".wi-n").textContent = data.strokes.length + " nét";
+        if (typeof window.HanziWriter === "undefined") return;
+        var wr = window.HanziWriter.create("wi-" + i, c, { width: 130, height: 130, padding: 8, showOutline: true, strokeColor: cssv("--ink", "#1f2a2e"), outlineColor: cssv("--line", "#d8d6c8"), strokeAnimationSpeed: 1.1, delayBetweenStrokes: 220, charDataLoader: function (ch, ok, err) { loadChar(ch).then(ok, err); } });
+        host._w = wr; wr.animateCharacter();
+        host.querySelector("[data-wi]").onclick = function () { wr.animateCharacter(); };
+      }).catch(function () { host.querySelector(".wi-th").innerHTML = '<p class="t-empty">Chưa có dữ liệu nét cho chữ này (cần mạng để tải).</p>'; });
+    });
+  }
+
   window.HD_WRITE = {
+    inline: inline,
     init: function (host) { H = host; H.app.addEventListener("click", onClick); },
     chars: uniqueChars,
     start: function (opt) {

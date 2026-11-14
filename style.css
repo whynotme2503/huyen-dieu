@@ -586,3 +586,29 @@ a.htile:hover { transform: translateY(-2px); border-color: var(--accent); }
 .sh-ans .lb { font: 600 11px var(--f-ui); text-transform: uppercase; letter-spacing: .05em; color: var(--ink-2); min-width: 86px; }
 .sh-ans.good span:last-child { color: var(--accent); font-weight: 600; }
 @media (max-width: 560px) { .sh-opts, .sh-built, .sh-pool, .sh-ans { margin-left: 0; } .sh-input { width: 100%; margin-left: 0; } }
+
+/* ---------- tra từ ---------- */
+.sr-box { margin: 4px 0 14px; }
+.sr-input { width: 100%; font-size: 18px; padding: 13px 16px; border-radius: 14px; }
+.sr-hint { margin: 10px 2px; }
+.sr-card { margin-bottom: 14px; }
+.sr-head { display: flex; align-items: center; gap: 16px; }
+.sr-hz { font: 500 44px/1.1 var(--f-han); color: var(--ink); }
+.sr-m { flex: 1; min-width: 0; }
+.sr-py { font: 600 18px var(--f-py); color: var(--accent); }
+.sr-vi { font: 500 17px var(--f-ui); color: var(--ink); margin-top: 2px; }
+.sr-sec { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+.sr-ex { display: flex; flex-direction: column; gap: 1px; margin-top: 8px; }
+.sr-ex .zh { font: 500 19px/1.4 var(--f-han); color: var(--ink); }
+.sr-ex .py { font: 500 14px var(--f-py); color: var(--accent); }
+.sr-ex .vi { font: 400 14px var(--f-ui); color: var(--ink-2); }
+.sr-gram { margin: 6px 0 0; font: 400 15px/1.55 var(--f-ui); color: var(--ink); }
+.sr-btns { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.sr-strokes { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+.wi { margin-bottom: 14px; }
+.wi-top { display: flex; align-items: center; gap: 14px; }
+.wi-box { width: 130px; height: 130px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 50% 50%; background-position: center; }
+.wi-box svg { display: block; }
+.wi-side { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.wi-ch { font: 500 30px var(--f-han); color: var(--ink); }
+.wi-th { margin-top: 10px; }
