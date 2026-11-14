@@ -85,7 +85,7 @@
   }
 
   /* ---------- âm thanh ---------- */
-  var zhVoice = null, curAudio = null, hasTTS = "speechSynthesis" in window;
+  var zhVoice = null, voiceWarned = false, curAudio = null, hasTTS = "speechSynthesis" in window;
   function pickVoice() {
     if (!hasTTS) return;
     var vs = speechSynthesis.getVoices();
@@ -103,6 +103,7 @@
   }
   function tts(w) {
     if (!hasTTS) { toast("Thiết bị này chưa hỗ trợ đọc tiếng Trung."); return; }
+    if (!zhVoice && !voiceWarned && speechSynthesis.getVoices().length) { voiceWarned = true; toast("Máy bạn chưa có giọng đọc tiếng Trung nên âm thanh có thể không rõ. Hãy cài thêm giọng tiếng Trung trong Cài đặt của máy."); }
     var u = new SpeechSynthesisUtterance(w.hanzi);
     u.lang = "zh-CN"; u.rate = 0.8; if (zhVoice) u.voice = zhVoice;
     u.onerror = function () { toast("Không phát được âm thanh. Thử bật giọng đọc tiếng Trung trong cài đặt thiết bị."); };
@@ -206,6 +207,32 @@
       return '<a class="nv' + (it.id === act ? " on" : "") + '" href="' + it.href + '"' + (it.id === act ? ' aria-current="page"' : "") + ">" + it.label + (it.id === "bai-tap" && pend ? '<b class="dot">' + pend + "</b>" : "") + "</a>";
     }).join("");
   }
+  function localDay(d) { return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
+  function streakInfo() {
+    var days = {}; MY.results.forEach(function (r) { days[localDay(new Date(r.t))] = 1; });
+    var d = new Date(), today = !!days[localDay(d)], n = 0;
+    if (!today) d.setDate(d.getDate() - 1);
+    while (days[localDay(d)]) { n++; d.setDate(d.getDate() - 1); }
+    return { n: n, today: today };
+  }
+  function weakWords() {
+    var m = {};
+    MY.results.forEach(function (r) {
+      if (r.game === "write" || !r.words) return;
+      var wr = {}; (r.wrong || []).forEach(function (h) { wr[h] = 1; });
+      var ts = new Date(r.t).getTime();
+      r.words.forEach(function (h) { var x = m[h] || (m[h] = { seen: 0, wrong: 0, last: 0 }); x.seen++; if (wr[h]) { x.wrong++; if (ts > x.last) x.last = ts; } });
+    });
+    return Object.keys(m).map(function (h) { var x = m[h]; x.h = h; x.rate = x.wrong / x.seen; return x; })
+      .filter(function (x) { return x.wrong >= 1 && x.rate >= 0.25; })
+      .sort(function (a, b) { return b.rate - a.rate || b.last - a.last; }).slice(0, 10)
+      .map(function (x) { return ALL.filter(function (w) { return w.hanzi === x.h; })[0]; }).filter(Boolean);
+  }
+  function startWeak() {
+    var ws = weakWords(); if (ws.length < 2) { toast("Chưa có đủ từ cần ôn."); return; }
+    var pick = ["listen-hanzi", "hanzi-pinyin", "listen-pinyin", "pinyin-hanzi"][Math.floor(Math.random() * 4)];
+    S = { view: "home", lesson: lessonById("all") }; curAssign = null; startGame(pick, ws);
+  }
   function dayNum() { var d = new Date(); return Math.floor(new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime() / 86400000); }
   function greeting() { var h = new Date().getHours(); return h < 11 ? "Chào buổi sáng" : h < 14 ? "Chào buổi trưa" : h < 18 ? "Chào buổi chiều" : "Chào buổi tối"; }
   function dailyQuote() { var Q = window.HD_QUOTES || []; return Q.length ? Q[(dayNum() + qShift) % Q.length] : null; }
@@ -231,7 +258,10 @@
     var tiles = '<div class="hub-tiles"><a class="htile" href="#tu-vung"><span class="hn">' + openLessons.length + '</span><span class="hl">Từ vựng</span><span class="hs">' + ALL.length + ' từ · ' + GAMES.length + ' game</span></a>' +
       '<a class="htile' + (pend ? " alert" : "") + '" href="#bai-tap"><span class="hn">' + pend + '</span><span class="hl">Bài tập</span><span class="hs">' + (pend ? "bài chưa làm" : "đã làm hết") + '</span></a>' +
       '<span class="htile soon"><span class="hn">…</span><span class="hl">Bài khóa</span><span class="hs">Sắp có</span></span><span class="htile soon"><span class="hn">…</span><span class="hl">Luyện nghe</span><span class="hs">Sắp có</span></span></div>';
-    app.innerHTML = previewBanner() + '<div class="home-head"><h1 class="h1">' + greeting() + ", " + esc(first) + '!</h1><p class="sub">' + (SESSION.role === "student" && pend ? "Bạn có " + pend + " bài tập chưa làm. " : "") + 'Hôm nay học một chút nhé.</p></div>' + hero +
+    var st = SESSION.role === "student" ? streakInfo() : null, weak = SESSION.role === "student" ? weakWords() : [];
+    var streak = st ? '<span class="streak' + (st.n ? " on" : "") + '">' + (st.n ? "Chuỗi " + st.n + " ngày" + (st.today ? "" : " · hôm nay chưa luyện") : "Hôm nay hãy luyện một lượt nhé") + "</span>" : "";
+    var weakCard = SESSION.role === "student" ? '<section class="card hub-card weakbox"><div class="eyebrow">Ôn từ hay sai hôm nay</div>' + (weak.length >= 2 ? '<div class="weak-chips">' + weak.map(function (w) { return '<span class="wc"><span class="hz">' + esc(w.hanzi) + "</span>" + esc(w.pinyin) + "</span>"; }).join("") + '</div><button class="btn small" data-weak="1">Ôn ' + weak.length + " từ này</button>" : '<p class="sub" style="margin:6px 0 0">Chưa có từ nào cần ôn lại. Làm thêm vài bài, web sẽ gợi ý các từ bạn hay nhầm.</p>') + "</section>" : "";
+    app.innerHTML = previewBanner() + '<div class="home-head"><div class="hh-row"><h1 class="h1">' + greeting() + ", " + esc(first) + '!</h1>' + streak + '</div><p class="sub">' + (SESSION.role === "student" && pend ? "Bạn có " + pend + " bài tập chưa làm. " : "") + 'Hôm nay học một chút nhé.</p></div>' + hero + weakCard +
       '<div class="hub-grid"><section class="card hub-card"><div class="eyebrow">Bài tập nhỏ hôm nay</div><div id="mini">' + miniHtml() + '</div><button class="btn ghost small" data-mq-new="1" style="margin-top:12px">Câu khác</button></section><section class="card hub-card"><div class="eyebrow">Đi tới</div>' + tiles + "</section></div>";
   }
 
@@ -465,6 +495,7 @@
     var t = e.target.closest("button"); if (!t) return;
     if (t.dataset.go) return nav("#" + t.dataset.go);
     if (t.dataset.assign) return startAssignment(t.dataset.assign);
+    if (t.dataset.weak) return startWeak();
     if (t.dataset.quote === "speak") { var qq = dailyQuote(); if (qq) speak({ hanzi: qq[0], audio: "" }); return; }
     if (t.dataset.quote === "next") { qShift++; return renderHome(); }
     if (t.dataset.mqspeak && MQ.q) return speak(MQ.q.w);
@@ -534,7 +565,7 @@
     var asg = MY.assignments.filter(function (a) { return a.id === curAssign; })[0];
     rec.assignmentId = asg && String(asg.lesson) === String(rec.lesson) && (!asg.game || asg.game === rec.game) ? asg.id : "";
     var item = JSON.parse(JSON.stringify(rec));
-    MY.results.push({ t: new Date().toISOString(), lesson: String(rec.lesson), game: rec.game, gameName: rec.gameName, score: rec.score, total: rec.total, pct: rec.pct, secs: rec.secs, assignmentId: rec.assignmentId });
+    MY.results.push({ t: new Date().toISOString(), lesson: String(rec.lesson), game: rec.game, gameName: rec.gameName, score: rec.score, total: rec.total, pct: rec.pct, secs: rec.secs, words: rec.words, wrong: rec.wrong, assignmentId: rec.assignmentId });
     queue.push(item); qSave();
     flush().then(function (ok) {
       var el = $("#sync"); if (el) el.textContent = ok ? "Đã gửi kết quả cho giáo viên." : "Chưa gửi được. Kết quả được giữ trên máy này và sẽ tự gửi lại khi có mạng.";
@@ -547,7 +578,7 @@
       if (r && r.error === "auth") return logout("Tài khoản của bạn đã bị khóa hoặc mã không còn hiệu lực.");
       if (!r || !r.ok) return;
       MY.results = (r.results || []).map(function (x) { x.pct = +x.pct || 0; x.lesson = String(x.lesson); return x; });
-      queue.forEach(function (q) { MY.results.push({ t: new Date().toISOString(), lesson: String(q.lesson), game: q.game, gameName: q.gameName, score: q.score, total: q.total, pct: q.pct, secs: q.secs, assignmentId: q.assignmentId }); });
+      queue.forEach(function (q) { MY.results.push({ t: new Date().toISOString(), lesson: String(q.lesson), game: q.game, gameName: q.gameName, score: q.score, total: q.total, pct: q.pct, secs: q.secs, words: q.words, wrong: q.wrong, assignmentId: q.assignmentId }); });
       MY.assignments = r.assignments || [];
       if (S.view === "home" || S.view === "vocab" || S.view === "assign" || S.view === "lesson") route();
     });
@@ -579,7 +610,7 @@
     btn.disabled = true; err.textContent = "Đang kiểm tra…";
     api.call("login", { code: code }).then(function (r) {
       btn.disabled = false;
-      if (!r || !r.ok) { err.textContent = r && r.error === "network" ? "Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại." : "Mã không đúng hoặc tài khoản đã bị khóa. Hãy hỏi lại giáo viên."; return; }
+      if (!r || !r.ok) { err.textContent = r && r.error === "network" ? "Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại." : r && r.error === "locked" ? "Hệ thống tạm khóa đăng nhập vì có quá nhiều lần nhập sai. Hãy thử lại sau 10 phút." : "Mã không đúng hoặc tài khoản đã bị khóa. Hãy hỏi lại giáo viên."; return; }
       SESSION = { code: r.code, name: r.name, cls: r.cls, role: r.role };
       try { localStorage.setItem("hd-session", JSON.stringify(SESSION)); } catch (e) { /* bỏ qua */ }
       qLoad(); paintUser(); sfx("win");
@@ -647,6 +678,7 @@
   $("#tagline").textContent = CFG.tagline;
   $("#foot-name").textContent = CFG.siteName.toUpperCase();
   $("#foot-phone").textContent = CFG.phone;
+  try { if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) navigator.serviceWorker.register("sw.js").catch(function () { /* bỏ qua */ }); } catch (e) { /* bỏ qua */ }
   if (SESSION) { qLoad(); paintUser(); }
   route();
   refreshMe();

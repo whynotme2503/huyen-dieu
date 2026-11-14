@@ -24,7 +24,26 @@ function setup() {
   }
   var th = ss_().getSheetByName("TongHop") || ss_().insertSheet("TongHop");
   th.getRange("A1").setFormula('=IFERROR(QUERY(KetQua!A2:N,"select C, D, E, count(B), avg(I) where B is not null group by C, D, E order by C, E label C \'Học sinh\', D \'Lớp\', E \'Bài\', count(B) \'Số lượt\', avg(I) \'Điểm TB (%)\'",0),"Chưa có dữ liệu")');
+  setupBackup();
+  Logger.log("Đã bật sao lưu tự động mỗi Chủ nhật. Thư mục sao lưu: Huyen Dieu - Sao lưu (giữ " + BACKUP_KEEP + " bản gần nhất).");
   Logger.log("Xong. Mã giáo viên: " + cd.getRange("B1").getValue());
+}
+
+/* ---------- sao lưu tự động hằng tuần ---------- */
+var BACKUP_KEEP = 8;
+function backupNow() {
+  var tz = Session.getScriptTimeZone(), name = "Sao lưu Huyen Dieu - " + Utilities.formatDate(new Date(), tz, "yyyy-MM-dd HH:mm");
+  var it = DriveApp.getFoldersByName("Huyen Dieu - Sao lưu"), folder = it.hasNext() ? it.next() : DriveApp.createFolder("Huyen Dieu - Sao lưu");
+  DriveApp.getFileById(ss_().getId()).makeCopy(name, folder);
+  var files = [], fi = folder.getFiles();
+  while (fi.hasNext()) files.push(fi.next());
+  files.sort(function (a, b) { return b.getDateCreated() - a.getDateCreated(); });
+  files.slice(BACKUP_KEEP).forEach(function (f) { f.setTrashed(true); });
+  Logger.log("Đã sao lưu: " + name);
+}
+function setupBackup() {
+  ScriptApp.getProjectTriggers().forEach(function (t) { if (t.getHandlerFunction() === "backupNow") ScriptApp.deleteTrigger(t); });
+  ScriptApp.newTrigger("backupNow").timeBased().onWeekDay(ScriptApp.WeekDay.SUNDAY).atHour(2).create();
 }
 
 function doGet() { return ContentService.createTextOutput("Huyen Dieu API đang chạy."); }
@@ -36,10 +55,15 @@ function doPost(e) {
   return ContentService.createTextOutput(JSON.stringify(out)).setMimeType(ContentService.MimeType.JSON);
 }
 
+var MAX_FAILS = 60;      // số lần nhập sai tối đa trong 10 phút trên toàn hệ thống
+var FAIL_WINDOW = 600;   // giây
+
 function handle_(req) {
+  var cache = CacheService.getScriptCache();
+  if ((+cache.get("fails") || 0) >= MAX_FAILS) return { ok: false, error: "locked" };
   var u = auth_(req.code);
-  if (req.action === "login") return u ? { ok: true, role: u.role, name: u.name, cls: u.cls, code: u.code } : { ok: false, error: "auth" };
-  if (!u) return { ok: false, error: "auth" };
+  if (!u) { cache.put("fails", String((+cache.get("fails") || 0) + 1), FAIL_WINDOW); return { ok: false, error: "auth" }; }
+  if (req.action === "login") return { ok: true, role: u.role, name: u.name, cls: u.cls, code: u.code };
   var lock = LockService.getScriptLock();
   switch (req.action) {
     case "submit":
@@ -53,12 +77,12 @@ function handle_(req) {
       } finally { lock.releaseLock(); }
       return { ok: true };
     case "me":
-      return { ok: true, results: results_(u.code), assignments: assignments_().filter(function (a) { return !a.cls || a.cls === "all" || a.cls === u.cls; }) };
+      return { ok: true, results: results_(u.code, 180), assignments: assignments_().filter(function (a) { return !a.cls || a.cls === "all" || a.cls === u.cls; }) };
   }
   if (u.role !== "teacher") return { ok: false, error: "role" };
   switch (req.action) {
     case "admin":
-      return { ok: true, students: students_(), results: results_(null), assignments: assignments_(), classes: classes_() };
+      return { ok: true, students: students_(), results: results_(null, +req.days || 0), assignments: assignments_(), classes: classes_(), partial: (+req.days || 0) > 0 };
     case "addClass":
       lock.waitLock(20000);
       try {
@@ -139,8 +163,19 @@ function students_() {
   for (var i = 1; i < v.length; i++) if (v[i][0]) out.push({ code: String(v[i][0]), name: String(v[i][1]), cls: String(v[i][2] || ""), active: String(v[i][3]) !== "Khóa", created: iso_(v[i][4]) });
   return out;
 }
-function results_(code) {
-  var v = sheet_("KQ").getDataRange().getValues(), out = [];
+/** Đọc kết quả. sinceDays > 0 chỉ đọc phần dữ liệu từ N ngày gần đây (nhanh hơn khi Sheet lớn). */
+function results_(code, sinceDays) {
+  var sh = sheet_("KQ"), last = sh.getLastRow(), out = [];
+  if (last < 2) return out;
+  var start = 2;
+  if (sinceDays > 0) {
+    var since = Date.now() - sinceDays * 86400000, times = sh.getRange(2, 1, last - 1, 1).getValues(), first = -1;
+    for (var t = 0; t < times.length; t++) { var ms = times[t][0] instanceof Date ? times[t][0].getTime() : new Date(times[t][0]).getTime(); if (ms >= since) { first = t; break; } }
+    if (first < 0) return out;
+    start = 2 + first;
+  }
+  var v = sh.getRange(start, 1, last - start + 1, 14).getValues();
+  v.unshift([]);
   for (var i = 1; i < v.length; i++) {
     var r = v[i]; if (!r[1]) continue;
     if (code && norm_(r[1]) !== norm_(code)) continue;
@@ -193,7 +228,7 @@ function exportClass_(cls) {
   if (!file) file = SpreadsheetApp.create("Huyen Dieu - " + cls);
   var st = students_().filter(function (s) { return s.cls === cls; }), codes = {};
   st.forEach(function (s) { codes[s.code] = 1; });
-  var rs = results_(null).filter(function (r) { return codes[r.code]; }), as = assignments_().filter(function (a) { return a.cls === "all" || a.cls === cls; });
+  var rs = results_(null, 0).filter(function (r) { return codes[r.code]; }), as = assignments_().filter(function (a) { return a.cls === "all" || a.cls === cls; });
   var tz = Session.getScriptTimeZone(), fmt = function (iso) { return iso ? Utilities.formatDate(new Date(iso), tz, "dd/MM/yyyy HH:mm") : ""; };
   var sum = [["Học sinh", "Mã", "Trạng thái", "Số lượt", "Điểm TB (%)", "Điểm cao nhất (%)", "Lần cuối", "Bài tập đã nộp"]];
   st.forEach(function (s) {

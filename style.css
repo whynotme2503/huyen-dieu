@@ -543,3 +543,12 @@ a.htile:hover { transform: translateY(-2px); border-color: var(--accent); }
 .top .brand { flex: 1; min-width: 0; }
 .brand-name { overflow: hidden; text-overflow: ellipsis; }
 @media (max-width: 560px) { .top { gap: 8px; } .chip.mono { padding: 6px 10px; } .chip-box { gap: 6px; } }
+
+/* ---------- chuỗi ngày, ôn từ hay sai ---------- */
+.hh-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.streak { display: inline-flex; align-items: center; padding: 5px 14px; border-radius: 99px; background: var(--surface-2); border: 1px solid var(--line); font-size: 13px; font-weight: 600; color: var(--ink-2); }
+.streak.on { background: color-mix(in srgb, #e8a33d 22%, transparent); border-color: color-mix(in srgb, #e8a33d 55%, var(--line)); color: color-mix(in srgb, #9a6200 80%, var(--ink)); }
+.weakbox { margin-bottom: 16px; }
+.weak-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 14px; }
+.wc { display: inline-flex; flex-direction: column; align-items: center; min-width: 64px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface-2); font: 500 12px var(--f-py); color: var(--ink-2); }
+.wc .hz { font: 500 22px/1.2 var(--f-han); color: var(--ink); }

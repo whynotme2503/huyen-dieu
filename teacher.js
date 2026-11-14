@@ -1,7 +1,7 @@
 /* HUYEN DIEU · Bảng giáo viên: xem kết quả theo bài, theo học sinh, giao bài tập, cấp tài khoản. */
 (function () {
   "use strict";
-  var H, T = { tab: "overview", data: null, cls: "", range: 30, lesson: "", student: "", search: "", newCodes: null, err: "", busy: false, openAssign: {}, aCls: "", aStatus: "open", addCls: "", accCls: "", confirmCls: null };
+  var H, T = { tab: "overview", data: null, cls: "", range: 30, lesson: "", student: "", search: "", newCodes: null, err: "", busy: false, openAssign: {}, aCls: "", aStatus: "open", addCls: "", accCls: "", confirmCls: null, full: false };
   var SKILLS = { "listen-hanzi": "Nghe", "listen-pinyin": "Nghe", "dictation": "Nghe", "hanzi-pinyin": "Mặt chữ", "match": "Mặt chữ", "pinyin-hanzi": "Pinyin", "write": "Viết" };
   var SKILL_ORDER = ["Nghe", "Mặt chữ", "Pinyin", "Viết"];
   var TABS = [["overview", "Tổng quan"], ["classes", "Lớp"], ["lessons", "Theo bài"], ["students", "Theo học sinh"], ["assign", "Bài tập"], ["accounts", "Tài khoản"], ["guide", "Hướng dẫn"]];
@@ -202,7 +202,7 @@
     return '<details class="asg"' + (T.openAssign[a.id] ? " open" : "") + ' data-aid="' + esc(a.id) + '"><summary><span class="asg-t"><b>' + esc(a.title) + "</b><span>" + lname(a.lesson) + " · " + (g ? esc(g.name) : "Tự chọn game") + " · Hạn " + esc((a.due || "–").split("-").reverse().join("/")) + (late ? " (đã hết hạn)" : "") + '</span></span><span class="asg-p">' + pill(done.length + "/" + tg.length + " đã nộp", pctDone >= 80 ? "good" : late && pctDone < 100 ? "bad" : "warn") + "</span></summary>" +
       '<div class="asg-b"><div><div class="eyebrow">Đã làm (' + done.length + ")</div>" + (done.length ? done.map(function (d) { return '<div class="asg-r"><span>' + esc(d.s.name) + "</span>" + pill(d.best + "% · " + d.n + " lượt", cls4(d.best)) + "</div>"; }).join("") : '<p class="t-empty">Chưa có ai.</p>') + "</div>" +
       '<div><div class="eyebrow">Chưa làm (' + todo.length + ")</div>" + (todo.length ? todo.map(function (s) { return '<div class="asg-r"><span>' + esc(s.name) + '</span><span class="t-sub">' + esc(s.cls || "") + "</span></div>"; }).join("") : '<p class="t-empty">Cả lớp đã nộp.</p>') + "</div></div>" +
-      (a.note ? '<p class="t-sub">Ghi chú: ' + esc(a.note) + "</p>" : "") + '<button class="btn ghost small" data-ta="delAssign" data-id="' + esc(a.id) + '">' + (T.confirmDel === a.id ? "Bấm lần nữa để xóa" : "Xóa bài tập") + "</button></details>";
+      (a.note ? '<p class="t-sub">Ghi chú: ' + esc(a.note) + "</p>" : "") + (todo.length ? '<button class="btn small" data-ta="remind" data-id="' + esc(a.id) + '">Sao chép lời nhắc (' + todo.length + ' em chưa nộp)</button> ' : "") + '<button class="btn ghost small" data-ta="delAssign" data-id="' + esc(a.id) + '">' + (T.confirmDel === a.id ? "Bấm lần nữa để xóa" : "Xóa bài tập") + "</button></details>";
   }
   function tabAssign() {
     var ls = H.LESSONS.filter(function (l) { return l.words.length; }), cl = classes(), td = today();
@@ -260,7 +260,7 @@
   function load(force) {
     if (T.data && !force) return paint();
     H.app.innerHTML = '<div class="card t-card"><p class="t-empty">Đang tải dữ liệu…</p></div>';
-    H.api.call("admin", { code: H.session.code }).then(function (r) {
+    H.api.call("admin", { code: H.session.code, days: T.full ? 0 : 120 }).then(function (r) {
       if (!r || !r.ok) { H.app.innerHTML = '<div class="card t-card"><p class="t-empty">Không tải được dữ liệu (' + esc(r && r.error || "lỗi") + '). Kiểm tra kết nối rồi thử lại.</p><p><button class="btn" data-ta="reload">Thử lại</button></p></div>'; return; }
       T.data = prep(r); paint();
     });
@@ -307,6 +307,12 @@
       H.api.call("deleteClass", { code: H.session.code, name: b.dataset.v }).then(function (r) { T.confirmCls = null; if (r && r.ok) { T.data.classes = T.data.classes.filter(function (c) { return c.name !== b.dataset.v; }); paint(); } else H.toast("Chỉ xóa được lớp không còn học sinh."); });
       return;
     }
+    if (a === "remind") {
+      var as = T.data.assignments.filter(function (x) { return x.id === b.dataset.id; })[0]; if (!as) return;
+      var late = targetsOf(as).filter(function (s) { return !T.data.results.some(function (r) { return r.code === s.code && r.assignmentId === as.id; }); });
+      var dd = (as.due || "").split("-").reverse().join("/");
+      return copyText("Nhắc các em chưa nộp bài tập “" + as.title + "” (" + lname(as.lesson) + (dd ? ", hạn " + dd : "") + "): " + late.map(function (s) { return s.name; }).join(", ") + ". Các em đăng nhập web Huyen Dieu, mở mục Bài tập và làm bài nhé!", "Đã sao chép lời nhắc, dán vào Zalo hoặc nhóm lớp");
+    }
     if (a === "classView") { T.cls = b.dataset.v; T.tab = "overview"; return paint(); }
     if (a === "classAssign") { T.aCls = b.dataset.v; T.tab = "assign"; return paint(); }
     if (a === "classAdd") { T.addCls = b.dataset.v; T.tab = "accounts"; return paint(); }
@@ -352,7 +358,7 @@
       var sel = e.target, s = T.data.students.filter(function (x) { return x.code === sel.dataset.code; })[0]; if (!s) return;
       H.api.call("moveStudent", { code: H.session.code, studentCode: s.code, cls: sel.value }).then(function (r) { if (r && r.ok) { s.cls = sel.value; H.toast("Đã chuyển " + s.name + (sel.value ? " sang " + sel.value : " ra khỏi lớp")); paint(); } else { sel.value = s.cls || ""; H.toast("Chưa chuyển được, thử lại nhé."); } });
     } else if (e.target.id === "f-cls") { T.cls = e.target.value; paint(); }
-    else if (e.target.id === "f-range") { T.range = +e.target.value; paint(); }
+    else if (e.target.id === "f-range") { T.range = +e.target.value; if (T.range === 0 && !T.full && T.data && T.data.partial) { T.full = true; T.data = null; load(true); } else paint(); }
   }
   function onInput(e) {
     if (H.view() !== "teacher" || e.target.id !== "s-search") return;

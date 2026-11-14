@@ -47,3 +47,14 @@ Bỏ phần file nghe thì web đọc bằng giọng tiếng Trung của thiết
 
 ## 6. Bảo mật
 Mã đăng nhập hoạt động như mật khẩu, mỗi em một mã. Giữ kín mã giáo viên và link Google Sheet. Mã bị lộ thì khóa và tạo mã mới.
+
+## Cập nhật tối ưu (sao lưu, bảo mật, ôn từ hay sai, cài như app)
+
+1. **Sao lưu tự động**: sau khi dán Code.gs mới, chạy hàm `setup` một lần (cấp thêm quyền Drive và trình kích hoạt). Mỗi Chủ nhật 2 giờ sáng hệ thống tự sao chép Sheet vào thư mục "Huyen Dieu - Sao lưu" trong Drive, giữ 8 bản gần nhất. Muốn sao lưu ngay: chạy hàm `backupNow`.
+2. **Phát hành lại**: Triển khai > Quản lý các bản triển khai > Chỉnh sửa (biểu tượng bút) > Phiên bản: Phiên bản mới > Triển khai. Link /exec giữ nguyên.
+3. **Chống dò mã**: nếu có quá 60 lần nhập sai trong 10 phút, mọi lượt đăng nhập tạm khóa 10 phút rồi tự mở lại.
+4. **Dữ liệu lớn**: trang giáo viên mặc định tải 120 ngày gần nhất cho nhanh. Chọn khoảng "Tất cả" trong bộ lọc thì web tự tải toàn bộ.
+5. **Ôn từ hay sai và chuỗi ngày**: trang chủ học sinh gợi ý các từ hay làm sai, có nút ôn nhanh; hiển thị số ngày luyện liên tiếp.
+6. **Nhắc nộp bài**: trong mục Bài tập, mở bài giao rồi bấm "Sao chép lời nhắc" để dán vào Zalo hoặc nhóm lớp.
+7. **Cài như app**: trên điện thoại mở link web, chọn "Thêm vào màn hình chính".
+8. **Âm thanh**: từ vựng bài mới cần có file mp3 riêng từng từ (audio/31.mp3, ...). Chưa có file thì web dùng giọng đọc của máy, chất lượng tùy máy.
