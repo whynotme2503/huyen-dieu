@@ -136,6 +136,9 @@
   ];
   window.HD_GAMES = GAMES;
   function gameById(id) { return GAMES.filter(function (g) { return g.id === id; })[0]; }
+  var SHEETS = (window.HD_SHEETS || []).map(function (s) { s.name = s.title; return s; });
+  window.HD_SHEETLIST = SHEETS;
+  function sheetById(id) { return SHEETS.filter(function (s) { return s.id === id; })[0]; }
 
   /* ---------- trạng thái ---------- */
   var S = { view: "home", lesson: null, game: null }, timerId = null;
@@ -636,7 +639,7 @@
   }
   function pendingCount() { return assignItems().filter(function (it) { return !it.done; }).length; }
   function assignCard(it) {
-    var a = it.a, g = a.game ? gameById(a.game) : null, d = dueInfo(a, it.done), L = lessonById(a.lesson);
+    var a = it.a, g = a.game ? (gameById(a.game) || sheetById(a.game)) : null, d = dueInfo(a, it.done), L = lessonById(a.lesson);
     return '<button class="acard' + (it.done ? " done" : "") + '" data-assign="' + esc(a.id) + '"><span class="at"><b>' + esc(a.title) + "</b><span>" + (L ? L.title : "Bài " + esc(a.lesson)) + " · " + (g ? esc(g.name) : "Tự chọn game") + "</span>" + (a.note ? '<span class="an">' + esc(a.note) + "</span>" : "") + '</span><span class="as"><span class="tp ' + (it.done ? "good" : d.k) + '">' + (it.done ? "Đã làm · " + it.best + "%" : d.t) + '</span><span class="go">' + (it.done ? "Làm lại" : "Làm bài") + "</span></span></button>";
   }
   function renderAssignments() {
@@ -650,6 +653,8 @@
     var a = MY.assignments.filter(function (x) { return x.id === id; })[0]; if (!a) return;
     var L = lessonById(a.lesson); if (!L || !L.words.length) { toast("Bài này chưa có từ vựng."); return; }
     curAssign = id; S.lesson = L;
+    var sh = a.game && sheetById(a.game);
+    if (sh && window.HD_SHEET) { S = { view: "sheet", lesson: L, game: null }; stopTimer(); setRight(""); return window.HD_SHEET.start(sh, { onRecord: record, onExit: function () { renderAssignments(); } }); }
     if (a.game && gameById(a.game)) return startGame(a.game);
     nav("#" + (String(a.lesson) === "all" ? "tong-hop" : "bai-" + a.lesson));
   }
@@ -669,9 +674,10 @@
   document.addEventListener("click", function (e) { if (!e.target.closest("#umenu") && !e.target.closest("#userbtn")) $("#umenu").hidden = true; });
   window.addEventListener("online", function () { flush(); });
 
-  window.HD = { app: app, esc: esc, toast: toast, topBar: topBar, speak: speak, sfx: sfx, ICONS: ICONS, GAMES: GAMES, LESSONS: LESSONS, ALL: ALL, api: api, get session() { return SESSION; }, view: function () { return S.view; } };
+  window.HD = { app: app, esc: esc, toast: toast, topBar: topBar, speak: speak, sfx: sfx, ICONS: ICONS, GAMES: GAMES, SHEETS: SHEETS, LESSONS: LESSONS, ALL: ALL, api: api, get session() { return SESSION; }, view: function () { return S.view; } };
   if (window.HD_TEACHER) window.HD_TEACHER.init(window.HD);
   if (window.HD_WRITE) window.HD_WRITE.init(window.HD);
+  if (window.HD_SHEET) window.HD_SHEET.init(window.HD);
 
   /* ---------- khởi động ---------- */
   paintMute();

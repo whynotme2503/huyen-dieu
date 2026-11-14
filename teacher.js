@@ -198,7 +198,7 @@
   function asgDetails(a) {
     var tg = targetsOf(a), done = [], todo = [], td = today();
     tg.forEach(function (s) { var m = T.data.results.filter(function (r) { return r.code === s.code && r.assignmentId === a.id; }); if (m.length) done.push({ s: s, best: Math.max.apply(null, m.map(function (r) { return r.pct; })), n: m.length }); else todo.push(s); });
-    var late = a.due && a.due < td, g = a.game ? H.GAMES.filter(function (x) { return x.id === a.game; })[0] : null, pctDone = tg.length ? r0(done.length / tg.length * 100) : 0;
+    var late = a.due && a.due < td, g = a.game ? H.GAMES.concat(H.SHEETS || []).filter(function (x) { return x.id === a.game; })[0] : null, pctDone = tg.length ? r0(done.length / tg.length * 100) : 0;
     return '<details class="asg"' + (T.openAssign[a.id] ? " open" : "") + ' data-aid="' + esc(a.id) + '"><summary><span class="asg-t"><b>' + esc(a.title) + "</b><span>" + lname(a.lesson) + " · " + (g ? esc(g.name) : "Tự chọn game") + " · Hạn " + esc((a.due || "–").split("-").reverse().join("/")) + (late ? " (đã hết hạn)" : "") + '</span></span><span class="asg-p">' + pill(done.length + "/" + tg.length + " đã nộp", pctDone >= 80 ? "good" : late && pctDone < 100 ? "bad" : "warn") + "</span></summary>" +
       '<div class="asg-b"><div><div class="eyebrow">Đã làm (' + done.length + ")</div>" + (done.length ? done.map(function (d) { return '<div class="asg-r"><span>' + esc(d.s.name) + "</span>" + pill(d.best + "% · " + d.n + " lượt", cls4(d.best)) + "</div>"; }).join("") : '<p class="t-empty">Chưa có ai.</p>') + "</div>" +
       '<div><div class="eyebrow">Chưa làm (' + todo.length + ")</div>" + (todo.length ? todo.map(function (s) { return '<div class="asg-r"><span>' + esc(s.name) + '</span><span class="t-sub">' + esc(s.cls || "") + "</span></div>"; }).join("") : '<p class="t-empty">Cả lớp đã nộp.</p>') + "</div></div>" +
@@ -209,7 +209,7 @@
     var rowsCls = cl.length ? cl.map(function (c) { return '<label class="ac-row"><input type="checkbox" class="ac-chk" value="' + esc(c) + '"' + (T.aCls === c ? " checked" : "") + "><span>" + esc(c) + '</span><input class="t-input ac-due" type="date" data-for="' + esc(c) + '" value="' + plusDays(3) + '"></label>'; }).join("") : '<label class="ac-row"><input type="checkbox" class="ac-chk" value="all" checked><span>Tất cả học sinh</span><input class="t-input ac-due" type="date" data-for="all" value="' + plusDays(3) + '"></label>';
     var form = '<div class="t-form"><label>Tiêu đề<input class="t-input" id="a-title" placeholder="Ví dụ: Ôn nghe Bài 1" maxlength="80"></label>' +
       '<label>Bài<select class="t-input" id="a-lesson">' + ls.map(function (l) { return '<option value="' + l.id + '">Bài ' + l.id + (l.topic ? " · " + esc(l.topic) : "") + "</option>"; }).join("") + (ls.length > 1 ? '<option value="all">Tổng hợp tất cả bài</option>' : "") + "</select></label>" +
-      '<label>Game<select class="t-input" id="a-game"><option value="">Học sinh tự chọn</option>' + H.GAMES.map(function (g) { return '<option value="' + g.id + '">' + esc(g.name) + "</option>"; }).join("") + "</select></label>" +
+      '<label>Game<select class="t-input" id="a-game"><option value="">Học sinh tự chọn</option>' + H.GAMES.map(function (g) { return '<option value="' + g.id + '">' + esc(g.name) + "</option>"; }).join("") + ((H.SHEETS || []).length ? '<optgroup label="Bài tập soạn sẵn">' + H.SHEETS.map(function (s) { return '<option value="' + s.id + '">' + esc(s.title) + "</option>"; }).join("") + "</optgroup>" : "") + "</select></label>" +
       '<label class="full">Ghi chú cho học sinh (không bắt buộc)<input class="t-input" id="a-note" maxlength="140" placeholder="Ví dụ: làm ít nhất 2 lượt, đạt trên 80%"></label>' +
       '<div class="full"><div class="eyebrow" style="margin-bottom:6px">Giao cho lớp nào, hạn nộp ngày nào' + (cl.length > 1 ? ' <button class="linkb" data-ta="aAll" style="margin-left:8px">Chọn tất cả lớp</button>' : "") + '</div><div class="ac-list">' + rowsCls + '</div><p class="t-sub">Tick nhiều lớp để giao cùng lúc. Mỗi lớp có thể có hạn nộp riêng.</p></div>' +
       '<div class="full"><button class="btn" data-ta="saveAssign"' + (T.busy ? " disabled" : "") + '>Giao bài tập</button> <span class="t-sub" id="a-msg"></span></div></div>';
@@ -335,7 +335,8 @@
       var picks = [].slice.call(document.querySelectorAll(".ac-chk:checked")).map(function (c) { var due = c.closest(".ac-row").querySelector(".ac-due").value; return { cls: c.value, due: due }; });
       if (!picks.length) { m.textContent = "Hãy chọn ít nhất một lớp."; return; }
       if (picks.some(function (p) { return !p.due; })) { m.textContent = "Mỗi lớp được chọn cần có hạn nộp."; return; }
-      var base = { title: title, lesson: document.getElementById("a-lesson").value, game: document.getElementById("a-game").value, note: document.getElementById("a-note").value.trim() };
+      var gsel = document.getElementById("a-game").value, shs = (H.SHEETS || []).filter(function (s) { return s.id === gsel; })[0];
+      var base = { title: title, lesson: shs ? String(shs.lesson) : document.getElementById("a-lesson").value, game: gsel, note: document.getElementById("a-note").value.trim() };
       T.busy = true; b.disabled = true; m.textContent = "Đang lưu…";
       var chain = Promise.resolve(), made = 0, fail = 0;
       picks.forEach(function (p) {
@@ -358,6 +359,7 @@
       var sel = e.target, s = T.data.students.filter(function (x) { return x.code === sel.dataset.code; })[0]; if (!s) return;
       H.api.call("moveStudent", { code: H.session.code, studentCode: s.code, cls: sel.value }).then(function (r) { if (r && r.ok) { s.cls = sel.value; H.toast("Đã chuyển " + s.name + (sel.value ? " sang " + sel.value : " ra khỏi lớp")); paint(); } else { sel.value = s.cls || ""; H.toast("Chưa chuyển được, thử lại nhé."); } });
     } else if (e.target.id === "f-cls") { T.cls = e.target.value; paint(); }
+    else if (e.target.id === "a-game") { var sx = (H.SHEETS || []).filter(function (s) { return s.id === e.target.value; })[0]; if (sx) { var ti = document.getElementById("a-title"), ls = document.getElementById("a-lesson"); if (ti && !ti.value.trim()) ti.value = sx.title; if (ls) ls.value = String(sx.lesson); } }
     else if (e.target.id === "f-range") { T.range = +e.target.value; if (T.range === 0 && !T.full && T.data && T.data.partial) { T.full = true; T.data = null; load(true); } else paint(); }
   }
   function onInput(e) {

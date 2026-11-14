@@ -139,6 +139,53 @@ window.HD_LESSONS = [
    CÂU NÓI Ở TRANG CHỦ (mỗi ngày hiện một câu, học sinh bấm "Câu khác" để đổi)
    Thêm câu mới: ["chữ Hán", "pinyin", "nghĩa tiếng Việt"],
    =========================================================== */
+
+/* ============================================================
+   BÀI TẬP TỰ SOẠN (phiếu nhiều phần). Giáo viên giao ở Bảng giáo viên > Bài tập > ô "Game".
+   Loại phần: "choice" (chọn đáp án, a = vị trí đáp án đúng bắt đầu từ 0),
+              "order" (sắp xếp từ thành câu, w = các từ, a = câu đúng),
+              "type" (gõ chữ Hán, a = danh sách đáp án chấp nhận, không chấm gắt dấu câu).
+   ============================================================ */
+window.HD_SHEETS = [
+  {
+    id: "sheet-b2", lesson: 2, title: "Bài tập HSK1 – Bài 2",
+    parts: [
+      { title: "Phần 1. Chọn pinyin đúng", type: "choice", items: [
+        { q: "老师", opts: ["lǎoshī", "láoshì", "lǎoshí"], a: 0 },
+        { q: "高兴", opts: ["gāoxīng", "gāoxìng", "gǎoxìng"], a: 1 },
+        { q: "不客气", opts: ["bù kěqi", "bú kèqi", "bū kèqì"], a: 1 },
+        { q: "认识", opts: ["rènshi", "rénshì", "rěnshi"], a: 0 }
+      ] },
+      { title: "Phần 2. Chọn đáp án đúng", type: "choice", items: [
+        { q: "“Xin lỗi” tiếng Trung là:", opts: ["没关系", "对不起", "不客气"], a: 1 },
+        { q: "同学 nghĩa là:", opts: ["thầy giáo", "mọi người", "bạn học"], a: 2 },
+        { q: "“Mọi người” tiếng Trung là:", opts: ["大家", "你们", "学生"], a: 0 }
+      ] },
+      { title: "Phần 3. Chọn câu đáp phù hợp", type: "choice", items: [
+        { q: "A: 谢谢！", opts: ["没关系", "不客气", "再见"], a: 1 },
+        { q: "A: 对不起！", opts: ["没关系", "谢谢", "你好"], a: 0 },
+        { q: "A: 你叫什么名字？", opts: ["我是学生", "我很高兴", "我叫 Lan"], a: 2 },
+        { q: "A: 认识你很高兴！", opts: ["不客气", "认识你我也很高兴", "没事"], a: 1 }
+      ] },
+      { title: "Phần 4. Điền từ vào chỗ trống", note: "Từ cho sẵn: 您 / 也 / 不 / 请问", type: "choice", items: [
+        { q: "王老师，___好！", opts: ["您", "也", "不", "请问"], a: 0 },
+        { q: "___，你叫什么名字？", opts: ["您", "也", "不", "请问"], a: 3 },
+        { q: "我是学生，你___是学生。", opts: ["您", "也", "不", "请问"], a: 1 },
+        { q: "我___是老师，我是学生。", opts: ["您", "也", "不", "请问"], a: 2 }
+      ] },
+      { title: "Phần 5. Sắp xếp thành câu đúng", type: "order", items: [
+        { w: ["名字", "叫", "你", "什么"], a: "你叫什么名字？" },
+        { w: ["也", "我", "学生", "是"], a: "我也是学生。" },
+        { w: ["高兴", "认识", "很", "你"], a: "认识你很高兴。" }
+      ] },
+      { title: "Phần 6. Dịch sang tiếng Trung (gõ chữ Hán)", note: "Không cần chú ý dấu câu.", type: "type", items: [
+        { q: "Tôi không phải là giáo viên.", a: ["我不是老师"] },
+        { q: "Thầy Vương, tạm biệt thầy!", a: ["王老师，再见！"] }
+      ] }
+    ]
+  }
+];
+
 window.HD_QUOTES = [
   ["加油！", "jiāyóu", "Cố lên!"],
   ["每天进步一点点", "měitiān jìnbù yìdiǎndiǎn", "Mỗi ngày tiến bộ thêm một chút"],

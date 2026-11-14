@@ -552,3 +552,37 @@ a.htile:hover { transform: translateY(-2px); border-color: var(--accent); }
 .weak-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 14px; }
 .wc { display: inline-flex; flex-direction: column; align-items: center; min-width: 64px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface-2); font: 500 12px var(--f-py); color: var(--ink-2); }
 .wc .hz { font: 500 22px/1.2 var(--f-han); color: var(--ink); }
+
+/* ---------- bài tập soạn sẵn ---------- */
+.sh-card { padding-bottom: 20px; }
+.sh-part { margin: 22px 0 8px; padding-top: 14px; border-top: 1px solid var(--line); }
+.sh-part h3 { margin: 0 0 2px; font: 700 16px var(--f-ui); color: var(--ink); }
+.sh-q { padding: 12px 0; }
+.sh-qt { display: flex; gap: 10px; align-items: baseline; }
+.sh-n { flex: none; min-width: 26px; height: 26px; display: inline-grid; place-items: center; border-radius: 99px; background: var(--surface-2); border: 1px solid var(--line); font: 700 12px var(--f-ui); color: var(--ink-2); }
+.sh-qp { font: 500 17px/1.5 var(--f-ui); color: var(--ink); flex: 1; }
+.sh-qp.hz, .sh-opt .hz, .sh-tok.hz, .sh-input.hz, .sh-ans .hz { font-family: var(--f-han); }
+.sh-opts { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 0 36px; }
+.sh-opt { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border: 1.5px solid var(--line); border-radius: 12px; background: var(--surface); font: 500 16px var(--f-ui); color: var(--ink); cursor: pointer; }
+.sh-opt .key { width: 22px; height: 22px; display: grid; place-items: center; border-radius: 6px; background: var(--surface-2); font: 700 12px var(--f-ui); color: var(--ink-2); }
+.sh-opt:hover { border-color: var(--accent); }
+.sh-opt.sel { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, var(--surface)); }
+.sh-opt.sel .key { background: var(--accent); color: #fff; }
+.sh-built { min-height: 46px; margin: 8px 0 0 36px; padding: 6px; display: flex; flex-wrap: wrap; gap: 6px; border: 1.5px dashed var(--line); border-radius: 12px; align-items: center; font-size: 13px; color: var(--ink-3, var(--ink-2)); }
+.sh-built:not(.empty) { border-style: solid; }
+.sh-pool { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 0 36px; align-items: center; }
+.sh-tok { padding: 8px 14px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--surface); font-size: 18px; color: var(--ink); cursor: pointer; }
+.sh-tok.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, var(--surface)); }
+.sh-tok:disabled { opacity: .35; cursor: default; }
+.sh-input { display: block; width: calc(100% - 36px); margin: 8px 0 0 36px; padding: 11px 14px; border: 1.5px solid var(--line); border-radius: 12px; background: var(--surface); font-size: 18px; color: var(--ink); }
+.sh-input:focus { outline: none; border-color: var(--accent); }
+.sh-r { padding: 12px 14px; margin: 8px 0; border-radius: 14px; border: 1px solid var(--line); border-left-width: 4px; background: var(--surface); }
+.sh-r.ok { border-left-color: var(--accent); }
+.sh-r.bad { border-left-color: #c0564b; background: color-mix(in srgb, #c0564b 6%, var(--surface)); }
+.sh-mark { flex: none; font: 700 12px var(--f-ui); padding: 3px 10px; border-radius: 99px; }
+.sh-r.ok .sh-mark { background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--accent); }
+.sh-r.bad .sh-mark { background: color-mix(in srgb, #c0564b 16%, transparent); color: #c0564b; }
+.sh-ans { display: flex; gap: 10px; margin: 6px 0 0 36px; font-size: 15px; align-items: baseline; flex-wrap: wrap; }
+.sh-ans .lb { font: 600 11px var(--f-ui); text-transform: uppercase; letter-spacing: .05em; color: var(--ink-2); min-width: 86px; }
+.sh-ans.good span:last-child { color: var(--accent); font-weight: 600; }
+@media (max-width: 560px) { .sh-opts, .sh-built, .sh-pool, .sh-ans { margin-left: 0; } .sh-input { width: 100%; margin-left: 0; } }

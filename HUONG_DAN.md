@@ -58,3 +58,7 @@ Mã đăng nhập hoạt động như mật khẩu, mỗi em một mã. Giữ k�
 6. **Nhắc nộp bài**: trong mục Bài tập, mở bài giao rồi bấm "Sao chép lời nhắc" để dán vào Zalo hoặc nhóm lớp.
 7. **Cài như app**: trên điện thoại mở link web, chọn "Thêm vào màn hình chính".
 8. **Âm thanh**: từ vựng bài mới cần có file mp3 riêng từng từ (audio/31.mp3, ...). Chưa có file thì web dùng giọng đọc của máy, chất lượng tùy máy.
+
+## Bài tập soạn sẵn (phiếu nhiều phần)
+
+Bài tập như "Bài tập HSK1 – Bài 2" nằm trong `data.js` (mục `HD_SHEETS`). Để giao: Bảng giáo viên > Bài tập > ô "Game" > nhóm "Bài tập soạn sẵn" > chọn lớp và hạn nộp > Giao bài tập. Học sinh nộp xong thấy ngay số câu đúng/tổng, câu đúng sai và đáp án. Muốn thêm phiếu mới, gửi nội dung và đáp án cho người hỗ trợ để thêm vào `HD_SHEETS`.
