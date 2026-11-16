@@ -615,3 +615,13 @@ a.htile:hover { transform: translateY(-2px); border-color: var(--accent); }
 
 a.sndbtn { display: inline-flex; align-items: center; color: inherit; text-decoration: none; }
 .sndbtn.on { background: var(--accent-soft); color: var(--accent); }
+
+/* ---------- chi tiết bài làm (giáo viên) ---------- */
+.asg-s { border-bottom: 1px solid var(--line); padding: 2px 0 8px; }
+.asg-s > summary { list-style: none; cursor: pointer; }
+.asg-s > summary::-webkit-details-marker { display: none; }
+.sh-t { margin: 6px 0 4px; display: flex; flex-direction: column; gap: 6px; }
+.sh-tr { padding: 8px 10px; border-left: 3px solid #c0564b; background: color-mix(in srgb, #c0564b 6%, transparent); border-radius: 8px; font-size: 14px; }
+.sh-tr .hz { font-family: var(--f-han); font-size: 16px; }
+.bad-t { color: #c0564b; font-weight: 600; }
+.sh-sum { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }

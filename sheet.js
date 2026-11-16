@@ -81,7 +81,7 @@
     var sh = X.sheet, secs = Math.floor((Date.now() - X.t0) / 1000), score = 0, per = sh.parts.map(function () { return { ok: 0, n: 0 }; });
     X.qs.forEach(function (q) { var ok = grade(q, X.ans[q.n]); q.ok = ok; per[q.part].n++; if (ok) { per[q.part].ok++; score++; } });
     var N = X.qs.length, pct = Math.round(score / N * 100);
-    var sync = X.onRecord({ lesson: sh.lesson, game: sh.id, gameName: sh.title, score: score, total: N, pct: pct, secs: secs, words: [], wrong: [] });
+    var sync = X.onRecord({ lesson: sh.lesson, game: sh.id, gameName: sh.title, score: score, total: N, pct: pct, secs: secs, words: [], wrong: X.qs.filter(function (q) { return !q.ok; }).map(function (q) { return "Câu " + q.n + ": " + userText(q, X.ans[q.n]).replace(/\|/g, "/"); }) });
     H.sfx(pct >= 70 ? "win" : "meh");
     var msg = pct === 100 ? "Tuyệt vời, đúng hết!" : pct >= 80 ? "Rất tốt!" : pct >= 50 ? "Khá ổn, xem lại các câu sai bên dưới nhé." : "Cần ôn thêm, xem đáp án bên dưới rồi làm lại nhé.";
     var review = "", cur = -1;
@@ -119,7 +119,21 @@
     X.ans[+t.dataset.n] = t.value; refreshLeft();
   }
 
+  /* danh sách câu hỏi kèm đáp án đúng, để giáo viên xem chi tiết bài làm */
+  function info(sheet) {
+    var out = [], n = 0;
+    sheet.parts.forEach(function (p, pi) {
+      p.items.forEach(function (it) {
+        n++;
+        var c = p.type === "choice" ? "ABCDEF"[it.a] + ". " + it.opts[it.a] : p.type === "order" ? it.a : (Array.isArray(it.a) ? it.a[0] : it.a);
+        out.push({ n: n, part: p.title, q: it.q || it.w.join(" / "), correct: c });
+      });
+    });
+    return out;
+  }
+
   window.HD_SHEET = {
+    info: info,
     init: function (host) { H = host; H.app.addEventListener("click", onClick); H.app.addEventListener("input", onInput); },
     start: function (sheet, opt) {
       X = { sheet: sheet, qs: flatten(sheet), ans: {}, t0: Date.now(), warned: false, onRecord: opt.onRecord, onExit: opt.onExit, done: false };

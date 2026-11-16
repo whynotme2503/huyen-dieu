@@ -42,7 +42,7 @@
     var m = {};
     rs.forEach(function (r) {
       r.words.forEach(function (w) { (m[w] = m[w] || { h: w, seen: 0, wrong: 0 }).seen++; });
-      r.wrong.forEach(function (w) { (m[w] = m[w] || { h: w, seen: 0, wrong: 0 }).wrong++; });
+      r.wrong.forEach(function (w) { if (/^Câu \d+:/.test(w)) return; (m[w] = m[w] || { h: w, seen: 0, wrong: 0 }).wrong++; });
     });
     return Object.keys(m).map(function (k) { var x = m[k]; x.seen = Math.max(x.seen, x.wrong); x.rate = x.seen ? x.wrong / x.seen * 100 : 0; return x; })
       .filter(function (x) { return x.wrong > 0 && x.seen >= 3; }).sort(function (a, b) { return b.rate - a.rate || b.wrong - a.wrong; });
@@ -195,14 +195,38 @@
     return '<div class="t-grid one">' + warn + form + panel("Các lớp (" + cl.length + ")", '<p class="t-sub">Mỗi lớp có thể có bài tập, hạn nộp và file Google Sheet quản lý riêng.</p>' + cards) + "</div>";
   }
 
+  /* chi tiết bài làm của học sinh cho bài tập soạn sẵn: câu nào sai, trả lời gì, đáp án đúng là gì */
+  function lastAttempt(a, code) {
+    var m = T.data.results.filter(function (r) { return r.code === code && r.assignmentId === a.id; });
+    return m.sort(function (x, y) { return y.ts - x.ts; })[0] || null;
+  }
+  function sheetRow(a, d, qinfo) {
+    var r = lastAttempt(a, d.s.code), wr = r ? r.wrong : [], body;
+    if (!r) body = "";
+    else if (r.pct >= 100) body = '<p class="t-sub" style="margin:6px 0 0">Đúng hết các câu.</p>';
+    else if (!wr.length) body = '<p class="t-sub" style="margin:6px 0 0">Bài nộp này chưa lưu chi tiết từng câu (nộp trước khi có tính năng xem chi tiết). Điểm: ' + r.score + "/" + r.total + ".</p>";
+    else body = '<div class="sh-t">' + wr.map(function (w) {
+      var m = /^Câu (\d+): ([\s\S]*)$/.exec(w), n = m ? +m[1] : 0, q = qinfo[n - 1];
+      return '<div class="sh-tr"><b>Câu ' + n + "</b>" + (q ? ' <span class="hz">' + esc(q.q) + "</span>" : "") + '<div class="t-sub">Trả lời: <span class="bad-t">' + esc(m ? m[2] : w) + "</span>" + (q ? " · Đáp án: <b>" + esc(q.correct) + "</b>" : "") + "</div></div>";
+    }).join("") + "</div>";
+    return '<details class="asg-s"><summary class="asg-r"><span>' + esc(d.s.name) + "</span>" + pill((r ? r.score + "/" + r.total : d.best + "%") + " · " + d.n + " lượt", cls4(r ? r.pct : d.best)) + "</summary>" + (r ? '<p class="t-sub" style="margin:4px 0 0">Lượt gần nhất · ' + fmt(r.ts) + "</p>" : "") + body + "</details>";
+  }
+  function sheetSummary(a, done, qinfo) {
+    var cnt = {}, tot = 0;
+    done.forEach(function (d) { var r = lastAttempt(a, d.s.code); if (!r || !r.wrong.length) return; tot++; r.wrong.forEach(function (w) { var m = /^Câu (\d+):/.exec(w); if (m) cnt[m[1]] = (cnt[m[1]] || 0) + 1; }); });
+    var top = Object.keys(cnt).sort(function (x, y) { return cnt[y] - cnt[x] || x - y; }).slice(0, 5);
+    if (!top.length) return "";
+    return '<div class="sh-sum"><div class="eyebrow">Câu nhiều bạn sai nhất (theo lượt làm gần nhất)</div>' + top.map(function (n) { var q = qinfo[n - 1]; return '<div class="asg-r"><span><b>Câu ' + n + "</b> " + (q ? '<span class="hz">' + esc(q.q) + "</span>" : "") + '</span>' + pill(cnt[n] + "/" + done.length + " bạn sai", cnt[n] / done.length >= 0.5 ? "bad" : "warn") + "</div>"; }).join("") + "</div>";
+  }
   function asgDetails(a) {
     var tg = targetsOf(a), done = [], todo = [], td = today();
     tg.forEach(function (s) { var m = T.data.results.filter(function (r) { return r.code === s.code && r.assignmentId === a.id; }); if (m.length) done.push({ s: s, best: Math.max.apply(null, m.map(function (r) { return r.pct; })), n: m.length }); else todo.push(s); });
+    var shx = a.game ? (H.SHEETS || []).filter(function (x) { return x.id === a.game; })[0] : null, qinfo = shx && window.HD_SHEET ? window.HD_SHEET.info(shx) : null;
     var late = a.due && a.due < td, g = a.game ? H.GAMES.concat(H.SHEETS || []).filter(function (x) { return x.id === a.game; })[0] : null, pctDone = tg.length ? r0(done.length / tg.length * 100) : 0;
     return '<details class="asg"' + (T.openAssign[a.id] ? " open" : "") + ' data-aid="' + esc(a.id) + '"><summary><span class="asg-t"><b>' + esc(a.title) + "</b><span>" + lname(a.lesson) + " · " + (g ? esc(g.name) : "Tự chọn game") + " · Hạn " + esc((a.due || "–").split("-").reverse().join("/")) + (late ? " (đã hết hạn)" : "") + '</span></span><span class="asg-p">' + pill(done.length + "/" + tg.length + " đã nộp", pctDone >= 80 ? "good" : late && pctDone < 100 ? "bad" : "warn") + "</span></summary>" +
-      '<div class="asg-b"><div><div class="eyebrow">Đã làm (' + done.length + ")</div>" + (done.length ? done.map(function (d) { return '<div class="asg-r"><span>' + esc(d.s.name) + "</span>" + pill(d.best + "% · " + d.n + " lượt", cls4(d.best)) + "</div>"; }).join("") : '<p class="t-empty">Chưa có ai.</p>') + "</div>" +
+      '<div class="asg-b"><div><div class="eyebrow">Đã làm (' + done.length + ")</div>" + (done.length ? done.map(function (d) { return qinfo ? sheetRow(a, d, qinfo) : '<div class="asg-r"><span>' + esc(d.s.name) + "</span>" + pill(d.best + "% · " + d.n + " lượt", cls4(d.best)) + "</div>"; }).join("") : '<p class="t-empty">Chưa có ai.</p>') + "</div>" +
       '<div><div class="eyebrow">Chưa làm (' + todo.length + ")</div>" + (todo.length ? todo.map(function (s) { return '<div class="asg-r"><span>' + esc(s.name) + '</span><span class="t-sub">' + esc(s.cls || "") + "</span></div>"; }).join("") : '<p class="t-empty">Cả lớp đã nộp.</p>') + "</div></div>" +
-      (a.note ? '<p class="t-sub">Ghi chú: ' + esc(a.note) + "</p>" : "") + (todo.length ? '<button class="btn small" data-ta="remind" data-id="' + esc(a.id) + '">Sao chép lời nhắc (' + todo.length + ' em chưa nộp)</button> ' : "") + '<button class="btn ghost small" data-ta="delAssign" data-id="' + esc(a.id) + '">' + (T.confirmDel === a.id ? "Bấm lần nữa để xóa" : "Xóa bài tập") + "</button></details>";
+      (qinfo ? sheetSummary(a, done, qinfo) : "") + (a.note ? '<p class="t-sub">Ghi chú: ' + esc(a.note) + "</p>" : "") + (todo.length ? '<button class="btn small" data-ta="remind" data-id="' + esc(a.id) + '">Sao chép lời nhắc (' + todo.length + ' em chưa nộp)</button> ' : "") + '<button class="btn ghost small" data-ta="delAssign" data-id="' + esc(a.id) + '">' + (T.confirmDel === a.id ? "Bấm lần nữa để xóa" : "Xóa bài tập") + "</button></details>";
   }
   function tabAssign() {
     var ls = H.LESSONS.filter(function (l) { return l.words.length; }), cl = classes(), td = today();

@@ -67,3 +67,7 @@ Bài tập như "Bài tập HSK1 – Bài 2" nằm trong `data.js` (mục `HD_SH
 
 - **Tra từ** (thanh điều hướng): học sinh gõ chữ Hán, pinyin (có hoặc không dấu) hoặc nghĩa tiếng Việt. Kết quả có nghĩa, ví dụ, ghi chú ngữ pháp, nghe đọc, xem thứ tự nét và luyện viết. Ví dụ và ngữ pháp nằm ở `HD_EXTRA` trong `data.js`, khóa là chữ Hán của từ. Khi thêm từ mới ở bài sau, thêm cả mục tương ứng vào `HD_EXTRA` để từ đó có ví dụ.
 - **Lời chúc trang chủ**: 50 câu về học tập trong `HD_QUOTES`, mỗi ngày đổi một câu theo thứ tự, không có âm thanh. Muốn thêm câu mới, thêm dòng `["chữ Hán", "pinyin", "nghĩa"]`.
+
+## Xem chi tiết bài làm của học sinh
+
+Bảng giáo viên > Bài tập > mở một bài đã giao (bài tập soạn sẵn). Bấm vào tên học sinh trong mục "Đã làm" để xem các câu sai: học sinh trả lời gì và đáp án đúng là gì (lượt làm gần nhất). Bên dưới có mục "Câu nhiều bạn sai nhất". Trong Google Sheet, cột "Từ sai" của sheet KetQua cũng ghi các câu sai dạng "Câu 2: A. gāoxīng".
