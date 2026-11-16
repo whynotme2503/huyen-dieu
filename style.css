@@ -625,3 +625,9 @@ a.sndbtn { display: inline-flex; align-items: center; color: inherit; text-decor
 .sh-tr .hz { font-family: var(--f-han); font-size: 16px; }
 .bad-t { color: #c0564b; font-weight: 600; }
 .sh-sum { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+
+.sh-part .t-sub { white-space: pre-line; }
+.sh-fl { display: block; margin: 8px 0 0 36px; }
+.sh-fl .sh-input { margin: 4px 0 0; width: 100%; }
+.sh-exp { font-size: 14px; color: var(--ink-2); }
+@media (max-width: 560px) { .sh-fl { margin-left: 0; } }

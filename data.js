@@ -183,6 +183,70 @@ window.HD_SHEETS = [
         { q: "Thầy Vương, tạm biệt thầy!", a: ["王老师，再见！"] }
       ] }
     ]
+  },
+  {
+    id: "sheet-b3", lesson: 3, title: "Bài tập HSK1 – Bài 3",
+    parts: [
+      { title: "Phần 1. Chọn pinyin đúng", type: "choice", items: [
+        { q: "越南语", opts: ["Yuènányǔ", "Yuénányǔ", "Yuènànyǔ"], a: 0 },
+        { q: "女朋友", opts: ["nǚ péngyǒu", "nǚpéngyou", "nǔpéngyou"], a: 1 },
+        { q: "谁", opts: ["shuì", "shéi", "shěi"], a: 1, exp: "Cũng có cách đọc shuí." },
+        { q: "不太", opts: ["bù tài", "bú tài", "bū tài"], a: 1, exp: "不 đứng trước thanh 4 thì đổi thành bú." }
+      ] },
+      { title: "Phần 2. Chọn đáp án đúng", type: "choice", items: [
+        { q: "“Thái Lan” tiếng Trung là:", opts: ["法国", "泰国", "英国"], a: 1 },
+        { q: "妹妹 nghĩa là:", opts: ["chị gái", "em gái", "bạn gái"], a: 1 },
+        { q: "Từ nào chỉ ngôn ngữ?", opts: ["中国", "中文", "中国人"], a: 1 },
+        { q: "Khi nói về chị gái, ta dùng:", opts: ["他", "她", "你们"], a: 1 }
+      ] },
+      { title: "Phần 3. Trợ từ 的", type: "mixed", note: "Câu 10, 11: gõ chữ Hán.", ph: "Gõ chữ Hán tại đây", items: [
+        { q: "“Giáo viên của tôi” là:", opts: ["老师的我", "我的老师", "我老师的"], a: 1, exp: "Người sở hữu đứng trước 的, vật được sở hữu đứng sau." },
+        { q: "Điền từ: 这是 ___ 的名字？ (Đây là tên của ai?)", a: ["谁"] },
+        { q: "Dịch sang tiếng Trung: “bạn học của chị gái tôi”", a: ["我姐姐的同学", "我的姐姐的同学"] }
+      ] },
+      { title: "Phần 4. Biến đổi câu (是 / 不是 / 吗)", type: "type", note: "Gõ chữ Hán, không cần chú ý dấu câu.", ph: "Gõ câu tại đây", items: [
+        { q: "他是越南人。→ Đổi thành câu hỏi dùng 吗", a: ["他是越南人吗"] },
+        { q: "她是我妹妹。→ Đổi thành câu phủ định", a: ["她不是我妹妹", "她不是我的妹妹"] },
+        { q: "王老师是中国人。", fields: [{"label": "Đặt câu hỏi dùng 吗", "a": ["王老师是中国人吗"]}, {"label": "Trả lời phủ định", "a": ["不他不是中国人", "他不是中国人"]}] },
+        { q: "你们是学生。", fields: [{"label": "Đặt câu hỏi dùng 吗", "a": ["你们是学生吗"]}, {"label": "Trả lời khẳng định bằng 对", "a": ["对我们是学生"]}], exp: "Câu hỏi dùng 你们 thì câu trả lời phải đổi sang 我们." }
+      ] },
+      { title: "Phần 5. Tìm lỗi sai và sửa lại", type: "type", note: "Gõ lại câu đã sửa cho đúng.", ph: "Gõ câu đúng tại đây", items: [
+        { q: "你叫什么名字吗？", a: ["你叫什么名字"], exp: "Câu đã có từ để hỏi 什么 thì không thêm 吗." },
+        { q: "他是不中国人。", a: ["他不是中国人"], exp: "不 phải đứng trước 是." },
+        { q: "我是很高兴。", a: ["我很高兴"], exp: "Trước tính từ dùng 很, không dùng 是." },
+        { q: "她是哪国人吗？", a: ["她是哪国人"], exp: "Câu đã có 哪 nên bỏ 吗." },
+        { q: "A: 你忙吗？ B: 我不忙太。", a: ["我不太忙"], exp: "Thứ tự đúng là 不太 + tính từ." }
+      ] },
+      { title: "Phần 6. Chọn câu đáp phù hợp", type: "choice", items: [
+        { q: "你是哪国人？", opts: ["我是学生", "我是越南人", "我叫 Lan"], a: 1 },
+        { q: "她是谁？", opts: ["她是我姐姐", "她是英国", "她很忙"], a: 0 },
+        { q: "你工作忙吗？", opts: ["不客气", "不太忙", "不是"], a: 1 },
+        { q: "你是法国人吗？", opts: ["对，我是法国人", "我是法国", "是，法国"], a: 0 },
+        { q: "喂，你好！请问，你是 Lan 吗？", opts: ["对，我是 Lan。", "我叫 Lan 吗？", "没关系。"], a: 0 }
+      ] },
+      { title: "Phần 7. Điền từ vào hội thoại", type: "choice", note: "Từ cho sẵn: 喂 / 吗 / 不太 / 还 / 谁 / 的 / 哪 / 想\n\nHội thoại 1 (gọi điện thoại)\nA: (26) ___，姐姐！\nB: 妹妹，你好！你工作忙 (27) ___？\nA: (28) ___ 忙，(29) ___ 好。\n\nHội thoại 2 (xem ảnh)\nA: 这是 (30) ___？\nB: 这是我 (31) ___ 老师。\nA: 她是 (32) ___ 国人？\nB: 她是英国人。\nA: 我 (33) ___ 认识她。", items: [
+        { q: "(26) A: ___，姐姐！", opts: ["喂", "吗", "不太", "还", "谁", "的", "哪", "想"], a: 0 },
+        { q: "(27) B: 妹妹，你好！你工作忙 ___？", opts: ["喂", "吗", "不太", "还", "谁", "的", "哪", "想"], a: 1 },
+        { q: "(28) A: ___ 忙，还好。", opts: ["喂", "吗", "不太", "还", "谁", "的", "哪", "想"], a: 2 },
+        { q: "(29) A: 不太忙，___ 好。", opts: ["喂", "吗", "不太", "还", "谁", "的", "哪", "想"], a: 3 },
+        { q: "(30) A: 这是 ___？", opts: ["喂", "吗", "不太", "还", "谁", "的", "哪", "想"], a: 4 },
+        { q: "(31) B: 这是我 ___ 老师。", opts: ["喂", "吗", "不太", "还", "谁", "的", "哪", "想"], a: 5 },
+        { q: "(32) A: 她是 ___ 国人？", opts: ["喂", "吗", "不太", "还", "谁", "的", "哪", "想"], a: 6 },
+        { q: "(33) A: 我 ___ 认识她。", opts: ["喂", "吗", "不太", "还", "谁", "的", "哪", "想"], a: 7 }
+      ] },
+      { title: "Phần 8. Sắp xếp thành câu đúng", type: "order", items: [
+        { w: ["是", "他", "吗", "越南人"], a: "他是越南人吗？" },
+        { w: ["的", "这", "是", "女朋友", "我"], a: "这是我的女朋友。" },
+        { w: ["不", "她", "法国人", "是", "也"], a: "她也不是法国人。", exp: "也 luôn đứng trước 不." },
+        { w: ["人", "老师", "哪", "国", "你们", "的", "是"], a: "你们的老师是哪国人？" }
+      ] },
+      { title: "Phần 9. Dịch sang tiếng Trung", type: "type", note: "Gõ chữ Hán, không cần chú ý dấu câu. Có hay không có 的 trước từ chỉ người thân đều được tính đúng.", ph: "Gõ câu tiếng Trung tại đây", items: [
+        { q: "Đây là ai? Đây là em gái tôi.", a: ["这是谁这是我妹妹", "这是谁这是我的妹妹"] },
+        { q: "Anh ấy không phải người Trung Quốc, anh ấy là người Thái Lan.", a: ["他不是中国人他是泰国人"] },
+        { q: "Chị gái bạn có bận không?", a: ["你姐姐忙吗", "你的姐姐忙吗"] },
+        { q: "Chúng tôi là học sinh, họ cũng là học sinh.", a: ["我们是学生他们也是学生", "我们是学生她们也是学生"], exp: "Nói về nhóm nữ có thể dùng 她们." }
+      ] }
+    ]
   }
 ];
 
