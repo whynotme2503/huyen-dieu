@@ -2,7 +2,7 @@
    Dữ liệu nằm trong HD_SHEETS (data.js). Học sinh làm một lượt, nộp bài, xem ngay câu đúng/sai và đáp án. */
 (function () {
   "use strict";
-  var H, X = null;
+  var H, X = null, LET = "ABCDEFGHIJ";
 
   function esc(s) { return H.esc(s); }
   function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
@@ -16,7 +16,7 @@
     sheet.parts.forEach(function (p, pi) {
       p.items.forEach(function (it) {
         n++;
-        var q = { n: n, part: pi, type: it.opts ? "choice" : it.w ? "order" : "type", q: it.q || "", opts: it.opts || null, a: it.a, fields: it.fields || null, exp: it.exp || "", ph: p.ph || "Gõ chữ Hán tại đây" };
+        var q = { n: n, part: pi, type: it.opts ? "choice" : it.w ? "order" : "type", q: it.q || "", opts: it.opts || null, a: it.a, fields: it.fields || null, exp: it.exp || "", ph: p.ph || "Gõ chữ Hán tại đây", sub: it.sub || "" };
         if (q.type === "order") q.pool = shuffle(it.w.map(function (w, k) { return { w: w, k: k }; }));
         qs.push(q);
       });
@@ -32,7 +32,7 @@
   function qHTML(q) {
     var v = X.ans[q.n], body = "";
     if (q.type === "choice") {
-      body = '<div class="sh-opts">' + q.opts.map(function (o, j) { return '<button class="sh-opt' + (v === j ? " sel" : "") + '" data-sh="pick" data-n="' + q.n + '" data-o="' + j + '"><span class="key">' + "ABCDEF"[j] + '</span><span class="' + hz(o).trim() + '">' + esc(o) + "</span></button>"; }).join("") + "</div>";
+      body = '<div class="sh-opts">' + q.opts.map(function (o, j) { return '<button class="sh-opt' + (v === j ? " sel" : "") + '" data-sh="pick" data-n="' + q.n + '" data-o="' + j + '"><span class="key">' + LET[j] + '</span><span class="' + hz(o).trim() + '">' + esc(o) + "</span></button>"; }).join("") + "</div>";
     } else if (q.type === "order") {
       v = v || [];
       var used = {}; v.forEach(function (k) { used[k] = 1; });
@@ -44,7 +44,7 @@
     } else {
       body = '<input class="sh-input hz" data-sh="type" data-n="' + q.n + '" value="' + esc(v || "") + '" placeholder="' + esc(q.ph) + '" autocomplete="off" autocapitalize="off" spellcheck="false" lang="zh">';
     }
-    return '<div class="sh-q" id="shq-' + q.n + '"><div class="sh-qt"><span class="sh-n">' + q.n + "</span>" + (q.q ? '<span class="sh-qp' + hz(q.q) + '">' + esc(q.q) + "</span>" : '<span class="sh-qp">Sắp xếp thành câu đúng:</span>') + "</div>" + body + "</div>";
+    return '<div class="sh-q" id="shq-' + q.n + '"><div class="sh-qt"><span class="sh-n">' + q.n + "</span>" + (q.q ? '<span class="sh-qp' + hz(q.q) + '">' + esc(q.q) + "</span>" : '<span class="sh-qp">Sắp xếp thành câu đúng:</span>') + "</div>" + (q.sub ? '<div class="sh-sub">' + esc(q.sub) + "</div>" : "") + body + "</div>";
   }
 
   function render() {
@@ -66,14 +66,14 @@
   function rerender(n) { var q = X.qs[n - 1], el = document.getElementById("shq-" + n); if (el) el.outerHTML = qHTML(q); refreshLeft(); }
 
   function correctText(q) {
-    if (q.type === "choice") return "ABCDEF"[q.a] + ". " + q.opts[q.a];
+    if (q.type === "choice") return LET[q.a] + ". " + q.opts[q.a];
     if (q.type === "order") return q.a;
     if (q.fields) return q.fields.map(function (f) { return f.a[0]; }).join("  →  ");
     return Array.isArray(q.a) ? q.a[0] : q.a;
   }
   function userText(q, v) {
     if (!isDone(q, v)) return "(chưa trả lời)";
-    if (q.type === "choice") return "ABCDEF"[v] + ". " + q.opts[v];
+    if (q.type === "choice") return LET[v] + ". " + q.opts[v];
     if (q.type === "order") return v.map(function (k) { return q.pool.filter(function (p) { return p.k === k; })[0].w; }).join(" ");
     if (q.fields) return v.join("  →  ");
     return v;
@@ -97,7 +97,7 @@
     X.qs.forEach(function (q) {
       if (q.part !== cur) { cur = q.part; review += '<div class="sh-part"><h3>' + esc(sh.parts[cur].title) + " · " + per[cur].ok + "/" + per[cur].n + "</h3></div>"; }
       var v = X.ans[q.n];
-      review += '<div class="sh-r ' + (q.ok ? "ok" : "bad") + '"><div class="sh-qt"><span class="sh-n">' + q.n + '</span><span class="sh-qp' + hz(q.q) + '">' + (q.q ? esc(q.q) : "Sắp xếp thành câu đúng") + '</span><span class="sh-mark">' + (q.ok ? "Đúng" : "Sai") + "</span></div>" +
+      review += '<div class="sh-r ' + (q.ok ? "ok" : "bad") + '"><div class="sh-qt"><span class="sh-n">' + q.n + '</span><span class="sh-qp' + hz(q.q) + '">' + (q.q ? esc(q.q) : "Sắp xếp thành câu đúng") + (q.sub ? ' <small class="sh-subr">' + esc(q.sub) + "</small>" : "") + '</span><span class="sh-mark">' + (q.ok ? "Đúng" : "Sai") + "</span></div>" +
         '<div class="sh-ans"><span class="lb">Bạn trả lời</span><span class="' + hz(userText(q, v)).trim() + '">' + esc(userText(q, v)) + "</span></div>" +
         (q.ok ? "" : '<div class="sh-ans good"><span class="lb">Đáp án</span><span class="' + hz(correctText(q)).trim() + '">' + esc(correctText(q)) + "</span></div>") + (q.exp ? '<div class="sh-ans"><span class="lb">Ghi chú</span><span class="sh-exp">' + esc(q.exp) + "</span></div>" : "") + "</div>";
     });
@@ -136,7 +136,7 @@
     sheet.parts.forEach(function (p, pi) {
       p.items.forEach(function (it) {
         n++;
-        var c = it.opts ? "ABCDEF"[it.a] + ". " + it.opts[it.a] : it.w ? it.a : it.fields ? it.fields.map(function (f) { return f.a[0]; }).join(" → ") : (Array.isArray(it.a) ? it.a[0] : it.a);
+        var c = it.opts ? LET[it.a] + ". " + it.opts[it.a] : it.w ? it.a : it.fields ? it.fields.map(function (f) { return f.a[0]; }).join(" → ") : (Array.isArray(it.a) ? it.a[0] : it.a);
         out.push({ n: n, part: p.title, q: it.q || it.w.join(" / "), correct: c });
       });
     });

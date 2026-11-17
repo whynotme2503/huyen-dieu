@@ -631,3 +631,7 @@ a.sndbtn { display: inline-flex; align-items: center; color: inherit; text-decor
 .sh-fl .sh-input { margin: 4px 0 0; width: 100%; }
 .sh-exp { font-size: 14px; color: var(--ink-2); }
 @media (max-width: 560px) { .sh-fl { margin-left: 0; } }
+
+.sh-sub { margin: 4px 0 0 36px; font: 600 13px var(--f-ui); color: var(--accent); }
+.sh-subr { font: 600 12px var(--f-ui); color: var(--accent); margin-left: 6px; }
+@media (max-width: 560px) { .sh-sub { margin-left: 0; } }
