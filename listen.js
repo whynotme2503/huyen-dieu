@@ -8,17 +8,24 @@
   function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   function norm(s) { return String(s).replace(/[！!。.，,？?\s]/g, ""); }
 
-  function wordsOf(id) {
-    if (id === "all") return H.ALL;
-    var l = H.LESSONS.filter(function (x) { return String(x.id) === String(id); })[0]; return l ? l.words : [];
+  /* Chỉ lấy câu chỉ gồm chữ Hán đã học từ bài 1 đến bài đang chọn (không có chữ của bài sau, không chữ Latin). */
+  function han(s) { return Array.from(s).filter(function (c) { return /[㐀-鿿]/.test(c); }); }
+  function lessonPool(idx, open) {
+    var X = window.HD_EXTRA || {}, known = {}, seen = {}, out = [];
+    open.slice(0, idx + 1).forEach(function (l) { l.words.forEach(function (w) { han(w.hanzi).forEach(function (c) { known[c] = 1; }); }); });
+    open[idx].words.forEach(function (w) {
+      ((X[w.hanzi] && X[w.hanzi].ex) || []).forEach(function (e) {
+        var k = norm(e[0]); if (seen[k] || !e[2] || /[A-Za-z]/.test(e[0])) return; seen[k] = 1;
+        if (han(e[0]).every(function (c) { return known[c]; })) out.push({ zh: e[0], py: e[1], vi: e[2], w: w.hanzi });
+      });
+    });
+    return out;
   }
   function pool(id) {
-    var X = window.HD_EXTRA || {}, seen = {}, out = [];
-    wordsOf(id).forEach(function (w) {
-      ((X[w.hanzi] && X[w.hanzi].ex) || []).forEach(function (e) {
-        var k = norm(e[0]); if (seen[k] || !e[2]) return; seen[k] = 1;
-        out.push({ zh: e[0], py: e[1], vi: e[2], w: w.hanzi });
-      });
+    var open = H.LESSONS.filter(function (l) { return l.words.length; }), out = [], seen = {};
+    open.forEach(function (l, i) {
+      if (id !== "all" && String(l.id) !== String(id)) return;
+      lessonPool(i, open).forEach(function (s) { var k = norm(s.zh); if (!seen[k]) { seen[k] = 1; out.push(s); } });
     });
     return out;
   }
@@ -48,7 +55,7 @@
     paint(true);
   }
 
-  function say(slow) { var q = ST.qs[ST.i]; H.speak({ hanzi: q.it.zh }, slow); }
+  function say(slow) { var q = ST.qs[ST.i], A = window.HD_SENT_AUDIO || {}, f = A[norm(q.it.zh)]; H.speak(f ? { hanzi: q.it.zh, audio: f } : { hanzi: q.it.zh }, slow); }
 
   function paint(auto) {
     var q = ST.qs[ST.i], n = ST.qs.length, ans = q.picked >= 0;

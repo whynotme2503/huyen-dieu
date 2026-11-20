@@ -106,3 +106,7 @@ Bảng giáo viên > Bài tập > mở một bài đã giao (bài tập soạn s
 - Câu lấy từ phần ví dụ của các từ đã học, nên bài mới thêm ví dụ vào `HD_EXTRA` là có thêm câu luyện nghe.
 - Âm thanh là giọng đọc tiếng Trung có sẵn trên thiết bị (chưa phải giọng người thật). Nếu máy chưa có giọng tiếng Trung, web sẽ nhắc học sinh cài thêm.
 - Kết quả được ghi theo đúng bài đã chọn, như các game khác (tên "Nghe câu → chọn nghĩa"), tính vào bảng xếp hạng và huy hiệu. Không cần sửa Code.gs.
+
+### Luyện nghe: câu theo đúng từng bài
+- Mỗi bài chỉ dùng **câu gồm chữ Hán đã học từ bài 1 đến bài đó**; câu có chữ của bài sau sẽ bị loại (ví dụ Bài 1 không có câu với 我 chưa học).
+- Âm thanh hiện dùng giọng đọc của thiết bị. Khi có file ghi âm câu, mình gắn vào `HD_SENT_AUDIO` và web tự dùng file thay cho giọng thiết bị.
