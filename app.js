@@ -92,20 +92,20 @@
     zhVoice = vs.filter(function (v) { return /zh[-_]CN/i.test(v.lang); })[0] || vs.filter(function (v) { return /^zh/i.test(v.lang); })[0] || null;
   }
   if (hasTTS) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
-  function speak(w) {
+  function speak(w, slow) {
     try { if (curAudio) { curAudio.pause(); curAudio = null; } if (hasTTS) speechSynthesis.cancel(); } catch (e) { /* bỏ qua */ }
     if (w.audio) {
       var a = new Audio((CFG.audioBase || "") + w.audio); curAudio = a;
-      a.play().catch(function () { tts(w); });
+      a.play().catch(function () { tts(w, slow); });
       return;
     }
-    tts(w);
+    tts(w, slow);
   }
-  function tts(w) {
+  function tts(w, slow) {
     if (!hasTTS) { toast("Thiết bị này chưa hỗ trợ đọc tiếng Trung."); return; }
     if (!zhVoice && !voiceWarned && speechSynthesis.getVoices().length) { voiceWarned = true; toast("Máy bạn chưa có giọng đọc tiếng Trung nên âm thanh có thể không rõ. Hãy cài thêm giọng tiếng Trung trong Cài đặt của máy."); }
     var u = new SpeechSynthesisUtterance(w.hanzi);
-    u.lang = "zh-CN"; u.rate = 0.8; if (zhVoice) u.voice = zhVoice;
+    u.lang = "zh-CN"; u.rate = slow ? 0.55 : 0.8; if (zhVoice) u.voice = zhVoice;
     u.onerror = function () { toast("Không phát được âm thanh. Thử bật giọng đọc tiếng Trung trong cài đặt thiết bị."); };
     speechSynthesis.speak(u);
   }
@@ -161,6 +161,7 @@
     if (h === "giao-vien" && SESSION.role === "teacher") { S.view = "teacher"; setRight(""); return window.HD_TEACHER.render(); }
     if (h === "lich-su" && SESSION.role === "student") return renderHistory();
     if (h === "tra-tu" && window.HD_SEARCH) { S.view = "search"; curAssign = null; setRight(""); return window.HD_SEARCH.render(); }
+    if (h === "luyen-nghe" && window.HD_LISTEN && SESSION.role) { S = { view: "listen", lesson: lessonById("all") }; curAssign = null; setRight(""); return window.HD_LISTEN.render(); }
     if (h === "tu-vung") return renderVocab();
     if (h === "bai-tap") return renderAssignments();
     if (!/^(bai-\d+|tong-hop)$/.test(h)) curAssign = null;
@@ -199,14 +200,14 @@
     { id: "tu-vung", label: "Từ vựng", href: "#tu-vung" },
     { id: "bai-tap", label: "Bài tập", href: "#bai-tap" },
     { id: "bai-khoa", label: "Bài khóa", soon: true },
-    { id: "luyen-nghe", label: "Luyện nghe", soon: true }
+    { id: "luyen-nghe", label: "Luyện nghe", href: "#luyen-nghe" }
   ];
   function paintNav() {
     var n = $("#mainnav"); if (!n) return;
     if (!SESSION || S.view === "login" || S.view === "teacher") { n.hidden = true; return; }
     n.hidden = false;
     var sb = $("#srchbtn"); if (sb) sb.classList.toggle("on", S.view === "search");
-    var act = S.view === "home" ? "home" : S.view === "assign" ? "bai-tap" : S.view === "history" ? "" : (curAssign ? "bai-tap" : "tu-vung"), pend = pendingCount();
+    var act = S.view === "home" ? "home" : S.view === "assign" ? "bai-tap" : S.view === "history" ? "" : S.view === "listen" ? "luyen-nghe" : (curAssign ? "bai-tap" : "tu-vung"), pend = pendingCount();
     n.innerHTML = NAV.map(function (it) {
       if (it.soon) return '<span class="nv soon" aria-disabled="true">' + it.label + "<small>Sắp có</small></span>";
       return '<a class="nv' + (it.id === act ? " on" : "") + '" href="' + it.href + '"' + (it.id === act ? ' aria-current="page"' : "") + ">" + it.label + (it.id === "bai-tap" && pend ? '<b class="dot">' + pend + "</b>" : "") + "</a>";
@@ -352,7 +353,7 @@
     var hero = q ? '<section class="hero" data-char="' + esc(q[0].charAt(0)) + '"><div class="hero-top"><span class="pchip">LỜI CHÚC HÔM NAY</span></div><div class="hero-q">' + esc(q[0]) + '</div><div class="hero-py">' + esc(q[1]) + '</div><div class="hero-vi">' + esc(q[2]) + '</div></section>' : "";
     var tiles = '<div class="hub-tiles"><a class="htile" href="#tu-vung"><span class="hn">' + openLessons.length + '</span><span class="hl">Từ vựng</span><span class="hs">' + ALL.length + ' từ · ' + GAMES.length + ' game</span></a>' +
       '<a class="htile' + (pend ? " alert" : "") + '" href="#bai-tap"><span class="hn">' + pend + '</span><span class="hl">Bài tập</span><span class="hs">' + (pend ? "bài chưa làm" : "đã làm hết") + '</span></a>' +
-      '<span class="htile soon"><span class="hn">…</span><span class="hl">Bài khóa</span><span class="hs">Sắp có</span></span><span class="htile soon"><span class="hn">…</span><span class="hl">Luyện nghe</span><span class="hs">Sắp có</span></span></div>';
+      '<span class="htile soon"><span class="hn">…</span><span class="hl">Bài khóa</span><span class="hs">Sắp có</span></span><a class="htile" href="#luyen-nghe"><span class="hn">🎧</span><span class="hl">Luyện nghe</span><span class="hs">Nghe câu, chọn nghĩa</span></a></div>';
     var st = SESSION.role === "student" ? streakInfo() : null, weak = SESSION.role === "student" ? weakWords() : [];
     var streak = st ? '<span class="streak' + (st.n ? " on" : "") + '">' + (st.n ? "Chuỗi " + st.n + " ngày" + (st.today ? "" : " · hôm nay chưa luyện") : "Hôm nay hãy luyện một lượt nhé") + "</span>" : "";
     var weakCard = SESSION.role === "student" ? '<section class="card hub-card weakbox"><div class="eyebrow">Đến hạn ôn lại hôm nay</div>' + (weak.length >= 2 ? '<div class="weak-chips">' + weak.map(function (w) { return '<span class="wc"><span class="hz">' + esc(w.hanzi) + "</span>" + esc(w.pinyin) + "</span>"; }).join("") + '</div><button class="btn small" data-weak="1">Ôn ' + weak.length + " từ này</button>" : '<p class="sub" style="margin:6px 0 0">Hôm nay chưa có từ nào đến hạn ôn.' + (reviewLater() ? " Còn " + reviewLater() + " từ sẽ đến hạn trong vài ngày tới." : " Từ nào bạn làm sai, web sẽ nhắc lại sau 1, 3 và 7 ngày.") + "</p>") + "</section>" : "";
@@ -768,11 +769,12 @@
   document.addEventListener("click", function (e) { if (!e.target.closest("#umenu") && !e.target.closest("#userbtn")) $("#umenu").hidden = true; });
   window.addEventListener("online", function () { flush(); });
 
-  window.HD = { app: app, esc: esc, toast: toast, topBar: topBar, speak: speak, sfx: sfx, ICONS: ICONS, GAMES: GAMES, SHEETS: SHEETS, writeWord: writeWord, LESSONS: LESSONS, ALL: ALL, api: api, get session() { return SESSION; }, view: function () { return S.view; } };
+  window.HD = { app: app, esc: esc, toast: toast, topBar: topBar, speak: speak, record: record, sfx: sfx, ICONS: ICONS, GAMES: GAMES, SHEETS: SHEETS, writeWord: writeWord, LESSONS: LESSONS, ALL: ALL, api: api, get session() { return SESSION; }, view: function () { return S.view; } };
   if (window.HD_TEACHER) window.HD_TEACHER.init(window.HD);
   if (window.HD_WRITE) window.HD_WRITE.init(window.HD);
   if (window.HD_SHEET) window.HD_SHEET.init(window.HD);
   if (window.HD_SEARCH) window.HD_SEARCH.init(window.HD);
+  if (window.HD_LISTEN) window.HD_LISTEN.init(window.HD);
 
   /* ---------- khởi động ---------- */
   paintMute();

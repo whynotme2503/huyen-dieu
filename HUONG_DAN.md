@@ -99,3 +99,10 @@ Bảng giáo viên > Bài tập > mở một bài đã giao (bài tập soạn s
 - Trang chủ học sinh có thẻ **Mục tiêu tuần này**: học đủ **5 ngày** trong tuần (tuần tính từ Thứ Hai), hiện 7 chấm T2–CN.
 - **9 huy hiệu:** 3/7/14 ngày liền, 100/500 câu đúng, điểm tuyệt đối, bài tập đầu tiên, nộp 5 bài tập, ôn thuộc 10 từ. Đạt huy hiệu mới thì hiện thông báo ngay.
 - Tính từ lịch sử kết quả sẵn có, không cần sửa Code.gs hay deploy lại. Giáo viên xem thử không thấy thẻ này.
+
+## Luyện nghe câu
+
+- Mục **Luyện nghe** (thanh menu và ô trên trang chủ): nghe 1 câu tiếng Trung, chọn nghĩa tiếng Việt đúng trong 4 đáp án. Mỗi lượt 8 câu, có nút "Nghe chậm"; sau mỗi câu hiện chữ Hán và pinyin.
+- Câu lấy từ phần ví dụ của các từ đã học, nên bài mới thêm ví dụ vào `HD_EXTRA` là có thêm câu luyện nghe.
+- Âm thanh là giọng đọc tiếng Trung có sẵn trên thiết bị (chưa phải giọng người thật). Nếu máy chưa có giọng tiếng Trung, web sẽ nhắc học sinh cài thêm.
+- Kết quả được ghi như các game khác (tên "Nghe câu → chọn nghĩa"), tính vào bảng xếp hạng và huy hiệu. Không cần sửa Code.gs.
