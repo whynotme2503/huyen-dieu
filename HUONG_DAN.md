@@ -110,3 +110,7 @@ Bảng giáo viên > Bài tập > mở một bài đã giao (bài tập soạn s
 ### Luyện nghe: câu theo đúng từng bài
 - Mỗi bài chỉ dùng **câu gồm chữ Hán đã học từ bài 1 đến bài đó**; câu có chữ của bài sau sẽ bị loại (ví dụ Bài 1 không có câu với 我 chưa học).
 - Âm thanh hiện dùng giọng đọc của thiết bị. Khi có file ghi âm câu, mình gắn vào `HD_SENT_AUDIO` và web tự dùng file thay cho giọng thiết bị.
+
+### Âm thanh câu luyện nghe (đã gắn)
+- Đã gắn file ghi âm cho **58 câu của Bài 1, 2, 3** (`audio/s1.mp3` … `s58.mp3`, bảng tra trong `HD_SENT_AUDIO` ở cuối data.js). Bài 4 chưa có file nên vẫn dùng giọng thiết bị.
+- Thêm bài mới: gửi file mp3 đọc các câu theo kịch bản, mỗi câu cách nhau ~0.5 giây im lặng.
