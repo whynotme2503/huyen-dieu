@@ -7,7 +7,7 @@
   function esc(s) { return H.esc(s); }
   function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   /* bỏ dấu câu, khoảng trắng, chữ hoa/thường để không chấm gắt */
-  function norm(s) { return String(s || "").replace(/[\s　。，、！？；：“”‘’「」（）…·.,!?;:"'()\-]/g, "").toLowerCase(); }
+  function norm(s) { return String(s || "").replace(/〇/g, "零").replace(/[\s　。，、！？；：“”‘’「」（）…·.,!?;:"'()\-]/g, "").toLowerCase(); }
   function hz(s) { return /[㐀-鿿]/.test(s) ? " hz" : ""; }
   function fmt(s) { return ("0" + Math.floor(s / 60)).slice(-2) + ":" + ("0" + (s % 60)).slice(-2); }
 
@@ -16,7 +16,7 @@
     sheet.parts.forEach(function (p, pi) {
       p.items.forEach(function (it) {
         n++;
-        var q = { n: n, part: pi, type: it.opts ? "choice" : it.w ? "order" : "type", q: it.q || "", opts: it.opts || null, a: it.a, fields: it.fields || null, exp: it.exp || "", ph: p.ph || "Gõ chữ Hán tại đây", sub: it.sub || "" };
+        var q = { n: n, part: pi, type: it.opts ? "choice" : it.w ? "order" : it.valid ? "multi" : "type", valid: it.valid || null, min: it.min || 0, pre: it.pre || null, vi: it.vi || "", q: it.q || "", opts: it.opts || null, a: it.a, fields: it.fields || null, exp: it.exp || "", ph: p.ph || "Gõ chữ Hán tại đây", sub: it.sub || "" };
         if (q.type === "order") q.pool = shuffle(it.w.map(function (w, k) { return { w: w, k: k }; }));
         qs.push(q);
       });
@@ -38,19 +38,21 @@
       var used = {}; v.forEach(function (k) { used[k] = 1; });
       body = '<div class="sh-built' + (v.length ? "" : " empty") + '">' + (v.length ? v.map(function (k, idx) { return '<button class="sh-tok on hz" data-sh="untok" data-n="' + q.n + '" data-i="' + idx + '">' + esc(q.pool.filter(function (p) { return p.k === k; })[0].w) + "</button>"; }).join("") : "Bấm các từ bên dưới theo đúng thứ tự") + "</div>" +
         '<div class="sh-pool">' + q.pool.map(function (p) { return '<button class="sh-tok hz" data-sh="tok" data-n="' + q.n + '" data-k="' + p.k + '"' + (used[p.k] ? " disabled" : "") + ">" + esc(p.w) + "</button>"; }).join("") + (v.length ? '<button class="linkb" data-sh="clear" data-n="' + q.n + '">Xóa làm lại</button>' : "") + "</div>";
+    } else if (q.type === "multi") {
+      body = '<textarea class="sh-input hz" rows="3" data-sh="type" data-n="' + q.n + '" placeholder="' + esc(q.ph) + '" autocomplete="off" autocapitalize="off" spellcheck="false" lang="zh">' + esc(v || "") + "</textarea>";
     } else if (q.fields) {
       v = v || [];
       body = q.fields.map(function (f, i) { return '<label class="sh-fl"><span class="t-sub">' + esc(f.label) + '</span><input class="sh-input hz" data-sh="type" data-n="' + q.n + '" data-f="' + i + '" value="' + esc(v[i] || "") + '" placeholder="' + esc(q.ph) + '" autocomplete="off" autocapitalize="off" spellcheck="false" lang="zh"></label>'; }).join("");
     } else {
       body = '<input class="sh-input hz" data-sh="type" data-n="' + q.n + '" value="' + esc(v || "") + '" placeholder="' + esc(q.ph) + '" autocomplete="off" autocapitalize="off" spellcheck="false" lang="zh">';
     }
-    return '<div class="sh-q" id="shq-' + q.n + '"><div class="sh-qt"><span class="sh-n">' + q.n + "</span>" + (q.q ? '<span class="sh-qp' + hz(q.q) + '">' + esc(q.q) + "</span>" : '<span class="sh-qp">Sắp xếp thành câu đúng:</span>') + "</div>" + (q.sub ? '<div class="sh-sub">' + esc(q.sub) + "</div>" : "") + body + "</div>";
+    return '<div class="sh-q" id="shq-' + q.n + '"><div class="sh-qt"><span class="sh-n">' + q.n + "</span>" + (q.q ? '<span class="sh-qp' + hz(q.q) + '">' + esc(q.q) + "</span>" : '<span class="sh-qp">Sắp xếp thành câu đúng:</span>') + "</div>" + (q.vi ? '<div class="sh-vi">' + esc(q.vi) + "</div>" : "") + (q.sub ? '<div class="sh-sub' + (hz(q.sub) ? " hzb hz" : "") + '">' + esc(q.sub) + "</div>" : "") + body + "</div>";
   }
 
   function render() {
     var sh = X.sheet, html = "", cur = -1, left = X.qs.filter(function (q) { return !isDone(q, X.ans[q.n]); }).length;
     X.qs.forEach(function (q) {
-      if (q.part !== cur) { cur = q.part; var p = sh.parts[cur]; html += '<div class="sh-part"><h3>' + esc(p.title) + "</h3>" + (p.note ? '<p class="t-sub">' + esc(p.note) + "</p>" : "") + (p.bank ? '<div class="sh-bank">' + p.bank.map(function (b) { return '<span class="hz">' + esc(b) + "</span>"; }).join("") + "</div>" : "") + "</div>"; }
+      if (q.part !== cur) { cur = q.part; var p = sh.parts[cur]; html += '<div class="sh-part"><h3>' + esc(p.title) + "</h3>" + (p.note ? '<p class="t-sub">' + esc(p.note) + "</p>" : "") + (p.passage ? '<div class="sh-pass hz">' + esc(p.passage) + "</div>" : "") + (p.bank ? '<div class="sh-bank">' + p.bank.map(function (b) { return '<span class="hz">' + esc(b) + "</span>"; }).join("") + "</div>" : "") + "</div>"; }
       html += qHTML(q);
     });
     H.app.innerHTML = '<div style="display:flex;align-items:center;gap:6px"><button class="back" data-sh="exit">' + H.ICONS.back + "Bài tập</button></div>" +
@@ -69,6 +71,7 @@
     if (q.type === "choice") return LET[q.a] + ". " + q.opts[q.a];
     if (q.type === "order") return q.a;
     if (q.fields) return q.fields.map(function (f) { return f.a[0]; }).join("  →  ");
+    if (q.type === "multi") return "Cần ít nhất " + q.min + " từ, ví dụ: " + q.valid.join("、");
     return Array.isArray(q.a) ? q.a[0] : q.a;
   }
   function userText(q, v) {
@@ -76,14 +79,18 @@
     if (q.type === "choice") return LET[v] + ". " + q.opts[v];
     if (q.type === "order") return v.map(function (k) { return q.pool.filter(function (p) { return p.k === k; })[0].w; }).join(" ");
     if (q.fields) return v.join("  →  ");
+    if (q.type === "multi") return v + "  (đúng " + multiCount(q, v) + "/" + q.min + " từ cần có)";
     return v;
   }
+  function okAns(a, v, pre) { var nv = norm(v); return (pre || [""]).some(function (p) { return norm(p) + norm(a) === nv; }); }
+  function multiCount(q, v) { var nv = norm(v), seen = {}, k = 0; q.valid.forEach(function (w) { if (!seen[w] && nv.indexOf(norm(w)) >= 0) { seen[w] = 1; k++; } }); return k; }
   function grade(q, v) {
     if (!isDone(q, v)) return false;
     if (q.type === "choice") return v === q.a;
     if (q.type === "order") return norm(v.map(function (k) { return q.pool.filter(function (p) { return p.k === k; })[0].w; }).join("")) === norm(q.a);
-    if (q.fields) return q.fields.every(function (f, i) { return f.a.some(function (a) { return norm(a) === norm(v[i]); }); });
-    return (Array.isArray(q.a) ? q.a : [q.a]).some(function (a) { return norm(a) === norm(v); });
+    if (q.type === "multi") return multiCount(q, v) >= q.min;
+    if (q.fields) return q.fields.every(function (f, i) { return f.a.some(function (a) { return okAns(a, v[i], f.pre || q.pre); }); });
+    return (Array.isArray(q.a) ? q.a : [q.a]).some(function (a) { return okAns(a, v, q.pre); });
   }
 
   function submit() {
@@ -97,7 +104,7 @@
     X.qs.forEach(function (q) {
       if (q.part !== cur) { cur = q.part; review += '<div class="sh-part"><h3>' + esc(sh.parts[cur].title) + " · " + per[cur].ok + "/" + per[cur].n + "</h3></div>"; }
       var v = X.ans[q.n];
-      review += '<div class="sh-r ' + (q.ok ? "ok" : "bad") + '"><div class="sh-qt"><span class="sh-n">' + q.n + '</span><span class="sh-qp' + hz(q.q) + '">' + (q.q ? esc(q.q) : "Sắp xếp thành câu đúng") + (q.sub ? ' <small class="sh-subr">' + esc(q.sub) + "</small>" : "") + '</span><span class="sh-mark">' + (q.ok ? "Đúng" : "Sai") + "</span></div>" +
+      review += '<div class="sh-r ' + (q.ok ? "ok" : "bad") + '"><div class="sh-qt"><span class="sh-n">' + q.n + '</span><span class="sh-qp' + hz(q.q) + '">' + (q.q ? esc(q.q) : "Sắp xếp thành câu đúng") + (q.sub && !hz(q.sub) ? ' <small class="sh-subr">' + esc(q.sub) + "</small>" : "") + (q.vi ? ' <small class="sh-subr">' + esc(q.vi) + "</small>" : "") + '</span><span class="sh-mark">' + (q.ok ? "Đúng" : "Sai") + "</span></div>" +
         '<div class="sh-ans"><span class="lb">Bạn trả lời</span><span class="' + hz(userText(q, v)).trim() + '">' + esc(userText(q, v)) + "</span></div>" +
         (q.ok ? "" : '<div class="sh-ans good"><span class="lb">Đáp án</span><span class="' + hz(correctText(q)).trim() + '">' + esc(correctText(q)) + "</span></div>") + (q.exp ? '<div class="sh-ans"><span class="lb">Ghi chú</span><span class="sh-exp">' + esc(q.exp) + "</span></div>" : "") + "</div>";
     });
@@ -136,8 +143,8 @@
     sheet.parts.forEach(function (p, pi) {
       p.items.forEach(function (it) {
         n++;
-        var c = it.opts ? LET[it.a] + ". " + it.opts[it.a] : it.w ? it.a : it.fields ? it.fields.map(function (f) { return f.a[0]; }).join(" → ") : (Array.isArray(it.a) ? it.a[0] : it.a);
-        out.push({ n: n, part: p.title, q: it.q || it.w.join(" / "), correct: c });
+        var c = it.opts ? LET[it.a] + ". " + it.opts[it.a] : it.w ? it.a : it.fields ? it.fields.map(function (f) { return f.a[0]; }).join(" → ") : it.valid ? "Cần ít nhất " + it.min + " từ: " + it.valid.join("、") : (Array.isArray(it.a) ? it.a[0] : it.a);
+        out.push({ n: n, part: p.title, q: it.q || (it.w ? it.w.join(" / ") : "") || it.vi || "", correct: c });
       });
     });
     return out;

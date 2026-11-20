@@ -635,3 +635,9 @@ a.sndbtn { display: inline-flex; align-items: center; color: inherit; text-decor
 .sh-sub { margin: 4px 0 0 36px; font: 600 13px var(--f-ui); color: var(--accent); }
 .sh-subr { font: 600 12px var(--f-ui); color: var(--accent); margin-left: 6px; }
 @media (max-width: 560px) { .sh-sub { margin-left: 0; } }
+
+.sh-vi { margin: 2px 0 0 36px; font: 400 14px var(--f-ui); color: var(--ink-2); }
+.sh-sub.hzb { font-size: 22px; letter-spacing: .08em; color: var(--ink); font-weight: 500; margin-top: 8px; }
+.sh-pass { margin: 10px 0 4px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface-2); font-size: 18px; line-height: 1.9; color: var(--ink); }
+textarea.sh-input { resize: vertical; }
+@media (max-width: 560px) { .sh-vi { margin-left: 0; } }
