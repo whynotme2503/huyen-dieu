@@ -87,3 +87,9 @@ Bảng giáo viên > Bài tập > mở một bài đã giao (bài tập soạn s
 - Xếp hạng lớp theo **điểm trung bình mỗi bạn** (công bằng giữa lớp đông và lớp ít người).
 - Tên hiển thị rút gọn (vd "An N."), không lộ mã học sinh. Bảng cập nhật mỗi ~5 phút.
 - Cần dán Code.gs mới và Deploy → Phiên bản mới.
+
+## Ôn lại theo lịch
+
+- Từ học sinh làm sai sẽ được nhắc lại ở thẻ "Đến hạn ôn lại hôm nay" trên trang chủ: sau **1 ngày**, rồi **3 ngày**, rồi **7 ngày**.
+- Làm đúng khi đã đến hạn thì từ lên mức tiếp theo; làm sai thì quay về đầu (1 ngày). Đúng đủ 3 lần thì xong, không nhắc nữa.
+- Tính từ lịch sử kết quả sẵn có, không cần sửa Code.gs hay deploy lại.

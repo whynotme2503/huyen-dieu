@@ -220,18 +220,33 @@
     while (days[localDay(d)]) { n++; d.setDate(d.getDate() - 1); }
     return { n: n, today: today };
   }
-  function weakWords() {
-    var m = {};
+  /* Ôn theo lịch (kiểu Leitner): sai -> hộp 0, ôn lại sau 1 ngày; đúng khi đã đến hạn -> lên hộp, lần sau sau 3 ngày, rồi 7 ngày; đúng 3 lần liên tiếp thì xong */
+  var REVIEW_GAP = [1, 3, 7], DAY_MS = 86400000;
+  function reviewState() {
+    var m = {}, now = Date.now(), ev = [];
     MY.results.forEach(function (r) {
       if (r.game === "write" || !r.words) return;
       var wr = {}; (r.wrong || []).forEach(function (h) { wr[h] = 1; });
       var ts = new Date(r.t).getTime();
-      r.words.forEach(function (h) { var x = m[h] || (m[h] = { seen: 0, wrong: 0, last: 0 }); x.seen++; if (wr[h]) { x.wrong++; if (ts > x.last) x.last = ts; } });
+      r.words.forEach(function (h) { ev.push({ h: h, ts: ts, bad: !!wr[h] }); });
     });
-    return Object.keys(m).map(function (h) { var x = m[h]; x.h = h; x.rate = x.wrong / x.seen; return x; })
-      .filter(function (x) { return x.wrong >= 1 && x.rate >= 0.25; })
-      .sort(function (a, b) { return b.rate - a.rate || b.last - a.last; }).slice(0, 10)
-      .map(function (x) { return ALL.filter(function (w) { return w.hanzi === x.h; })[0]; }).filter(Boolean);
+    ev.sort(function (a, b) { return a.ts - b.ts; });
+    ev.forEach(function (e) {
+      var x = m[e.h];
+      if (e.bad) { m[e.h] = { box: 0, due: e.ts + REVIEW_GAP[0] * DAY_MS, done: false }; return; }
+      if (!x || x.done) return;
+      if (e.ts >= x.due) { x.box++; if (x.box >= REVIEW_GAP.length) x.done = true; else x.due = e.ts + REVIEW_GAP[x.box] * DAY_MS; }
+    });
+    return { m: m, now: now };
+  }
+  function weakWords() {
+    var st = reviewState(), list = Object.keys(st.m).map(function (h) { var x = st.m[h]; x.h = h; return x; })
+      .filter(function (x) { return !x.done && x.due <= st.now; })
+      .sort(function (a, b) { return a.box - b.box || a.due - b.due; }).slice(0, 10);
+    return list.map(function (x) { return ALL.filter(function (w) { return w.hanzi === x.h; })[0]; }).filter(Boolean);
+  }
+  function reviewLater() {
+    var st = reviewState(); return Object.keys(st.m).filter(function (h) { return !st.m[h].done && st.m[h].due > st.now; }).length;
   }
   /* luyện viết một từ (gọi từ mục Tra từ) */
   function writeWord(w, onExit) {
@@ -296,7 +311,7 @@
       '<span class="htile soon"><span class="hn">…</span><span class="hl">Bài khóa</span><span class="hs">Sắp có</span></span><span class="htile soon"><span class="hn">…</span><span class="hl">Luyện nghe</span><span class="hs">Sắp có</span></span></div>';
     var st = SESSION.role === "student" ? streakInfo() : null, weak = SESSION.role === "student" ? weakWords() : [];
     var streak = st ? '<span class="streak' + (st.n ? " on" : "") + '">' + (st.n ? "Chuỗi " + st.n + " ngày" + (st.today ? "" : " · hôm nay chưa luyện") : "Hôm nay hãy luyện một lượt nhé") + "</span>" : "";
-    var weakCard = SESSION.role === "student" ? '<section class="card hub-card weakbox"><div class="eyebrow">Ôn từ hay sai hôm nay</div>' + (weak.length >= 2 ? '<div class="weak-chips">' + weak.map(function (w) { return '<span class="wc"><span class="hz">' + esc(w.hanzi) + "</span>" + esc(w.pinyin) + "</span>"; }).join("") + '</div><button class="btn small" data-weak="1">Ôn ' + weak.length + " từ này</button>" : '<p class="sub" style="margin:6px 0 0">Chưa có từ nào cần ôn lại. Làm thêm vài bài, web sẽ gợi ý các từ bạn hay nhầm.</p>') + "</section>" : "";
+    var weakCard = SESSION.role === "student" ? '<section class="card hub-card weakbox"><div class="eyebrow">Đến hạn ôn lại hôm nay</div>' + (weak.length >= 2 ? '<div class="weak-chips">' + weak.map(function (w) { return '<span class="wc"><span class="hz">' + esc(w.hanzi) + "</span>" + esc(w.pinyin) + "</span>"; }).join("") + '</div><button class="btn small" data-weak="1">Ôn ' + weak.length + " từ này</button>" : '<p class="sub" style="margin:6px 0 0">Hôm nay chưa có từ nào đến hạn ôn.' + (reviewLater() ? " Còn " + reviewLater() + " từ sẽ đến hạn trong vài ngày tới." : " Từ nào bạn làm sai, web sẽ nhắc lại sau 1, 3 và 7 ngày.") + "</p>") + "</section>" : "";
     app.innerHTML = previewBanner() + '<div class="home-head"><div class="hh-row"><h1 class="h1">' + greeting() + ", " + esc(first) + '!</h1>' + streak + '</div><p class="sub">' + (SESSION.role === "student" && pend ? "Bạn có " + pend + " bài tập chưa làm. " : "") + 'Hôm nay học một chút nhé.</p></div>' + hero + boardCard() + weakCard +
       '<div class="hub-grid"><section class="card hub-card"><div class="eyebrow">Bài tập nhỏ hôm nay</div><div id="mini">' + miniHtml() + '</div><button class="btn ghost small" data-mq-new="1" style="margin-top:12px">Câu khác</button></section><section class="card hub-card"><div class="eyebrow">Đi tới</div>' + tiles + "</section></div>";
     loadBoard();
