@@ -102,7 +102,7 @@ Bảng giáo viên > Bài tập > mở một bài đã giao (bài tập soạn s
 
 ## Luyện nghe câu
 
-- Mục **Luyện nghe** (thanh menu và ô trên trang chủ): nghe 1 câu tiếng Trung, chọn nghĩa tiếng Việt đúng trong 4 đáp án. Mỗi lượt 8 câu, có nút "Nghe chậm"; sau mỗi câu hiện chữ Hán và pinyin.
+- Mục **Luyện nghe** (thanh menu và ô trên trang chủ): học sinh **chọn bài trước** (Bài 1, 2, 3, 4… hoặc Tổng hợp), rồi nghe 1 câu tiếng Trung, chọn nghĩa tiếng Việt đúng trong 4 đáp án. Mỗi lượt 8 câu, có nút "Nghe chậm"; sau mỗi câu hiện chữ Hán và pinyin.
 - Câu lấy từ phần ví dụ của các từ đã học, nên bài mới thêm ví dụ vào `HD_EXTRA` là có thêm câu luyện nghe.
 - Âm thanh là giọng đọc tiếng Trung có sẵn trên thiết bị (chưa phải giọng người thật). Nếu máy chưa có giọng tiếng Trung, web sẽ nhắc học sinh cài thêm.
-- Kết quả được ghi như các game khác (tên "Nghe câu → chọn nghĩa"), tính vào bảng xếp hạng và huy hiệu. Không cần sửa Code.gs.
+- Kết quả được ghi theo đúng bài đã chọn, như các game khác (tên "Nghe câu → chọn nghĩa"), tính vào bảng xếp hạng và huy hiệu. Không cần sửa Code.gs.

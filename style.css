@@ -692,3 +692,13 @@ textarea.sh-input { resize: vertical; }
 .ln-fb { margin: 14px 0 12px; }
 .ln-zh { font: 500 24px/1.4 var(--f-han); color: var(--ink); margin-top: 6px; }
 .ln-py { font: 500 14px var(--f-py); color: var(--ink-2); }
+
+.ln-list { display: flex; flex-direction: column; gap: 8px; }
+.ln-les { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface-2); cursor: pointer; text-align: left; font-family: var(--f-ui); }
+.ln-les:hover:not(:disabled) { border-color: var(--accent); }
+.ln-les:disabled { opacity: .5; cursor: default; }
+.ln-n { flex: none; width: 34px; height: 34px; border-radius: 99px; display: grid; place-items: center; background: var(--accent); color: #fff; font: 700 15px var(--f-ui); }
+.ln-t { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.ln-t b { font: 700 15px var(--f-ui); color: var(--ink); }
+.ln-t small { font: 400 12px var(--f-ui); color: var(--ink-2); }
+.ln-c { flex: none; font: 600 13px var(--f-ui); color: var(--ink-2); }

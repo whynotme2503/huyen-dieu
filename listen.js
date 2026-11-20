@@ -2,15 +2,19 @@
    Câu lấy từ phần "ví dụ" của các từ đã học (HD_EXTRA). Âm thanh dùng giọng đọc của thiết bị. */
 (function () {
   "use strict";
-  var H, ST = null, LEN = 8;
+  var H, ST = null, LEN = 8, CUR = "all";
 
   function esc(s) { return H.esc(s); }
   function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   function norm(s) { return String(s).replace(/[！!。.，,？?\s]/g, ""); }
 
-  function pool() {
+  function wordsOf(id) {
+    if (id === "all") return H.ALL;
+    var l = H.LESSONS.filter(function (x) { return String(x.id) === String(id); })[0]; return l ? l.words : [];
+  }
+  function pool(id) {
     var X = window.HD_EXTRA || {}, seen = {}, out = [];
-    H.ALL.forEach(function (w) {
+    wordsOf(id).forEach(function (w) {
       ((X[w.hanzi] && X[w.hanzi].ex) || []).forEach(function (e) {
         var k = norm(e[0]); if (seen[k] || !e[2]) return; seen[k] = 1;
         out.push({ zh: e[0], py: e[1], vi: e[2], w: w.hanzi });
@@ -24,11 +28,23 @@
     return { it: it, opts: shuffle([{ vi: it.vi, ok: true }].concat(wrong.map(function (x) { return { vi: x.vi, ok: false }; }))), picked: -1 };
   }
 
-  function start() {
-    var all = pool();
-    if (all.length < 4) { H.app.innerHTML = '<section class="card"><h2 class="h1">Luyện nghe</h2><p class="sub">Chưa có đủ câu để luyện nghe. Học thêm từ vựng nhé.</p><a class="btn" href="#home">Về trang chủ</a></section>'; return; }
+  function picker() {
+    ST = null;
+    var rows = H.LESSONS.filter(function (l) { return l.words.length; }).map(function (l) {
+      var n = pool(l.id).length;
+      return '<button class="ln-les" data-llesson="' + esc(l.id) + '"' + (n < 4 ? " disabled" : "") + '><span class="ln-n">' + esc(l.id) + '</span><span class="ln-t"><b>Bài ' + esc(l.id) + "</b><small>" + esc(l.topic || l.title || "") + "</small></span><span class=\"ln-c\">" + n + " câu</span></button>";
+    }).join("");
+    var nAll = pool("all").length;
+    H.app.innerHTML = '<div style="display:flex;align-items:center;gap:6px"><a class="back" href="#home">' + H.ICONS.back + 'Trang chủ</a></div><section class="card ln-card"><div class="eyebrow">Luyện nghe</div><h2 class="h1" style="margin:4px 0 4px">Chọn bài để luyện nghe</h2><p class="sub" style="margin:0 0 12px">Mỗi lượt gồm ' + LEN + ' câu của bài bạn chọn.</p><div class="ln-list">' + rows +
+      '<button class="ln-les" data-llesson="all"' + (nAll < 4 ? " disabled" : "") + '><span class="ln-n">∗</span><span class="ln-t"><b>Tổng hợp</b><small>Trộn câu của tất cả các bài</small></span><span class="ln-c">' + nAll + " câu</span></button></div></section>";
+  }
+
+  function start(id) {
+    CUR = id || CUR;
+    var all = pool(CUR);
+    if (all.length < 4) { picker(); return; }
     var qs = shuffle(all).slice(0, Math.min(LEN, all.length)).map(function (it) { return question(it, all); });
-    ST = { qs: qs, i: 0, score: 0, t0: Date.now(), done: false, wrong: [], words: [] };
+    ST = { lesson: CUR, qs: qs, i: 0, score: 0, t0: Date.now(), done: false, wrong: [], words: [] };
     paint(true);
   }
 
@@ -41,7 +57,7 @@
       return '<button class="mq-opt ln-opt' + cl + '" data-lo="' + i + '"' + (ans ? " disabled" : "") + ">" + esc(o.vi) + "</button>";
     }).join("");
     var fb = ans ? '<div class="ln-fb">' + (q.opts[q.picked].ok ? '<b class="ok">Chính xác!</b> ' : '<b class="no">Chưa đúng.</b> ') + '<div class="ln-zh">' + esc(q.it.zh) + '</div><div class="ln-py">' + esc(q.it.py) + '</div></div><button class="btn" data-lnext="1">' + (ST.i + 1 >= n ? "Xem kết quả" : "Câu tiếp") + "</button>" : "";
-    H.app.innerHTML = '<div style="display:flex;align-items:center;gap:6px"><a class="back" href="#home">' + H.ICONS.back + 'Trang chủ</a><span class="chip" style="margin-left:auto">Câu ' + (ST.i + 1) + "/" + n + '</span></div>' +
+    H.app.innerHTML = '<div style="display:flex;align-items:center;gap:6px"><button class="back" data-lpick="1">' + H.ICONS.back + (ST.lesson === "all" ? "Tổng hợp" : "Bài " + esc(ST.lesson)) + '</button><span class="chip" style="margin-left:auto">Câu ' + (ST.i + 1) + "/" + n + '</span></div>' +
       '<section class="card ln-card"><div class="eyebrow">Luyện nghe</div><p class="sub" style="margin:4px 0 12px">Nghe câu tiếng Trung, chọn nghĩa tiếng Việt đúng.</p>' +
       '<div class="ln-spk"><button class="mq-spk" data-lplay="1">' + H.ICONS.speaker + ' Nghe</button><button class="btn ghost small" data-lslow="1">Nghe chậm</button></div>' +
       '<div class="mq-opts ln-opts">' + opts + "</div>" + fb + "</section>";
@@ -59,12 +75,12 @@
   function finish() {
     ST.done = true;
     var n = ST.qs.length, pct = Math.round(ST.score / n * 100), secs = Math.floor((Date.now() - ST.t0) / 1000);
-    var sync = H.record({ lesson: "all", game: "listen-sentence", gameName: "Nghe câu → chọn nghĩa", score: ST.score, total: n, pct: pct, secs: secs, words: [], wrong: ST.wrong.map(function (z, i) { return "Câu " + (i + 1) + ": " + z; }) });
+    var sync = H.record({ lesson: ST.lesson, game: "listen-sentence", gameName: "Nghe câu → chọn nghĩa", score: ST.score, total: n, pct: pct, secs: secs, words: [], wrong: ST.wrong.map(function (z, i) { return "Câu " + (i + 1) + ": " + z; }) });
     var msg = pct === 100 ? "Tai nghe cực tốt, không sai câu nào!" : pct >= 70 ? "Nghe khá tốt rồi, luyện thêm nhé." : "Nghe thêm vài lần nữa, bạn sẽ quen dần.";
     var miss = ST.qs.filter(function (q) { return !q.opts[q.picked].ok; }).map(function (q) {
       return '<div class="sr-ex"><span class="zh">' + esc(q.it.zh) + '</span><span class="py">' + esc(q.it.py) + '</span><span class="vi">' + esc(q.it.vi) + "</span></div>";
     }).join("");
-    H.app.innerHTML = '<section class="card" style="margin-top:10px"><div class="result"><div class="eyebrow">Luyện nghe</div><div class="score">' + ST.score + "<small>/" + n + '</small></div><h2 class="h1">' + msg + '</h2><div class="sync">' + esc(sync || "") + '</div><div class="rbtns"><button class="btn" data-lagain="1">Luyện tiếp</button><a class="btn ghost" href="#home">Về trang chủ</a></div></div>' +
+    H.app.innerHTML = '<section class="card" style="margin-top:10px"><div class="result"><div class="eyebrow">Luyện nghe · ' + (ST.lesson === "all" ? "Tổng hợp" : "Bài " + esc(ST.lesson)) + '</div><div class="score">' + ST.score + "<small>/" + n + '</small></div><h2 class="h1">' + msg + '</h2><div class="sync">' + esc(sync || "") + '</div><div class="rbtns"><button class="btn" data-lagain="1">Luyện tiếp</button><button class="btn ghost" data-lpick="1">Chọn bài khác</button></div></div>' +
       (miss ? '<div class="miss"><div class="eyebrow" style="margin-bottom:6px">Câu cần nghe lại</div>' + miss + "</div>" : "") + "</section>";
   }
 
@@ -75,8 +91,10 @@
     if (t.dataset.lslow) return say(true);
     if (t.dataset.lo) return pick(+t.dataset.lo);
     if (t.dataset.lnext) { if (ST.i + 1 >= ST.qs.length) return finish(); ST.i++; return paint(true); }
-    if (t.dataset.lagain) return start();
+    if (t.dataset.lagain) return start(ST.lesson);
+    if (t.dataset.lpick) return picker();
+    if (t.dataset.llesson) return start(t.dataset.llesson);
   }
 
-  window.HD_LISTEN = { init: function (host) { H = host; H.app.addEventListener("click", onClick); }, render: start };
+  window.HD_LISTEN = { init: function (host) { H = host; H.app.addEventListener("click", onClick); }, render: picker };
 })();
