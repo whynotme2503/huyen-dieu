@@ -192,7 +192,7 @@
         '<div class="cc-btns"><button class="btn small" data-ta="classView" data-v="' + esc(c) + '">Xem kết quả</button><button class="btn ghost small" data-ta="classAssign" data-v="' + esc(c) + '">Bài tập</button><button class="btn ghost small" data-ta="classAdd" data-v="' + esc(c) + '">Thêm học sinh</button>' + link + (st.length === 0 ? '<button class="btn ghost small" data-ta="delClass" data-v="' + esc(c) + '">' + (T.confirmCls === c ? "Bấm lần nữa để xóa" : "Xóa lớp") + "</button>" : "") + "</div></section>";
     }).join("") + "</div>" : '<p class="t-empty">Chưa có lớp nào. Tạo lớp đầu tiên ở trên.</p>';
     var warn = noClass.length ? '<div class="demo-banner">Có <b>' + noClass.length + " học sinh chưa có lớp</b> (" + noClass.slice(0, 4).map(function (s) { return esc(s.name); }).join(", ") + (noClass.length > 4 ? "…" : "") + '). Gán lớp ở tab <b>Tài khoản</b>.</div>' : "";
-    return '<div class="t-grid one">' + warn + form + panel("Các lớp (" + cl.length + ")", '<p class="t-sub">Mỗi lớp có thể có bài tập, hạn nộp và file Google Sheet quản lý riêng.</p>' + cards) + "</div>";
+    return '<div class="t-grid one">' + warn + form + panel("Các lớp (" + cl.length + ")", '<p class="t-sub">Google Sheet gốc có tab <b>Các lớp</b> liệt kê mọi lớp; bấm vào link của lớp để mở file riêng (Tổng quan, từng bài, từng câu, từng bạn). File tự cập nhật mỗi ngày lúc 23 giờ.</p><div style="margin:8px 0 14px"><button class="btn small" data-ta="refreshAll">Cập nhật file của tất cả các lớp ngay</button></div>' + cards) + "</div>";
   }
 
   /* chi tiết bài làm của học sinh cho bài tập soạn sẵn: câu nào sai, trả lời gì, đáp án đúng là gì */
@@ -267,7 +267,7 @@
     return '<div class="t-grid one">' + (demo ? panel("Bạn đang ở chế độ thử", '<p>Dữ liệu hiện tại là <b>dữ liệu mẫu</b> lưu trong trình duyệt, chưa kết nối Google Sheet. Làm theo các bước dưới để kết nối thật.</p><p><button class="btn ghost small" data-ta="resetDemo">Đặt lại dữ liệu mẫu</button></p>', "warn-card") : panel("Đã kết nối Google Sheet", "<p>Mọi kết quả đang được ghi vào Google Sheet của bạn. Mở Sheet để xem bảng thô, tab <b>TongHop</b> tự tính điểm trung bình theo học sinh và bài.</p>")) +
       panel("Kết nối Google Sheet (làm một lần)", '<ol class="guide"><li>Tạo một Google Sheet mới, đặt tên “Huyen Dieu - Kết quả”.</li><li>Vào <b>Tiện ích mở rộng → Apps Script</b>. Xóa code mẫu, dán toàn bộ nội dung file <code>apps-script/Code.gs</code>, bấm Lưu.</li><li>Chọn hàm <code>setup</code> rồi bấm <b>Chạy</b>, cấp quyền khi Google hỏi. Các tab HocSinh, KetQua, BaiTap, CaiDat, TongHop sẽ tự được tạo. Mã giáo viên nằm ở tab <b>CaiDat</b> ô B1, bạn có thể đổi.</li><li>Bấm <b>Triển khai → Tùy chọn triển khai mới → Ứng dụng web</b>. Chọn “Thực thi dưới tên: Tôi”, “Ai có quyền truy cập: Bất kỳ ai”. Bấm Triển khai và sao chép đường link kết thúc bằng <code>/exec</code>.</li><li>Mở file <code>config.js</code>, dán link vào <code>url: ""</code> rồi lưu.</li><li>Đưa thư mục web lên mạng (Netlify Drop, GitHub Pages hoặc Cloudflare Pages đều miễn phí) để có link chia sẻ cho học sinh.</li></ol>') +
       panel("Nâng cấp Apps Script khi có bản mới", '<ol class="guide"><li>Mở Apps Script, xóa code cũ và dán lại toàn bộ <code>Code.gs</code> mới, bấm Lưu.</li><li>Chọn hàm <code>setup</code> và bấm <b>Chạy</b>. Google sẽ hỏi thêm quyền (tạo file riêng cho từng lớp), hãy cho phép.</li><li><b>Triển khai → Quản lý bản triển khai → Sửa (biểu tượng bút) → Phiên bản: Phiên bản mới → Triển khai</b>. Link <code>/exec</code> giữ nguyên.</li></ol>') +
-      panel("Lớp học và file quản lý riêng", '<ul class="guide"><li>Tab <b>Lớp</b>: tạo lớp, xem nhanh từng lớp, bấm <b>Tạo file quản lý riêng</b> để sinh một file Google Sheet riêng của lớp đó (Tổng quan, Kết quả, Bài tập). Bấm <b>Cập nhật file</b> để làm mới số liệu.</li><li>Trong Google Sheet gốc cũng có sẵn tab <code>KQ - Tên lớp</code> cho từng lớp, tự cập nhật mỗi khi học sinh làm bài.</li><li>Giao bài tập cho nhiều lớp cùng lúc ở tab <b>Bài tập</b>, mỗi lớp một hạn nộp.</li></ul>') +
+      panel("Lớp học và file quản lý riêng", '<ul class="guide"><li>Google Sheet gốc chỉ cần mở tab <b>Các lớp</b>: mỗi lớp một dòng, bấm <b>Mở file lớp</b> để vào file riêng. Trong file lớp có: <b>Tổng quan</b>, <b>Bài tập</b> (ai nộp, ai chưa), từng tab <b>Bài 1, Bài 2…</b> (điểm từng game của từng bạn), tab <b>CT …</b> (từng câu đúng/sai của bài tập soạn sẵn), <b>Xem từng bạn</b> (chọn tên để xem lịch sử) và <b>Kết quả</b> (nhật ký đầy đủ).</li><li>File lớp tự cập nhật lúc 23 giờ mỗi ngày. Muốn xem số liệu mới ngay, bấm <b>Cập nhật file của tất cả các lớp ngay</b> trong tab Lớp.</li><li>Giao bài tập cho nhiều lớp cùng lúc ở tab <b>Bài tập</b>, mỗi lớp một hạn nộp.</li></ul>') +
       panel("Dùng hằng ngày", '<ol class="guide"><li><b>Cấp tài khoản:</b> tab Tài khoản, nhập danh sách học sinh, bấm Tạo mã rồi gửi mã cho từng em.</li><li><b>Giao bài:</b> tab Bài tập, chọn bài, game, hạn nộp, lớp. Học sinh thấy bài ngay ở trang chủ.</li><li><b>Xem kết quả:</b> Tổng quan để nắm cả lớp; Theo bài để xem bài nào, từ nào khó; Theo học sinh để xem từng em, có nhận xét tự động; Bài tập để biết ai đã nộp.</li><li><b>Thêm bài mới:</b> mở <code>data.js</code>, thêm từ vào bài tương ứng, đưa file lên lại.</li></ol>') +
       panel("Lưu ý bảo mật", '<ul class="guide"><li>Mã đăng nhập hoạt động như mật khẩu, mỗi học sinh một mã, không dùng chung.</li><li>Giữ kín mã giáo viên và link Google Sheet.</li><li>Học sinh có mã bị lộ: khóa tài khoản ở tab Tài khoản và tạo mã mới.</li></ul>') + "</div>";
   }
@@ -344,6 +344,16 @@
     if (a === "aStatus") { T.aStatus = b.dataset.v; return paint(); }
     if (a === "accCls") { T.accCls = b.dataset.v; return paint(); }
     if (a === "aAll") { document.querySelectorAll(".ac-chk").forEach(function (c) { c.checked = true; }); return; }
+    if (a === "refreshAll") {
+      var old2 = b.textContent; b.disabled = true; b.textContent = "Đang cập nhật, chờ một lát…";
+      H.api.call("refreshAll", { code: H.session.code }).then(function (r) {
+        b.disabled = false; b.textContent = old2;
+        if (!r || !r.ok) { H.toast("Chưa cập nhật được. Kiểm tra Apps Script đã dán code mới, chạy setup và triển khai phiên bản mới chưa."); return; }
+        if (r.demo) { H.toast("Chế độ thử không tạo file thật. Khi kết nối Google Sheet sẽ có file riêng cho từng lớp."); return; }
+        if (r.classes) T.data.classes = r.classes; H.toast("Đã cập nhật file của tất cả các lớp"); paint();
+      });
+      return;
+    }
     if (a === "exportClass") {
       var cname = b.dataset.v, old = b.textContent; b.disabled = true; b.textContent = "Đang tạo file…";
       H.api.call("exportClass", { code: H.session.code, name: cname }).then(function (r) {

@@ -15,7 +15,6 @@ var DEF = {
 function setup() {
   sheet_("HS"); sheet_("KQ"); sheet_("BT"); sheet_("LOP");
   syncClasses_();
-  SpreadsheetApp.create; // cần quyền tạo file riêng cho từng lớp
   var cd = sheet_("CD");
   if (!cd.getRange("B1").getValue()) {
     cd.getRange("A1").setValue("Mã giáo viên");
@@ -25,6 +24,8 @@ function setup() {
   var th = ss_().getSheetByName("TongHop") || ss_().insertSheet("TongHop");
   th.getRange("A1").setFormula('=IFERROR(QUERY(KetQua!A2:N,"select C, D, E, count(B), avg(I) where B is not null group by C, D, E order by C, E label C \'Học sinh\', D \'Lớp\', E \'Bài\', count(B) \'Số lượt\', avg(I) \'Điểm TB (%)\'",0),"Chưa có dữ liệu")');
   setupBackup();
+  setupRefresh();
+  try { refreshAllClasses(); } catch (e) { Logger.log("Chưa tạo được file lớp: " + e); }
   Logger.log("Đã bật sao lưu tự động mỗi Chủ nhật. Thư mục sao lưu: Huyen Dieu - Sao lưu (giữ " + BACKUP_KEEP + " bản gần nhất).");
   Logger.log("Xong. Mã giáo viên: " + cd.getRange("B1").getValue());
 }
@@ -73,7 +74,6 @@ function handle_(req) {
         var r = req.rec || {};
         var row = [new Date(), u.code, u.name, u.cls, String(r.lesson), r.gameName || r.game, num_(r.score), num_(r.total), num_(r.pct), num_(r.secs), (r.words || []).join("|"), (r.wrong || []).join("|"), r.assignmentId || "", r.game || ""];
         sheet_("KQ").appendRow(row);
-        if (u.cls) classSheet_(u.cls).appendRow(row);
       } finally { lock.releaseLock(); }
       return { ok: true };
     case "me":
@@ -90,7 +90,6 @@ function handle_(req) {
         if (!nm) return { ok: false, error: "name" };
         if (classes_().some(function (c) { return c.name.toLowerCase() === nm.toLowerCase(); })) return { ok: false, error: "exists" };
         sheet_("LOP").appendRow([nm, String(req.note || "").slice(0, 80), new Date(), ""]);
-        classSheet_(nm);
         return { ok: true };
       } finally { lock.releaseLock(); }
     case "deleteClass":
@@ -109,7 +108,12 @@ function handle_(req) {
         return { ok: true };
       } finally { lock.releaseLock(); }
     case "exportClass":
-      return { ok: true, url: exportClass_(String(req.name || "")) };
+      var xc = ctx_(), xu = exportClass_(String(req.name || ""), xc);
+      writeIndex_(ctx_());
+      return { ok: true, url: xu };
+    case "refreshAll":
+      refreshAllClasses();
+      return { ok: true, classes: classes_() };
     case "addStudents":
       lock.waitLock(20000);
       try {
@@ -199,60 +203,200 @@ function syncClasses_() {
   var have = {}; classes_().forEach(function (c) { have[c.name] = 1; });
   students_().forEach(function (s) { if (s.cls && !have[s.cls]) { have[s.cls] = 1; sheet_("LOP").appendRow([s.cls, "", new Date(), ""]); } });
 }
-function classSheet_(cls) {
-  var name = ("KQ - " + cls).replace(/[\[\]\*\?\:\/\\]/g, "-").slice(0, 99), s = ss_().getSheetByName(name);
-  if (!s) {
-    s = ss_().insertSheet(name);
-    var h = DEF.KQ.head; s.getRange(1, 1, 1, h.length).setValues([h]).setFontWeight("bold").setBackground("#e5eee8"); s.setFrozenRows(1);
-    s.getRange("E:E").setNumberFormat("@"); s.getRange("A:A").setNumberFormat("dd/MM/yyyy HH:mm:ss");
-  }
-  return s;
+/* ---------- file riêng cho từng lớp ----------
+   Google Sheet gốc có tab "Các lớp" liệt kê mọi lớp, mỗi lớp có link mở file riêng gồm:
+   Tổng quan, Bài tập, từng "Bài N" (điểm từng game), "CT ..." (từng câu của bài tập soạn sẵn),
+   "Xem từng bạn" (chọn tên để xem lịch sử) và "Kết quả" (nhật ký đầy đủ). */
+var CLASS_FOLDER = "Huyen Dieu - Các lớp";
+var TAB_HEAD_BG = "#e5eee8";
+
+function setupRefresh() {
+  ScriptApp.getProjectTriggers().forEach(function (t) { if (t.getHandlerFunction() === "refreshAllClasses") ScriptApp.deleteTrigger(t); });
+  ScriptApp.newTrigger("refreshAllClasses").timeBased().everyDays(1).atHour(23).create();
 }
-function writeTab_(file, title, rows, first) {
-  var t = first ? file.getSheets()[0] : (file.getSheetByName(title) || file.insertSheet(title));
-  if (first) t.setName(title);
-  t.clear();
-  if (rows.length) {
-    var w = Math.max.apply(null, rows.map(function (r) { return r.length; }));
-    rows = rows.map(function (r) { while (r.length < w) r.push(""); return r; });
-    t.getRange(1, 1, rows.length, w).setValues(rows);
-    t.getRange(1, 1, 1, w).setFontWeight("bold").setBackground("#e5eee8");
-    t.setFrozenRows(1);
-  }
+function ctx_() { return { st: students_(), rs: results_(null, 0), as: assignments_(), cl: classes_() }; }
+/** Cập nhật file của mọi lớp và tab "Các lớp". Chạy tự động mỗi ngày 23 giờ, hoặc bấm nút trên web. */
+function refreshAllClasses() {
+  var c = ctx_(), names = {}, list = [];
+  c.cl.forEach(function (x) { if (!names[x.name]) { names[x.name] = 1; list.push(x.name); } });
+  c.st.forEach(function (s) { if (s.cls && !names[s.cls]) { names[s.cls] = 1; list.push(s.cls); } });
+  list.forEach(function (n) { try { exportClass_(n, c); } catch (e) { Logger.log("Lỗi lớp " + n + ": " + e); } });
+  writeIndex_(ctx_());
 }
-/** Tạo (hoặc cập nhật) một file Google Sheet riêng cho một lớp: Tổng quan, Kết quả, Bài tập. */
-function exportClass_(cls) {
+function classFolder_() {
+  var it = DriveApp.getFoldersByName(CLASS_FOLDER);
+  return it.hasNext() ? it.next() : DriveApp.createFolder(CLASS_FOLDER);
+}
+function tabName_(s) { return String(s).replace(/[\[\]\*\?\:\/\\]/g, "-").slice(0, 90); }
+function fmtT_(iso) { return iso ? Utilities.formatDate(new Date(iso), Session.getScriptTimeZone(), "dd/MM/yyyy HH:mm") : ""; }
+function lessonLabel_(l) { return l === "all" ? "Tổng hợp" : "Bài " + l; }
+
+/** Ghi một bảng vào tab (tạo nếu chưa có). Hàng đầu là tiêu đề, cố định hàng 1 và cột 1. */
+function put_(file, title, rows) {
+  title = tabName_(title);
+  var t = file.getSheetByName(title) || file.insertSheet(title);
+  t.clear(); t.setConditionalFormatRules([]);
+  if (!rows.length) return t;
+  var w = Math.max.apply(null, rows.map(function (r) { return r.length; }));
+  rows = rows.map(function (r) { r = r.slice(); while (r.length < w) r.push(""); return r; });
+  t.getRange(1, 1, rows.length, w).setValues(rows);
+  t.getRange(1, 1, 1, w).setFontWeight("bold").setBackground(TAB_HEAD_BG);
+  t.setFrozenRows(1); t.setFrozenColumns(1);
+  t.setColumnWidth(1, 190); if (w > 1) t.setColumnWidths(2, w - 1, 120);
+  return t;
+}
+function colorText_(t, rangeA1, startsWith, bg) {
+  var rules = t.getConditionalFormatRules();
+  rules.push(SpreadsheetApp.newConditionalFormatRule().whenTextStartsWith(startsWith).setBackground(bg).setRanges([t.getRange(rangeA1)]).build());
+  t.setConditionalFormatRules(rules);
+}
+function order_(file, names) {
+  var pos = 1;
+  names.forEach(function (n) { var s = file.getSheetByName(tabName_(n)); if (s) { file.setActiveSheet(s); file.moveActiveSheet(pos++); } });
+}
+function bestPct_(arr) { return arr.length ? Math.max.apply(null, arr.map(function (r) { return r.pct; })) : ""; }
+function avgPct_(arr) { return arr.length ? Math.round(arr.reduce(function (a, r) { return a + r.pct; }, 0) / arr.length) : ""; }
+function lastOf_(arr) { var m = ""; arr.forEach(function (r) { if (r.t > m) m = r.t; }); return m; }
+
+/** Tạo (hoặc cập nhật) file Google Sheet riêng cho một lớp. */
+function exportClass_(cls, c) {
   if (!cls) throw "Thiếu tên lớp";
-  var info = classes_().filter(function (c) { return c.name === cls; })[0], file = null;
+  c = c || ctx_();
+  var info = c.cl.filter(function (x) { return x.name === cls; })[0], file = null;
   if (info && info.url) { try { file = SpreadsheetApp.openByUrl(info.url); } catch (e) { file = null; } }
-  if (!file) file = SpreadsheetApp.create("Huyen Dieu - " + cls);
-  var st = students_().filter(function (s) { return s.cls === cls; }), codes = {};
+  if (!file) {
+    file = SpreadsheetApp.create("Huyen Dieu - " + cls);
+    try { DriveApp.getFileById(file.getId()).moveTo(classFolder_()); } catch (e2) { Logger.log("Chưa chuyển được file vào thư mục: " + e2); }
+  }
+  var st = c.st.filter(function (s) { return s.cls === cls; }), codes = {};
   st.forEach(function (s) { codes[s.code] = 1; });
-  var rs = results_(null, 0).filter(function (r) { return codes[r.code]; }), as = assignments_().filter(function (a) { return a.cls === "all" || a.cls === cls; });
-  var tz = Session.getScriptTimeZone(), fmt = function (iso) { return iso ? Utilities.formatDate(new Date(iso), tz, "dd/MM/yyyy HH:mm") : ""; };
+  var rs = c.rs.filter(function (r) { return codes[r.code]; });
+  var as = c.as.filter(function (a) { return a.cls === "all" || a.cls === cls; });
+  var asTitle = {}; c.as.forEach(function (a) { asTitle[a.id] = a.title; });
+  var byCode = {}; st.forEach(function (s) { byCode[s.code] = rs.filter(function (r) { return r.code === s.code; }); });
+  var names = [];
+
+  /* 1. Tổng quan */
   var sum = [["Học sinh", "Mã", "Trạng thái", "Số lượt", "Điểm TB (%)", "Điểm cao nhất (%)", "Lần cuối", "Bài tập đã nộp"]];
   st.forEach(function (s) {
-    var mine = rs.filter(function (r) { return r.code === s.code; }), avg = mine.length ? Math.round(mine.reduce(function (a, r) { return a + r.pct; }, 0) / mine.length) : "";
-    var best = mine.length ? Math.max.apply(null, mine.map(function (r) { return r.pct; })) : "", last = mine.length ? mine[mine.length - 1].t : "";
-    var done = as.filter(function (a) { return mine.some(function (r) { return r.assignmentId === a.id; }); }).length;
-    sum.push([s.name, s.code, s.active ? "Hoạt động" : "Khóa", mine.length, avg, best, fmt(last), done + "/" + as.length]);
+    var mine = byCode[s.code], done = as.filter(function (a) { return mine.some(function (r) { return r.assignmentId === a.id; }); }).length;
+    sum.push([s.name, s.code, s.active ? "Hoạt động" : "Khóa", mine.length, avgPct_(mine), bestPct_(mine), fmtT_(lastOf_(mine)), done + "/" + as.length]);
   });
-  writeTab_(file, "Tổng quan", sum, true);
-  var res = [["Thời gian", "Học sinh", "Bài", "Game", "Đúng", "Tổng", "Điểm (%)", "Giây", "Từ sai", "Bài tập"]];
-  rs.slice().reverse().forEach(function (r) { res.push([fmt(r.t), r.name, r.lesson === "all" ? "Tổng hợp" : "Bài " + r.lesson, r.gameName, r.score, r.total, r.pct, r.secs, r.wrong.join(" "), r.assignmentId]); });
-  writeTab_(file, "Kết quả", res, false);
+  sum.push(["Cả lớp", "", "", rs.length, avgPct_(rs), "", fmtT_(lastOf_(rs)), ""]);
+  put_(file, "Tổng quan", sum).getRange(sum.length, 1, 1, 8).setFontWeight("bold"); names.push("Tổng quan");
+
+  /* 2. Bài tập: học sinh x bài tập được giao */
   var head = ["Học sinh"]; as.forEach(function (a) { head.push(a.title + " (hạn " + a.due + ")"); });
   var mat = [head];
   st.forEach(function (s) {
     var row = [s.name];
-    as.forEach(function (a) { var m = rs.filter(function (r) { return r.code === s.code && r.assignmentId === a.id; }); row.push(m.length ? Math.max.apply(null, m.map(function (r) { return r.pct; })) + "%" : "chưa nộp"); });
+    as.forEach(function (a) { var m = byCode[s.code].filter(function (r) { return r.assignmentId === a.id; }); row.push(m.length ? bestPct_(m) + "%" : "chưa nộp"); });
     mat.push(row);
   });
-  writeTab_(file, "Bài tập", mat, false);
+  var tb = put_(file, "Bài tập", mat); names.push("Bài tập");
+  if (as.length && st.length) colorText_(tb, "B2:" + colLetter_(as.length + 1) + (st.length + 1), "chưa nộp", "#f6d9d5");
+
+  /* 3. Từng bài học: học sinh x game (điểm cao nhất) */
+  var lessons = {}; rs.forEach(function (r) { lessons[r.lesson] = 1; });
+  Object.keys(lessons).sort(function (a, b) { return a === "all" ? 1 : b === "all" ? -1 : a - b; }).forEach(function (L) {
+    var inL = rs.filter(function (r) { return r.lesson === L; }), games = [];
+    inL.forEach(function (r) { if (games.indexOf(r.gameName) < 0) games.push(r.gameName); });
+    var rows = [["Học sinh"].concat(games, ["Số lượt", "Điểm TB (%)", "Lần cuối"])];
+    st.forEach(function (s) {
+      var mine = byCode[s.code].filter(function (r) { return r.lesson === L; }), row = [s.name];
+      games.forEach(function (g) { var m = mine.filter(function (r) { return r.gameName === g; }); row.push(m.length ? bestPct_(m) : ""); });
+      row.push(mine.length, avgPct_(mine), fmtT_(lastOf_(mine))); rows.push(row);
+    });
+    var avgRow = ["Trung bình lớp"];
+    games.forEach(function (g) { var v = []; st.forEach(function (s) { var m = byCode[s.code].filter(function (r) { return r.lesson === L && r.gameName === g; }); if (m.length) v.push(bestPct_(m)); }); avgRow.push(v.length ? Math.round(v.reduce(function (a, b) { return a + b; }, 0) / v.length) : ""); });
+    avgRow.push(inL.length, avgPct_(inL), "");
+    rows.push(avgRow);
+    var nm = lessonLabel_(L); put_(file, nm, rows).getRange(rows.length, 1, 1, rows[0].length).setFontWeight("bold"); names.push(nm);
+  });
+
+  /* 4. Chi tiết từng câu của bài tập soạn sẵn (game có mã bắt đầu bằng sheet-) */
+  var sheets = {}; rs.forEach(function (r) { if (r.game && r.game.indexOf("sheet-") === 0) sheets[r.game] = r.gameName; });
+  Object.keys(sheets).sort().forEach(function (gid) {
+    var all = rs.filter(function (r) { return r.game === gid; }), N = 0;
+    all.forEach(function (r) { if (r.total > N) N = r.total; });
+    var h = ["Học sinh", "Số lượt", "Đúng", "Tổng", "Điểm (%)", "Thời gian nộp"]; for (var q = 1; q <= N; q++) h.push("Câu " + q);
+    var rows = [h], wrongCount = [];
+    for (var z = 0; z < N; z++) wrongCount.push(0);
+    st.forEach(function (s) {
+      var m = byCode[s.code].filter(function (r) { return r.game === gid; });
+      if (!m.length) { rows.push([s.name, 0, "", "", "", "chưa làm"]); return; }
+      var r = m[m.length - 1], row = [s.name, m.length, r.score, r.total, r.pct, fmtT_(r.t)], wrong = {};
+      r.wrong.forEach(function (w) { var mm = /^Câu (\d+): ([\s\S]*)$/.exec(w); if (mm) wrong[+mm[1]] = mm[2]; });
+      var noDetail = !r.wrong.length && r.score < r.total;
+      for (var k = 1; k <= N; k++) {
+        if (wrong[k] !== undefined) { row.push("✗ " + wrong[k]); wrongCount[k - 1]++; }
+        else row.push(noDetail ? "?" : "✓");
+      }
+      rows.push(row);
+    });
+    var foot = ["Số bạn sai", "", "", "", "", ""]; wrongCount.forEach(function (n) { foot.push(n); });
+    rows.push(foot);
+    var nm = "CT " + sheets[gid], t = put_(file, nm, rows); names.push(nm);
+    t.getRange(rows.length, 1, 1, h.length).setFontWeight("bold");
+    if (N > 0 && st.length) colorText_(t, "G2:" + colLetter_(6 + N) + (st.length + 1), "✗", "#f6d9d5");
+    t.setColumnWidths(7, Math.max(N, 1), 90);
+  });
+
+  /* 5. Kết quả: nhật ký đầy đủ, mới nhất ở trên */
+  var res = [["Thời gian", "Học sinh", "Bài", "Game", "Đúng", "Tổng", "Điểm (%)", "Giây", "Từ/câu sai", "Bài tập"]];
+  rs.slice().reverse().forEach(function (r) { res.push([new Date(r.t), r.name, lessonLabel_(r.lesson), r.gameName, r.score, r.total, r.pct, r.secs, r.wrong.join(" · "), asTitle[r.assignmentId] || ""]); });
+  var tr = put_(file, "Kết quả", res);
+  if (res.length > 1) tr.getRange(2, 1, res.length - 1, 1).setNumberFormat("dd/MM/yyyy HH:mm");
+  tr.setColumnWidth(1, 140);
+
+  /* 6. Xem từng bạn: chọn tên ở ô B1 để xem lịch sử */
+  var pv = file.getSheetByName("Xem từng bạn"), nameList = st.map(function (s) { return s.name; });
+  if (!pv) {
+    pv = file.insertSheet("Xem từng bạn");
+    pv.getRange("A1").setValue("Chọn học sinh:").setFontWeight("bold");
+    pv.getRange("A2").setValue("Số lượt").setFontWeight("bold"); pv.getRange("C2").setValue("Điểm TB (%)").setFontWeight("bold");
+    pv.getRange("B2").setFormula("=IF(B1=\"\",\"\",COUNTIF('Kết quả'!B:B,B1))");
+    pv.getRange("D2").setFormula("=IF(B1=\"\",\"\",IFERROR(ROUND(AVERAGEIF('Kết quả'!B:B,B1,'Kết quả'!G:G),0),\"\"))");
+    pv.getRange("A4").setFormula("=IF(B1=\"\",\"Chọn tên học sinh ở ô B1 để xem lịch sử làm bài.\",IFERROR(QUERY('Kết quả'!A:J,\"select A,C,D,E,F,G,I,J where B = '\"&B1&\"' order by A desc label A 'Thời gian', C 'Bài', D 'Game', E 'Đúng', F 'Tổng', G 'Điểm (%)', I 'Từ/câu sai', J 'Bài tập'\",1),\"Chưa có kết quả\"))");
+    pv.getRange("A:A").setNumberFormat("dd/MM/yyyy HH:mm"); pv.setColumnWidth(1, 190);
+    pv.getRange("B1").setBackground("#fff8e1");
+  }
+  if (nameList.length) pv.getRange("B1").setDataValidation(SpreadsheetApp.newDataValidation().requireValueInList(nameList, true).setAllowInvalid(false).build());
+  names.push("Xem từng bạn", "Kết quả");
+
+  order_(file, names);
+  var dflt = file.getSheetByName("Sheet1") || file.getSheetByName("Trang tính1");
+  if (dflt && file.getSheets().length > 1) { try { file.deleteSheet(dflt); } catch (e3) { /* bỏ qua */ } }
   var url = file.getUrl(), lp = sheet_("LOP"), v = lp.getDataRange().getValues(), found = false;
   for (var i = 1; i < v.length; i++) if (String(v[i][0]) === cls) { lp.getRange(i + 1, 4).setValue(url); found = true; }
   if (!found) lp.appendRow([cls, "", new Date(), url]);
   return url;
+}
+function colLetter_(n) { var s = ""; while (n > 0) { var m = (n - 1) % 26; s = String.fromCharCode(65 + m) + s; n = Math.floor((n - 1) / 26); } return s; }
+
+/** Tab "Các lớp" ở Google Sheet gốc: mỗi lớp một dòng, bấm "Mở" để vào file riêng của lớp. */
+function writeIndex_(c) {
+  var names = [], seen = {};
+  c.cl.forEach(function (x) { if (!seen[x.name]) { seen[x.name] = 1; names.push(x); } });
+  c.st.forEach(function (s) { if (s.cls && !seen[s.cls]) { seen[s.cls] = 1; names.push({ name: s.cls, url: "" }); } });
+  var cut = Date.now() - 30 * 86400000, td = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyy-MM-dd");
+  var rows = [["Lớp", "Học sinh", "Lượt làm (30 ngày)", "Điểm TB 30 ngày (%)", "Bài tập đang mở", "Hoạt động gần nhất", "File riêng của lớp"]];
+  names.sort(function (a, b) { return a.name < b.name ? -1 : 1; }).forEach(function (x) {
+    var st = c.st.filter(function (s) { return s.cls === x.name && s.active; }), codes = {};
+    st.forEach(function (s) { codes[s.code] = 1; });
+    var mine = c.rs.filter(function (r) { return codes[r.code]; }), recent = mine.filter(function (r) { return new Date(r.t).getTime() >= cut; });
+    var open = c.as.filter(function (a) { return a.cls === x.name && (!a.due || a.due >= td); }).length;
+    var url = x.url || (c.cl.filter(function (y) { return y.name === x.name; })[0] || {}).url || "";
+    rows.push([x.name, st.length, recent.length, avgPct_(recent), open, fmtT_(lastOf_(mine)), url ? '=HYPERLINK("' + url + '","Mở file lớp ▶")' : "(chưa có)"]);
+  });
+  var ss = ss_(), t = ss.getSheetByName("Các lớp") || ss.insertSheet("Các lớp");
+  t.clear();
+  t.getRange(1, 1, rows.length, rows[0].length).setValues(rows.map(function (r, i) { return i === 0 ? r : r.slice(0, 6).concat([r[6]]); }));
+  for (var i = 1; i < rows.length; i++) if (String(rows[i][6]).charAt(0) === "=") t.getRange(i + 1, 7).setFormula(rows[i][6]);
+  t.getRange(1, 1, 1, rows[0].length).setFontWeight("bold").setBackground(TAB_HEAD_BG);
+  t.setFrozenRows(1); t.setColumnWidth(1, 220); t.setColumnWidths(2, 6, 150);
+  t.getRange("A:A").setFontWeight("bold"); t.getRange(1, 1).setFontWeight("bold");
+  ss.setActiveSheet(t); ss.moveActiveSheet(1);
 }
 
 /* ---------- tiện ích ---------- */

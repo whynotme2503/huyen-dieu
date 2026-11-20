@@ -71,3 +71,11 @@ Bài tập như "Bài tập HSK1 – Bài 2" nằm trong `data.js` (mục `HD_SH
 ## Xem chi tiết bài làm của học sinh
 
 Bảng giáo viên > Bài tập > mở một bài đã giao (bài tập soạn sẵn). Bấm vào tên học sinh trong mục "Đã làm" để xem các câu sai: học sinh trả lời gì và đáp án đúng là gì (lượt làm gần nhất). Bên dưới có mục "Câu nhiều bạn sai nhất". Trong Google Sheet, cột "Từ sai" của sheet KetQua cũng ghi các câu sai dạng "Câu 2: A. gāoxīng".
+
+## Quản lý theo lớp trong Google Sheet (bản mới)
+
+- Google Sheet gốc: mở tab **Các lớp** (luôn nằm đầu tiên). Mỗi lớp một dòng với số học sinh, số lượt làm, điểm trung bình, bài tập đang mở, hoạt động gần nhất và link **Mở file lớp**.
+- File riêng của từng lớp (nằm trong thư mục Drive "Huyen Dieu - Các lớp") gồm các tab: **Tổng quan**, **Bài tập** (ai nộp, ai chưa), **Bài 1, Bài 2…** (điểm cao nhất của từng bạn ở từng game), **CT …** (từng câu đúng/sai của bài tập soạn sẵn, dòng cuối đếm số bạn sai mỗi câu), **Xem từng bạn** (chọn tên ở ô B1) và **Kết quả** (nhật ký đầy đủ).
+- Các tab hệ thống HocSinh, KetQua, BaiTap, Lop, CaiDat vẫn cần giữ, đừng xóa hay đổi tên. Các tab cũ dạng "KQ - Tên lớp" không còn tự cập nhật nữa, có thể xóa.
+- Cập nhật: tự động mỗi ngày 23 giờ. Muốn xem ngay: Bảng giáo viên > Lớp > "Cập nhật file của tất cả các lớp ngay".
+- Sau khi dán Code.gs mới: chạy hàm `setup` (cấp thêm quyền Drive), rồi Triển khai > Quản lý bản triển khai > Chỉnh sửa > Phiên bản mới.

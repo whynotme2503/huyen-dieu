@@ -77,6 +77,7 @@
     }
     if (action === "moveStudent") { D.students.forEach(function (s) { if (s.code === req.studentCode) s.cls = String(req.cls || ""); }); persist(); return { ok: true }; }
     if (action === "exportClass") return { ok: true, url: "", demo: true };
+    if (action === "refreshAll") return { ok: true, demo: true, classes: D.classes || [] };
     if (action === "addStudents") {
       var made = (req.list || []).map(function (x) { var s = { code: genCode(D), name: String(x.name).slice(0, 60), cls: String(x.cls || "").slice(0, 30), active: true, created: new Date().toISOString() }; D.students.push(s); return s; });
       persist(); return { ok: true, created: made };
