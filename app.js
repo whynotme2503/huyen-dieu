@@ -261,6 +261,30 @@
       return '<button class="mq-opt' + cl + '" data-mq="' + i + '"' + (MQ.answered ? " disabled" : "") + ">" + esc(o.text) + "</button>";
     }).join("") + '</div><div class="mq-fb">' + (MQ.answered ? (q.opts.filter(function (o) { return o.picked; })[0].ok ? '<b class="ok">Chính xác!</b> ' : '<b class="no">Chưa đúng.</b> ') + '<span class="hzs">' + esc(q.w.hanzi) + "</span> · " + esc(q.w.pinyin) + " — " + esc(q.w.vi) : "") + "</div>";
   }
+  /* ---------- bảng xếp hạng thi đua ---------- */
+  var BOARD = { per: "week", data: null, t: 0 };
+  function boardCard() {
+    return '<section class="board" id="board"><div class="board-h"><div><div class="eyebrow">Thi đua</div></div><div class="seg"><button data-bp="week" class="' + (BOARD.per === "week" ? "on" : "") + '">Tuần này</button><button data-bp="month" class="' + (BOARD.per === "month" ? "on" : "") + '">Tháng này</button></div></div><div class="board-body" id="board-body"><p class="sub">Đang tải bảng xếp hạng…</p></div></section>';
+  }
+  function boardRows(rows, mine) {
+    return rows.length ? rows.map(function (x) { return '<li class="br r' + x.r + (x.me || (mine && x.name === mine) ? " me" : "") + '"><span class="rk">' + x.r + '</span><span class="bn"><b>' + esc(x.name) + "</b>" + (x.sub ? "<small>" + esc(x.sub) + "</small>" : "") + '</span><span class="bp">' + esc(x.val) + "</span></li>"; }).join("") : "";
+  }
+  function paintBoard() {
+    var el = document.getElementById("board-body"); if (!el) return;
+    document.querySelectorAll("[data-bp]").forEach(function (b) { b.classList.toggle("on", b.dataset.bp === BOARD.per); });
+    if (!BOARD.data) { el.innerHTML = '<p class="sub">Chưa tải được bảng xếp hạng. Thử tải lại trang sau.</p>'; return; }
+    var d = BOARD.data[BOARD.per] || { students: [], classes: [] }, per = BOARD.per === "week" ? "tuần này" : "tháng này";
+    var cls = boardRows(d.classes.map(function (c, i) { return { r: i + 1, name: c.c, sub: c.act + "/" + c.n + " bạn đã luyện", val: c.avg + " đ/bạn", me: c.c === SESSION.cls }; }));
+    var stu = boardRows(d.students.map(function (s) { return { r: s.r, name: s.n, sub: s.c, val: s.p + " đ", me: s.me }; }));
+    if (d.me && d.me.r > 10) stu += '<li class="br gap">…</li><li class="br me"><span class="rk">' + d.me.r + '</span><span class="bn"><b>Bạn</b></span><span class="bp">' + d.me.p + " đ</span></li>";
+    var note = SESSION.role === "student" && !d.me ? '<p class="t-sub" style="margin:8px 0 0">Bạn chưa có điểm ' + per + ". Làm một bài để lên bảng nhé!</p>" : "";
+    el.innerHTML = '<div class="board-grid"><div class="card bcol"><h3>Xếp hạng lớp</h3>' + (cls ? '<ol class="bl">' + cls + "</ol>" : '<p class="t-empty">Chưa có lớp nào.</p>') + '</div><div class="card bcol"><h3>Bảng chung · top 10</h3>' + (stu ? '<ol class="bl">' + stu + "</ol>" : '<p class="t-empty">Chưa có ai có điểm ' + per + ".</p>") + note + "</div></div>" +
+      '<details class="board-how"><summary>Cách tính điểm</summary><p>Mỗi lượt làm được tối đa 10 điểm (đúng 100% là 10 điểm, đúng 70% là 7 điểm), tính tối đa 12 lượt mỗi ngày, lượt phải từ 5 câu trở lên. Nộp bài tập giáo viên giao đúng hạn được thêm 20 điểm cho mỗi bài. Xếp hạng lớp theo điểm trung bình mỗi bạn nên lớp ít người vẫn công bằng. Bảng làm mới mỗi tuần và mỗi tháng.</p></details>';
+  }
+  function loadBoard(force) {
+    if (BOARD.data && !force && Date.now() - BOARD.t < 60000) return paintBoard();
+    api.call("board", { code: SESSION.code }).then(function (r) { if (r && r.ok) { BOARD.data = r.board; BOARD.t = Date.now(); } paintBoard(); });
+  }
   function renderHome() {
     S.view = "home"; curAssign = null; setRight("");
     var first = SESSION.role === "teacher" ? "thầy/cô" : SESSION.name.trim().split(/\s+/).slice(-1)[0];
@@ -273,8 +297,9 @@
     var st = SESSION.role === "student" ? streakInfo() : null, weak = SESSION.role === "student" ? weakWords() : [];
     var streak = st ? '<span class="streak' + (st.n ? " on" : "") + '">' + (st.n ? "Chuỗi " + st.n + " ngày" + (st.today ? "" : " · hôm nay chưa luyện") : "Hôm nay hãy luyện một lượt nhé") + "</span>" : "";
     var weakCard = SESSION.role === "student" ? '<section class="card hub-card weakbox"><div class="eyebrow">Ôn từ hay sai hôm nay</div>' + (weak.length >= 2 ? '<div class="weak-chips">' + weak.map(function (w) { return '<span class="wc"><span class="hz">' + esc(w.hanzi) + "</span>" + esc(w.pinyin) + "</span>"; }).join("") + '</div><button class="btn small" data-weak="1">Ôn ' + weak.length + " từ này</button>" : '<p class="sub" style="margin:6px 0 0">Chưa có từ nào cần ôn lại. Làm thêm vài bài, web sẽ gợi ý các từ bạn hay nhầm.</p>') + "</section>" : "";
-    app.innerHTML = previewBanner() + '<div class="home-head"><div class="hh-row"><h1 class="h1">' + greeting() + ", " + esc(first) + '!</h1>' + streak + '</div><p class="sub">' + (SESSION.role === "student" && pend ? "Bạn có " + pend + " bài tập chưa làm. " : "") + 'Hôm nay học một chút nhé.</p></div>' + hero + weakCard +
+    app.innerHTML = previewBanner() + '<div class="home-head"><div class="hh-row"><h1 class="h1">' + greeting() + ", " + esc(first) + '!</h1>' + streak + '</div><p class="sub">' + (SESSION.role === "student" && pend ? "Bạn có " + pend + " bài tập chưa làm. " : "") + 'Hôm nay học một chút nhé.</p></div>' + hero + boardCard() + weakCard +
       '<div class="hub-grid"><section class="card hub-card"><div class="eyebrow">Bài tập nhỏ hôm nay</div><div id="mini">' + miniHtml() + '</div><button class="btn ghost small" data-mq-new="1" style="margin-top:12px">Câu khác</button></section><section class="card hub-card"><div class="eyebrow">Đi tới</div>' + tiles + "</section></div>";
+    loadBoard();
   }
 
   /* ---------- trang bài học ---------- */
@@ -508,6 +533,7 @@
     if (t.dataset.go) return nav("#" + t.dataset.go);
     if (t.dataset.assign) return startAssignment(t.dataset.assign);
     if (t.dataset.weak) return startWeak();
+    if (t.dataset.bp) { BOARD.per = t.dataset.bp; return paintBoard(); }
     if (t.dataset.mqspeak && MQ.q) return speak(MQ.q.w);
     if (t.dataset.mqNew) { newMini(); $("#mini").innerHTML = miniHtml(); return; }
     if (t.dataset.mq !== undefined && MQ.q && !MQ.answered) { var o = MQ.q.opts[+t.dataset.mq]; o.picked = true; MQ.answered = true; sfx(o.ok ? "ok" : "no"); $("#mini").innerHTML = miniHtml(); return; }
@@ -575,6 +601,7 @@
     var asg = MY.assignments.filter(function (a) { return a.id === curAssign; })[0];
     rec.assignmentId = asg && String(asg.lesson) === String(rec.lesson) && (!asg.game || asg.game === rec.game) ? asg.id : "";
     var item = JSON.parse(JSON.stringify(rec));
+    BOARD.t = 0;
     MY.results.push({ t: new Date().toISOString(), lesson: String(rec.lesson), game: rec.game, gameName: rec.gameName, score: rec.score, total: rec.total, pct: rec.pct, secs: rec.secs, words: rec.words, wrong: rec.wrong, assignmentId: rec.assignmentId });
     queue.push(item); qSave();
     flush().then(function (ok) {

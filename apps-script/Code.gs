@@ -76,6 +76,8 @@ function handle_(req) {
         sheet_("KQ").appendRow(row);
       } finally { lock.releaseLock(); }
       return { ok: true };
+    case "board":
+      return { ok: true, board: boardView_(boardFull_(), u.role === "student" ? u : null) };
     case "me":
       return { ok: true, results: results_(u.code, 180), assignments: assignments_().filter(function (a) { return !a.cls || a.cls === "all" || a.cls === u.cls; }) };
   }
@@ -203,6 +205,61 @@ function syncClasses_() {
   var have = {}; classes_().forEach(function (c) { have[c.name] = 1; });
   students_().forEach(function (s) { if (s.cls && !have[s.cls]) { have[s.cls] = 1; sheet_("LOP").appendRow([s.cls, "", new Date(), ""]); } });
 }
+
+  /* ---------- bảng xếp hạng thi đua (tuần / tháng) ----------
+     Điểm mỗi lượt = pct / 10 làm tròn (tối đa 10), tính tối đa 12 lượt mỗi ngày, lượt phải có từ 5 câu trở lên.
+     Nộp bài tập được giao đúng hạn: +20 điểm cho mỗi bài tập. */
+  var BOARD_DAILY_CAP = 12, BOARD_ASSIGN_BONUS = 20, BOARD_MIN_TOTAL = 5;
+  function shortName_(n) { var p = String(n || "").trim().split(/\s+/); return p.length < 2 ? p[0] || "" : p[p.length - 1] + " " + p[0].charAt(0).toUpperCase() + "."; }
+  function boardCalc_(students, results, assignments, dayOf, starts) {
+    var act = {}, byClass = {}, out = {};
+    students.forEach(function (s) { if (s.active !== false) { act[s.code] = s; if (s.cls) byClass[s.cls] = (byClass[s.cls] || 0) + 1; } });
+    var asg = {}; assignments.forEach(function (a) { asg[a.id] = a; });
+    var rs = results.map(function (r) { return { r: r, ms: new Date(r.t).getTime() }; }).sort(function (a, b) { return a.ms - b.ms; });
+    Object.keys(starts).forEach(function (per) {
+      var st = starts[per], P = {}, dayCnt = {}, seenAsg = {};
+      rs.forEach(function (x) {
+        var r = x.r; if (x.ms < st || !act[r.code]) return;
+        var p = P[r.code] || (P[r.code] = { code: r.code, p: 0, k: 0 });
+        var day = dayOf(x.ms), key = r.code + "|" + day;
+        if ((+r.total || 0) >= BOARD_MIN_TOTAL && (dayCnt[key] = (dayCnt[key] || 0) + 1) <= BOARD_DAILY_CAP) { p.p += Math.min(10, Math.round((+r.pct || 0) / 10)); p.k++; }
+        var a = r.assignmentId ? asg[r.assignmentId] : null, ak = r.code + "|" + r.assignmentId;
+        if (a && !seenAsg[ak]) { seenAsg[ak] = 1; if (!a.due || day <= a.due) p.p += BOARD_ASSIGN_BONUS; }
+      });
+      var list = Object.keys(P).map(function (c) { var s = act[c]; return { code: c, n: shortName_(s.name), c: s.cls || "", p: P[c].p, k: P[c].k }; })
+        .filter(function (x) { return x.p > 0; })
+        .sort(function (a, b) { return b.p - a.p || b.k - a.k || (a.n < b.n ? -1 : 1); });
+      var cls = {};
+      list.forEach(function (x) { if (x.c) { var o = cls[x.c] || (cls[x.c] = { c: x.c, tot: 0, act: 0 }); o.tot += x.p; o.act++; } });
+      var cl = Object.keys(byClass).map(function (c) { var o = cls[c] || { tot: 0, act: 0 }; return { c: c, n: byClass[c], act: o.act, tot: o.tot, avg: Math.round(o.tot / byClass[c] * 10) / 10 }; })
+        .sort(function (a, b) { return b.avg - a.avg || b.tot - a.tot || (a.c < b.c ? -1 : 1); });
+      out[per] = { students: list, classes: cl };
+    });
+    return out;
+  }
+  /* rút gọn cho từng người xem: top 10 + thứ hạng của chính mình, không lộ mã học sinh */
+  function boardView_(full, me) {
+    var out = {};
+    Object.keys(full).forEach(function (per) {
+      var f = full[per], idx = -1;
+      f.students.forEach(function (x, i) { if (me && x.code === me.code) idx = i; });
+      out[per] = { students: f.students.slice(0, 10).map(function (x, i) { return { r: i + 1, n: x.n, c: x.c, p: x.p, me: !!(me && x.code === me.code) }; }), classes: f.classes, total: f.students.length, me: idx >= 0 ? { r: idx + 1, p: f.students[idx].p } : null };
+    });
+    return out;
+  }
+
+function boardFull_() {
+  var cache = CacheService.getScriptCache(), hit = cache.get("board");
+  if (hit) { try { return JSON.parse(hit); } catch (e) { /* tính lại */ } }
+  var tz = Session.getScriptTimeZone(), now = new Date();
+  var dow = +Utilities.formatDate(now, tz, "u"), ms = now.getTime();
+  var weekStart = Utilities.parseDate(Utilities.formatDate(new Date(ms - (dow - 1) * 86400000), tz, "yyyy-MM-dd"), tz, "yyyy-MM-dd").getTime();
+  var monthStart = Utilities.parseDate(Utilities.formatDate(now, tz, "yyyy-MM") + "-01", tz, "yyyy-MM-dd").getTime();
+  var full = boardCalc_(students_(), results_(null, 33), assignments_(), function (t) { return Utilities.formatDate(new Date(t), tz, "yyyy-MM-dd"); }, { week: weekStart, month: monthStart });
+  try { cache.put("board", JSON.stringify(full), 300); } catch (e2) { /* quá lớn thì bỏ qua cache */ }
+  return full;
+}
+
 /* ---------- file riêng cho từng lớp ----------
    Google Sheet gốc có tab "Các lớp" liệt kê mọi lớp, mỗi lớp có link mở file riêng gồm:
    Tổng quan, Bài tập, từng "Bài N" (điểm từng game), "CT ..." (từng câu của bài tập soạn sẵn),

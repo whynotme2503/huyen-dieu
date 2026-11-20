@@ -79,3 +79,11 @@ Bảng giáo viên > Bài tập > mở một bài đã giao (bài tập soạn s
 - Các tab hệ thống HocSinh, KetQua, BaiTap, Lop, CaiDat vẫn cần giữ, đừng xóa hay đổi tên. Các tab cũ dạng "KQ - Tên lớp" không còn tự cập nhật nữa, có thể xóa.
 - Cập nhật: tự động mỗi ngày 23 giờ. Muốn xem ngay: Bảng giáo viên > Lớp > "Cập nhật file của tất cả các lớp ngay".
 - Sau khi dán Code.gs mới: chạy hàm `setup` (cấp thêm quyền Drive), rồi Triển khai > Quản lý bản triển khai > Chỉnh sửa > Phiên bản mới.
+
+## Bảng xếp hạng thi đua (trang chủ)
+
+- Hiện ngay trang chủ: **Xếp hạng lớp** và **Bảng chung · top 10** nằm cạnh nhau (điện thoại thì xếp dọc), chuyển **Tuần này / Tháng này**.
+- Điểm mỗi lượt làm: tối đa 10 điểm theo % đúng (lượt cần ≥ 5 câu), tối đa 12 lượt/ngày; nộp bài tập đúng hạn +20 điểm (lần nộp đầu).
+- Xếp hạng lớp theo **điểm trung bình mỗi bạn** (công bằng giữa lớp đông và lớp ít người).
+- Tên hiển thị rút gọn (vd "An N."), không lộ mã học sinh. Bảng cập nhật mỗi ~5 phút.
+- Cần dán Code.gs mới và Deploy → Phiên bản mới.
