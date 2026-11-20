@@ -248,6 +248,50 @@
   function reviewLater() {
     var st = reviewState(); return Object.keys(st.m).filter(function (h) { return !st.m[h].done && st.m[h].due > st.now; }).length;
   }
+  /* Mục tiêu tuần + huy hiệu (tính từ lịch sử kết quả, không cần máy chủ) */
+  var WEEK_GOAL = 5;
+  function myStats() {
+    var days = {}, correct = 0, perfect = 0, asg = {};
+    MY.results.forEach(function (r) {
+      days[localDay(new Date(r.t))] = 1; correct += +r.score || 0;
+      if (r.total >= 5 && r.pct >= 100) perfect++;
+      if (r.assignmentId) asg[r.assignmentId] = 1;
+    });
+    var best = 0, run = 0, keys = Object.keys(days).map(function (k) { var p = k.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]).getTime(); }).sort(function (a, b) { return a - b; });
+    keys.forEach(function (t, i) { run = i && Math.round((t - keys[i - 1]) / DAY_MS) === 1 ? run + 1 : 1; if (run > best) best = run; });
+    var st = reviewState(), mastered = Object.keys(st.m).filter(function (h) { return st.m[h].done; }).length;
+    return { days: days, best: best, correct: correct, perfect: perfect, asg: Object.keys(asg).length, mastered: mastered };
+  }
+  var BADGES = [
+    { id: "s3", ic: "🔥", n: "3 ngày liền", d: "Học 3 ngày liên tiếp", ok: function (s) { return s.best >= 3; } },
+    { id: "s7", ic: "🌟", n: "7 ngày liền", d: "Học 7 ngày liên tiếp", ok: function (s) { return s.best >= 7; } },
+    { id: "s14", ic: "🏅", n: "14 ngày liền", d: "Học 14 ngày liên tiếp", ok: function (s) { return s.best >= 14; } },
+    { id: "c100", ic: "💯", n: "100 câu đúng", d: "Trả lời đúng tổng cộng 100 câu", ok: function (s) { return s.correct >= 100; } },
+    { id: "c500", ic: "🚀", n: "500 câu đúng", d: "Trả lời đúng tổng cộng 500 câu", ok: function (s) { return s.correct >= 500; } },
+    { id: "p1", ic: "🎯", n: "Điểm tuyệt đối", d: "Đúng 100% một lượt (từ 5 câu)", ok: function (s) { return s.perfect >= 1; } },
+    { id: "a1", ic: "📘", n: "Bài tập đầu tiên", d: "Nộp 1 bài tập giáo viên giao", ok: function (s) { return s.asg >= 1; } },
+    { id: "a5", ic: "🎓", n: "Chăm bài tập", d: "Nộp 5 bài tập giáo viên giao", ok: function (s) { return s.asg >= 5; } },
+    { id: "m10", ic: "🧠", n: "Nhớ lâu", d: "Ôn thuộc 10 từ từng làm sai", ok: function (s) { return s.mastered >= 10; } }
+  ];
+  function badgeKey() { return "hd-badges-" + (SESSION ? SESSION.code : ""); }
+  function earnedBadges() { var s = myStats(); return BADGES.filter(function (b) { return b.ok(s); }).map(function (b) { return b.id; }); }
+  function checkNewBadges(silent) {
+    if (!SESSION || SESSION.role !== "student") return;
+    var now = earnedBadges(), seen = null;
+    try { seen = JSON.parse(localStorage.getItem(badgeKey()) || "null"); } catch (e) { seen = null; }
+    if (seen && !silent) {
+      var nw = BADGES.filter(function (b) { return now.indexOf(b.id) >= 0 && seen.indexOf(b.id) < 0; });
+      if (nw.length) toast("Huy hiệu mới: " + nw[0].ic + " " + nw[0].n + "!");
+    }
+    if (!seen || !silent) { try { localStorage.setItem(badgeKey(), JSON.stringify(now)); } catch (e) { /* bỏ qua */ } }
+  }
+  function goalCard() {
+    var s = myStats(), d = new Date(), dow = (d.getDay() + 6) % 7, mon = new Date(d.getFullYear(), d.getMonth(), d.getDate() - dow), dots = "", n = 0, names = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
+    for (var i = 0; i < 7; i++) { var dd = new Date(mon.getFullYear(), mon.getMonth(), mon.getDate() + i), on = !!s.days[localDay(dd)]; if (on) n++; dots += '<span class="gd' + (on ? " on" : "") + (i === dow ? " today" : "") + '"><i>' + (on ? "✓" : "") + "</i>" + names[i] + "</span>"; }
+    var got = earnedBadges();
+    var left = Math.max(0, WEEK_GOAL - n);
+    return '<section class="card hub-card goalbox"><div class="eyebrow">Mục tiêu tuần này</div><p class="goal-t"><b>' + Math.min(n, 7) + "/" + WEEK_GOAL + "</b> ngày đã học · " + (left ? "còn " + left + " ngày nữa là đạt mục tiêu" : "bạn đã đạt mục tiêu tuần! 🎉") + '</p><div class="gdots">' + dots + '</div><div class="eyebrow" style="margin-top:14px">Huy hiệu (' + got.length + "/" + BADGES.length + ')</div><div class="badges">' + BADGES.map(function (b) { var ok = got.indexOf(b.id) >= 0; return '<div class="bdg' + (ok ? " on" : "") + '" title="' + esc(b.d) + '"><span class="bi">' + (ok ? b.ic : "🔒") + '</span><b>' + esc(b.n) + "</b><small>" + esc(b.d) + "</small></div>"; }).join("") + "</div></section>";
+  }
   /* luyện viết một từ (gọi từ mục Tra từ) */
   function writeWord(w, onExit) {
     var L = LESSONS.filter(function (l) { return l.words.indexOf(w) >= 0; })[0] || lessonById("all");
@@ -312,9 +356,9 @@
     var st = SESSION.role === "student" ? streakInfo() : null, weak = SESSION.role === "student" ? weakWords() : [];
     var streak = st ? '<span class="streak' + (st.n ? " on" : "") + '">' + (st.n ? "Chuỗi " + st.n + " ngày" + (st.today ? "" : " · hôm nay chưa luyện") : "Hôm nay hãy luyện một lượt nhé") + "</span>" : "";
     var weakCard = SESSION.role === "student" ? '<section class="card hub-card weakbox"><div class="eyebrow">Đến hạn ôn lại hôm nay</div>' + (weak.length >= 2 ? '<div class="weak-chips">' + weak.map(function (w) { return '<span class="wc"><span class="hz">' + esc(w.hanzi) + "</span>" + esc(w.pinyin) + "</span>"; }).join("") + '</div><button class="btn small" data-weak="1">Ôn ' + weak.length + " từ này</button>" : '<p class="sub" style="margin:6px 0 0">Hôm nay chưa có từ nào đến hạn ôn.' + (reviewLater() ? " Còn " + reviewLater() + " từ sẽ đến hạn trong vài ngày tới." : " Từ nào bạn làm sai, web sẽ nhắc lại sau 1, 3 và 7 ngày.") + "</p>") + "</section>" : "";
-    app.innerHTML = previewBanner() + '<div class="home-head"><div class="hh-row"><h1 class="h1">' + greeting() + ", " + esc(first) + '!</h1>' + streak + '</div><p class="sub">' + (SESSION.role === "student" && pend ? "Bạn có " + pend + " bài tập chưa làm. " : "") + 'Hôm nay học một chút nhé.</p></div>' + hero + boardCard() + weakCard +
+    app.innerHTML = previewBanner() + '<div class="home-head"><div class="hh-row"><h1 class="h1">' + greeting() + ", " + esc(first) + '!</h1>' + streak + '</div><p class="sub">' + (SESSION.role === "student" && pend ? "Bạn có " + pend + " bài tập chưa làm. " : "") + 'Hôm nay học một chút nhé.</p></div>' + hero + boardCard() + weakCard + (SESSION.role === "student" ? goalCard() : "") +
       '<div class="hub-grid"><section class="card hub-card"><div class="eyebrow">Bài tập nhỏ hôm nay</div><div id="mini">' + miniHtml() + '</div><button class="btn ghost small" data-mq-new="1" style="margin-top:12px">Câu khác</button></section><section class="card hub-card"><div class="eyebrow">Đi tới</div>' + tiles + "</section></div>";
-    loadBoard();
+    loadBoard(); checkNewBadges(true);
   }
 
   /* ---------- trang bài học ---------- */
@@ -618,7 +662,7 @@
     var item = JSON.parse(JSON.stringify(rec));
     BOARD.t = 0;
     MY.results.push({ t: new Date().toISOString(), lesson: String(rec.lesson), game: rec.game, gameName: rec.gameName, score: rec.score, total: rec.total, pct: rec.pct, secs: rec.secs, words: rec.words, wrong: rec.wrong, assignmentId: rec.assignmentId });
-    queue.push(item); qSave();
+    queue.push(item); qSave(); checkNewBadges(false);
     flush().then(function (ok) {
       var el = $("#sync"); if (el) el.textContent = ok ? "Đã gửi kết quả cho giáo viên." : "Chưa gửi được. Kết quả được giữ trên máy này và sẽ tự gửi lại khi có mạng.";
     });

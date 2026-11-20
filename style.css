@@ -666,3 +666,21 @@ textarea.sh-input { resize: vertical; }
 .board-how summary { cursor: pointer; font-weight: 600; }
 .board-how p { margin: 8px 0 0; line-height: 1.55; }
 @media (max-width: 700px) { .board-grid { grid-template-columns: 1fr; } }
+
+/* ---------- mục tiêu tuần + huy hiệu ---------- */
+.goalbox { margin-bottom: 16px; }
+.goal-t { margin: 6px 0 10px; color: var(--ink-2); font-size: 14px; }
+.goal-t b { color: var(--accent); font-size: 18px; }
+.gdots { display: flex; gap: 6px; }
+.gd { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; font: 600 11px var(--f-ui); color: var(--ink-2); }
+.gd i { width: 100%; max-width: 38px; aspect-ratio: 1; border-radius: 99px; display: grid; place-items: center; font-style: normal; font-size: 15px; background: var(--surface-2); border: 1px solid var(--line); color: #fff; }
+.gd.on i { background: var(--accent); border-color: var(--accent); }
+.gd.today { color: var(--ink); }
+.gd.today i { box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent); }
+.badges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
+.bdg { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2px; padding: 10px 6px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface-2); opacity: .55; }
+.bdg.on { opacity: 1; border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--surface)); }
+.bdg .bi { font-size: 26px; line-height: 1.2; }
+.bdg b { font: 700 13px var(--f-ui); color: var(--ink); }
+.bdg small { font: 400 11px/1.3 var(--f-ui); color: var(--ink-2); }
+@media (max-width: 420px) { .badges { grid-template-columns: repeat(2, 1fr); } }
