@@ -401,7 +401,7 @@
       var ls = e.target, cn = ls.dataset.v, lv = +ls.value;
       H.api.call("setClassLevel", { code: H.session.code, name: cn, level: lv }).then(function (r) {
         if (r && r.ok) { var ci = classInfo(cn); if (!(T.data.classes || []).some(function (c) { return c.name === cn; })) T.data.classes.push(ci); ci.level = lv; H.toast("Lớp " + cn + " chuyển sang HSK " + lv); paint(); }
-        else { H.toast(r && r.error === "unknown" ? "Máy chủ chưa cập nhật: hãy dán Code.gs mới và Deploy phiên bản mới." : "Chưa đổi được trình độ, thử lại nhé."); paint(); }
+        else { H.toast(r && r.error === "unknown" ? "Máy chủ chưa cập nhật: hãy dán Code.gs mới và Deploy phiên bản mới." : "Chưa đổi được trình độ (mã lỗi: " + (r && r.error ? r.error : "không kết nối được") + "). Thử lại nhé."); paint(); }
       });
       return;
     }
