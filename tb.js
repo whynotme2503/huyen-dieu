@@ -113,19 +113,19 @@
       '<div class="tb-pfoot">' + (ANS.pdone ? '<span class="tb-score">Đúng ' + score + "/" + total + '</span><button class="btn ghost" data-tb="preset">Làm lại</button>' : '<button class="btn" data-tb="pcheck">Kiểm tra đáp án</button>') + "</div></section>";
   }
 
+  function gAfter(g, gi) { return g.after !== undefined ? g.after : gi; }
   function render(id) {
     var D = (window.HD_TB || {})[id]; if (!D) return false;
     CUR = id; var V = vocab(id), p = pref();
     var title = (H.lname ? H.lname(id) : id);
-    var nav = '<div class="tb-nav">' + D.texts.map(function (t, i) { return '<a href="#" data-tb="jump" data-to="tb-text-' + (i + 1) + '">Bài khóa ' + (i + 1) + "</a>"; }).join("") + D.grammar.map(function (g, i) { return '<a href="#" data-tb="jump" data-to="tb-gram-' + (i + 1) + '">Ngữ pháp ' + (i + 1) + "</a>"; }).join("") + '<a href="#" data-tb="jump" data-to="tb-prac">Luyện tập</a></div>';
+    var nav = '<div class="tb-nav">' + D.texts.map(function (tx, i) { return '<a href="#" data-tb="jump" data-to="tb-text-' + (i + 1) + '">Bài khóa ' + (i + 1) + "</a>" + D.grammar.map(function (g, gi) { return gAfter(g, gi) === i ? '<a href="#" class="g" data-tb="jump" data-to="tb-gram-' + (gi + 1) + '">Ngữ pháp ' + (gi + 1) + "</a>" : ""; }).join(""); }).join("") + '<a href="#" data-tb="jump" data-to="tb-prac">Luyện tập</a></div>';
     var tg = '<div class="tb-toggles"><button class="tb-tg' + (p.py ? " on" : "") + '" data-tb="tg" data-v="py">Pinyin</button><button class="tb-tg' + (p.vi ? " on" : "") + '" data-tb="tg" data-v="vi">Tiếng Việt</button></div>';
-    H.app.innerHTML = '<div class="tb' + (p.py ? "" : " nopy") + (p.vi ? "" : " novi") + '" id="tb-root"><button class="back" data-go="bai-' + esc(id) + '">' + H.ICONS.back + esc(title) + "</button>" +
+    H.app.innerHTML = '<div class="tb' + (p.py ? "" : " nopy") + (p.vi ? "" : " novi") + '" id="tb-root"><button class="back" data-go="bai-khoa">' + H.ICONS.back + "Bài khóa</button>" +
       '<div class="tb-hero"><div class="eyebrow">' + esc(title) + ' · Bài khóa &amp; Ngữ pháp</div><h1 class="tb-h1">' + esc(D.zh) + '</h1><div class="tb-hpy">' + esc(D.py) + '</div><div class="tb-hvi">' + esc(D.vi) + "</div></div>" +
       '<div class="tb-bar">' + nav + tg + "</div>" +
       '<p class="tb-help">Bấm ' + H.ICONS.speaker + ' để nghe từng câu. Chữ <span class="nw">gạch chân</span> là từ mới của bài, bấm vào để xem nghĩa.</p>' +
-      '<div class="tb-sec">课文 · Bài khóa</div>' + D.texts.map(function (t, i) { return textCard(t, i, V, D); }).join("") +
-      '<div class="tb-sec">语法 · Ngữ pháp</div>' + D.grammar.map(grammarCard).join("") +
-      '<div class="tb-sec">练习 · Luyện tập</div>' + practice(D) + "</div>";
+      D.texts.map(function (tx, i) { return textCard(tx, i, V, D) + D.grammar.map(function (g, gi) { return gAfter(g, gi) === i ? grammarCard(g, gi) : ""; }).join(""); }).join("") +
+      '<div class="tb-sec">练习 · Luyện tập tổng hợp</div>' + practice(D) + "</div>";
     return true;
   }
   function repaintTask(key) {

@@ -176,6 +176,7 @@
     if (h === "tra-tu" && window.HD_SEARCH) { S.view = "search"; curAssign = null; setRight(""); return window.HD_SEARCH.render(); }
     if (h === "luyen-nghe" && window.HD_LISTEN && SESSION.role) { S = { view: "listen", lesson: lessonById("all") }; curAssign = null; setRight(""); return window.HD_LISTEN.render(); }
     if (h === "tu-vung") return renderVocab();
+    if (h === "bai-khoa") return renderTBList();
     var mh = /^hoc-([\d-]+)$/.exec(h);
     if (mh && window.HD_TBV && window.HD_TBV.has(mh[1])) { S = { view: "tb", lesson: lessonById(mh[1]), game: null }; curAssign = null; setRight(""); window.HD_TBV.render(mh[1]); window.scrollTo(0, 0); return; }
     if (h === "bai-tap") return renderAssignments();
@@ -186,6 +187,26 @@
     renderHome();
   }
   window.addEventListener("hashchange", route);
+
+  /* ---------- Bài khóa: danh sách theo cấp độ, từng bài ---------- */
+  function renderTBList() {
+    S = { view: "tblist", lesson: null, game: null }; curAssign = null;
+    var has = function (id) { return !!(window.HD_TBV && window.HD_TBV.has(id)); };
+    var LL = levelLessons(VLV), ready = LL.filter(function (l) { return has(l.id); });
+    setRight('<span class="chip">' + LEVEL_NAMES[VLV] + " · " + ready.length + "/" + LL.length + " bài</span>");
+    var tabs = '<div class="lvtabs" role="tablist">' + [1, 2, 3].map(function (n) {
+      var c = levelLessons(n).filter(function (l) { return has(l.id); }).length;
+      return '<button class="lvtab' + (n === VLV ? " on" : "") + '" role="tab" aria-selected="' + (n === VLV) + '" data-lv="' + n + '">HSK ' + n + (c ? "" : "<small>sắp có</small>") + "</button>";
+    }).join("") + "</div>";
+    var html = previewBanner() + '<div class="home-head"><h1 class="h1">Bài khóa ' + LEVEL_NAMES[VLV] + '</h1><p class="sub">Mỗi bài gồm bài khóa có ghi âm, giải thích từ mới, ngữ pháp và bài luyện tập.</p></div>' + tabs + '<div class="lesson-grid">';
+    if (!LL.length) html += '<section class="card lvsoon"><p class="sub">' + LEVEL_NAMES[VLV] + " đang được chuẩn bị.</p></section>";
+    LL.forEach(function (l) {
+      var T = has(l.id) ? window.HD_TB[l.id] : null;
+      if (T) html += '<button class="lcard" data-go="hoc-' + l.id + '"><span class="num">' + l.num + '</span><span class="name">Bài ' + l.num + '</span><span class="meta hzm">' + esc(T.zh || l.zh || "") + '</span><span class="meta">' + T.texts.length + " bài khóa · " + T.grammar.length + ' ngữ pháp</span><span><span class="pill" style="background:var(--accent);color:var(--accent-ink)">Học ngay</span></span></button>';
+      else html += '<div class="lcard locked" aria-disabled="true"><span class="num">' + l.num + '</span><span class="name">Bài ' + l.num + '</span><span class="meta hzm">' + esc(l.zh || l.topic || "") + '</span><span><span class="pill">Sắp có</span></span></div>';
+    });
+    app.innerHTML = html + "</div>";
+  }
 
   /* ---------- trang chủ ---------- */
   function playedCount(lid) { return GAMES.filter(function (g) { return bestOf(lid, g.id); }).length; }
@@ -221,7 +242,7 @@
     { id: "home", label: "Trang chủ", href: "#home" },
     { id: "tu-vung", label: "Từ vựng", href: "#tu-vung" },
     { id: "bai-tap", label: "Bài tập", href: "#bai-tap" },
-    { id: "bai-khoa", label: "Bài khóa", soon: true },
+    { id: "bai-khoa", label: "Bài khóa", href: "#bai-khoa" },
     { id: "luyen-nghe", label: "Luyện nghe", href: "#luyen-nghe" }
   ];
   function paintNav() {
@@ -229,7 +250,7 @@
     if (!SESSION || S.view === "login" || S.view === "teacher") { n.hidden = true; return; }
     n.hidden = false;
     var sb = $("#srchbtn"); if (sb) sb.classList.toggle("on", S.view === "search");
-    var act = S.view === "home" ? "home" : S.view === "assign" ? "bai-tap" : S.view === "history" ? "" : S.view === "listen" ? "luyen-nghe" : (curAssign ? "bai-tap" : "tu-vung"), pend = pendingCount();
+    var act = S.view === "home" ? "home" : S.view === "assign" ? "bai-tap" : S.view === "history" ? "" : S.view === "listen" ? "luyen-nghe" : (S.view === "tb" || S.view === "tblist") ? "bai-khoa" : (curAssign ? "bai-tap" : "tu-vung"), pend = pendingCount();
     n.innerHTML = NAV.map(function (it) {
       if (it.soon) return '<span class="nv soon" aria-disabled="true">' + it.label + "<small>Sắp có</small></span>";
       return '<a class="nv' + (it.id === act ? " on" : "") + '" href="' + it.href + '"' + (it.id === act ? ' aria-current="page"' : "") + ">" + it.label + (it.id === "bai-tap" && pend ? '<b class="dot">' + pend + "</b>" : "") + "</a>";
@@ -375,7 +396,7 @@
     var hero = q ? '<section class="hero" data-char="' + esc(q[0].charAt(0)) + '"><div class="hero-top"><span class="pchip">LỜI CHÚC HÔM NAY</span></div><div class="hero-q">' + esc(q[0]) + '</div><div class="hero-py">' + esc(q[1]) + '</div><div class="hero-vi">' + esc(q[2]) + '</div></section>' : "";
     var tiles = '<div class="hub-tiles"><a class="htile" href="#tu-vung"><span class="hn">' + openCount() + '</span><span class="hl">Từ vựng</span><span class="hs">' + ALL.length + ' từ · ' + GAMES.length + ' game</span></a>' +
       '<a class="htile' + (pend ? " alert" : "") + '" href="#bai-tap"><span class="hn">' + pend + '</span><span class="hl">Bài tập</span><span class="hs">' + (pend ? "bài chưa làm" : "đã làm hết") + '</span></a>' +
-      '<span class="htile soon"><span class="hn">…</span><span class="hl">Bài khóa</span><span class="hs">Sắp có</span></span><a class="htile" href="#luyen-nghe"><span class="hn">🎧</span><span class="hl">Luyện nghe</span><span class="hs">Nghe câu, chọn nghĩa</span></a></div>';
+      '<a class="htile" href="#bai-khoa"><span class="hn">📖</span><span class="hl">Bài khóa</span><span class="hs">Bài khóa · ngữ pháp</span></a><a class="htile" href="#luyen-nghe"><span class="hn">🎧</span><span class="hl">Luyện nghe</span><span class="hs">Nghe câu, chọn nghĩa</span></a></div>';
     var st = SESSION.role === "student" ? streakInfo() : null, weak = SESSION.role === "student" ? weakWords() : [];
     var streak = st ? '<span class="streak' + (st.n ? " on" : "") + '">' + (st.n ? "Chuỗi " + st.n + " ngày" + (st.today ? "" : " · hôm nay chưa luyện") : "Hôm nay hãy luyện một lượt nhé") + "</span>" : "";
     var weakCard = SESSION.role === "student" ? '<section class="card hub-card weakbox"><div class="eyebrow">Đến hạn ôn lại hôm nay</div>' + (weak.length >= 2 ? '<div class="weak-chips">' + weak.map(function (w) { return '<span class="wc"><span class="hz">' + esc(w.hanzi) + "</span>" + esc(w.pinyin) + "</span>"; }).join("") + '</div><button class="btn small" data-weak="1">Ôn ' + weak.length + " từ này</button>" : '<p class="sub" style="margin:6px 0 0">Hôm nay chưa có từ nào đến hạn ôn.' + (reviewLater() ? " Còn " + reviewLater() + " từ sẽ đến hạn trong vài ngày tới." : " Từ nào bạn làm sai, web sẽ nhắc lại sau 1, 3 và 7 ngày.") + "</p>") + "</section>" : "";
@@ -398,7 +419,7 @@
     }).join("");
     app.innerHTML = '<button class="back" data-go="tu-vung">' + ICONS.back + 'Từ vựng</button>' +
       '<div class="lesson-title"><h1 class="h1">' + (L.id === "all" ? "Ôn tổng hợp" : lname(L.id).replace(/^HSK 1 · /, "") + (L.topic ? " · " + esc(L.topic) : "")) + '</h1><p class="sub">Bắt đầu với Thẻ ghi nhớ để xem từ nào đã nhớ, từ nào chưa, rồi chơi các game khác.</p></div>' +
-      (window.HD_TBV && window.HD_TBV.has(L.id) ? '<button class="tb-entry" data-go="hoc-' + L.id + '"><span class="gico">' + ICONS.book + '</span><span><b>Bài khóa &amp; Ngữ pháp</b><small>' + window.HD_TB[L.id].texts.length + ' bài khóa có ghi âm, giải thích từ mới, ' + window.HD_TB[L.id].grammar.length + ' điểm ngữ pháp và bài luyện tập</small></span><span class="go">Học ngay →</span></button>' : "") + '<div class="lesson-wrap"><section class="card"><div class="eyebrow">Từ vựng · nhấn loa để nghe</div><div class="wlist">' + rows + '</div></section>' +
+      '<div class="lesson-wrap"><section class="card"><div class="eyebrow">Từ vựng · nhấn loa để nghe</div><div class="wlist">' + rows + '</div></section>' +
       '<section><div class="eyebrow section-label">Trò chơi</div><div class="games">' + cards + "</div></section></div>";
   }
 
@@ -615,7 +636,7 @@
     if (t.dataset.go) return nav("#" + t.dataset.go);
     if (t.dataset.assign) return startAssignment(t.dataset.assign);
     if (t.dataset.weak) return startWeak();
-    if (t.dataset.lv) { VLV = +t.dataset.lv; return renderVocab(); }
+    if (t.dataset.lv) { VLV = +t.dataset.lv; return S.view === "tblist" ? renderTBList() : renderVocab(); }
     if (t.dataset.bp) { BOARD.per = t.dataset.bp; return paintBoard(); }
     if (t.dataset.mqspeak && MQ.q) return speak(MQ.q.w);
     if (t.dataset.mqNew) { newMini(); $("#mini").innerHTML = miniHtml(); return; }

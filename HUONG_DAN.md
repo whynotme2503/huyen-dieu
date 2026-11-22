@@ -69,7 +69,7 @@ Mỗi bài HSK 3 có một phiếu theo sách bài tập, chỉ có đề tiến
 
 ## Bài khóa & Ngữ pháp (HSK3 Bài 1)
 
-Trong trang từ vựng của bài có nút **Bài khóa & Ngữ pháp**. Trang này gồm: các bài khóa (có ghi âm, ảnh, pinyin, bản dịch bật/tắt được, bấm loa để nghe từng câu, chữ gạch chân là từ mới), giải thích từ mới, câu hỏi đọc hiểu có gợi ý trả lời; tiếp theo là các điểm ngữ pháp (công thức, lưu ý, ví dụ, bài luyện tự chấm); cuối cùng là bài chọn từ điền vào chỗ trống. Nội dung nằm trong `textbook.js` (`HD_TB`), ghi âm ở `audio/tb/`, ảnh ở `img/tb/`. Font chữ Hán: LXGW WenKai (thư mục `vendor/wenkai`).
+Thanh trên cùng có mục **Bài khóa**, chia theo HSK 1/2/3 và từng bài. Mỗi bài gồm: bài khóa (có ghi âm, ảnh, pinyin, bản dịch bật/tắt được, bấm loa để nghe từng câu, chữ gạch chân là từ mới), giải thích từ mới, câu hỏi đọc hiểu có gợi ý trả lời; ngữ pháp nào thuộc bài khóa nào thì đặt ngay sau bài khóa đó (công thức, lưu ý, ví dụ, bài luyện tự chấm); cuối cùng là bài chọn từ điền vào chỗ trống. Nội dung nằm trong `textbook.js` (`HD_TB`), ghi âm ở `audio/tb/`, ảnh ở `img/tb/`. Font chữ Hán: LXGW WenKai (thư mục `vendor/wenkai`).
 
 ## Tra từ và lời chúc hằng ngày
 
