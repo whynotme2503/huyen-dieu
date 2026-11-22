@@ -702,3 +702,9 @@ textarea.sh-input { resize: vertical; }
 .ln-t b { font: 700 15px var(--f-ui); color: var(--ink); }
 .ln-t small { font: 400 12px var(--f-ui); color: var(--ink-2); }
 .ln-c { flex: none; font: 600 13px var(--f-ui); color: var(--ink-2); }
+.t-lv { width: auto; align-self: flex-start; padding: 4px 8px; font-size: 13px; margin-bottom: 4px; }
+.lvtabs { display: flex; gap: 8px; margin: 4px 0 14px; flex-wrap: wrap; }
+.lvtab { border: 1px solid var(--line); background: var(--surface); color: var(--ink-2); padding: 8px 18px; border-radius: 99px; font: 700 14px var(--f-ui); cursor: pointer; }
+.lvtab.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.lvtab small { font-weight: 500; opacity: .8; margin-left: 4px; }
+.lvsoon { text-align: center; padding: 28px 16px; }

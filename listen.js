@@ -24,7 +24,7 @@
   function pool(id) {
     var open = H.LESSONS.filter(function (l) { return l.words.length; }), out = [], seen = {};
     open.forEach(function (l, i) {
-      if (id !== "all" && String(l.id) !== String(id)) return;
+      if (id === "all" ? l.level !== H.level() : String(l.id) !== String(id)) return;
       lessonPool(i, open).forEach(function (s) { var k = norm(s.zh); if (!seen[k]) { seen[k] = 1; out.push(s); } });
     });
     return out;
@@ -37,9 +37,9 @@
 
   function picker() {
     ST = null;
-    var rows = H.LESSONS.filter(function (l) { return l.words.length; }).map(function (l) {
+    var rows = H.LESSONS.filter(function (l) { return l.words.length && l.level === H.level(); }).map(function (l) {
       var n = pool(l.id).length;
-      return '<button class="ln-les" data-llesson="' + esc(l.id) + '"' + (n < 4 ? " disabled" : "") + '><span class="ln-n">' + esc(l.id) + '</span><span class="ln-t"><b>Bài ' + esc(l.id) + "</b><small>" + esc(l.topic || l.title || "") + "</small></span><span class=\"ln-c\">" + n + " câu</span></button>";
+      return '<button class="ln-les" data-llesson="' + esc(l.id) + '"' + (n < 4 ? " disabled" : "") + '><span class="ln-n">' + esc(l.num) + '</span><span class="ln-t"><b>Bài ' + esc(l.num) + "</b><small>" + esc(l.topic || l.title || "") + "</small></span><span class=\"ln-c\">" + n + " câu</span></button>";
     }).join("");
     var nAll = pool("all").length;
     H.app.innerHTML = '<div style="display:flex;align-items:center;gap:6px"><a class="back" href="#home">' + H.ICONS.back + 'Trang chủ</a></div><section class="card ln-card"><div class="eyebrow">Luyện nghe</div><h2 class="h1" style="margin:4px 0 4px">Chọn bài để luyện nghe</h2><p class="sub" style="margin:0 0 12px">Mỗi lượt gồm ' + LEN + ' câu của bài bạn chọn.</p><div class="ln-list">' + rows +
@@ -64,7 +64,7 @@
       return '<button class="mq-opt ln-opt' + cl + '" data-lo="' + i + '"' + (ans ? " disabled" : "") + ">" + esc(o.vi) + "</button>";
     }).join("");
     var fb = ans ? '<div class="ln-fb">' + (q.opts[q.picked].ok ? '<b class="ok">Chính xác!</b> ' : '<b class="no">Chưa đúng.</b> ') + '<div class="ln-zh">' + esc(q.it.zh) + '</div><div class="ln-py">' + esc(q.it.py) + '</div></div><button class="btn" data-lnext="1">' + (ST.i + 1 >= n ? "Xem kết quả" : "Câu tiếp") + "</button>" : "";
-    H.app.innerHTML = '<div style="display:flex;align-items:center;gap:6px"><button class="back" data-lpick="1">' + H.ICONS.back + (ST.lesson === "all" ? "Tổng hợp" : "Bài " + esc(ST.lesson)) + '</button><span class="chip" style="margin-left:auto">Câu ' + (ST.i + 1) + "/" + n + '</span></div>' +
+    H.app.innerHTML = '<div style="display:flex;align-items:center;gap:6px"><button class="back" data-lpick="1">' + H.ICONS.back + (ST.lesson === "all" ? "Tổng hợp" : esc(H.lname(ST.lesson))) + '</button><span class="chip" style="margin-left:auto">Câu ' + (ST.i + 1) + "/" + n + '</span></div>' +
       '<section class="card ln-card"><div class="eyebrow">Luyện nghe</div><p class="sub" style="margin:4px 0 12px">Nghe câu tiếng Trung, chọn nghĩa tiếng Việt đúng.</p>' +
       '<div class="ln-spk"><button class="mq-spk" data-lplay="1">' + H.ICONS.speaker + ' Nghe</button><button class="btn ghost small" data-lslow="1">Nghe chậm</button></div>' +
       '<div class="mq-opts ln-opts">' + opts + "</div>" + fb + "</section>";
@@ -87,7 +87,7 @@
     var miss = ST.qs.filter(function (q) { return !q.opts[q.picked].ok; }).map(function (q) {
       return '<div class="sr-ex"><span class="zh">' + esc(q.it.zh) + '</span><span class="py">' + esc(q.it.py) + '</span><span class="vi">' + esc(q.it.vi) + "</span></div>";
     }).join("");
-    H.app.innerHTML = '<section class="card" style="margin-top:10px"><div class="result"><div class="eyebrow">Luyện nghe · ' + (ST.lesson === "all" ? "Tổng hợp" : "Bài " + esc(ST.lesson)) + '</div><div class="score">' + ST.score + "<small>/" + n + '</small></div><h2 class="h1">' + msg + '</h2><div class="sync">' + esc(sync || "") + '</div><div class="rbtns"><button class="btn" data-lagain="1">Luyện tiếp</button><button class="btn ghost" data-lpick="1">Chọn bài khác</button></div></div>' +
+    H.app.innerHTML = '<section class="card" style="margin-top:10px"><div class="result"><div class="eyebrow">Luyện nghe · ' + (ST.lesson === "all" ? "Tổng hợp" : esc(H.lname(ST.lesson))) + '</div><div class="score">' + ST.score + "<small>/" + n + '</small></div><h2 class="h1">' + msg + '</h2><div class="sync">' + esc(sync || "") + '</div><div class="rbtns"><button class="btn" data-lagain="1">Luyện tiếp</button><button class="btn ghost" data-lpick="1">Chọn bài khác</button></div></div>' +
       (miss ? '<div class="miss"><div class="eyebrow" style="margin-bottom:6px">Câu cần nghe lại</div>' + miss + "</div>" : "") + "</section>";
   }
 

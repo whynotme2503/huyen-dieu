@@ -8,12 +8,13 @@ var DEF = {
   HS: { name: "HocSinh", head: ["Mã", "Họ tên", "Lớp", "Trạng thái", "Ngày tạo"] },
   KQ: { name: "KetQua", head: ["Thời gian", "Mã", "Họ tên", "Lớp", "Bài", "Game", "Điểm", "Tổng", "Phần trăm", "Giây", "Từ đã làm", "Từ sai", "Mã bài tập", "Mã game"] },
   BT: { name: "BaiTap", head: ["ID", "Tiêu đề", "Bài", "Game", "Hạn nộp", "Lớp", "Ghi chú", "Ngày giao"] },
-  LOP: { name: "Lop", head: ["Tên lớp", "Ghi chú", "Ngày tạo", "File quản lý"] },
+  LOP: { name: "Lop", head: ["Tên lớp", "Ghi chú", "Ngày tạo", "File quản lý", "Trình độ"] },
   CD: { name: "CaiDat", head: [] }
 };
 
 function setup() {
   sheet_("HS"); sheet_("KQ"); sheet_("BT"); sheet_("LOP");
+  var lop = sheet_("LOP"); if (!lop.getRange("E1").getValue()) lop.getRange("E1").setValue("Trình độ");
   syncClasses_();
   var cd = sheet_("CD");
   if (!cd.getRange("B1").getValue()) {
@@ -64,7 +65,7 @@ function handle_(req) {
   if ((+cache.get("fails") || 0) >= MAX_FAILS) return { ok: false, error: "locked" };
   var u = auth_(req.code);
   if (!u) { cache.put("fails", String((+cache.get("fails") || 0) + 1), FAIL_WINDOW); return { ok: false, error: "auth" }; }
-  if (req.action === "login") return { ok: true, role: u.role, name: u.name, cls: u.cls, code: u.code };
+  if (req.action === "login") return { ok: true, role: u.role, name: u.name, cls: u.cls, code: u.code, level: classLevels_()[u.cls] || 1 };
   var lock = LockService.getScriptLock();
   switch (req.action) {
     case "submit":
@@ -77,9 +78,9 @@ function handle_(req) {
       } finally { lock.releaseLock(); }
       return { ok: true };
     case "board":
-      return { ok: true, board: boardView_(boardFull_(), u.role === "student" ? u : null) };
+      return { ok: true, level: boardLevel_(u, req), board: boardView_(boardFull_(), u.role === "student" ? u : null, boardLevel_(u, req)) };
     case "me":
-      return { ok: true, results: results_(u.code, 180), assignments: assignments_().filter(function (a) { return !a.cls || a.cls === "all" || a.cls === u.cls; }) };
+      return { ok: true, level: classLevels_()[u.cls] || 1, results: results_(u.code, 180), assignments: assignments_().filter(function (a) { return !a.cls || a.cls === "all" || a.cls === u.cls; }) };
   }
   if (u.role !== "teacher") return { ok: false, error: "role" };
   switch (req.action) {
@@ -91,8 +92,16 @@ function handle_(req) {
         var nm = String(req.name || "").trim().slice(0, 40);
         if (!nm) return { ok: false, error: "name" };
         if (classes_().some(function (c) { return c.name.toLowerCase() === nm.toLowerCase(); })) return { ok: false, error: "exists" };
-        sheet_("LOP").appendRow([nm, String(req.note || "").slice(0, 80), new Date(), ""]);
+        sheet_("LOP").appendRow([nm, String(req.note || "").slice(0, 80), new Date(), "", lvl_(req.level)]);
         return { ok: true };
+      } finally { lock.releaseLock(); }
+    case "setClassLevel":
+      lock.waitLock(20000);
+      try {
+        var lp2 = sheet_("LOP"), lv2 = lp2.getDataRange().getValues(), done2 = false;
+        for (var k2 = 1; k2 < lv2.length; k2++) if (String(lv2[k2][0]) === String(req.name)) { lp2.getRange(k2 + 1, 5).setValue(lvl_(req.level)); done2 = true; }
+        CacheService.getScriptCache().remove("board2");
+        return done2 ? { ok: true, classes: classes_() } : { ok: false, error: "name" };
       } finally { lock.releaseLock(); }
     case "deleteClass":
       lock.waitLock(20000);
@@ -196,14 +205,17 @@ function assignments_() {
 }
 
 /* ---------- lớp học ---------- */
+/** Trình độ của lớp: 1, 2 hoặc 3 (HSK 1/2/3). Ô trống hoặc sai thì coi là HSK 1. */
+function lvl_(x) { x = Math.round(+x); return x >= 1 && x <= 3 ? x : 1; }
+function classLevels_() { var m = {}; classes_().forEach(function (c) { m[c.name] = c.level; }); return m; }
 function classes_() {
   var v = sheet_("LOP").getDataRange().getValues(), out = [];
-  for (var i = 1; i < v.length; i++) if (v[i][0]) out.push({ name: String(v[i][0]), note: String(v[i][1] || ""), url: String(v[i][3] || "") });
+  for (var i = 1; i < v.length; i++) if (v[i][0]) out.push({ name: String(v[i][0]), note: String(v[i][1] || ""), url: String(v[i][3] || ""), level: lvl_(v[i][4]) });
   return out;
 }
 function syncClasses_() {
   var have = {}; classes_().forEach(function (c) { have[c.name] = 1; });
-  students_().forEach(function (s) { if (s.cls && !have[s.cls]) { have[s.cls] = 1; sheet_("LOP").appendRow([s.cls, "", new Date(), ""]); } });
+  students_().forEach(function (s) { if (s.cls && !have[s.cls]) { have[s.cls] = 1; sheet_("LOP").appendRow([s.cls, "", new Date(), "", 1]); } });
 }
 
   /* ---------- bảng xếp hạng thi đua (tuần / tháng) ----------
@@ -211,7 +223,8 @@ function syncClasses_() {
      Nộp bài tập được giao đúng hạn: +20 điểm cho mỗi bài tập. */
   var BOARD_DAILY_CAP = 12, BOARD_ASSIGN_BONUS = 20, BOARD_MIN_TOTAL = 5;
   function shortName_(n) { var p = String(n || "").trim().split(/\s+/); return p.length < 2 ? p[0] || "" : p[p.length - 1] + " " + p[0].charAt(0).toUpperCase() + "."; }
-  function boardCalc_(students, results, assignments, dayOf, starts) {
+  function boardCalc_(students, results, assignments, dayOf, starts, lvOf) {
+    lvOf = lvOf || {};
     var act = {}, byClass = {}, out = {};
     students.forEach(function (s) { if (s.active !== false) { act[s.code] = s; if (s.cls) byClass[s.cls] = (byClass[s.cls] || 0) + 1; } });
     var asg = {}; assignments.forEach(function (a) { asg[a.id] = a; });
@@ -226,37 +239,39 @@ function syncClasses_() {
         var a = r.assignmentId ? asg[r.assignmentId] : null, ak = r.code + "|" + r.assignmentId;
         if (a && !seenAsg[ak]) { seenAsg[ak] = 1; if (!a.due || day <= a.due) p.p += BOARD_ASSIGN_BONUS; }
       });
-      var list = Object.keys(P).map(function (c) { var s = act[c]; return { code: c, n: shortName_(s.name), c: s.cls || "", p: P[c].p, k: P[c].k }; })
+      var list = Object.keys(P).map(function (c) { var s = act[c]; return { code: c, n: shortName_(s.name), c: s.cls || "", lv: lvOf[s.cls] || 1, p: P[c].p, k: P[c].k }; })
         .filter(function (x) { return x.p > 0; })
         .sort(function (a, b) { return b.p - a.p || b.k - a.k || (a.n < b.n ? -1 : 1); });
       var cls = {};
       list.forEach(function (x) { if (x.c) { var o = cls[x.c] || (cls[x.c] = { c: x.c, tot: 0, act: 0 }); o.tot += x.p; o.act++; } });
-      var cl = Object.keys(byClass).map(function (c) { var o = cls[c] || { tot: 0, act: 0 }; return { c: c, n: byClass[c], act: o.act, tot: o.tot, avg: Math.round(o.tot / byClass[c] * 10) / 10 }; })
+      var cl = Object.keys(byClass).map(function (c) { var o = cls[c] || { tot: 0, act: 0 }; return { c: c, lv: lvOf[c] || 1, n: byClass[c], act: o.act, tot: o.tot, avg: Math.round(o.tot / byClass[c] * 10) / 10 }; })
         .sort(function (a, b) { return b.avg - a.avg || b.tot - a.tot || (a.c < b.c ? -1 : 1); });
       out[per] = { students: list, classes: cl };
     });
     return out;
   }
   /* rút gọn cho từng người xem: top 10 + thứ hạng của chính mình, không lộ mã học sinh */
-  function boardView_(full, me) {
+  function boardView_(full, me, level) {
     var out = {};
     Object.keys(full).forEach(function (per) {
-      var f = full[per], idx = -1;
+      var f = { students: full[per].students.filter(function (x) { return x.lv === level; }), classes: full[per].classes.filter(function (x) { return x.lv === level; }) }, idx = -1;
       f.students.forEach(function (x, i) { if (me && x.code === me.code) idx = i; });
       out[per] = { students: f.students.slice(0, 10).map(function (x, i) { return { r: i + 1, n: x.n, c: x.c, p: x.p, me: !!(me && x.code === me.code) }; }), classes: f.classes, total: f.students.length, me: idx >= 0 ? { r: idx + 1, p: f.students[idx].p } : null };
     });
     return out;
   }
 
+/** Học sinh xem bảng của trình độ lớp mình; giáo viên chọn trình độ (mặc định HSK 1). */
+function boardLevel_(u, req) { return u.role === "student" ? (classLevels_()[u.cls] || 1) : lvl_(req.level); }
 function boardFull_() {
-  var cache = CacheService.getScriptCache(), hit = cache.get("board");
+  var cache = CacheService.getScriptCache(), hit = cache.get("board2");
   if (hit) { try { return JSON.parse(hit); } catch (e) { /* tính lại */ } }
   var tz = Session.getScriptTimeZone(), now = new Date();
   var dow = +Utilities.formatDate(now, tz, "u"), ms = now.getTime();
   var weekStart = Utilities.parseDate(Utilities.formatDate(new Date(ms - (dow - 1) * 86400000), tz, "yyyy-MM-dd"), tz, "yyyy-MM-dd").getTime();
   var monthStart = Utilities.parseDate(Utilities.formatDate(now, tz, "yyyy-MM") + "-01", tz, "yyyy-MM-dd").getTime();
-  var full = boardCalc_(students_(), results_(null, 33), assignments_(), function (t) { return Utilities.formatDate(new Date(t), tz, "yyyy-MM-dd"); }, { week: weekStart, month: monthStart });
-  try { cache.put("board", JSON.stringify(full), 300); } catch (e2) { /* quá lớn thì bỏ qua cache */ }
+  var full = boardCalc_(students_(), results_(null, 33), assignments_(), function (t) { return Utilities.formatDate(new Date(t), tz, "yyyy-MM-dd"); }, { week: weekStart, month: monthStart }, classLevels_());
+  try { cache.put("board2", JSON.stringify(full), 300); } catch (e2) { /* quá lớn thì bỏ qua cache */ }
   return full;
 }
 

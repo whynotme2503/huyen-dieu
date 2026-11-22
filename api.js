@@ -58,7 +58,9 @@
      Nộp bài tập được giao đúng hạn: +20 điểm cho mỗi bài tập. */
   var BOARD_DAILY_CAP = 12, BOARD_ASSIGN_BONUS = 20, BOARD_MIN_TOTAL = 5;
   function shortName_(n) { var p = String(n || "").trim().split(/\s+/); return p.length < 2 ? p[0] || "" : p[p.length - 1] + " " + p[0].charAt(0).toUpperCase() + "."; }
-  function boardCalc_(students, results, assignments, dayOf, starts) {
+  function lvl_(x) { x = Math.round(+x); return x >= 1 && x <= 3 ? x : 1; }
+  function boardCalc_(students, results, assignments, dayOf, starts, lvOf) {
+    lvOf = lvOf || {};
     var act = {}, byClass = {}, out = {};
     students.forEach(function (s) { if (s.active !== false) { act[s.code] = s; if (s.cls) byClass[s.cls] = (byClass[s.cls] || 0) + 1; } });
     var asg = {}; assignments.forEach(function (a) { asg[a.id] = a; });
@@ -73,54 +75,60 @@
         var a = r.assignmentId ? asg[r.assignmentId] : null, ak = r.code + "|" + r.assignmentId;
         if (a && !seenAsg[ak]) { seenAsg[ak] = 1; if (!a.due || day <= a.due) p.p += BOARD_ASSIGN_BONUS; }
       });
-      var list = Object.keys(P).map(function (c) { var s = act[c]; return { code: c, n: shortName_(s.name), c: s.cls || "", p: P[c].p, k: P[c].k }; })
+      var list = Object.keys(P).map(function (c) { var s = act[c]; return { code: c, n: shortName_(s.name), c: s.cls || "", lv: lvOf[s.cls] || 1, p: P[c].p, k: P[c].k }; })
         .filter(function (x) { return x.p > 0; })
         .sort(function (a, b) { return b.p - a.p || b.k - a.k || (a.n < b.n ? -1 : 1); });
       var cls = {};
       list.forEach(function (x) { if (x.c) { var o = cls[x.c] || (cls[x.c] = { c: x.c, tot: 0, act: 0 }); o.tot += x.p; o.act++; } });
-      var cl = Object.keys(byClass).map(function (c) { var o = cls[c] || { tot: 0, act: 0 }; return { c: c, n: byClass[c], act: o.act, tot: o.tot, avg: Math.round(o.tot / byClass[c] * 10) / 10 }; })
+      var cl = Object.keys(byClass).map(function (c) { var o = cls[c] || { tot: 0, act: 0 }; return { c: c, lv: lvOf[c] || 1, n: byClass[c], act: o.act, tot: o.tot, avg: Math.round(o.tot / byClass[c] * 10) / 10 }; })
         .sort(function (a, b) { return b.avg - a.avg || b.tot - a.tot || (a.c < b.c ? -1 : 1); });
       out[per] = { students: list, classes: cl };
     });
     return out;
   }
   /* rút gọn cho từng người xem: top 10 + thứ hạng của chính mình, không lộ mã học sinh */
-  function boardView_(full, me) {
+  function boardView_(full, me, level) {
     var out = {};
     Object.keys(full).forEach(function (per) {
-      var f = full[per], idx = -1;
+      var f = { students: full[per].students.filter(function (x) { return x.lv === level; }), classes: full[per].classes.filter(function (x) { return x.lv === level; }) }, idx = -1;
       f.students.forEach(function (x, i) { if (me && x.code === me.code) idx = i; });
       out[per] = { students: f.students.slice(0, 10).map(function (x, i) { return { r: i + 1, n: x.n, c: x.c, p: x.p, me: !!(me && x.code === me.code) }; }), classes: f.classes, total: f.students.length, me: idx >= 0 ? { r: idx + 1, p: f.students[idx].p } : null };
     });
     return out;
   }
 
-  function localBoard(D, u) {
+  function localBoard(D, u, level) {
     var now = new Date(), d0 = new Date(now.getFullYear(), now.getMonth(), now.getDate()), dow = (now.getDay() + 6) % 7;
     var week = new Date(d0.getTime() - dow * 86400000).getTime(), month = new Date(now.getFullYear(), now.getMonth(), 1).getTime();
+    var lvMap = {}; (D.classes || []).forEach(function (c) { lvMap[c.name] = lvl_(c.level); });
     var two = function (n) { return ("0" + n).slice(-2); };
-    var full = boardCalc_(D.students, D.results, D.assignments, function (t) { var d = new Date(t); return d.getFullYear() + "-" + two(d.getMonth() + 1) + "-" + two(d.getDate()); }, { week: week, month: month });
-    return boardView_(full, u.role === "student" ? u : null);
+    var full = boardCalc_(D.students, D.results, D.assignments, function (t) { var d = new Date(t); return d.getFullYear() + "-" + two(d.getMonth() + 1) + "-" + two(d.getDate()); }, { week: week, month: month }, lvMap);
+    return boardView_(full, u.role === "student" ? u : null, level);
   }
+  function levelOf(D, u) { var c = (D.classes || []).filter(function (x) { return x.name === u.cls; })[0]; return c ? lvl_(c.level) : 1; }
   function local(action, req) {
     var D = db(), u = who(D, req.code);
-    if (action === "login") return u ? { ok: true, role: u.role, name: u.name, cls: u.cls, code: u.code } : { ok: false, error: "auth" };
+    if (action === "login") return u ? { ok: true, role: u.role, name: u.name, cls: u.cls, code: u.code, level: levelOf(D, u) } : { ok: false, error: "auth" };
     if (!u) return { ok: false, error: "auth" };
     if (action === "submit") {
       if (u.role !== "student") return { ok: false, error: "role" };
       var r = req.rec; D.results.push({ t: new Date().toISOString(), code: u.code, name: u.name, cls: u.cls, lesson: String(r.lesson), game: r.game, gameName: r.gameName, score: r.score, total: r.total, pct: r.pct, secs: r.secs, words: r.words || [], wrong: r.wrong || [], assignmentId: r.assignmentId || "" });
       persist(); return { ok: true };
     }
-    if (action === "board") return { ok: true, board: localBoard(D, u) };
+    if (action === "board") { var lv = u.role === "student" ? levelOf(D, u) : lvl_(req.level); return { ok: true, level: lv, board: localBoard(D, u, lv) }; }
     if (action === "me") {
-      return { ok: true, results: D.results.filter(function (x) { return x.code === u.code; }), assignments: D.assignments.filter(function (a) { return !a.cls || a.cls === "all" || a.cls === u.cls; }) };
+      return { ok: true, level: levelOf(D, u), results: D.results.filter(function (x) { return x.code === u.code; }), assignments: D.assignments.filter(function (a) { return !a.cls || a.cls === "all" || a.cls === u.cls; }) };
     }
     if (u.role !== "teacher") return { ok: false, error: "role" };
     if (action === "admin") return { ok: true, students: D.students, results: D.results, assignments: D.assignments, classes: D.classes || [] };
     if (action === "addClass") {
       var nm = String(req.name || "").trim().slice(0, 40); if (!nm) return { ok: false, error: "name" };
       D.classes = D.classes || []; if (D.classes.some(function (c) { return c.name.toLowerCase() === nm.toLowerCase(); })) return { ok: false, error: "exists" };
-      D.classes.push({ name: nm, note: String(req.note || "").slice(0, 80), url: "" }); persist(); return { ok: true };
+      D.classes.push({ name: nm, note: String(req.note || "").slice(0, 80), url: "", level: lvl_(req.level) }); persist(); return { ok: true };
+    }
+    if (action === "setClassLevel") {
+      var hit = (D.classes || []).filter(function (c) { return c.name === req.name; })[0]; if (!hit) return { ok: false, error: "name" };
+      hit.level = lvl_(req.level); persist(); return { ok: true, classes: D.classes };
     }
     if (action === "deleteClass") {
       if (D.students.some(function (s) { return s.cls === req.name; })) return { ok: false, error: "notEmpty" };

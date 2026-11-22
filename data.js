@@ -1926,3 +1926,9 @@ window.HD_SENT_AUDIO = {
 "我想认识你": "audio/s57.mp3",
 "我想你": "audio/s58.mp3"
 };
+
+/* ---------- HSK 2 và HSK 3 ----------
+   Thêm bài vào đây, cùng định dạng như HD_LESSONS: { id: "2-1", topic: "Chủ đề", words: [[chữ Hán, pinyin, nghĩa, file âm thanh], ...] }
+   HSK 2 dùng id "2-1", "2-2"…, HSK 3 dùng id "3-1", "3-2"…  Đang để trống: web hiện "HSK 2 / HSK 3 sắp có". */
+window.HD_LESSONS2 = [];
+window.HD_LESSONS3 = [];

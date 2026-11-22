@@ -13,7 +13,8 @@
   function two(n) { return (n < 10 ? "0" : "") + n; }
   function fmt(ts) { var d = new Date(ts); return two(d.getDate()) + "/" + two(d.getMonth() + 1) + " " + two(d.getHours()) + ":" + two(d.getMinutes()); }
   function ago(ts) { if (!ts) return "chưa luyện"; var d = Math.floor((Date.now() - ts) / DAY); return d <= 0 ? "hôm nay" : d + " ngày trước"; }
-  function lname(l) { return String(l) === "all" ? "Tổng hợp" : "Bài " + l; }
+  function lname(l) { if (String(l) === "all") return "Tổng hợp"; var m = /^(\d)-(\d+)$/.exec(String(l)); return m ? "HSK " + m[1] + " · Bài " + m[2] : "Bài " + l; }
+  function lkey(l) { var m = /^(\d)-(\d+)$/.exec(String(l)); return m ? +m[1] * 1000 + +m[2] : +l; }
   function secs(s) { s = +s || 0; return s >= 3600 ? Math.floor(s / 3600) + " giờ " + Math.floor(s % 3600 / 60) + " phút" : Math.floor(s / 60) + " phút"; }
   function cls4(p) { return p >= 100 ? "h4" : p >= 80 ? "h3" : p >= 60 ? "h2" : p >= 40 ? "h1" : "h0"; }
   function wordInfo(h) { return H.ALL.filter(function (w) { return w.hanzi === h; })[0] || { hanzi: h, pinyin: "", vi: "" }; }
@@ -100,7 +101,7 @@
     });
     var byL = {};
     rs.forEach(function (r) { (byL[r.lesson] = byL[r.lesson] || []).push(r.pct); });
-    var lessons = Object.keys(byL).sort(function (a, b) { return a === "all" ? 1 : b === "all" ? -1 : a - b; }).map(function (k) { return { label: lname(k), v: avg(byL[k]), text: r0(avg(byL[k])) + "% · " + byL[k].length + " lượt" }; });
+    var lessons = Object.keys(byL).sort(function (a, b) { return a === "all" ? 1 : b === "all" ? -1 : lkey(a) - lkey(b); }).map(function (k) { return { label: lname(k), v: avg(byL[k]), text: r0(avg(byL[k])) + "% · " + byL[k].length + " lượt" }; });
     var ws = wordStats(rs).slice(0, 8);
     var tiles = '<div class="t-tiles">' + tile("Học sinh", st.length, activeN + " em luyện trong 7 ngày") + tile("Lượt làm bài", rs.length, T.range ? T.range + " ngày gần đây" : "Từ trước đến nay") + tile("Điểm trung bình", rs.length ? r0(avg(rs.map(function (r) { return r.pct; }))) + "%" : "–") + tile("Thời gian luyện", secs(rs.reduce(function (a, r) { return a + r.secs; }, 0))) + "</div>";
     var merged = {};
@@ -114,7 +115,7 @@
   function tabLessons() {
     var rs = results(), have = {};
     rs.forEach(function (r) { have[r.lesson] = 1; });
-    var keys = Object.keys(have).sort(function (a, b) { return a === "all" ? 1 : b === "all" ? -1 : a - b; });
+    var keys = Object.keys(have).sort(function (a, b) { return a === "all" ? 1 : b === "all" ? -1 : lkey(a) - lkey(b); });
     if (!keys.length) return panel("Theo bài", '<p class="t-empty">Chưa có kết quả trong khoảng thời gian này.</p>');
     if (!have[T.lesson]) T.lesson = keys[0];
     var chips = '<div class="t-chips">' + keys.map(function (k) { return '<button class="t-chip' + (k === T.lesson ? " on" : "") + '" data-ta="lesson" data-v="' + k + '">' + lname(k) + "</button>"; }).join("") + "</div>";
@@ -162,7 +163,7 @@
     var days = {}; mine.forEach(function (r) { days[new Date(r.ts).toDateString()] = 1; });
     var tiles = '<div class="t-tiles small">' + tile("Lượt làm", mine.length) + tile("Điểm TB", mine.length ? r0(avg(mine.map(function (r) { return r.pct; }))) + "%" : "–") + tile("Số ngày luyện", Object.keys(days).length) + tile("Thời gian", secs(mine.reduce(function (a, r) { return a + r.secs; }, 0))) + "</div>";
     var bl = {}; mine.forEach(function (r) { (bl[r.lesson] = bl[r.lesson] || []).push(r.pct); });
-    var lessons = Object.keys(bl).sort(function (a, b) { return a === "all" ? 1 : b === "all" ? -1 : a - b; }).map(function (k) { return { label: lname(k), v: avg(bl[k]), text: r0(avg(bl[k])) + "% · " + bl[k].length + " lượt" }; });
+    var lessons = Object.keys(bl).sort(function (a, b) { return a === "all" ? 1 : b === "all" ? -1 : lkey(a) - lkey(b); }).map(function (k) { return { label: lname(k), v: avg(bl[k]), text: r0(avg(bl[k])) + "% · " + bl[k].length + " lượt" }; });
     var sk = skillAvg(mine).map(function (x) { return { label: x.name, v: x.avg, text: r0(x.avg) + "% · " + x.n + " lượt" }; });
     var ws = wordStats(mine).slice(0, 8);
     var wsHtml = ws.length ? table(["Từ", "Pinyin", "Nghĩa", "Sai"], ws.map(function (x) { var w = wordInfo(x.h); return '<tr><td class="hz">' + esc(x.h) + "</td><td>" + esc(w.pinyin) + "</td><td>" + esc(w.vi) + "</td><td>" + pill(x.wrong + "/" + x.seen, x.rate >= 50 ? "bad" : "warn") + "</td></tr>"; })) : '<p class="t-empty">Chưa có từ nào sai từ 3 lần trở lên.</p>';
@@ -178,17 +179,24 @@
 
   function targetsOf(a) { return T.data.students.filter(function (s) { return s.active !== false && (!a.cls || a.cls === "all" || a.cls === s.cls); }); }
 
-  function classInfo(name) { return (T.data.classes || []).filter(function (c) { return c.name === name; })[0] || { name: name, note: "", url: "" }; }
+  function classInfo(name) { return (T.data.classes || []).filter(function (c) { return c.name === name; })[0] || { name: name, note: "", url: "", level: 1 }; }
+  function levelOf(name) { var l = Math.round(+classInfo(name).level); return l >= 1 && l <= 3 ? l : 1; }
+  function lvOptions(sel) { return [1, 2, 3].map(function (n) { return '<option value="' + n + '"' + (+sel === n ? " selected" : "") + ">HSK " + n + "</option>"; }).join(""); }
+  function lessonOpts(ls) {
+    var lvs = {}; ls.forEach(function (l) { (lvs[l.level || 1] = lvs[l.level || 1] || []).push(l); });
+    var ks = Object.keys(lvs), one = function (l) { return '<option value="' + l.id + '">Bài ' + (l.num || l.id) + (l.topic ? " · " + esc(l.topic) : "") + "</option>"; };
+    return ks.length > 1 ? ks.map(function (k) { return '<optgroup label="HSK ' + k + '">' + lvs[k].map(one).join("") + "</optgroup>"; }).join("") : ls.map(one).join("");
+  }
   function tabClasses() {
     var cl = classes(), td = today(), week = Date.now() - 7 * DAY, cut30 = Date.now() - 30 * DAY;
     var noClass = T.data.students.filter(function (s) { return s.active !== false && !s.cls; });
-    var form = panel("Tạo lớp mới", '<div class="t-form"><label>Tên lớp<input class="t-input" id="c-name" maxlength="40" placeholder="Ví dụ: Lớp HSK1 tối 2-4-6"></label><label>Ghi chú (không bắt buộc)<input class="t-input" id="c-note" maxlength="80" placeholder="Ví dụ: học 19h30"></label><div class="full"><button class="btn" data-ta="addClass">Tạo lớp</button> <span class="t-sub" id="c-msg"></span></div></div>');
+    var form = panel("Tạo lớp mới", '<div class="t-form"><label>Tên lớp<input class="t-input" id="c-name" maxlength="40" placeholder="Ví dụ: Lớp HSK1 tối 2-4-6"></label><label>Trình độ<select class="t-input" id="c-level">' + lvOptions(1) + '</select></label><label>Ghi chú (không bắt buộc)<input class="t-input" id="c-note" maxlength="80" placeholder="Ví dụ: học 19h30"></label><div class="full"><button class="btn" data-ta="addClass">Tạo lớp</button> <span class="t-sub" id="c-msg"></span></div></div>');
     var cards = cl.length ? '<div class="cgrid">' + cl.map(function (c) {
       var st = T.data.students.filter(function (s) { return s.cls === c && s.active !== false; }), codes = {}; st.forEach(function (s) { codes[s.code] = 1; });
       var rs = T.data.results.filter(function (r) { return codes[r.code] && r.ts >= cut30; }), idle = st.filter(function (s) { return !(lastOf(s.code) >= week); }).length;
       var as = T.data.assignments.filter(function (a) { return a.cls === c && (!a.due || a.due >= td); }), info = classInfo(c);
       var link = info.url ? '<a class="btn ghost small" href="' + esc(info.url) + '" target="_blank" rel="noopener">Mở file lớp</a><button class="btn ghost small" data-ta="exportClass" data-v="' + esc(c) + '">Cập nhật file</button>' : '<button class="btn ghost small" data-ta="exportClass" data-v="' + esc(c) + '">Tạo file quản lý riêng</button>';
-      return '<section class="card t-card cc"><div class="cc-h"><h3 class="t-h" style="margin:0">' + esc(c) + "</h3>" + (info.note ? '<span class="t-sub">' + esc(info.note) + "</span>" : "") + '</div><div class="cc-stats"><div><b>' + st.length + "</b><span>học sinh</span></div><div><b>" + (rs.length ? r0(avg(rs.map(function (r) { return r.pct; }))) + "%" : "–") + "</b><span>điểm TB 30 ngày</span></div><div><b>" + as.length + "</b><span>bài tập đang mở</span></div><div><b>" + idle + "</b><span>chưa luyện 7 ngày</span></div></div>" +
+      return '<section class="card t-card cc"><div class="cc-h"><h3 class="t-h" style="margin:0">' + esc(c) + '</h3><select class="t-input t-lv" data-ta="classLevel" data-v="' + esc(c) + '" aria-label="Trình độ lớp">' + lvOptions(levelOf(c)) + "</select>" + (info.note ? '<span class="t-sub">' + esc(info.note) + "</span>" : "") + '</div><div class="cc-stats"><div><b>' + st.length + "</b><span>học sinh</span></div><div><b>" + (rs.length ? r0(avg(rs.map(function (r) { return r.pct; }))) + "%" : "–") + "</b><span>điểm TB 30 ngày</span></div><div><b>" + as.length + "</b><span>bài tập đang mở</span></div><div><b>" + idle + "</b><span>chưa luyện 7 ngày</span></div></div>" +
         '<div class="cc-btns"><button class="btn small" data-ta="classView" data-v="' + esc(c) + '">Xem kết quả</button><button class="btn ghost small" data-ta="classAssign" data-v="' + esc(c) + '">Bài tập</button><button class="btn ghost small" data-ta="classAdd" data-v="' + esc(c) + '">Thêm học sinh</button>' + link + (st.length === 0 ? '<button class="btn ghost small" data-ta="delClass" data-v="' + esc(c) + '">' + (T.confirmCls === c ? "Bấm lần nữa để xóa" : "Xóa lớp") + "</button>" : "") + "</div></section>";
     }).join("") + "</div>" : '<p class="t-empty">Chưa có lớp nào. Tạo lớp đầu tiên ở trên.</p>';
     var warn = noClass.length ? '<div class="demo-banner">Có <b>' + noClass.length + " học sinh chưa có lớp</b> (" + noClass.slice(0, 4).map(function (s) { return esc(s.name); }).join(", ") + (noClass.length > 4 ? "…" : "") + '). Gán lớp ở tab <b>Tài khoản</b>.</div>' : "";
@@ -230,9 +238,9 @@
   }
   function tabAssign() {
     var ls = H.LESSONS.filter(function (l) { return l.words.length; }), cl = classes(), td = today();
-    var rowsCls = cl.length ? cl.map(function (c) { return '<label class="ac-row"><input type="checkbox" class="ac-chk" value="' + esc(c) + '"' + (T.aCls === c ? " checked" : "") + "><span>" + esc(c) + '</span><input class="t-input ac-due" type="date" data-for="' + esc(c) + '" value="' + plusDays(3) + '"></label>'; }).join("") : '<label class="ac-row"><input type="checkbox" class="ac-chk" value="all" checked><span>Tất cả học sinh</span><input class="t-input ac-due" type="date" data-for="all" value="' + plusDays(3) + '"></label>';
+    var rowsCls = cl.length ? cl.map(function (c) { return '<label class="ac-row"><input type="checkbox" class="ac-chk" value="' + esc(c) + '"' + (T.aCls === c ? " checked" : "") + "><span>" + esc(c) + ' <small class="t-sub">HSK ' + levelOf(c) + '</small></span><input class="t-input ac-due" type="date" data-for="' + esc(c) + '" value="' + plusDays(3) + '"></label>'; }).join("") : '<label class="ac-row"><input type="checkbox" class="ac-chk" value="all" checked><span>Tất cả học sinh</span><input class="t-input ac-due" type="date" data-for="all" value="' + plusDays(3) + '"></label>';
     var form = '<div class="t-form"><label>Tiêu đề<input class="t-input" id="a-title" placeholder="Ví dụ: Ôn nghe Bài 1" maxlength="80"></label>' +
-      '<label>Bài<select class="t-input" id="a-lesson">' + ls.map(function (l) { return '<option value="' + l.id + '">Bài ' + l.id + (l.topic ? " · " + esc(l.topic) : "") + "</option>"; }).join("") + (ls.length > 1 ? '<option value="all">Tổng hợp tất cả bài</option>' : "") + "</select></label>" +
+      '<label>Bài<select class="t-input" id="a-lesson">' + lessonOpts(ls) + (ls.length > 1 ? '<option value="all">Tổng hợp tất cả bài</option>' : "") + "</select></label>" +
       '<label>Game<select class="t-input" id="a-game"><option value="">Học sinh tự chọn</option>' + H.GAMES.map(function (g) { return '<option value="' + g.id + '">' + esc(g.name) + "</option>"; }).join("") + ((H.SHEETS || []).length ? '<optgroup label="Bài tập soạn sẵn">' + H.SHEETS.map(function (s) { return '<option value="' + s.id + '">' + esc(s.title) + "</option>"; }).join("") + "</optgroup>" : "") + "</select></label>" +
       '<label class="full">Ghi chú cho học sinh (không bắt buộc)<input class="t-input" id="a-note" maxlength="140" placeholder="Ví dụ: làm ít nhất 2 lượt, đạt trên 80%"></label>' +
       '<div class="full"><div class="eyebrow" style="margin-bottom:6px">Giao cho lớp nào, hạn nộp ngày nào' + (cl.length > 1 ? ' <button class="linkb" data-ta="aAll" style="margin-left:8px">Chọn tất cả lớp</button>' : "") + '</div><div class="ac-list">' + rowsCls + '</div><p class="t-sub">Tick nhiều lớp để giao cùng lúc. Mỗi lớp có thể có hạn nộp riêng.</p></div>' +
@@ -320,9 +328,9 @@
     if (a === "addClass") {
       var nm = document.getElementById("c-name").value.trim(), cm = document.getElementById("c-msg"); if (!nm) { cm.textContent = "Hãy nhập tên lớp."; return; }
       b.disabled = true; cm.textContent = "Đang tạo…";
-      H.api.call("addClass", { code: H.session.code, name: nm, note: document.getElementById("c-note").value.trim() }).then(function (r) {
+      H.api.call("addClass", { code: H.session.code, name: nm, note: document.getElementById("c-note").value.trim(), level: +document.getElementById("c-level").value }).then(function (r) {
         if (!r || !r.ok) { b.disabled = false; cm.textContent = r && r.error === "exists" ? "Tên lớp này đã có." : "Chưa tạo được, thử lại nhé."; return; }
-        T.data.classes.push({ name: nm, note: document.getElementById("c-note").value.trim(), url: "" }); H.toast("Đã tạo " + nm); paint();
+        T.data.classes.push({ name: nm, note: document.getElementById("c-note").value.trim(), url: "", level: +document.getElementById("c-level").value }); H.toast("Đã tạo " + nm); paint();
       });
       return;
     }
@@ -389,6 +397,14 @@
   }
   function onChange(e) {
     if (H.view() !== "teacher") return;
+    if (e.target.dataset && e.target.dataset.ta === "classLevel") {
+      var ls = e.target, cn = ls.dataset.v, lv = +ls.value;
+      H.api.call("setClassLevel", { code: H.session.code, name: cn, level: lv }).then(function (r) {
+        if (r && r.ok) { var ci = classInfo(cn); if (!(T.data.classes || []).some(function (c) { return c.name === cn; })) T.data.classes.push(ci); ci.level = lv; H.toast("Lớp " + cn + " chuyển sang HSK " + lv); paint(); }
+        else { H.toast("Chưa đổi được trình độ, thử lại nhé."); paint(); }
+      });
+      return;
+    }
     if (e.target.dataset && e.target.dataset.ta === "move") {
       var sel = e.target, s = T.data.students.filter(function (x) { return x.code === sel.dataset.code; })[0]; if (!s) return;
       H.api.call("moveStudent", { code: H.session.code, studentCode: s.code, cls: sel.value }).then(function (r) { if (r && r.ok) { s.cls = sel.value; H.toast("Đã chuyển " + s.name + (sel.value ? " sang " + sel.value : " ra khỏi lớp")); paint(); } else { sel.value = s.cls || ""; H.toast("Chưa chuyển được, thử lại nhé."); } });

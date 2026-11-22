@@ -114,3 +114,12 @@ Bảng giáo viên > Bài tập > mở một bài đã giao (bài tập soạn s
 ### Âm thanh câu luyện nghe (đã gắn)
 - Đã gắn file ghi âm cho **58 câu của Bài 1, 2, 3** (`audio/s1.mp3` … `s58.mp3`, bảng tra trong `HD_SENT_AUDIO` ở cuối data.js). Bài 4 chưa có file nên vẫn dùng giọng thiết bị.
 - Thêm bài mới: gửi file mp3 đọc các câu theo kịch bản, mỗi câu cách nhau ~0.5 giây im lặng.
+
+## Trình độ HSK 1 / 2 / 3
+
+- Mục **Từ vựng** có 3 tab **HSK 1, HSK 2, HSK 3**. HSK 2 và HSK 3 hiện "sắp có" cho đến khi có bài.
+- Khi **tạo lớp**, chọn trình độ (HSK 1/2/3). Lớp đã có đổi trình độ ngay trên thẻ lớp (tab **Lớp**). Lớp cũ mặc định là HSK 1.
+- Học sinh mở web sẽ vào đúng trình độ của lớp mình. **Bảng xếp hạng chia riêng từng trình độ**: lớp HSK 2 chỉ xếp hạng với các lớp HSK 2, bảng chung cũng chỉ gồm học sinh HSK 2.
+- Bài tập giao theo lớp nên tự tách theo trình độ. Khi giao bài, danh sách bài được nhóm theo HSK.
+- Thêm bài HSK 2/3: đưa nội dung vào `HD_LESSONS2` / `HD_LESSONS3` ở cuối data.js (id "2-1", "3-1"…), hoặc gửi mình danh sách từ và file âm thanh.
+- **Cần dán Code.gs mới và Deploy → Phiên bản mới** (có thêm cột "Trình độ" trong tab Lop, tự thêm khi tạo/đổi trình độ lớp).
