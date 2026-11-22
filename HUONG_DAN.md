@@ -67,6 +67,10 @@ Bài tập như "Bài tập HSK1 – Bài 2" nằm trong `data.js` (mục `HD_SH
 
 Mỗi bài HSK 3 có một phiếu theo sách bài tập, chỉ có đề tiếng Trung: "HSK3 – Bài N" (tệp `tests3.js`). Phiếu không tự hiện cho học sinh. Giáo viên vào Bài tập > ô "Game" > nhóm "Bài tập soạn sẵn" > chọn phiếu, lớp, hạn nộp > Giao. Học sinh chỉ thấy phiếu khi đã được giao. Phần Nghe có một file ghi âm cho cả phần; phần Viết (câu 28–30) chấm tạm: câu phải chứa từ cho sẵn và có ít nhất 6 chữ Hán.
 
+## Bài khóa & Ngữ pháp (HSK3 Bài 1)
+
+Trong trang từ vựng của bài có nút **Bài khóa & Ngữ pháp**. Trang này gồm: các bài khóa (có ghi âm, ảnh, pinyin, bản dịch bật/tắt được, bấm loa để nghe từng câu, chữ gạch chân là từ mới), giải thích từ mới, câu hỏi đọc hiểu có gợi ý trả lời; tiếp theo là các điểm ngữ pháp (công thức, lưu ý, ví dụ, bài luyện tự chấm); cuối cùng là bài chọn từ điền vào chỗ trống. Nội dung nằm trong `textbook.js` (`HD_TB`), ghi âm ở `audio/tb/`, ảnh ở `img/tb/`. Font chữ Hán: LXGW WenKai (thư mục `vendor/wenkai`).
+
 ## Tra từ và lời chúc hằng ngày
 
 - **Tra từ** (thanh điều hướng): học sinh gõ chữ Hán, pinyin (có hoặc không dấu) hoặc nghĩa tiếng Việt. Kết quả có nghĩa, ví dụ, ghi chú ngữ pháp, nghe đọc, xem thứ tự nét và luyện viết. Ví dụ và ngữ pháp nằm ở `HD_EXTRA` trong `data.js`, khóa là chữ Hán của từ. Khi thêm từ mới ở bài sau, thêm cả mục tương ứng vào `HD_EXTRA` để từ đó có ví dụ.

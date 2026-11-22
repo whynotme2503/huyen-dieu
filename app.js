@@ -36,6 +36,7 @@
   function toast(msg) { var t = $("#toast"); t.textContent = msg; t.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.hidden = true; }, 2600); }
 
   var ICONS = {
+    book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/><path d="M9 8h7M9 12h5"/></svg>',
     speaker: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>',
     play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>',
     back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>',
@@ -175,6 +176,8 @@
     if (h === "tra-tu" && window.HD_SEARCH) { S.view = "search"; curAssign = null; setRight(""); return window.HD_SEARCH.render(); }
     if (h === "luyen-nghe" && window.HD_LISTEN && SESSION.role) { S = { view: "listen", lesson: lessonById("all") }; curAssign = null; setRight(""); return window.HD_LISTEN.render(); }
     if (h === "tu-vung") return renderVocab();
+    var mh = /^hoc-([\d-]+)$/.exec(h);
+    if (mh && window.HD_TBV && window.HD_TBV.has(mh[1])) { S = { view: "tb", lesson: lessonById(mh[1]), game: null }; curAssign = null; setRight(""); window.HD_TBV.render(mh[1]); window.scrollTo(0, 0); return; }
     if (h === "bai-tap") return renderAssignments();
     if (!/^(bai-[\d-]+|tong-hop)$/.test(h)) curAssign = null;
     var m = /^bai-([\d-]+)$/.exec(h);
@@ -395,7 +398,7 @@
     }).join("");
     app.innerHTML = '<button class="back" data-go="tu-vung">' + ICONS.back + 'Từ vựng</button>' +
       '<div class="lesson-title"><h1 class="h1">' + (L.id === "all" ? "Ôn tổng hợp" : lname(L.id).replace(/^HSK 1 · /, "") + (L.topic ? " · " + esc(L.topic) : "")) + '</h1><p class="sub">Bắt đầu với Thẻ ghi nhớ để xem từ nào đã nhớ, từ nào chưa, rồi chơi các game khác.</p></div>' +
-      '<div class="lesson-wrap"><section class="card"><div class="eyebrow">Từ vựng · nhấn loa để nghe</div><div class="wlist">' + rows + '</div></section>' +
+      (window.HD_TBV && window.HD_TBV.has(L.id) ? '<button class="tb-entry" data-go="hoc-' + L.id + '"><span class="gico">' + ICONS.book + '</span><span><b>Bài khóa &amp; Ngữ pháp</b><small>' + window.HD_TB[L.id].texts.length + ' bài khóa có ghi âm, giải thích từ mới, ' + window.HD_TB[L.id].grammar.length + ' điểm ngữ pháp và bài luyện tập</small></span><span class="go">Học ngay →</span></button>' : "") + '<div class="lesson-wrap"><section class="card"><div class="eyebrow">Từ vựng · nhấn loa để nghe</div><div class="wlist">' + rows + '</div></section>' +
       '<section><div class="eyebrow section-label">Trò chơi</div><div class="games">' + cards + "</div></section></div>";
   }
 
@@ -796,6 +799,7 @@
   if (window.HD_WRITE) window.HD_WRITE.init(window.HD);
   if (window.HD_SHEET) window.HD_SHEET.init(window.HD);
   if (window.HD_SEARCH) window.HD_SEARCH.init(window.HD);
+  if (window.HD_TBV) window.HD_TBV.init(window.HD);
   if (window.HD_LISTEN) window.HD_LISTEN.init(window.HD);
 
   /* ---------- khởi động ---------- */
