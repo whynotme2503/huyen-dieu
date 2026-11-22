@@ -4,7 +4,7 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
  {
   "id": "sheet-h3-1",
   "lesson": "3-1",
-  "title": "HSK 3 · Bài 1 · Nghe – Đọc – Viết (模拟测练)",
+  "title": "HSK3 – Bài 1",
   "audio": "audio/h3/b1.mp3",
   "parts": [
    {
@@ -377,7 +377,7 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
  {
   "id": "sheet-h3-2",
   "lesson": "3-2",
-  "title": "HSK 3 · Bài 2 · Nghe – Đọc – Viết (模拟测练)",
+  "title": "HSK3 – Bài 2",
   "audio": "audio/h3/b2.mp3",
   "parts": [
    {
@@ -750,7 +750,7 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
  {
   "id": "sheet-h3-3",
   "lesson": "3-3",
-  "title": "HSK 3 · Bài 3 · Nghe – Đọc – Viết (模拟测练)",
+  "title": "HSK3 – Bài 3",
   "audio": "audio/h3/b3.mp3",
   "parts": [
    {
@@ -1123,7 +1123,7 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
  {
   "id": "sheet-h3-4",
   "lesson": "3-4",
-  "title": "HSK 3 · Bài 4 · Nghe – Đọc – Viết (模拟测练)",
+  "title": "HSK3 – Bài 4",
   "audio": "audio/h3/b4.mp3",
   "parts": [
    {
@@ -1496,7 +1496,7 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
  {
   "id": "sheet-h3-5",
   "lesson": "3-5",
-  "title": "HSK 3 · Bài 5 · Nghe – Đọc – Viết (模拟测练)",
+  "title": "HSK3 – Bài 5",
   "audio": "audio/h3/b5.mp3",
   "parts": [
    {
@@ -1869,7 +1869,7 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
  {
   "id": "sheet-h3-6",
   "lesson": "3-6",
-  "title": "HSK 3 · Bài 6 · Nghe – Đọc – Viết (模拟测练)",
+  "title": "HSK3 – Bài 6",
   "audio": "audio/h3/b6.mp3",
   "parts": [
    {
@@ -2242,7 +2242,7 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
  {
   "id": "sheet-h3-7",
   "lesson": "3-7",
-  "title": "HSK 3 · Bài 7 · Nghe – Đọc – Viết (模拟测练)",
+  "title": "HSK3 – Bài 7",
   "audio": "audio/h3/b7.mp3",
   "parts": [
    {
@@ -2615,7 +2615,7 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
  {
   "id": "sheet-h3-8",
   "lesson": "3-8",
-  "title": "HSK 3 · Bài 8 · Nghe – Đọc – Viết (模拟测练)",
+  "title": "HSK3 – Bài 8",
   "audio": "audio/h3/b8.mp3",
   "parts": [
    {
@@ -2988,7 +2988,7 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
  {
   "id": "sheet-h3-9",
   "lesson": "3-9",
-  "title": "HSK 3 · Bài 9 · Nghe – Đọc – Viết (模拟测练)",
+  "title": "HSK3 – Bài 9",
   "audio": "audio/h3/b9.mp3",
   "parts": [
    {
@@ -3361,7 +3361,7 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
  {
   "id": "sheet-h3-10",
   "lesson": "3-10",
-  "title": "HSK 3 · Bài 10 · Nghe – Đọc – Viết (模拟测练)",
+  "title": "HSK3 – Bài 10",
   "audio": "audio/h3/b10.mp3",
   "parts": [
    {
@@ -3734,7 +3734,7 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
  {
   "id": "sheet-h3-11",
   "lesson": "3-11",
-  "title": "HSK 3 · Bài 11 · Nghe – Đọc – Viết (模拟测练)",
+  "title": "HSK3 – Bài 11",
   "audio": "audio/h3/b11.mp3",
   "parts": [
    {
@@ -4108,7 +4108,7 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
  {
   "id": "sheet-h3-12",
   "lesson": "3-12",
-  "title": "HSK 3 · Bài 12 · Nghe – Đọc – Viết (模拟测练)",
+  "title": "HSK3 – Bài 12",
   "audio": "audio/h3/b12.mp3",
   "parts": [
    {
@@ -4481,7 +4481,7 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
  {
   "id": "sheet-h3-13",
   "lesson": "3-13",
-  "title": "HSK 3 · Bài 13 · Nghe – Đọc – Viết (模拟测练)",
+  "title": "HSK3 – Bài 13",
   "audio": "audio/h3/b13.mp3",
   "parts": [
    {
@@ -4854,7 +4854,7 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
  {
   "id": "sheet-h3-14",
   "lesson": "3-14",
-  "title": "HSK 3 · Bài 14 · Nghe – Đọc – Viết (模拟测练)",
+  "title": "HSK3 – Bài 14",
   "audio": "audio/h3/b14.mp3",
   "parts": [
    {
@@ -5227,7 +5227,7 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
  {
   "id": "sheet-h3-15",
   "lesson": "3-15",
-  "title": "HSK 3 · Bài 15 · Nghe – Đọc – Viết (模拟测练)",
+  "title": "HSK3 – Bài 15",
   "audio": "audio/h3/b15.mp3",
   "parts": [
    {
@@ -5600,7 +5600,7 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
  {
   "id": "sheet-h3-16",
   "lesson": "3-16",
-  "title": "HSK 3 · Bài 16 · Nghe – Đọc – Viết (模拟测练)",
+  "title": "HSK3 – Bài 16",
   "audio": "audio/h3/b16.mp3",
   "parts": [
    {
@@ -5973,7 +5973,7 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
  {
   "id": "sheet-h3-17",
   "lesson": "3-17",
-  "title": "HSK 3 · Bài 17 · Nghe – Đọc – Viết (模拟测练)",
+  "title": "HSK3 – Bài 17",
   "audio": "audio/h3/b17.mp3",
   "parts": [
    {
@@ -6346,7 +6346,7 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
  {
   "id": "sheet-h3-18",
   "lesson": "3-18",
-  "title": "HSK 3 · Bài 18 · Nghe – Đọc – Viết (模拟测练)",
+  "title": "HSK3 – Bài 18",
   "audio": "audio/h3/b18.mp3",
   "parts": [
    {

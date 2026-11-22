@@ -65,7 +65,7 @@ Bài tập như "Bài tập HSK1 – Bài 2" nằm trong `data.js` (mục `HD_SH
 
 ## Bài tập HSK 3 (Nghe – Đọc – Viết)
 
-Mỗi bài HSK 3 có một phiếu theo sách bài tập, chỉ có đề tiếng Trung: "HSK 3 · Bài N · Nghe – Đọc – Viết" (tệp `tests3.js`). Phiếu không tự hiện cho học sinh. Giáo viên vào Bài tập > ô "Game" > nhóm "Bài tập soạn sẵn" > chọn phiếu, lớp, hạn nộp > Giao. Học sinh chỉ thấy phiếu khi đã được giao. Phần Nghe có một file ghi âm cho cả phần; phần Viết (câu 28–30) chấm tạm: câu phải chứa từ cho sẵn và có ít nhất 6 chữ Hán.
+Mỗi bài HSK 3 có một phiếu theo sách bài tập, chỉ có đề tiếng Trung: "HSK3 – Bài N" (tệp `tests3.js`). Phiếu không tự hiện cho học sinh. Giáo viên vào Bài tập > ô "Game" > nhóm "Bài tập soạn sẵn" > chọn phiếu, lớp, hạn nộp > Giao. Học sinh chỉ thấy phiếu khi đã được giao. Phần Nghe có một file ghi âm cho cả phần; phần Viết (câu 28–30) chấm tạm: câu phải chứa từ cho sẵn và có ít nhất 6 chữ Hán.
 
 ## Tra từ và lời chúc hằng ngày
 

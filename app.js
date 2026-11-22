@@ -12,7 +12,7 @@
     return (raw || []).map(function (l) {
       var num = level === 1 ? l.id : String(l.id).split("-").pop();
       return {
-        id: l.id, level: level, num: num, topic: l.topic || "",
+        id: l.id, level: level, num: num, zh: l.zh || "", topic: l.topic || "",
         words: (l.words || []).map(function (w) {
           return { hanzi: w[0], pinyin: w[1], vi: w[2] || "", audio: w[3] || "", pos: w[4] || "", lesson: l.id };
         })

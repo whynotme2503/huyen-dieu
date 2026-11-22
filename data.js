@@ -148,7 +148,7 @@ window.HD_LESSONS = [
    ============================================================ */
 window.HD_SHEETS = [
   {
-    id: "sheet-b2", lesson: 2, title: "Bài tập HSK1 – Bài 2",
+    id: "sheet-b2", lesson: 2, title: "HSK1 – Bài 2",
     parts: [
       { title: "Phần 1. Chọn pinyin đúng", type: "choice", items: [
         { q: "老师", opts: ["lǎoshī", "láoshì", "lǎoshí"], a: 0 },
@@ -185,7 +185,7 @@ window.HD_SHEETS = [
     ]
   },
   {
-    id: "sheet-b3", lesson: 3, title: "Bài tập HSK1 – Bài 3",
+    id: "sheet-b3", lesson: 3, title: "HSK1 – Bài 3",
     parts: [
       { title: "Phần 1. Chọn pinyin đúng", type: "choice", items: [
         { q: "越南语", opts: ["Yuènányǔ", "Yuénányǔ", "Yuènànyǔ"], a: 0 },
@@ -1933,7 +1933,7 @@ window.HD_SENT_AUDIO = {
 window.HD_LESSONS2 = [];
 /* HSK 3: Giáo trình New HSK 3 (18 bài), phần "Từ mới". Phần tử thứ 5 = từ loại (dt., đgt., tt....) */
 window.HD_LESSONS3 = [
-  { id: "3-1", topic: "Anh chị sẽ đến sân bay đón các em", words: [
+  { id: "3-1", zh: "我们去机场接你们", topic: "Anh chị sẽ đến sân bay đón các em", words: [
     ["以为", "yǐwéi", "cho rằng, nghĩ rằng", "", "đgt."],
     ["像", "xiàng", "giống, giống như", "", "đgt."],
     ["长", "zhǎng", "phát triển, lớn lên", "", "đgt."],
@@ -1962,7 +1962,7 @@ window.HD_LESSONS3 = [
     ["帮助", "bāngzhù", "giúp, giúp đỡ", "", "đgt."],
     ["照片", "zhàopiàn", "ảnh (chụp)", "", "dt."]
   ] },
-  { id: "3-2", topic: "Các em muốn ăn món gì thì gọi món đó", words: [
+  { id: "3-2", zh: "你们想吃什么就点什么", topic: "Các em muốn ăn món gì thì gọi món đó", words: [
     ["菜单", "càidān", "thực đơn", "", "dt."],
     ["又", "yòu", "lại, vừa", "", "phó."],
     ["饿", "è", "đói", "", "tt."],
@@ -1992,7 +1992,7 @@ window.HD_LESSONS3 = [
     ["方便面", "fāngbiànmiàn", "mì ăn liền", "", "dt."],
     ["简单", "jiǎndān", "đơn giản", "", "tt."]
   ] },
-  { id: "3-3", topic: "Khu dân cư này khá tốt", words: [
+  { id: "3-3", zh: "这个小区挺好的", topic: "Khu dân cư này khá tốt", words: [
     ["初中", "chūzhōng", "trung học cơ sở, cấp hai", "", "dt."],
     ["咱们", "zánmen", "chúng ta", "", "dt."],
     ["换", "huàn", "thay, thay đổi, đổi", "", "đgt."],
@@ -2020,7 +2020,7 @@ window.HD_LESSONS3 = [
     ["搬", "bān", "chuyển, mang, bê", "", "đgt."],
     ["需要", "xūyào", "cần, cần thiết, nhu cầu", "", "đgt./dt."]
   ] },
-  { id: "3-4", topic: "Khách sạn này không giống như những khách sạn khác", words: [
+  { id: "3-4", zh: "这家宾馆跟别的都不一样", topic: "Khách sạn này không giống như những khách sạn khác", words: [
     ["假期", "jiàqī", "kỳ nghỉ", "", "dt."],
     ["海", "hǎi", "biển", "", "dt."],
     ["草原", "cǎoyuán", "thảo nguyên", "", "dt."],
@@ -2049,7 +2049,7 @@ window.HD_LESSONS3 = [
     ["干净", "gānjìng", "sạch, sạch sẽ", "", "tt."],
     ["满意", "mǎnyì", "hài lòng", "", "đgt."]
   ] },
-  { id: "3-5", topic: "Những bức ảnh như thế này mới đẹp", words: [
+  { id: "3-5", zh: "这样的照片才好看", topic: "Những bức ảnh như thế này mới đẹp", words: [
     ["总是", "zǒngshì", "luôn luôn", "", "phó."],
     ["终于", "zhōngyú", "cuối cùng", "", "phó."],
     ["爬", "pá", "leo, leo trèo", "", "đgt."],
@@ -2078,7 +2078,7 @@ window.HD_LESSONS3 = [
     ["会", "huì", "buổi gặp mặt, bữa tiệc", "", "dt."],
     ["结束", "jiéshù", "kết thúc", "", "đgt."]
   ] },
-  { id: "3-6", topic: "Trên tàu cao tốc vẫn có thể đặt đồ ăn giao tận nơi", words: [
+  { id: "3-6", zh: "高铁上还可以点外卖", topic: "Trên tàu cao tốc vẫn có thể đặt đồ ăn giao tận nơi", words: [
     ["该", "gāi", "nên", "", "đtnn."],
     ["打算", "dǎsuàn", "dự định, kế hoạch", "", "đgt./dt."],
     ["高铁", "gāotiě", "tàu cao tốc", "", "dt."],
@@ -2106,7 +2106,7 @@ window.HD_LESSONS3 = [
     ["选择", "xuǎnzé", "chọn, lựa chọn", "", "đgt."],
     ["必须", "bìxū", "phải, nhất định phải", "", "phó."]
   ] },
-  { id: "3-7", topic: "Chiếc váy đó đẹp hơn quần soóc", words: [
+  { id: "3-7", zh: "那条裙子比短裤更好看", topic: "Chiếc váy đó đẹp hơn quần soóc", words: [
     ["辆", "liàng", "chiếc (dùng cho xe cộ)", "", "lượng."],
     ["自行车", "zìxíngchē", "xe đạp", "", "dt."],
     ["旧", "jiù", "cũ", "", "tt."],
@@ -2135,7 +2135,7 @@ window.HD_LESSONS3 = [
     ["声", "shēng", "tiếng (dùng cho âm thanh), âm thanh", "", "lượng./dt."],
     ["开机", "kāijī", "mở máy, bật máy", "", "đgt."]
   ] },
-  { id: "3-8", topic: "Hôm nay tôi xuất viện rồi", words: [
+  { id: "3-8", zh: "今天我出院了", topic: "Hôm nay tôi xuất viện rồi", words: [
     ["最近", "zuìjìn", "gần đây", "", "dt."],
     ["常", "cháng", "thường, thường xuyên", "", "phó."],
     ["体育馆", "tǐyùguǎn", "nhà thi đấu", "", "dt."],
@@ -2165,7 +2165,7 @@ window.HD_LESSONS3 = [
     ["其他", "qítā", "khác", "", "dt."],
     ["心里", "xīnlǐ", "trong lòng", "", "dt."]
   ] },
-  { id: "3-9", topic: "Chơi không tốt cũng không sao", words: [
+  { id: "3-9", zh: "打不好没关系", topic: "Chơi không tốt cũng không sao", words: [
     ["校园", "xiàoyuán", "khuôn viên trường", "", "dt."],
     ["卡", "kǎ", "thẻ", "", "dt."],
     ["球场", "qiúchǎng", "sân bóng", "", "dt."],
@@ -2193,7 +2193,7 @@ window.HD_LESSONS3 = [
     ["得到", "dédào", "đạt được, nhận được", "", "đgt."],
     ["成绩", "chéngjì", "thành tích, kết quả", "", "dt."]
   ] },
-  { id: "3-10", topic: "Ngày mai em trả lại sách cho cô nhé", words: [
+  { id: "3-10", zh: "你明天再把书还给我", topic: "Ngày mai em trả lại sách cho cô nhé", words: [
     ["数学", "shùxué", "môn Toán, toán học", "", "dt."],
     ["认真", "rènzhēn", "chăm chỉ, nghiêm túc", "", "tt."],
     ["笔记", "bǐjì", "ghi chép", "", "dt."],
@@ -2223,7 +2223,7 @@ window.HD_LESSONS3 = [
     ["一般", "yìbān", "bình thường, phổ biến", "", "tt."],
     ["努力", "nǔlì", "chăm chỉ, nỗ lực", "", "tt./đgt."]
   ] },
-  { id: "3-11", topic: "Xem ra em không thể giải quyết vấn đề này", words: [
+  { id: "3-11", zh: "看来我没办法解决这个问题", topic: "Xem ra em không thể giải quyết vấn đề này", words: [
     ["会议", "huìyì", "cuộc họp, hội nghị", "", "dt."],
     ["经理", "jīnglǐ", "giám đốc", "", "dt."],
     ["开会", "kāihuì", "họp", "", "đgt."],
@@ -2252,7 +2252,7 @@ window.HD_LESSONS3 = [
     ["为", "wèi", "vì", "", "giới."],
     ["或", "huò", "hoặc, hoặc là", "", "liên."]
   ] },
-  { id: "3-12", topic: "Thời tiết thay đổi rất nhanh vào mùa này", words: [
+  { id: "3-12", zh: "这个季节天气变化很快", topic: "Thời tiết thay đổi rất nhanh vào mùa này", words: [
     ["街", "jiē", "phố, đường phố", "", "dt."],
     ["开花", "kāihuā", "nở hoa, trổ hoa", "", "đgt."],
     ["公园", "gōngyuán", "công viên", "", "dt."],
@@ -2281,7 +2281,7 @@ window.HD_LESSONS3 = [
     ["叶子", "yèzi", "lá", "", "dt."],
     ["变成", "biànchéng", "trở thành, biến thành", "", "đgt."]
   ] },
-  { id: "3-13", topic: "Hàng xóm mới của tôi đến từ Vương quốc Anh", words: [
+  { id: "3-13", zh: "我的新邻居来自英国", topic: "Hàng xóm mới của tôi đến từ Vương quốc Anh", words: [
     ["请客", "qǐngkè", "đãi khách, mời khách", "", "đgt."],
     ["南方", "nánfāng", "miền Nam", "", "dt."],
     ["北方", "běifāng", "miền Bắc", "", "dt."],
@@ -2310,7 +2310,7 @@ window.HD_LESSONS3 = [
     ["东方", "dōngfāng", "phương Đông", "", "dt."],
     ["文化", "wénhuà", "văn hoá", "", "dt."]
   ] },
-  { id: "3-14", topic: "Quyển sách này đã bị người khác mượn rồi", words: [
+  { id: "3-14", zh: "这本书被别人借走了", topic: "Quyển sách này đã bị người khác mượn rồi", words: [
     ["词典", "cídiǎn", "từ điển", "", "dt."],
     ["最好", "zuìhǎo", "tốt nhất", "", "phó."],
     ["节", "jié", "tiết, giờ (học)", "", "lượng."],
@@ -2339,7 +2339,7 @@ window.HD_LESSONS3 = [
     ["网站", "wǎngzhàn", "trang web", "", "dt."],
     ["视频", "shìpín", "đoạn phim, video", "", "dt."]
   ] },
-  { id: "3-15", topic: "Em cũng là một nửa người Nam Kinh", words: [
+  { id: "3-15", zh: "我是半个南京人", topic: "Em cũng là một nửa người Nam Kinh", words: [
     ["蓝", "lán", "màu xanh lam, xanh dương", "", "tt."],
     ["段", "duàn", "đoạn, quãng (thời gian, không gian)", "", "lượng."],
     ["附近", "fùjìn", "gần đó, lân cận", "", "dt."],
@@ -2365,7 +2365,7 @@ window.HD_LESSONS3 = [
     ["草地", "cǎodì", "thảm cỏ, đồng cỏ", "", "dt."],
     ["遇见", "yùjiàn", "gặp, tình cờ gặp", "", "đgt."]
   ] },
-  { id: "3-16", topic: "Con nghe nói có một số con gấu trúc đã ra nước ngoài", words: [
+  { id: "3-16", zh: "我听说有的熊猫出国了", topic: "Con nghe nói có một số con gấu trúc đã ra nước ngoài", words: [
     ["脏", "zāng", "bẩn", "", "tt."],
     ["可爱", "kě’ài", "đáng yêu, dễ thương", "", "tt."],
     ["一会儿", "yíhuìr", "một lúc, một lát", "", "phó."],
@@ -2393,7 +2393,7 @@ window.HD_LESSONS3 = [
     ["大人", "dàren", "người lớn", "", "dt."],
     ["喜爱", "xǐ’ài", "yêu thích", "", "đgt."]
   ] },
-  { id: "3-17", topic: "Mình sẽ học hỏi từ những người cẩn thận", words: [
+  { id: "3-17", zh: "我要多向认真的人学习", topic: "Mình sẽ học hỏi từ những người cẩn thận", words: [
     ["向", "xiàng", "hướng về", "", "giới."],
     ["楼梯", "lóutī", "cầu thang bộ", "", "dt."],
     ["害怕", "hàipà", "sợ, sợ hãi", "", "đgt."],
@@ -2422,7 +2422,7 @@ window.HD_LESSONS3 = [
     ["真正", "zhēnzhèng", "thực sự", "", "phó."],
     ["难题", "nántí", "vấn đề khó, vấn đề nan giải", "", "dt."]
   ] },
-  { id: "3-18", topic: "Cháu đã học được cách gói sủi cảo", words: [
+  { id: "3-18", zh: "我学会了包饺子", topic: "Cháu đã học được cách gói sủi cảo", words: [
     ["怎样", "zěnyàng", "thế nào", "", "đt."],
     ["过节", "guòjié", "đón lễ", "", "đgt."],
     ["节", "jié", "lễ", "", "dt."],
