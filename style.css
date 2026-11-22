@@ -884,3 +884,4 @@ textarea.sh-input { resize: vertical; }
 .tb-nav a.g{background:var(--gram-bg);color:var(--gram)}
 .lcard .hzm{font-family:var(--f-tb);font-size:16px;color:var(--ink)}
 .tb-listen{border-top:0;padding-top:0;margin-bottom:10px}.tb-lnote{margin:6px 0 6px 74px;font-size:13.5px}.tb.novi .tb-lnote{}@media(max-width:560px){.tb-lnote{margin-left:0}}.tb-script>summary{padding:12px 14px}.tb-script .tb-lines{padding:0 12px 8px}
+.mq-scope{text-transform:none;letter-spacing:0;margin-left:6px;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:700}

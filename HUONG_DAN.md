@@ -71,6 +71,12 @@ Mỗi bài HSK 3 có một phiếu theo sách bài tập, chỉ có đề tiến
 
 Thanh trên cùng có mục **Bài khóa**, chia theo HSK 1/2/3 và từng bài. Mỗi bài gồm: bài khóa (có ghi âm, ảnh, pinyin, bản dịch bật/tắt được, bấm loa để nghe từng câu, chữ gạch chân là từ mới), giải thích từ mới, câu hỏi đọc hiểu có gợi ý trả lời; ngữ pháp nào thuộc bài khóa nào thì đặt ngay sau bài khóa đó (công thức, lưu ý, ví dụ, bài luyện tự chấm); cuối cùng là bài chọn từ điền vào chỗ trống. Nội dung nằm trong `textbook.js` (`HD_TB`), ghi âm ở `audio/tb/`, ảnh ở `img/tb/`. Font chữ Hán: LXGW WenKai (thư mục `vendor/wenkai`).
 
+## Khóa theo trình độ lớp
+
+Học sinh chỉ xem được Từ vựng, Bài khóa, Luyện nghe và Tra từ trong phạm vi trình độ của lớp (đặt ở Bảng giáo viên > Lớp): lớp HSK 1 chỉ có HSK 1; lớp HSK 2 có HSK 1–2; lớp HSK 3 có tất cả. Bài giáo viên giao vẫn mở được bình thường.
+
+"Bài tập nhỏ hôm nay" ở trang chủ lấy từ trong phạm vi bài giáo viên đã giao xa nhất (ví dụ đã giao tới HSK 1 Bài 7 thì câu hỏi lấy từ Bài 1–7 của HSK 1). Chưa giao bài nào thì lấy từ các bài của trình độ lớp.
+
 ## Tra từ và lời chúc hằng ngày
 
 - **Tra từ** (thanh điều hướng): học sinh gõ chữ Hán, pinyin (có hoặc không dấu) hoặc nghĩa tiếng Việt. Kết quả có nghĩa, ví dụ, ghi chú ngữ pháp, nghe đọc, xem thứ tự nét và luyện viết. Ví dụ và ngữ pháp nằm ở `HD_EXTRA` trong `data.js`, khóa là chữ Hán của từ. Khi thêm từ mới ở bài sau, thêm cả mục tương ứng vào `HD_EXTRA` để từ đó có ví dụ.

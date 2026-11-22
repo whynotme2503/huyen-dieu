@@ -37,12 +37,15 @@
 
   function picker() {
     ST = null;
+    if (H.lvOK && !H.lvOK(H.level())) H.setLevel(H.maxLv());
     var rows = H.LESSONS.filter(function (l) { return l.words.length && l.level === H.level(); }).map(function (l) {
       var n = pool(l.id).length;
       return '<button class="ln-les" data-llesson="' + esc(l.id) + '"' + (n < 4 ? " disabled" : "") + '><span class="ln-n">' + esc(l.num) + '</span><span class="ln-t"><b>Bài ' + esc(l.num) + "</b><small>" + esc(l.topic || l.title || "") + "</small></span><span class=\"ln-c\">" + n + " câu</span></button>";
     }).join("");
     var nAll = pool("all").length;
-    H.app.innerHTML = '<div style="display:flex;align-items:center;gap:6px"><a class="back" href="#home">' + H.ICONS.back + 'Trang chủ</a></div><section class="card ln-card"><div class="eyebrow">Luyện nghe</div><h2 class="h1" style="margin:4px 0 4px">Chọn bài để luyện nghe</h2><p class="sub" style="margin:0 0 12px">Mỗi lượt gồm ' + LEN + ' câu của bài bạn chọn.</p><div class="ln-list">' + rows +
+    var mx = H.maxLv ? H.maxLv() : 1, tabs = "";
+    if (mx > 1) { tabs = '<div class="lvtabs" role="tablist" style="margin:10px 0 0">'; for (var k = 1; k <= mx; k++) tabs += '<button class="lvtab' + (k === H.level() ? " on" : "") + '" data-lnlv="' + k + '">HSK ' + k + "</button>"; tabs += "</div>"; }
+    H.app.innerHTML = '<div style="display:flex;align-items:center;gap:6px"><a class="back" href="#home">' + H.ICONS.back + 'Trang chủ</a></div>' + tabs + '<section class="card ln-card"><div class="eyebrow">Luyện nghe</div><h2 class="h1" style="margin:4px 0 4px">Chọn bài để luyện nghe</h2><p class="sub" style="margin:0 0 12px">Mỗi lượt gồm ' + LEN + ' câu của bài bạn chọn.</p><div class="ln-list">' + rows +
       '<button class="ln-les" data-llesson="all"' + (nAll < 4 ? " disabled" : "") + '><span class="ln-n">∗</span><span class="ln-t"><b>Tổng hợp</b><small>Trộn câu của tất cả các bài</small></span><span class="ln-c">' + nAll + " câu</span></button></div></section>";
   }
 
@@ -100,6 +103,7 @@
     if (t.dataset.lnext) { if (ST.i + 1 >= ST.qs.length) return finish(); ST.i++; return paint(true); }
     if (t.dataset.lagain) return start(ST.lesson);
     if (t.dataset.lpick) return picker();
+    if (t.dataset.lnlv) { H.setLevel(+t.dataset.lnlv); return picker(); }
     if (t.dataset.llesson) return start(t.dataset.llesson);
   }
 

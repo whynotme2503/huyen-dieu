@@ -9,10 +9,10 @@
   function hasHan(s) { return /[㐀-鿿]/.test(s); }
 
   function build() {
-    if (IDX) return IDX;
-    IDX = [];
+    var key = H.maxLv ? H.maxLv() : 3; if (IDX && IDX.key === key) return IDX;
+    IDX = []; IDX.key = key;
     H.LESSONS.forEach(function (l) {
-      if (!l.words) return;
+      if (!l.words || (H.lvOK && !H.lvOK(l.level))) return;
       l.words.forEach(function (w) {
         IDX.push({ w: w, lesson: l.id, py: plain(w.pinyin), vi: plain(w.vi), viRaw: w.vi.toLowerCase(), extra: (window.HD_EXTRA || {})[w.hanzi] || null });
       });
