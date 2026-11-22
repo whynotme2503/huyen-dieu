@@ -14,7 +14,7 @@
       return {
         id: l.id, level: level, num: num, topic: l.topic || "",
         words: (l.words || []).map(function (w) {
-          return { hanzi: w[0], pinyin: w[1], vi: w[2] || "", audio: w[3] || "", lesson: l.id };
+          return { hanzi: w[0], pinyin: w[1], vi: w[2] || "", audio: w[3] || "", pos: w[4] || "", lesson: l.id };
         })
       };
     });
@@ -386,7 +386,7 @@
     S.view = "lesson"; S.lesson = L;
     setRight('<span class="chip">' + L.words.length + " từ</span>");
     var rows = L.words.map(function (w, i) {
-      return '<div class="wrow"><span class="hz">' + esc(w.hanzi) + '</span><span><span class="py">' + esc(w.pinyin) + (L.id === "all" ? '<span class="tag">' + lshort(w.lesson) + "</span>" : "") + '</span><br><span class="vi">' + esc(w.vi) + '</span></span><span class="rowbtns"><button class="spk" data-write="' + i + '" aria-label="Tập viết ' + esc(w.hanzi) + '" title="Tập viết">' + ICONS.pen + '</button><button class="spk" data-say="' + i + '" aria-label="Nghe ' + esc(w.hanzi) + '">' + ICONS.speaker + "</button></span></div>";
+      return '<div class="wrow"><span class="hz">' + esc(w.hanzi) + '</span><span><span class="py">' + esc(w.pinyin) + (L.id === "all" ? '<span class="tag">' + lshort(w.lesson) + "</span>" : "") + (w.pos ? '<span class="pos">' + esc(w.pos) + "</span>" : "") + '</span><br><span class="vi">' + esc(w.vi) + '</span></span><span class="rowbtns"><button class="spk" data-write="' + i + '" aria-label="Tập viết ' + esc(w.hanzi) + '" title="Tập viết">' + ICONS.pen + '</button><button class="spk" data-say="' + i + '" aria-label="Nghe ' + esc(w.hanzi) + '">' + ICONS.speaker + "</button></span></div>";
     }).join("");
     var cards = GAMES.map(function (g) {
       var b = bestOf(L.id, g.id);
@@ -394,7 +394,7 @@
       return '<button class="gcard" data-game="' + g.id + '"><span class="gico">' + ICONS[g.icon] + '</span><span class="gtype">' + g.type + '</span><span class="gname">' + g.name + '</span><span class="gdesc">' + g.desc + '</span><span class="gbest">' + best + "</span></button>";
     }).join("");
     app.innerHTML = '<button class="back" data-go="tu-vung">' + ICONS.back + 'Từ vựng</button>' +
-      '<div class="lesson-title"><h1 class="h1">' + (L.id === "all" ? "Ôn tổng hợp" : "Bài " + L.id + (L.topic ? " · " + esc(L.topic) : "")) + '</h1><p class="sub">Chọn một trò chơi để bắt đầu.</p></div>' +
+      '<div class="lesson-title"><h1 class="h1">' + (L.id === "all" ? "Ôn tổng hợp" : lname(L.id).replace(/^HSK 1 · /, "") + (L.topic ? " · " + esc(L.topic) : "")) + '</h1><p class="sub">Chọn một trò chơi để bắt đầu.</p></div>' +
       '<div class="lesson-wrap"><section class="card"><div class="eyebrow">Từ vựng · nhấn loa để nghe</div><div class="wlist">' + rows + '</div></section>' +
       '<section><div class="eyebrow section-label">Trò chơi</div><div class="games">' + cards + "</div></section></div>";
   }
@@ -791,7 +791,7 @@
   document.addEventListener("click", function (e) { if (!e.target.closest("#umenu") && !e.target.closest("#userbtn")) $("#umenu").hidden = true; });
   window.addEventListener("online", function () { flush(); });
 
-  window.HD = { app: app, esc: esc, toast: toast, topBar: topBar, speak: speak, record: record, sfx: sfx, ICONS: ICONS, GAMES: GAMES, SHEETS: SHEETS, writeWord: writeWord, LESSONS: LESSONS, ALL: ALL, api: api, get session() { return SESSION; }, view: function () { return S.view; } };
+  window.HD = { app: app, esc: esc, toast: toast, topBar: topBar, speak: speak, record: record, sfx: sfx, ICONS: ICONS, GAMES: GAMES, SHEETS: SHEETS, writeWord: writeWord, LESSONS: LESSONS, ALL: ALL, api: api, level: function () { return VLV; }, lname: lname, lshort: lshort, get session() { return SESSION; }, view: function () { return S.view; } };
   if (window.HD_TEACHER) window.HD_TEACHER.init(window.HD);
   if (window.HD_WRITE) window.HD_WRITE.init(window.HD);
   if (window.HD_SHEET) window.HD_SHEET.init(window.HD);

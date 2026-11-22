@@ -117,9 +117,11 @@ Bảng giáo viên > Bài tập > mở một bài đã giao (bài tập soạn s
 
 ## Trình độ HSK 1 / 2 / 3
 
-- Mục **Từ vựng** có 3 tab **HSK 1, HSK 2, HSK 3**. HSK 2 và HSK 3 hiện "sắp có" cho đến khi có bài.
+- Mục **Từ vựng** có 3 tab **HSK 1, HSK 2, HSK 3**. HSK 3 đã có đủ 18 bài (483 từ, theo phần "Từ mới" của giáo trình New HSK 3, kèm từ loại); HSK 2 hiện "sắp có" cho đến khi có bài.
 - Khi **tạo lớp**, chọn trình độ (HSK 1/2/3). Lớp đã có đổi trình độ ngay trên thẻ lớp (tab **Lớp**). Lớp cũ mặc định là HSK 1.
 - Học sinh mở web sẽ vào đúng trình độ của lớp mình. **Bảng xếp hạng chia riêng từng trình độ**: lớp HSK 2 chỉ xếp hạng với các lớp HSK 2, bảng chung cũng chỉ gồm học sinh HSK 2.
 - Bài tập giao theo lớp nên tự tách theo trình độ. Khi giao bài, danh sách bài được nhóm theo HSK.
 - Thêm bài HSK 2/3: đưa nội dung vào `HD_LESSONS2` / `HD_LESSONS3` ở cuối data.js (id "2-1", "3-1"…), hoặc gửi mình danh sách từ và file âm thanh.
 - **Cần dán Code.gs mới và Deploy → Phiên bản mới** (có thêm cột "Trình độ" trong tab Lop, tự thêm khi tạo/đổi trình độ lớp).
+
+- HSK 3: chưa có âm thanh thu sẵn và chưa có câu ví dụ, nên mục Luyện nghe và ô tìm kiếm cho HSK 3 còn rất ít nội dung; các trò chơi từ vựng vẫn dùng giọng đọc của thiết bị.

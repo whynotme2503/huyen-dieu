@@ -708,3 +708,6 @@ textarea.sh-input { resize: vertical; }
 .lvtab.on { background: var(--accent); border-color: var(--accent); color: #fff; }
 .lvtab small { font-weight: 500; opacity: .8; margin-left: 4px; }
 .lvsoon { text-align: center; padding: 28px 16px; }
+
+/* từ loại (HSK3) */
+.wrow .pos{display:inline-block;margin-left:6px;padding:0 6px;border-radius:8px;font-size:11px;font-style:italic;color:#8a6d5a;background:rgba(0,0,0,.05);vertical-align:middle}
