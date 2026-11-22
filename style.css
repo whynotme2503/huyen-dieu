@@ -738,3 +738,6 @@ textarea.sh-input { resize: vertical; }
 .sh-letters{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:none;margin-right:8px}
 .sh-letters .sh-opt{min-width:0;flex:none}
 .sh-gap i{top:-1.3em}
+
+.gcard.first{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 25%,transparent)}
+.gcard.first .gtype{color:var(--accent);font-weight:700}

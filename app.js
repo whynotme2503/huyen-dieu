@@ -137,14 +137,14 @@
 
   /* ---------- danh sách game ---------- */
   var GAMES = [
+    { id: "flash", name: "Thẻ ghi nhớ", desc: "Lật thẻ, tự chấm đã nhớ hay chưa.", icon: "cards", kind: "flash", type: "Ôn nhanh" },
     { id: "listen-hanzi", name: "Nghe → chọn chữ Hán", desc: "Nghe âm thanh, chọn đúng mặt chữ.", icon: "speaker", kind: "quiz", prompt: "audio", answer: "hanzi", type: "Nghe" },
     { id: "listen-pinyin", name: "Nghe → chọn pinyin", desc: "Nghe và phân biệt thanh điệu.", icon: "list", kind: "quiz", prompt: "audio", answer: "pinyin", type: "Nghe" },
     { id: "hanzi-pinyin", name: "Chữ Hán → pinyin", desc: "Nhìn chữ, chọn phiên âm đúng.", icon: "chars", kind: "quiz", prompt: "hanzi", answer: "pinyin", type: "Mặt chữ" },
     { id: "pinyin-hanzi", name: "Pinyin → chữ Hán", desc: "Đọc pinyin, nhận ra mặt chữ.", icon: "abc", kind: "quiz", prompt: "pinyin", answer: "hanzi", type: "Pinyin" },
     { id: "match", name: "Ghép cặp", desc: "Nối chữ Hán với nghĩa tiếng Việt tương ứng.", icon: "match", kind: "match", type: "Mặt chữ" },
     { id: "dictation", name: "Nghe → gõ chữ Hán", desc: "Nghe rồi gõ lại bằng chữ Hán (cần bàn phím tiếng Trung).", icon: "keys", kind: "type", type: "Nghe" },
-    { id: "write", name: "Tập viết chữ Hán", desc: "Xem thứ tự nét, tập viết ngay trên màn hình.", icon: "pen", kind: "write", type: "Viết" },
-    { id: "flash", name: "Thẻ ghi nhớ", desc: "Lật thẻ, tự chấm đã nhớ hay chưa.", icon: "cards", kind: "flash", type: "Ôn nhanh" }
+    { id: "write", name: "Tập viết chữ Hán", desc: "Xem thứ tự nét, tập viết ngay trên màn hình.", icon: "pen", kind: "write", type: "Viết" }
   ];
   window.HD_GAMES = GAMES;
   function gameById(id) { return GAMES.filter(function (g) { return g.id === id; })[0]; }
@@ -391,10 +391,10 @@
     var cards = GAMES.map(function (g) {
       var b = bestOf(L.id, g.id);
       var best = b && b.plays ? "Điểm cao nhất: <b>" + b.best + "%</b> · " + b.plays + " lượt" : "Chưa chơi";
-      return '<button class="gcard" data-game="' + g.id + '"><span class="gico">' + ICONS[g.icon] + '</span><span class="gtype">' + g.type + '</span><span class="gname">' + g.name + '</span><span class="gdesc">' + g.desc + '</span><span class="gbest">' + best + "</span></button>";
+      return '<button class="gcard' + (g.id === "flash" ? " first" : "") + '" data-game="' + g.id + '"><span class="gico">' + ICONS[g.icon] + '</span><span class="gtype">' + (g.id === "flash" ? "Bước 1 · Ôn trước" : g.type) + '</span><span class="gname">' + g.name + '</span><span class="gdesc">' + g.desc + '</span><span class="gbest">' + best + "</span></button>";
     }).join("");
     app.innerHTML = '<button class="back" data-go="tu-vung">' + ICONS.back + 'Từ vựng</button>' +
-      '<div class="lesson-title"><h1 class="h1">' + (L.id === "all" ? "Ôn tổng hợp" : lname(L.id).replace(/^HSK 1 · /, "") + (L.topic ? " · " + esc(L.topic) : "")) + '</h1><p class="sub">Chọn một trò chơi để bắt đầu.</p></div>' +
+      '<div class="lesson-title"><h1 class="h1">' + (L.id === "all" ? "Ôn tổng hợp" : lname(L.id).replace(/^HSK 1 · /, "") + (L.topic ? " · " + esc(L.topic) : "")) + '</h1><p class="sub">Bắt đầu với Thẻ ghi nhớ để xem từ nào đã nhớ, từ nào chưa, rồi chơi các game khác.</p></div>' +
       '<div class="lesson-wrap"><section class="card"><div class="eyebrow">Từ vựng · nhấn loa để nghe</div><div class="wlist">' + rows + '</div></section>' +
       '<section><div class="eyebrow section-label">Trò chơi</div><div class="games">' + cards + "</div></section></div>";
   }
