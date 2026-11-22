@@ -73,8 +73,8 @@ function handle_(req) {
       lock.waitLock(20000);
       try {
         var r = req.rec || {};
-        var row = [new Date(), u.code, u.name, u.cls, String(r.lesson), r.gameName || r.game, num_(r.score), num_(r.total), num_(r.pct), num_(r.secs), (r.words || []).join("|"), (r.wrong || []).join("|"), r.assignmentId || "", r.game || ""];
-        sheet_("KQ").appendRow(row);
+        var row = [new Date(), u.code, u.name, u.cls, "", r.gameName || r.game, num_(r.score), num_(r.total), num_(r.pct), num_(r.secs), (r.words || []).join("|"), (r.wrong || []).join("|"), r.assignmentId || "", r.game || ""];
+        var kq = sheet_("KQ"); kq.appendRow(row); kq.getRange(kq.getLastRow(), 5).setNumberFormat("@").setValue(String(r.lesson));
       } finally { lock.releaseLock(); }
       return { ok: true };
     case "board":
@@ -156,7 +156,7 @@ function handle_(req) {
       lock.waitLock(20000);
       try {
         var a = req.a || {}, id = "A" + new Date().getTime().toString(36);
-        sheet_("BT").appendRow([id, a.title || "", String(a.lesson), a.game || "", a.due || "", a.cls || "all", a.note || "", new Date()]);
+        var btS = sheet_("BT"); btS.appendRow([id, a.title || "", "", a.game || "", a.due || "", a.cls || "all", a.note || "", new Date()]); btS.getRange(btS.getLastRow(), 3).setNumberFormat("@").setValue(String(a.lesson));
         return { ok: true, id: id };
       } finally { lock.releaseLock(); }
     case "deleteAssignment":
@@ -199,13 +199,13 @@ function results_(code, sinceDays) {
   for (var i = 1; i < v.length; i++) {
     var r = v[i]; if (!r[1]) continue;
     if (code && norm_(r[1]) !== norm_(code)) continue;
-    out.push({ t: iso_(r[0]), code: String(r[1]), name: String(r[2]), cls: String(r[3] || ""), lesson: String(r[4]), gameName: String(r[5]), score: +r[6], total: +r[7], pct: +r[8], secs: +r[9], words: split_(r[10]), wrong: split_(r[11]), assignmentId: String(r[12] || ""), game: String(r[13] || "") });
+    out.push({ t: iso_(r[0]), code: String(r[1]), name: String(r[2]), cls: String(r[3] || ""), lesson: lesson_(r[4]), gameName: String(r[5]), score: +r[6], total: +r[7], pct: +r[8], secs: +r[9], words: split_(r[10]), wrong: split_(r[11]), assignmentId: String(r[12] || ""), game: String(r[13] || "") });
   }
   return out;
 }
 function assignments_() {
   var v = sheet_("BT").getDataRange().getValues(), out = [];
-  for (var i = 1; i < v.length; i++) if (v[i][0]) out.push({ id: String(v[i][0]), title: String(v[i][1]), lesson: String(v[i][2]), game: String(v[i][3] || ""), due: dueStr_(v[i][4]), cls: String(v[i][5] || "all"), note: String(v[i][6] || ""), created: iso_(v[i][7]) });
+  for (var i = 1; i < v.length; i++) if (v[i][0]) out.push({ id: String(v[i][0]), title: String(v[i][1]), lesson: lesson_(v[i][2]), game: String(v[i][3] || ""), due: dueStr_(v[i][4]), cls: String(v[i][5] || "all"), note: String(v[i][6] || ""), created: iso_(v[i][7]) });
   return out;
 }
 
@@ -306,7 +306,8 @@ function classFolder_() {
 }
 function tabName_(s) { return String(s).replace(/[\[\]\*\?\:\/\\]/g, "-").slice(0, 90); }
 function fmtT_(iso) { return iso ? Utilities.formatDate(new Date(iso), Session.getScriptTimeZone(), "dd/MM/yyyy HH:mm") : ""; }
-function lessonLabel_(l) { return l === "all" ? "Tổng hợp" : "Bài " + l; }
+function lesson_(v) { if (v instanceof Date) return v.getDate() + "-" + (v.getMonth() + 1); return String(v); }
+function lessonLabel_(l) { var m = /^(\d)-(\d+)$/.exec(l); return l === "all" ? "Tổng hợp" : m ? "HSK" + m[1] + " – Bài " + m[2] : "Bài " + l; }
 
 /** Ghi một bảng vào tab (tạo nếu chưa có). Hàng đầu là tiêu đề, cố định hàng 1 và cột 1. */
 function put_(file, title, rows) {

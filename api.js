@@ -3,11 +3,21 @@
   "use strict";
   var URLX = (window.HD_API && window.HD_API.url) || "", demo = !URLX;
 
+  /* Google Sheet có thể biến "3-1" thành ngày (Sat Jan 03 2026 ...): đổi lại thành "3-1" */
+  var MON = { Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 };
+  function fixLessons(x) {
+    if (x && typeof x === "object") for (var k in x) {
+      var v = x[k];
+      if (k === "lesson" && typeof v === "string") { var m = /^[A-Z][a-z]{2} ([A-Z][a-z]{2}) (\d{1,2}) \d{4}/.exec(v); if (m && MON[m[1]]) x[k] = (+m[2]) + "-" + MON[m[1]]; }
+      else if (v && typeof v === "object") fixLessons(v);
+    }
+    return x;
+  }
   function remote(action, payload) {
     var ctl = new AbortController(), t = setTimeout(function () { ctl.abort(); }, 25000);
     var body = {}; for (var k in (payload || {})) body[k] = payload[k]; body.action = action;
     return fetch(URLX, { method: "POST", body: JSON.stringify(body), signal: ctl.signal, redirect: "follow" })
-      .then(function (r) { return r.json(); })
+      .then(function (r) { return r.json(); }).then(fixLessons)
       .catch(function () { return { ok: false, error: "network" }; })
       .then(function (x) { clearTimeout(t); return x; });
   }
