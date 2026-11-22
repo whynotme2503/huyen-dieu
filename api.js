@@ -127,7 +127,8 @@
       D.classes.push({ name: nm, note: String(req.note || "").slice(0, 80), url: "", level: lvl_(req.level) }); persist(); return { ok: true };
     }
     if (action === "setClassLevel") {
-      var hit = (D.classes || []).filter(function (c) { return c.name === req.name; })[0]; if (!hit) return { ok: false, error: "name" };
+      D.classes = D.classes || []; var hit = D.classes.filter(function (c) { return c.name === req.name; })[0];
+      if (!hit) { if (!D.students.some(function (s) { return s.cls === req.name; })) return { ok: false, error: "name" }; hit = { name: req.name, note: "", url: "" }; D.classes.push(hit); }
       hit.level = lvl_(req.level); persist(); return { ok: true, classes: D.classes };
     }
     if (action === "deleteClass") {

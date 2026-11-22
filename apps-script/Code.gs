@@ -101,7 +101,12 @@ function handle_(req) {
         var lp2 = sheet_("LOP"), lv2 = lp2.getDataRange().getValues(), done2 = false;
         for (var k2 = 1; k2 < lv2.length; k2++) if (String(lv2[k2][0]) === String(req.name)) { lp2.getRange(k2 + 1, 5).setValue(lvl_(req.level)); done2 = true; }
         CacheService.getScriptCache().remove("board2");
-        return done2 ? { ok: true, classes: classes_() } : { ok: false, error: "name" };
+        if (!done2) {
+          var nm2 = String(req.name || "").trim();
+          if (!nm2 || !students_().some(function (s) { return s.cls === nm2; })) return { ok: false, error: "name" };
+          lp2.appendRow([nm2, "", new Date(), "", lvl_(req.level)]);  // lớp mới chỉ có trong danh sách học sinh: thêm dòng cho lớp
+        }
+        return { ok: true, classes: classes_() };
       } finally { lock.releaseLock(); }
     case "deleteClass":
       lock.waitLock(20000);
