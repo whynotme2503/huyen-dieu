@@ -5,5 +5,5 @@
    Hướng dẫn chi tiết: tab "Hướng dẫn" trong Bảng giáo viên, hoặc file HUONG_DAN.md
    =========================================================== */
 window.HD_API = {
-  url: "https://script.google.com/macros/s/AKfycbyYBzCDII8A557N0zKsgmbrkyWvSD7kI34gnzv1aIo0nWTt6yhR-1SvYtCX7g4mBpZD/exec"
+  url: "https://script.google.com/macros/s/AKfycbzjr0qo0R-BsIqG0N8FRaYQ8Vec9UWCM6ZACsqBGeWzIlB0Zw3N4GVvzzURUEEISBTX/exec"
 };
