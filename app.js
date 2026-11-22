@@ -202,7 +202,7 @@
     if (!LL.length) html += '<section class="card lvsoon"><p class="sub">' + LEVEL_NAMES[VLV] + " đang được chuẩn bị.</p></section>";
     LL.forEach(function (l) {
       var T = has(l.id) ? window.HD_TB[l.id] : null;
-      if (T) html += '<button class="lcard" data-go="hoc-' + l.id + '"><span class="num">' + l.num + '</span><span class="name">Bài ' + l.num + '</span><span class="meta hzm">' + esc(T.zh || l.zh || "") + '</span><span class="meta">' + T.texts.length + " bài khóa · " + T.grammar.length + ' ngữ pháp</span><span><span class="pill" style="background:var(--accent);color:var(--accent-ink)">Học ngay</span></span></button>';
+      if (T) html += '<button class="lcard" data-go="hoc-' + l.id + '"><span class="num">' + l.num + '</span><span class="name">Bài ' + l.num + '</span><span class="meta hzm">' + esc(T.zh || l.zh || "") + '</span><span class="meta">' + T.texts.filter(function (x) { return !x.rhyme; }).length + " bài khóa" + (T.grammar.length ? " · " + T.grammar.length + " ngữ pháp" : " · có ghi âm") + '</span><span><span class="pill" style="background:var(--accent);color:var(--accent-ink)">Học ngay</span></span></button>';
       else html += '<div class="lcard locked" aria-disabled="true"><span class="num">' + l.num + '</span><span class="name">Bài ' + l.num + '</span><span class="meta hzm">' + esc(l.zh || l.topic || "") + '</span><span><span class="pill">Sắp có</span></span></div>';
     });
     app.innerHTML = html + "</div>";

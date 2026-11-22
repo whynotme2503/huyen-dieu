@@ -42,20 +42,24 @@
     return '<div class="tb-word"><div class="tb-wh"><span class="tb-wn">' + n + '</span><span class="tb-whz">' + esc(w.w) + '</span><span class="tb-wpy">' + esc(w.py) + '</span>' + spk(w.w) + '<span class="tb-wmean">' + esc(w.mean) + "</span></div>" + body + "</div>";
   }
   function textCard(t, i, V, D) {
-    var who = {}, cols = ["c1", "c2"], nWho = 0;
-    var lines = t.lines.map(function (l) {
+    var who = {}, cols = ["c1", "c2"], nWho = 0, lines = "";
+    t.lines.forEach(function (l) {
+      if (l.note) { lines += '<div class="tb-tip tb-lnote">💡 ' + esc(l.note) + "</div>"; return; }
       var c = l.who ? (who[l.who] || (who[l.who] = cols[nWho++ % 2])) : "";
-      return '<div class="tb-line' + (t.prose ? " prose" : "") + '">' + (l.who ? '<span class="tb-who ' + c + '">' + esc(l.who) + "</span>" : "") + '<div class="tb-lbody">' + sent(l, V) + "</div></div>";
-    }).join("");
-    var ws = D.words.slice(t.words[0], t.words[1]);
-    return '<section class="card tb-card" id="tb-text-' + (i + 1) + '"><div class="tb-head"><span class="tb-badge">Bài khóa ' + (i + 1) + '</span><h2 class="tb-h2">' + esc(t.title) + "</h2></div>" +
-      '<div class="tb-media"><img src="' + esc(t.img) + '" alt="" loading="lazy"><div class="tb-scene">' + sent(t.scene) + "</div></div>" +
-      '<audio class="tb-audio" controls preload="none" src="' + esc(t.audio) + '"></audio>' +
-      '<div class="tb-lines">' + lines + "</div>" +
-      '<details class="tb-det"><summary>Giải thích từ mới (' + ws.length + ")</summary>" + ws.map(function (w, k) { return wordCard(w, t.words[0] + k + 1); }).join("") + "</details>" +
-      '<div class="tb-qs"><div class="eyebrow">读后回答问题 · Đọc rồi trả lời câu hỏi</div>' + t.qs.map(function (q, k) {
+      lines += '<div class="tb-line' + (t.prose || !l.who ? " prose" : "") + '">' + (l.who ? '<span class="tb-who ' + c + '">' + esc(l.who) + "</span>" : "") + '<div class="tb-lbody">' + sent(l, V) + "</div></div>";
+    });
+    var ws = t.words && D.words ? D.words.slice(t.words[0], t.words[1]) : [];
+    var listen = (t.listen || []).map(function (q, k) { return task({ t: "choice", q: "（" + (k + 1) + "）" + q.q, opts: q.opts, a: q.a, exp: "" }, "l" + i + "-" + k); }).join("");
+    var badge = t.rhyme ? "Đọc vui" : "Bài khóa " + (t.num || i + 1);
+    return '<section class="card tb-card" id="tb-text-' + (i + 1) + '"><div class="tb-head"><span class="tb-badge">' + badge + '</span><h2 class="tb-h2">' + esc(t.title) + "</h2></div>" +
+      (t.img ? '<div class="tb-media"><img src="' + esc(t.img) + '" alt="" loading="lazy"><div class="tb-scene">' + sent(t.scene) + "</div></div>" : t.scene ? '<div class="tb-media"><div class="tb-scene">' + sent(t.scene) + "</div></div>" : "") +
+      (t.audio ? '<audio class="tb-audio" controls preload="none" src="' + esc(t.audio) + '"></audio>' : "") +
+      (listen ? '<div class="tb-prac tb-listen"><div class="eyebrow">听两遍对话，选择正确答案 · Nghe hai lượt rồi chọn đáp án đúng</div>' + listen + "</div>" : "") +
+      (listen ? '<details class="tb-det tb-script"' + (t.open ? " open" : "") + '><summary>Xem lời bài khóa</summary><div class="tb-lines">' + lines + "</div></details>" : '<div class="tb-lines">' + lines + "</div>") +
+      (ws.length ? '<details class="tb-det"><summary>Giải thích từ mới (' + ws.length + ")</summary>" + ws.map(function (w, k) { return wordCard(w, t.words[0] + k + 1); }).join("") + "</details>" : "") +
+      ((t.qs || []).length ? '<div class="tb-qs"><div class="eyebrow">读后回答问题 · Đọc rồi trả lời câu hỏi</div>' + t.qs.map(function (q, k) {
         return '<div class="tb-q"><div class="tb-qq"><span class="tb-qn">' + (k + 1) + '</span><span class="tb-zh">' + esc(q[0]) + '</span></div><details class="tb-qa"><summary>Xem gợi ý trả lời</summary><div class="tb-zh">' + esc(q[1]) + '</div><div class="tb-vi show">' + esc(q[2]) + "</div></details></div>";
-      }).join("") + "</div></section>";
+      }).join("") + "</div>" : "") + "</section>";
   }
 
   /* ---------- ngữ pháp ---------- */
@@ -118,18 +122,19 @@
     var D = (window.HD_TB || {})[id]; if (!D) return false;
     CUR = id; var V = vocab(id), p = pref();
     var title = (H.lname ? H.lname(id) : id);
-    var nav = '<div class="tb-nav">' + D.texts.map(function (tx, i) { return '<a href="#" data-tb="jump" data-to="tb-text-' + (i + 1) + '">Bài khóa ' + (i + 1) + "</a>" + D.grammar.map(function (g, gi) { return gAfter(g, gi) === i ? '<a href="#" class="g" data-tb="jump" data-to="tb-gram-' + (gi + 1) + '">Ngữ pháp ' + (gi + 1) + "</a>" : ""; }).join(""); }).join("") + '<a href="#" data-tb="jump" data-to="tb-prac">Luyện tập</a></div>';
+    var nav = '<div class="tb-nav">' + D.texts.map(function (tx, i) { return '<a href="#" data-tb="jump" data-to="tb-text-' + (i + 1) + '">' + (tx.rhyme ? "Đọc vui" : "Bài khóa " + (tx.num || i + 1)) + "</a>" + D.grammar.map(function (g, gi) { return gAfter(g, gi) === i ? '<a href="#" class="g" data-tb="jump" data-to="tb-gram-' + (gi + 1) + '">Ngữ pháp ' + (gi + 1) + "</a>" : ""; }).join(""); }).join("") + (D.practice && D.practice.length ? '<a href="#" data-tb="jump" data-to="tb-prac">Luyện tập</a>' : "") + "</div>";
     var tg = '<div class="tb-toggles"><button class="tb-tg' + (p.py ? " on" : "") + '" data-tb="tg" data-v="py">Pinyin</button><button class="tb-tg' + (p.vi ? " on" : "") + '" data-tb="tg" data-v="vi">Tiếng Việt</button></div>';
     H.app.innerHTML = '<div class="tb' + (p.py ? "" : " nopy") + (p.vi ? "" : " novi") + '" id="tb-root"><button class="back" data-go="bai-khoa">' + H.ICONS.back + "Bài khóa</button>" +
-      '<div class="tb-hero"><div class="eyebrow">' + esc(title) + ' · Bài khóa &amp; Ngữ pháp</div><h1 class="tb-h1">' + esc(D.zh) + '</h1><div class="tb-hpy">' + esc(D.py) + '</div><div class="tb-hvi">' + esc(D.vi) + "</div></div>" +
+      '<div class="tb-hero"><div class="eyebrow">' + esc(title) + ' · Bài khóa' + (D.grammar.length ? " &amp; Ngữ pháp" : "") + '</div><h1 class="tb-h1">' + esc(D.zh) + '</h1><div class="tb-hpy">' + esc(D.py) + '</div><div class="tb-hvi">' + esc(D.vi) + "</div></div>" +
       '<div class="tb-bar">' + nav + tg + "</div>" +
       '<p class="tb-help">Bấm ' + H.ICONS.speaker + ' để nghe từng câu. Chữ <span class="nw">gạch chân</span> là từ mới của bài, bấm vào để xem nghĩa.</p>' +
       D.texts.map(function (tx, i) { return textCard(tx, i, V, D) + D.grammar.map(function (g, gi) { return gAfter(g, gi) === i ? grammarCard(g, gi) : ""; }).join(""); }).join("") +
-      '<div class="tb-sec">练习 · Luyện tập tổng hợp</div>' + practice(D) + "</div>";
+      (D.practice && D.practice.length ? '<div class="tb-sec">练习 · Luyện tập tổng hợp</div>' + practice(D) : "") + "</div>";
     return true;
   }
   function repaintTask(key) {
     var D = window.HD_TB[CUR], m = /^g(\d+)-(\d+)$/.exec(key), el = document.getElementById("tk-" + key);
+    var ml = /^l(\d+)-(\d+)$/.exec(key); if (ml && el) { var q = D.texts[+ml[1]].listen[+ml[2]]; el.outerHTML = task({ t: "choice", q: "（" + (+ml[2] + 1) + "）" + q.q, opts: q.opts, a: q.a, exp: "" }, key); return; }
     if (m && el) el.outerHTML = task(D.grammar[+m[1]].tasks[+m[2]], key);
   }
   function repaintPractice() { var el = document.getElementById("tb-prac"); if (el) el.outerHTML = practice(window.HD_TB[CUR]); }
@@ -151,7 +156,7 @@
     if (a === "pcheck") { ANS.pdone = true; H.sfx("win"); repaintPractice(); return; }
     if (a === "preset") { Object.keys(ANS).forEach(function (x) { if (/^p/.test(x)) delete ANS[x]; }); return repaintPractice(); }
   }
-  function taskOf(key) { var m = /^g(\d+)-(\d+)$/.exec(key); return window.HD_TB[CUR].grammar[+m[1]].tasks[+m[2]]; }
+  function taskOf(key) { var ml = /^l(\d+)-(\d+)$/.exec(key); if (ml) return window.HD_TB[CUR].texts[+ml[1]].listen[+ml[2]]; var m = /^g(\d+)-(\d+)$/.exec(key); return window.HD_TB[CUR].grammar[+m[1]].tasks[+m[2]]; }
   function onInput(e) { if (e.target.classList && e.target.classList.contains("tb-in")) { e.target.style.height = "auto"; e.target.style.height = e.target.scrollHeight + "px"; } }
 
   window.HD_TBV = {
