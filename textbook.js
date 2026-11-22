@@ -982,7 +982,8 @@ window.HD_TB = {
      "zh": "开学第一天，在办公室里，王一飞和AI助教小语打招呼。",
      "py": "",
      "vi": "Ngày đầu tiên đi học, Vương Nhất Phi chào hỏi trợ giảng AI Tiểu Ngữ ở trong văn phòng."
-    }
+    },
+    "img": "img/tb/1-1-1.jpg"
    },
    {
     "title": "课文二",
@@ -1021,7 +1022,8 @@ window.HD_TB = {
      "zh": "开学第一天，课堂上，学生们学习打招呼用语。",
      "py": "",
      "vi": "Ngày đầu tiên đi học, các bạn học sinh học cách diễn đạt chào hỏi tại lớp."
-    }
+    },
+    "img": "img/tb/1-1-2.jpg"
    },
    {
     "title": "课文三",
@@ -1057,7 +1059,8 @@ window.HD_TB = {
      "zh": "开学第一天，课堂上，学生们学习致谢语、告别语。",
      "py": "",
      "vi": "Ngày đầu tiên đi học, các bạn học sinh học các mẫu câu cảm ơn và tạm biệt ở trong lớp học."
-    }
+    },
+    "img": "img/tb/1-1-3.jpg"
    },
    {
     "title": "绕口令",
@@ -1113,7 +1116,8 @@ window.HD_TB = {
      "zh": "在教室里，王一飞在认识学生。",
      "py": "",
      "vi": "Vương Nhất Phi đang làm quen với học sinh ở trong lớp học."
-    }
+    },
+    "img": "img/tb/1-2-1.jpg"
    },
    {
     "title": "课文二",
@@ -1152,7 +1156,8 @@ window.HD_TB = {
      "zh": "在校园里，陈天中和白家月打招呼时认错了人。",
      "py": "",
      "vi": "Trần Thiên Trung đã nhầm Bạch Gia Nguyệt với người khác khi chào hỏi cô ấy ở trong khuôn viên trường."
-    }
+    },
+    "img": "img/tb/1-2-2.jpg"
    },
    {
     "title": "课文三",
@@ -1191,7 +1196,8 @@ window.HD_TB = {
      "zh": "在校园里，李文和白家月第一次相遇。",
      "py": "",
      "vi": "Lý Văn và Bạch Gia Nguyệt lần đầu gặp nhau trong khuôn viên trường."
-    }
+    },
+    "img": "img/tb/1-2-3.jpg"
    },
    {
     "title": "绕口令",
@@ -1238,7 +1244,8 @@ window.HD_TB = {
      "zh": "在校园里，李文和白家月第一次相遇，两人继续聊天儿。",
      "py": "",
      "vi": "Lý Văn và Bạch Gia Nguyệt gặp nhau lần đầu, hai người tiếp tục trò chuyện trong khuôn viên trường."
-    }
+    },
+    "img": "img/tb/1-3-1.jpg"
    },
    {
     "title": "课文二",
@@ -1277,7 +1284,8 @@ window.HD_TB = {
      "zh": "在教室里，下课后，安妮在看陈天中手机里的照片。",
      "py": "",
      "vi": "Sau giờ học, Annie đang xem ảnh trên điện thoại di động của Trần Thiên Trung ở trong lớp học."
-    }
+    },
+    "img": "img/tb/1-3-2.jpg"
    },
    {
     "title": "课文三",
@@ -1325,7 +1333,8 @@ window.HD_TB = {
      "zh": "在家里，王一雪给王一飞打视频电话。",
      "py": "",
      "vi": "Vương Nhất Tuyết đang gọi video cho Vương Nhất Phi ở trong nhà."
-    }
+    },
+    "img": "img/tb/1-3-3.jpg"
    },
    {
     "title": "绕口令",
@@ -1390,7 +1399,8 @@ window.HD_TB = {
      "zh": "在家里，刘明和王一雪在聊天儿。",
      "py": "",
      "vi": "Lưu Minh và Vương Nhất Tuyết đang trò chuyện ở trong nhà."
-    }
+    },
+    "img": "img/tb/1-4-1.jpg"
    },
    {
     "title": "课文二",
@@ -1446,7 +1456,8 @@ window.HD_TB = {
       ],
       "a": 1
      }
-    ]
+    ],
+    "img": "img/tb/1-4-2.jpg"
    },
    {
     "title": "课文三",
@@ -1532,7 +1543,8 @@ window.HD_TB = {
       "他今年五岁。",
       "Cháu năm nay năm tuổi."
      ]
-    ]
+    ],
+    "img": "img/tb/1-4-3.jpg"
    }
   ],
   "grammar": [],
@@ -1583,7 +1595,8 @@ window.HD_TB = {
      "zh": "在家里，刘明和王一雪在聊天儿。",
      "py": "",
      "vi": "Lưu Minh và Vương Nhất Tuyết đang trò chuyện ở trong nhà."
-    }
+    },
+    "img": "img/tb/1-5-1.jpg"
    },
    {
     "title": "课文二",
@@ -1639,7 +1652,8 @@ window.HD_TB = {
       ],
       "a": 2
      }
-    ]
+    ],
+    "img": "img/tb/1-5-2.jpg"
    },
    {
     "title": "课文三",
@@ -1719,7 +1733,8 @@ window.HD_TB = {
       "他很喜欢他的新电脑。",
       "Anh ấy rất thích máy tính mới của mình."
      ]
-    ]
+    ],
+    "img": "img/tb/1-5-3.jpg"
    }
   ],
   "grammar": [],
@@ -1770,7 +1785,8 @@ window.HD_TB = {
      "zh": "在校园里，李文向白家月要手机号。",
      "py": "",
      "vi": "Lý Văn đang hỏi xin số điện thoại di động của Bạch Gia Nguyệt trong khuôn viên trường."
-    }
+    },
+    "img": "img/tb/1-6-1.jpg"
    },
    {
     "title": "课文二",
@@ -1826,7 +1842,8 @@ window.HD_TB = {
       ],
       "a": 1
      }
-    ]
+    ],
+    "img": "img/tb/1-6-2.jpg"
    },
    {
     "title": "课文三",
@@ -1906,7 +1923,8 @@ window.HD_TB = {
       "他们坐出租车去。",
       "Họ đi taxi đến đó."
      ]
-    ]
+    ],
+    "img": "img/tb/1-6-3.jpg"
    }
   ],
   "grammar": [],
@@ -1951,7 +1969,8 @@ window.HD_TB = {
      "zh": "白家月和安妮在打电话。",
      "py": "",
      "vi": "Bạch Gia Nguyệt và Annie đang nói chuyện điện thoại."
-    }
+    },
+    "img": "img/tb/1-7-1.jpg"
    },
    {
     "title": "课文二",
@@ -2007,7 +2026,8 @@ window.HD_TB = {
       ],
       "a": 0
      }
-    ]
+    ],
+    "img": "img/tb/1-7-2.jpg"
    },
    {
     "title": "课文三",
@@ -2090,7 +2110,8 @@ window.HD_TB = {
       "他去店里买菜。",
       "Anh ấy ra cửa hàng mua thức ăn."
      ]
-    ]
+    ],
+    "img": "img/tb/1-7-3.jpg"
    }
   ],
   "grammar": [],
@@ -2138,7 +2159,8 @@ window.HD_TB = {
      "zh": "在王一飞家，白家月和陈天中来做客。",
      "py": "",
      "vi": "Bạch Gia Nguyệt và Trần Thiên Trung đến thăm nhà Vương Nhất Phi."
-    }
+    },
+    "img": "img/tb/1-8-1.jpg"
    },
    {
     "title": "课文二",
@@ -2194,7 +2216,8 @@ window.HD_TB = {
       ],
       "a": 0
      }
-    ]
+    ],
+    "img": "img/tb/1-8-2.jpg"
    },
    {
     "title": "课文三",
@@ -2277,7 +2300,8 @@ window.HD_TB = {
       "他工作非常忙。",
       "Ông ấy làm việc rất bận."
      ]
-    ]
+    ],
+    "img": "img/tb/1-8-3.jpg"
    }
   ],
   "grammar": [],
@@ -2328,7 +2352,8 @@ window.HD_TB = {
      "zh": "在校园里，李文和白家月在聊天儿。",
      "py": "",
      "vi": "Lý Văn và Bạch Gia Nguyệt đang trò chuyện ở trong khuôn viên trường."
-    }
+    },
+    "img": "img/tb/1-9-1.jpg"
    },
    {
     "title": "课文二",
@@ -2399,7 +2424,8 @@ window.HD_TB = {
       "他明天上午在学校学习。",
       "Sáng mai cậu ấy học ở trường."
      ]
-    ]
+    ],
+    "img": "img/tb/1-9-2.jpg"
    },
    {
     "title": "课文三",
@@ -2482,7 +2508,8 @@ window.HD_TB = {
       "她在家里做饭、看电视，和孩子们、小狗玩。",
       "Chị ấy ở nhà nấu ăn, xem ti vi, chơi với các con và con chó nhỏ."
      ]
-    ]
+    ],
+    "img": "img/tb/1-9-3.jpg"
    }
   ],
   "grammar": [],
@@ -2533,7 +2560,8 @@ window.HD_TB = {
      "zh": "在一家小店，王一雪在买杯子。",
      "py": "",
      "vi": "Vương Nhất Tuyết mua cốc ở một cửa hàng nhỏ."
-    }
+    },
+    "img": "img/tb/1-10-1.jpg"
    },
    {
     "title": "课文二",
@@ -2595,7 +2623,8 @@ window.HD_TB = {
       ],
       "a": 1
      }
-    ]
+    ],
+    "img": "img/tb/1-10-2.jpg"
    },
    {
     "title": "课文三",
@@ -2675,7 +2704,8 @@ window.HD_TB = {
       "男孩子的衣服在那儿。",
       "Quần áo của bé trai ở đằng kia."
      ]
-    ]
+    ],
+    "img": "img/tb/1-10-3.jpg"
    }
   ],
   "grammar": [],
@@ -2720,7 +2750,8 @@ window.HD_TB = {
      "zh": "在路上，李文在找饭店，王一飞给他打电话。",
      "py": "",
      "vi": "Lý Văn đang tìm nhà hàng trên đường đi, Vương Nhất Phi gọi điện cho anh ấy."
-    }
+    },
+    "img": "img/tb/1-11-1.jpg"
    },
    {
     "title": "课文二",
@@ -2776,7 +2807,8 @@ window.HD_TB = {
       ],
       "a": 0
      }
-    ]
+    ],
+    "img": "img/tb/1-11-2.jpg"
    },
    {
     "title": "课文三",
@@ -2856,7 +2888,8 @@ window.HD_TB = {
       "他今天要和小朋友玩。",
       "Hôm nay em ấy muốn chơi với các bạn."
      ]
-    ]
+    ],
+    "img": "img/tb/1-11-3.jpg"
    }
   ],
   "grammar": [],
@@ -2921,7 +2954,8 @@ window.HD_TB = {
       ],
       "a": 1
      }
-    ]
+    ],
+    "img": "img/tb/1-12-1.jpg"
    },
    {
     "title": "课文二",
@@ -2989,7 +3023,8 @@ window.HD_TB = {
       "他昨天去医院看病了。",
       "Hôm qua anh ấy đi bệnh viện khám bệnh."
      ]
-    ]
+    ],
+    "img": "img/tb/1-12-2.jpg"
    },
    {
     "title": "课文三",
@@ -3075,7 +3110,8 @@ window.HD_TB = {
       "他回家后要喝些热水。",
       "Về nhà anh ấy cần uống thêm ít nước ấm."
      ]
-    ]
+    ],
+    "img": "img/tb/1-12-3.jpg"
    }
   ],
   "grammar": [],
@@ -3152,7 +3188,8 @@ window.HD_TB = {
       "她说：“你可以打电话问一下。”",
       "Cô nói: “Em có thể gọi điện thoại hỏi xem.”"
      ]
-    ]
+    ],
+    "img": "img/tb/1-13-1.jpg"
    },
    {
     "title": "课文二",
@@ -3220,7 +3257,8 @@ window.HD_TB = {
       "她还没吃早饭。",
       "Cô ấy vẫn chưa ăn sáng."
      ]
-    ]
+    ],
+    "img": "img/tb/1-13-2.jpg"
    },
    {
     "title": "课文三",
@@ -3300,7 +3338,8 @@ window.HD_TB = {
       "他没要米饭。",
       "Anh ấy không gọi cơm trắng."
      ]
-    ]
+    ],
+    "img": "img/tb/1-13-3.jpg"
    }
   ],
   "grammar": [],
@@ -3380,7 +3419,8 @@ window.HD_TB = {
       "因为他看了一个电影。",
       "Vì cậu ấy đã xem một bộ phim."
      ]
-    ]
+    ],
+    "img": "img/tb/1-14-1.jpg"
    },
    {
     "title": "课文二",
@@ -3454,7 +3494,8 @@ window.HD_TB = {
       "他会写汉字了。",
       "Cậu ấy đã biết viết chữ Hán rồi."
      ]
-    ]
+    ],
+    "img": "img/tb/1-14-2.jpg"
    },
    {
     "title": "课文三",
@@ -3537,7 +3578,8 @@ window.HD_TB = {
       "上学后，他们都忙了。",
       "Sau khi vào học, các bạn ấy đều bận rộn."
      ]
-    ]
+    ],
+    "img": "img/tb/1-14-3.jpg"
    }
   ],
   "grammar": [],
@@ -3617,7 +3659,8 @@ window.HD_TB = {
       "他做的菜都好吃，还很好看。",
       "Món anh ấy nấu đều ngon, còn rất đẹp mắt."
      ]
-    ]
+    ],
+    "img": "img/tb/1-15-1.jpg"
    },
    {
     "title": "课文二",
@@ -3685,7 +3728,8 @@ window.HD_TB = {
       "她前几年去了西安。",
       "Mấy năm trước cô ấy đã đi Tây An."
      ]
-    ]
+    ],
+    "img": "img/tb/1-15-2.jpg"
    },
    {
     "title": "课文三",
@@ -3765,7 +3809,8 @@ window.HD_TB = {
       "可以，她星期天有时间。",
       "Có, Chủ nhật chị ấy có thời gian."
      ]
-    ]
+    ],
+    "img": "img/tb/1-15-3.jpg"
    }
   ],
   "grammar": [],
