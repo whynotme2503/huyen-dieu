@@ -63,6 +63,10 @@ Mã đăng nhập hoạt động như mật khẩu, mỗi em một mã. Giữ k�
 
 Bài tập như "Bài tập HSK1 – Bài 2" nằm trong `data.js` (mục `HD_SHEETS`). Để giao: Bảng giáo viên > Bài tập > ô "Game" > nhóm "Bài tập soạn sẵn" > chọn lớp và hạn nộp > Giao bài tập. Học sinh nộp xong thấy ngay số câu đúng/tổng, câu đúng sai và đáp án. Muốn thêm phiếu mới, gửi nội dung và đáp án cho người hỗ trợ để thêm vào `HD_SHEETS`.
 
+## Bài tập HSK 3 (Nghe – Đọc – Viết)
+
+Mỗi bài HSK 3 có một phiếu theo sách bài tập, chỉ có đề tiếng Trung: "HSK 3 · Bài N · Nghe – Đọc – Viết" (tệp `tests3.js`). Phiếu không tự hiện cho học sinh. Giáo viên vào Bài tập > ô "Game" > nhóm "Bài tập soạn sẵn" > chọn phiếu, lớp, hạn nộp > Giao. Học sinh chỉ thấy phiếu khi đã được giao. Phần Nghe có một file ghi âm cho cả phần; phần Viết (câu 28–30) chấm tạm: câu phải chứa từ cho sẵn và có ít nhất 6 chữ Hán.
+
 ## Tra từ và lời chúc hằng ngày
 
 - **Tra từ** (thanh điều hướng): học sinh gõ chữ Hán, pinyin (có hoặc không dấu) hoặc nghĩa tiếng Việt. Kết quả có nghĩa, ví dụ, ghi chú ngữ pháp, nghe đọc, xem thứ tự nét và luyện viết. Ví dụ và ngữ pháp nằm ở `HD_EXTRA` trong `data.js`, khóa là chữ Hán của từ. Khi thêm từ mới ở bài sau, thêm cả mục tương ứng vào `HD_EXTRA` để từ đó có ví dụ.
