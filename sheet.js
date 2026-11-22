@@ -30,7 +30,7 @@
   }
 
   function qHTML(q) {
-    var v = X.ans[q.n], body = "";
+    var v = X.ans[q.n], body = "", gap = !!(q.py && q.q && q.q.indexOf("（　　）") >= 0);
     if (q.type === "choice" && q.lettersOnly) {
       body = '<div class="sh-opts sh-letters">' + q.opts.map(function (o, j) { return '<button class="sh-opt' + (v === j ? " sel" : "") + '" data-sh="pick" data-n="' + q.n + '" data-o="' + j + '"><span class="key">' + LET[j] + "</span></button>"; }).join("") + "</div>";
     } else if (q.type === "choice") {
@@ -50,7 +50,7 @@
     } else {
       body = '<input class="sh-input hz" data-sh="type" data-n="' + q.n + '" value="' + esc(v || "") + '" placeholder="' + esc(q.ph) + '" autocomplete="off" autocapitalize="off" spellcheck="false" lang="zh">';
     }
-    return '<div class="sh-q" id="shq-' + q.n + '">' + (q.pass ? '<div class="sh-pass hz">' + esc(q.pass) + "</div>" : "") + (q.img ? '<img class="sh-img" src="' + esc(q.img) + '" alt="" loading="lazy">' : "") + (q.py ? '<div class="sh-py">' + esc(q.py) + "</div>" : "") + '<div class="sh-qt"><span class="sh-n">' + q.n + "</span>" + (q.q ? '<span class="sh-qp' + hz(q.q) + '">' + esc(q.q) + "</span>" : q.type === "order" ? '<span class="sh-qp">Sắp xếp thành câu đúng:</span>' : "") + "</div>" + (q.vi ? '<div class="sh-vi">' + esc(q.vi) + "</div>" : "") + (q.sub ? '<div class="sh-sub' + (hz(q.sub) ? " hzb hz" : "") + '">' + esc(q.sub) + "</div>" : "") + body + "</div>";
+    return '<div class="sh-q" id="shq-' + q.n + '">' + (q.pass ? '<div class="sh-pass hz">' + esc(q.pass) + "</div>" : "") + (q.img ? '<img class="sh-img" src="' + esc(q.img) + '" alt="" loading="lazy">' : "") + (q.py && !gap ? '<div class="sh-py">' + esc(q.py) + "</div>" : "") + '<div class="sh-qt"><span class="sh-n">' + q.n + "</span>" + (q.q ? '<span class="sh-qp' + hz(q.q) + '">' + (gap ? esc(q.q).replace("（　　）", '（<span class="sh-gap"><i>' + esc(q.py) + "</i></span>）") : esc(q.q)) + "</span>" : q.type === "order" ? '<span class="sh-qp">Sắp xếp thành câu đúng:</span>' : "") + "</div>" + (q.vi ? '<div class="sh-vi">' + esc(q.vi) + "</div>" : "") + (q.sub ? '<div class="sh-sub' + (hz(q.sub) ? " hzb hz" : "") + '">' + esc(q.sub) + "</div>" : "") + body + "</div>";
   }
 
   function render() {
@@ -91,21 +91,23 @@
   function multiCount(q, v) { var nv = norm(v), seen = {}, k = 0; q.valid.forEach(function (w) { if (!seen[w] && nv.indexOf(norm(w)) >= 0) { seen[w] = 1; k++; } }); return k; }
   function sentOK(q, v) { var t = norm(v); return (Array.isArray(q.a) ? q.a : [q.a]).some(function (w) { return t.indexOf(norm(w)) >= 0; }) && (t.match(/[㐀-鿿]/g) || []).length >= (q.minLen || 6); }
   function grade(q, v) {
+    if (q.type === "sent") return true; /* câu viết tự do: luôn tính đúng */
     if (!isDone(q, v)) return false;
     if (q.type === "choice") return v === q.a;
-    if (q.type === "sent") return sentOK(q, v);
     if (q.type === "order") return norm(v.map(function (k) { return q.pool.filter(function (p) { return p.k === k; })[0].w; }).join("")) === norm(q.a);
     if (q.type === "multi") return multiCount(q, v) >= q.min;
     if (q.fields) return q.fields.every(function (f, i) { return f.a.some(function (a) { return okAns(a, v[i], f.pre || q.pre); }); });
     return (Array.isArray(q.a) ? q.a : [q.a]).some(function (a) { return okAns(a, v, q.pre); });
   }
 
-  function submit() {
-    var sh = X.sheet, secs = Math.floor((Date.now() - X.t0) / 1000), score = 0, per = sh.parts.map(function () { return { ok: 0, n: 0 }; });
+  function rkey(sh) { return "hd-shrev:" + (H.session ? H.session.code : "") + ":" + sh.id; }
+  function submit(rv) {
+    var sh = X.sheet, secs = rv ? rv.secs : Math.floor((Date.now() - X.t0) / 1000), score = 0, per = sh.parts.map(function () { return { ok: 0, n: 0 }; });
     X.qs.forEach(function (q) { var ok = grade(q, X.ans[q.n]); q.ok = ok; per[q.part].n++; if (ok) { per[q.part].ok++; score++; } });
     var N = X.qs.length, pct = Math.round(score / N * 100);
-    var sync = X.onRecord({ lesson: sh.lesson, game: sh.id, gameName: sh.title, score: score, total: N, pct: pct, secs: secs, words: X.qs.filter(function (q) { return q.type === "sent" && X.ans[q.n]; }).map(function (q) { return "Câu " + q.n + ": " + String(X.ans[q.n]).replace(/\|/g, "/"); }), wrong: X.qs.filter(function (q) { return !q.ok; }).map(function (q) { return "Câu " + q.n + ": " + userText(q, X.ans[q.n]).replace(/\|/g, "/"); }) });
-    H.sfx(pct >= 70 ? "win" : "meh");
+    if (!rv) { try { localStorage.setItem(rkey(sh), JSON.stringify({ ans: X.ans, secs: secs })); } catch (er) {} }
+    var sync = rv ? "Đây là bài làm gần nhất của bạn. Bấm Làm lại nếu muốn làm lượt mới." : X.onRecord({ lesson: sh.lesson, game: sh.id, gameName: sh.title, score: score, total: N, pct: pct, secs: secs, words: X.qs.filter(function (q) { return q.type === "sent" && X.ans[q.n]; }).map(function (q) { return "Câu " + q.n + ": " + String(X.ans[q.n]).replace(/\|/g, "/"); }), wrong: X.qs.filter(function (q) { return !q.ok; }).map(function (q) { return "Câu " + q.n + ": " + userText(q, X.ans[q.n]).replace(/\|/g, "/"); }) });
+    if (!rv) H.sfx(pct >= 70 ? "win" : "meh");
     var msg = pct === 100 ? "Tuyệt vời, đúng hết!" : pct >= 80 ? "Rất tốt!" : pct >= 50 ? "Khá ổn, xem lại các câu sai bên dưới nhé." : "Cần ôn thêm, xem đáp án bên dưới rồi làm lại nhé.";
     var review = "", cur = -1;
     X.qs.forEach(function (q) {
@@ -163,6 +165,12 @@
     start: function (sheet, opt) {
       X = { sheet: sheet, qs: flatten(sheet), ans: {}, t0: Date.now(), warned: false, onRecord: opt.onRecord, onExit: opt.onExit, done: false };
       render(); window.scrollTo(0, 0);
+    },
+    review: function (sheet, opt) {
+      var raw; try { raw = JSON.parse(localStorage.getItem(rkey(sheet)) || "null"); } catch (er) { raw = null; }
+      if (!raw || !raw.ans) return false;
+      X = { sheet: sheet, qs: flatten(sheet), ans: raw.ans, t0: Date.now(), warned: false, onRecord: opt.onRecord, onExit: opt.onExit, done: true };
+      submit({ secs: raw.secs || 0 }); return true;
     },
     stop: function () { X = null; }
   };

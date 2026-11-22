@@ -729,3 +729,12 @@ textarea.sh-input { resize: vertical; }
 .sh-word{font-size:20px;font-weight:600;margin:2px 0 6px}
 .sh-letters{flex-direction:row;flex-wrap:wrap}
 .sh-letters .sh-opt{min-width:56px;justify-content:center}
+
+.sh-gap{display:inline-block;position:relative;min-width:3.6em;border-bottom:1.5px solid var(--ink-3,#999);margin:0 2px;height:1.1em;vertical-align:baseline}
+.sh-gap i{position:absolute;left:50%;transform:translateX(-50%);top:-1.5em;font:500 13px var(--f-ui);font-style:normal;color:#8a6d5a;white-space:nowrap;letter-spacing:.2px}
+.sh-qt .sh-qp{line-height:2.4}
+.sh-letters{gap:18px 22px;justify-content:space-between;max-width:420px}
+.sh-letters .sh-opt{min-width:84px;padding:12px 18px;flex:1 1 84px}
+.sh-letters{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:none;margin-right:8px}
+.sh-letters .sh-opt{min-width:0;flex:none}
+.sh-gap i{top:-1.3em}

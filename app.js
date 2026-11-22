@@ -756,7 +756,7 @@
   function pendingCount() { return assignItems().filter(function (it) { return !it.done; }).length; }
   function assignCard(it) {
     var a = it.a, g = a.game ? (gameById(a.game) || sheetById(a.game)) : null, d = dueInfo(a, it.done), L = lessonById(a.lesson);
-    return '<button class="acard' + (it.done ? " done" : "") + '" data-assign="' + esc(a.id) + '"><span class="at"><b>' + esc(a.title) + "</b><span>" + (L ? esc(L.title) : esc(lname(a.lesson))) + " · " + (g ? esc(g.name) : "Tự chọn game") + "</span>" + (a.note ? '<span class="an">' + esc(a.note) + "</span>" : "") + '</span><span class="as"><span class="tp ' + (it.done ? "good" : d.k) + '">' + (it.done ? "Đã làm · " + it.best + "%" : d.t) + '</span><span class="go">' + (it.done ? "Làm lại" : "Làm bài") + "</span></span></button>";
+    return '<button class="acard' + (it.done ? " done" : "") + '" data-assign="' + esc(a.id) + '"><span class="at"><b>' + esc(a.title) + "</b><span>" + (L ? esc(L.title) : esc(lname(a.lesson))) + " · " + (g ? esc(g.name) : "Tự chọn game") + "</span>" + (a.note ? '<span class="an">' + esc(a.note) + "</span>" : "") + '</span><span class="as"><span class="tp ' + (it.done ? "good" : d.k) + '">' + (it.done ? "Đã làm · " + it.best + "%" : d.t) + '</span><span class="go">' + (it.done ? (a.game && sheetById(a.game) ? "Xem lại" : "Làm lại") : "Làm bài") + "</span></span></button>";
   }
   function renderAssignments() {
     S.view = "assign"; curAssign = null; setRight('<span class="chip">' + pendingCount() + " bài chưa làm</span>");
@@ -770,7 +770,7 @@
     var L = lessonById(a.lesson); if (!L || !L.words.length) { toast("Bài này chưa có từ vựng."); return; }
     curAssign = id; S.lesson = L;
     var sh = a.game && sheetById(a.game);
-    if (sh && window.HD_SHEET) { S = { view: "sheet", lesson: L, game: null }; stopTimer(); setRight(""); return window.HD_SHEET.start(sh, { onRecord: record, onExit: function () { renderAssignments(); } }); }
+    if (sh && window.HD_SHEET) { S = { view: "sheet", lesson: L, game: null }; stopTimer(); setRight(""); var dn = MY.results.some(function (r) { return r.assignmentId === a.id; }); if (dn && window.HD_SHEET.review(sh, { onRecord: record, onExit: function () { renderAssignments(); } })) return; return window.HD_SHEET.start(sh, { onRecord: record, onExit: function () { renderAssignments(); } }); }
     if (a.game && gameById(a.game)) return startGame(a.game);
     if (L.level) VLV = L.level;
     nav("#" + (String(a.lesson) === "all" ? "tong-hop" : "bai-" + a.lesson));
