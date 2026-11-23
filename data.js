@@ -1110,9 +1110,9 @@ window.HD_SHEETS = [
           {
             "q": "Năm nay thầy Vương bao nhiêu tuổi? Năm nay thầy 39 tuổi.",
             "a": [
-              "re:(王老师今年|今年王老师|王老师)(多大|多少岁|几岁)(他|她|老师|王老师)?(今年)?(他|她|老师|王老师)?三十九岁?"
+              "re:(王老师今年|今年王老师|王老师)(多大|多少岁)(他|她|老师|王老师)?(今年)?(他|她|老师|王老师)?三十九岁?"
             ],
-            "exp": "Hỏi tuổi người lớn nên dùng 多大 (lịch sự hơn); dùng 几岁 vẫn được chấp nhận.",
+            "exp": "Không dùng 几岁 để hỏi tuổi người lớn (几岁 chỉ dùng hỏi trẻ em dưới 10 tuổi), nên câu dùng 几岁 tính sai. Dùng 多大 hoặc 多少岁.",
             "show": "王老师今年多大？他今年三十九岁。"
           },
           {
