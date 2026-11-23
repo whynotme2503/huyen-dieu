@@ -953,6 +953,68 @@ window.HD_TB = {
      ]
     ]
    }
+  ],
+  "extra": [
+   {
+    "title": "翻译",
+    "sub": "Dịch các câu sau sang tiếng Trung (ôn 看上去/看起来, đại từ nghi vấn dùng trong câu trần thuật, định ngữ nhiều tầng), rồi so với câu gợi ý.",
+    "tasks": [
+     {
+      "t": "open",
+      "q": "Dịch sang tiếng Trung:",
+      "items": [
+       [
+        "Trông anh ấy hơi giống bố anh ấy.",
+        "他看上去有点儿像他爸爸。"
+       ],
+       [
+        "Hôm nay trông cô ấy không mệt lắm.",
+        "她今天看起来不太累。"
+       ],
+       [
+        "Chị gái tôi trông trẻ hơn trong ảnh.",
+        "我姐姐看起来比照片上年轻。"
+       ],
+       [
+        "Hình như tôi đã thấy chiếc va li này ở đâu đó rồi.",
+        "我好像在哪儿看到过这个箱子。"
+       ],
+       [
+        "Đừng sốt ruột, chúng ta tìm ai đó hỏi thử đi.",
+        "别着急，我们找谁问一下吧。"
+       ],
+       [
+        "Tôi cứ tưởng hộ chiếu bị mất rồi, hóa ra ở trong va li.",
+        "我还以为护照丢了，原来在箱子里。"
+       ],
+       [
+        "Cậu thanh niên tóc ngắn mặc áo đen kia là bạn thân của tôi.",
+        "那个穿着黑衣服的短头发的年轻人是我的好朋友。"
+       ],
+       [
+        "Chiếc va li màu đen trên đó có ghi số điện thoại của tôi là của tôi.",
+        "那个上面写着我电话号码的黑色箱子是我的。"
+       ],
+       [
+        "Chúng ta nên đứng ở giữa, như vậy họ dễ tìm hơn.",
+        "我们应该站到中间去，这样他们好找一些。"
+       ],
+       [
+        "Anh ấy cao 1m80, trông gầy hơn tôi một chút.",
+        "他身高有一米八，看起来比我瘦一点儿。"
+       ],
+       [
+        "Hành lý của bạn không thấy đâu à? Tôi đưa bạn đến quầy phục vụ hỏi thử nhé.",
+        "你的行李不见了吗？我带你去服务台问问吧。"
+       ],
+       [
+        "Trong va li có khá nhiều đồ quan trọng, cảm ơn bạn đã giúp tôi tìm thấy nó.",
+        "箱子里有不少重要的东西，谢谢你帮助我找到了它。"
+       ]
+      ]
+     }
+    ]
+   }
   ]
  },
  "1": {
