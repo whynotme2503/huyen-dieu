@@ -885,3 +885,5 @@ textarea.sh-input { resize: vertical; }
 .lcard .hzm{font-family:var(--f-tb);font-size:16px;color:var(--ink)}
 .tb-listen{border-top:0;padding-top:0;margin-bottom:10px}.tb-lnote{margin:6px 0 6px 74px;font-size:13.5px}.tb.novi .tb-lnote{}@media(max-width:560px){.tb-lnote{margin-left:0}}.tb-script>summary{padding:12px 14px}.tb-script .tb-lines{padding:0 12px 8px}
 .mq-scope{text-transform:none;letter-spacing:0;margin-left:6px;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:700}
+.tb-badge.tip{background:#fff3cf;color:#8a6410}.tb-timg{display:block;max-width:100%;max-height:260px;border-radius:12px;margin:4px 0 10px}
+.tb-pass{white-space:pre-line;font-size:19px;line-height:1.7;background:var(--surface);border-radius:12px;padding:12px 14px;margin-bottom:10px;border-left:3px solid var(--c2)}.tb-tq.big{font-size:19px;font-weight:400}

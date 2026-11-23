@@ -3815,5 +3815,1517 @@ window.HD_TB = {
   ],
   "grammar": [],
   "practice": []
+ },
+ "3-9": {
+  "zh": "打不好没关系",
+  "py": "Dǎ bu hǎo méi guānxi",
+  "vi": "Chơi không tốt cũng không sao",
+  "texts": [
+   {
+    "title": "课文一",
+    "scene": {
+     "zh": "在图书馆门口，李文向白家月跑过去。",
+     "py": "Zài túshūguǎn ménkǒu, Lǐ Wén xiàng Bái Jiāyuè pǎo guòqu.",
+     "vi": "Ở cổng thư viện, Lý Văn chạy về phía Bạch Gia Nguyệt."
+    },
+    "img": "img/tb/3-9-1.jpg",
+    "audio": "audio/tb/3-9-1.mp3",
+    "words": [
+     0,
+     11
+    ],
+    "lines": [
+     {
+      "who": "李文",
+      "zh": "家月，对不起，我昨天忘了还你校园卡了。",
+      "py": "Jiāyuè, duìbuqǐ, wǒ zuótiān wàngle huán nǐ xiàoyuánkǎ le.",
+      "vi": "Gia Nguyệt, xin lỗi nhé, hôm qua mình quên trả thẻ sinh viên cho bạn."
+     },
+     {
+      "who": "白家月",
+      "zh": "没关系。你怎么这么快就过来了？",
+      "py": "Méi guānxi. Nǐ zěnme zhème kuài jiù guòlai le?",
+      "vi": "Không sao. Sao bạn đến nhanh thế?"
+     },
+     {
+      "who": "李文",
+      "zh": "我正在球场打球呢，接了你的电话就跑过来了。",
+      "py": "Wǒ zhèngzài qiúchǎng dǎ qiú ne, jiēle nǐ de diànhuà jiù pǎo guòlai le.",
+      "vi": "Mình đang chơi bóng ở sân, nghe điện thoại của bạn xong là chạy qua ngay."
+     },
+     {
+      "who": "白家月",
+      "zh": "听说为了准备运动会，你们几个男生每天都练球。",
+      "py": "Tīngshuō wèile zhǔnbèi yùndònghuì, nǐmen jǐ ge nánshēng měi tiān dōu liàn qiú.",
+      "vi": "Nghe nói để chuẩn bị cho đại hội thể thao, mấy bạn nam các cậu ngày nào cũng tập bóng."
+     },
+     {
+      "who": "李文",
+      "zh": "是啊！你打算参加运动会吗？",
+      "py": "Shì a! Nǐ dǎsuàn cānjiā yùndònghuì ma?",
+      "vi": "Đúng vậy! Bạn có định tham gia đại hội thể thao không?"
+     },
+     {
+      "who": "白家月",
+      "zh": "我想参加网球比赛，最近一直在练习。",
+      "py": "Wǒ xiǎng cānjiā wǎngqiú bǐsài, zuìjìn yìzhí zài liànxí.",
+      "vi": "Mình muốn tham gia thi đấu quần vợt, dạo này vẫn luôn tập luyện."
+     },
+     {
+      "who": "李文",
+      "zh": "好，到时候我去看你的比赛。",
+      "py": "Hǎo, dào shíhou wǒ qù kàn nǐ de bǐsài.",
+      "vi": "Được, đến lúc đó mình sẽ đi xem bạn thi đấu."
+     }
+    ],
+    "qs": [
+     [
+      "李文为什么来得很快？",
+      "因为他正在球场打球，接了白家月的电话就跑过来了。",
+      "Vì cậu ấy đang chơi bóng ở sân, nghe điện thoại của Gia Nguyệt xong là chạy qua ngay."
+     ],
+     [
+      "李文每天在做什么？",
+      "为了准备运动会，他和几个男生每天都练球。",
+      "Để chuẩn bị đại hội thể thao, cậu ấy và mấy bạn nam ngày nào cũng tập bóng."
+     ],
+     [
+      "白家月最近在做什么？",
+      "她想参加网球比赛，最近一直在练习。",
+      "Cô ấy muốn tham gia thi quần vợt, dạo này vẫn luôn tập luyện."
+     ]
+    ]
+   },
+   {
+    "title": "课文二",
+    "scene": {
+     "zh": "在校园里，李文和白家月在聊天儿。",
+     "py": "Zài xiàoyuán li, Lǐ Wén hé Bái Jiāyuè zài liáotiānr.",
+     "vi": "Trong khuôn viên trường, Lý Văn và Bạch Gia Nguyệt đang trò chuyện."
+    },
+    "img": "img/tb/3-9-2.jpg",
+    "audio": "audio/tb/3-9-2.mp3",
+    "words": [
+     11,
+     14
+    ],
+    "lines": [
+     {
+      "who": "李文",
+      "zh": "家月，你跟我们一起打羽毛球吧？",
+      "py": "Jiāyuè, nǐ gēn wǒmen yìqǐ dǎ yǔmáoqiú ba?",
+      "vi": "Gia Nguyệt, bạn chơi cầu lông cùng bọn mình nhé?"
+     },
+     {
+      "who": "白家月",
+      "zh": "我好多年没打羽毛球了，几乎忘了怎么打了。",
+      "py": "Wǒ hǎoduō nián méi dǎ yǔmáoqiú le, jīhū wàngle zěnme dǎ le.",
+      "vi": "Mình nhiều năm rồi không chơi cầu lông, gần như quên cách chơi rồi."
+     },
+     {
+      "who": "李文",
+      "zh": "不是比赛，打不好没关系。",
+      "py": "Bú shì bǐsài, dǎ bu hǎo méi guānxi.",
+      "vi": "Không phải thi đấu đâu, chơi không tốt cũng không sao."
+     },
+     {
+      "who": "白家月",
+      "zh": "这么多同学一起打，如果总是接不住球，就太不好意思了。",
+      "py": "Zhème duō tóngxué yìqǐ dǎ, rúguǒ zǒngshì jiē bu zhù qiú, jiù tài bù hǎoyìsi le.",
+      "vi": "Nhiều bạn cùng chơi như vậy, nếu mình cứ đỡ không được cầu thì ngại lắm."
+     },
+     {
+      "who": "李文",
+      "zh": "你想得太多了！大家打球只是为了锻炼身体。",
+      "py": "Nǐ xiǎng de tài duō le! Dàjiā dǎ qiú zhǐshì wèile duànliàn shēntǐ.",
+      "vi": "Bạn nghĩ nhiều quá rồi! Mọi người chơi chỉ là để rèn luyện sức khỏe thôi."
+     },
+     {
+      "who": "白家月",
+      "zh": "我先自己练练吧，下周再跟你们一起打。",
+      "py": "Wǒ xiān zìjǐ liànlian ba, xià zhōu zài gēn nǐmen yìqǐ dǎ.",
+      "vi": "Mình tự tập trước một chút đã, tuần sau sẽ chơi cùng các bạn."
+     },
+     {
+      "who": "李文",
+      "zh": "我在教天中打羽毛球，你可以过来跟我们一起练。",
+      "py": "Wǒ zài jiāo Tiānzhōng dǎ yǔmáoqiú, nǐ kěyǐ guòlai gēn wǒmen yìqǐ liàn.",
+      "vi": "Mình đang dạy Thiên Trung chơi cầu lông, bạn có thể qua tập cùng bọn mình."
+     }
+    ],
+    "qs": [
+     [
+      "李文叫白家月一起做什么？",
+      "叫她一起打羽毛球。",
+      "Rủ cô ấy cùng chơi cầu lông."
+     ],
+     [
+      "白家月为什么不想去？",
+      "她好多年没打羽毛球了，几乎忘了怎么打了，怕总是接不住球。",
+      "Cô ấy nhiều năm không chơi, gần như quên cách chơi, sợ cứ đỡ không được cầu."
+     ],
+     [
+      "白家月想先做什么？",
+      "她想先自己练练。",
+      "Cô ấy muốn tự tập trước một chút."
+     ]
+    ]
+   },
+   {
+    "title": "课文三",
+    "scene": {
+     "zh": "在李文家，李文、白家月和陈天中一起看电视。",
+     "py": "Zài Lǐ Wén jiā, Lǐ Wén, Bái Jiāyuè hé Chén Tiānzhōng yìqǐ kàn diànshì.",
+     "vi": "Ở nhà Lý Văn, Lý Văn, Bạch Gia Nguyệt và Trần Thiên Trung cùng xem ti vi."
+    },
+    "img": "img/tb/3-9-3.jpg",
+    "audio": "audio/tb/3-9-3.mp3",
+    "words": [
+     14,
+     21
+    ],
+    "lines": [
+     {
+      "who": "陈天中",
+      "zh": "足球比赛已经开始了，快过来看吧！",
+      "py": "Zúqiú bǐsài yǐjīng kāishǐ le, kuài guòlai kàn ba!",
+      "vi": "Trận bóng đá bắt đầu rồi, mau qua xem đi!"
+     },
+     {
+      "who": "李文",
+      "zh": "你们先看，冰箱里有啤酒和饮料，我去拿一下。",
+      "py": "Nǐmen xiān kàn, bīngxiāng li yǒu píjiǔ hé yǐnliào, wǒ qù ná yíxià.",
+      "vi": "Các bạn xem trước đi, trong tủ lạnh có bia và nước ngọt, mình đi lấy một chút."
+     },
+     {
+      "who": "白家月",
+      "zh": "今天怎么回事？总是踢不进去！",
+      "py": "Jīntiān zěnme huí shì? Zǒngshì tī bu jìnqu!",
+      "vi": "Hôm nay sao thế nhỉ? Cứ sút mãi không vào!"
+     },
+     {
+      "who": "陈天中",
+      "zh": "几个老球员生病了，新球员第一次参加这么重要的比赛，太紧张了。",
+      "py": "Jǐ ge lǎo qiúyuán shēngbìng le, xīn qiúyuán dì-yī cì cānjiā zhème zhòngyào de bǐsài, tài jǐnzhāng le.",
+      "vi": "Mấy cầu thủ lâu năm bị ốm, cầu thủ mới lần đầu tham gia trận đấu quan trọng như vậy nên quá căng thẳng."
+     },
+     {
+      "who": "李文",
+      "zh": "是啊，主要的球员没参加比赛，所以大家也都受到影响了。",
+      "py": "Shì a, zhǔyào de qiúyuán méi cānjiā bǐsài, suǒyǐ dàjiā yě dōu shòudào yǐngxiǎng le.",
+      "vi": "Đúng vậy, cầu thủ chủ chốt không tham gia trận đấu nên mọi người cũng đều bị ảnh hưởng."
+     },
+     {
+      "who": "白家月",
+      "zh": "越看越着急。我不看了，你们告诉我得分吧。",
+      "py": "Yuè kàn yuè zháojí. Wǒ bú kàn le, nǐmen gàosu wǒ défēn ba.",
+      "vi": "Càng xem càng sốt ruột. Mình không xem nữa, các bạn báo tỉ số cho mình nhé."
+     }
+    ],
+    "qs": [
+     [
+      "李文要去冰箱里拿什么？",
+      "拿啤酒和饮料。",
+      "Lấy bia và nước ngọt."
+     ],
+     [
+      "今天的足球比赛踢得怎么样？",
+      "踢得不好，总是踢不进去。",
+      "Đá không tốt, cứ sút mãi không vào."
+     ],
+     [
+      "球员们受到什么影响了？",
+      "几个主要的老球员生病了，没参加比赛，新球员太紧张了。",
+      "Mấy cầu thủ chủ chốt bị ốm không tham gia, cầu thủ mới thì quá căng thẳng."
+     ]
+    ]
+   },
+   {
+    "title": "课文四",
+    "scene": {
+     "zh": "在家里，李文准备演讲稿。",
+     "py": "Zài jiā li, Lǐ Wén zhǔnbèi yǎnjiǎng gǎo.",
+     "vi": "Ở nhà, Lý Văn chuẩn bị bài diễn thuyết."
+    },
+    "img": "img/tb/3-9-4.jpg",
+    "audio": "audio/tb/3-9-4.mp3",
+    "words": [
+     21,
+     26
+    ],
+    "prose": true,
+    "lines": [
+     {
+      "who": "",
+      "zh": "我喜欢看体育比赛，最爱看的就是奥运会。",
+      "py": "Wǒ xǐhuan kàn tǐyù bǐsài, zuì ài kàn de jiù shì Àoyùnhuì.",
+      "vi": "Tôi thích xem các trận thi đấu thể thao, thích xem nhất chính là Thế vận hội (Olympic)."
+     },
+     {
+      "who": "",
+      "zh": "奥运会是世界上影响最大的体育比赛。",
+      "py": "Àoyùnhuì shì shìjiè shang yǐngxiǎng zuì dà de tǐyù bǐsài.",
+      "vi": "Thế vận hội là cuộc thi đấu thể thao có ảnh hưởng lớn nhất thế giới."
+     },
+     {
+      "who": "",
+      "zh": "从1896年到2024年，每次奥运会都有非常多的运动员参加。",
+      "py": "Cóng yī bā jiǔ liù nián dào èr líng èr sì nián, měi cì Àoyùnhuì dōu yǒu fēicháng duō de yùndòngyuán cānjiā.",
+      "vi": "Từ năm 1896 đến năm 2024, kỳ Thế vận hội nào cũng có rất nhiều vận động viên tham gia."
+     },
+     {
+      "who": "",
+      "zh": "第一位参加奥运会的中国运动员是刘长春，他1932年参加了100米和200米短跑比赛。",
+      "py": "Dì-yī wèi cānjiā Àoyùnhuì de Zhōngguó yùndòngyuán shì Liú Chángchūn, tā yī jiǔ sān èr nián cānjiāle yìbǎi mǐ hé èrbǎi mǐ duǎnpǎo bǐsài.",
+      "vi": "Vận động viên Trung Quốc đầu tiên tham gia Thế vận hội là Lưu Trường Xuân, năm 1932 ông tham gia thi chạy ngắn 100 mét và 200 mét."
+     },
+     {
+      "who": "",
+      "zh": "虽然他没有得到好成绩，但是他让世界认识了中国。",
+      "py": "Suīrán tā méiyǒu dédào hǎo chéngjì, dànshì tā ràng shìjiè rènshile Zhōngguó.",
+      "vi": "Tuy ông không đạt được thành tích tốt, nhưng ông đã giúp thế giới biết đến Trung Quốc."
+     }
+    ],
+    "qs": [
+     [
+      "奥运会是一个什么样的体育比赛？",
+      "奥运会是世界上影响最大的体育比赛。",
+      "Là cuộc thi đấu thể thao có ảnh hưởng lớn nhất thế giới."
+     ],
+     [
+      "1932年，中国运动员的比赛成绩怎么样？",
+      "刘长春没有得到好成绩。",
+      "Lưu Trường Xuân không đạt được thành tích tốt."
+     ],
+     [
+      "刘长春的影响是什么？",
+      "他让世界认识了中国。",
+      "Ông đã giúp thế giới biết đến Trung Quốc."
+     ]
+    ]
+   }
+  ],
+  "words": [
+   {
+    "w": "校园",
+    "py": "xiàoyuán",
+    "mean": "khuôn viên trường (danh từ)",
+    "lines": [
+     "Toàn bộ khu đất của trường (sân, nhà, đường…).",
+     "校园卡 xiàoyuán kǎ - thẻ sinh viên｜校园生活 xiàoyuán shēnghuó - đời sống học đường｜学校 xuéxiào - trường học",
+     "他每天早上都在校园里跑步。",
+     "放假以后，校园里一下子安静了很多。"
+    ]
+   },
+   {
+    "w": "卡",
+    "py": "kǎ",
+    "mean": "thẻ (danh từ)",
+    "lines": [
+     "Chỉ các loại thẻ nhựa: 信用卡",
+     "银行卡 yínháng kǎ - thẻ ngân hàng｜刷卡 shuākǎ - quẹt thẻ｜一张卡 yì zhāng kǎ - một cái thẻ",
+     "我的银行卡丢了，得马上给银行打电话。",
+     "坐地铁的时候可以刷卡，很方便。"
+    ]
+   },
+   {
+    "w": "球场",
+    "py": "qiúchǎng",
+    "mean": "sân bóng (danh từ)",
+    "lines": [
+     "Sân để chơi các môn bóng.",
+     "足球场 zúqiú chǎng - sân bóng đá｜篮球场 lánqiú chǎng - sân bóng rổ｜体育馆 tǐyùguǎn - nhà thi đấu",
+     "学校的球场下午人太多，我们早上去吧。",
+     "下大雨了，球场上一个人也没有。"
+    ]
+   },
+   {
+    "w": "为了",
+    "py": "wèile",
+    "mean": "vì, để (giới từ)",
+    "lines": [
+     "Nêu MỤC ĐÍCH: 为了 + việc muốn đạt được / người được hướng tới. Khác 因为 (nêu nguyên nhân).",
+     "因为 yīnwèi - bởi vì (nguyên nhân)｜为什么 wèi shénme - tại sao",
+     "为了身体健康，爸爸每天晚饭后都出去走一走。",
+     "为了孩子，妈妈换了一个离家近的工作。"
+    ]
+   },
+   {
+    "w": "运动会",
+    "py": "yùndònghuì",
+    "mean": "đại hội thể thao (danh từ)",
+    "lines": [
+     "Một sự kiện gồm nhiều môn thi đấu (trường, thành phố, quốc gia tổ chức). 会 = hội, buổi họp lớn.",
+     "开运动会 kāi yùndònghuì - tổ chức đại hội thể thao｜运动 yùndòng - vận động｜第一名 dì yī míng - hạng nhất",
+     "我们学校每年十月都开运动会。",
+     "这次运动会，我们班一共得了五个第一名。"
+    ]
+   },
+   {
+    "w": "男生",
+    "py": "nánshēng",
+    "mean": "nam sinh, nam giới (danh từ)",
+    "lines": [
+     "Gốc là nam sinh (học sinh nam), khẩu ngữ dùng cho con trai trẻ nói chung. Đối lập: 女生. Trang trọng hơn: 男的 / 男人.",
+     "女生 nǚshēng - nữ sinh｜男的 nán de - người nam (khẩu ngữ)",
+     "我们班男生比女生多。",
+     "这几个男生下课以后常去球场打球。"
+    ]
+   },
+   {
+    "w": "练",
+    "py": "liàn",
+    "mean": "luyện, tập (động từ)",
+    "lines": [
+     "Động từ một âm tiết, khẩu ngữ, thường đi ngay với tân ngữ ngắn: 练球、练字、练口语. Có thể lặp: 练练. Khi cần dùng như danh từ hoặc đứng một mình thì dùng 练习.",
+     "练球 liàn qiú - tập bóng｜练字 liàn zì - luyện chữ｜练练 liànlian - tập một chút",
+     "他的字写得不好看，所以每天晚上都练字。",
+     "你的汉语说得还不太好，得多练练。"
+    ]
+   },
+   {
+    "w": "参加",
+    "py": "cānjiā",
+    "mean": "tham gia (động từ)",
+    "lines": [
+     "参加 + hoạt động / sự kiện / tổ chức: 参加比赛、参加考试、参加运动会. Không dùng cho nơi chốn - đi xem một nơi là 参观 (cānguān, tham quan).",
+     "参观 cānguān - tham quan｜参加考试 cānjiā kǎoshì - dự thi",
+     "这次考试一共有三百多个学生参加。",
+     "你参加过学校的运动会吗？"
+    ]
+   },
+   {
+    "w": "网球",
+    "py": "wǎngqiú",
+    "mean": "quần vợt, tennis (danh từ)",
+    "lines": [
+     "网 = lưới. Chơi quần vợt dùng 打.",
+     "打网球 dǎ wǎngqiú｜网球场 wǎngqiú chǎng - sân quần vợt｜羽毛球 yǔmáoqiú - cầu lông",
+     "我妹妹从小就喜欢打网球。",
+     "网球比羽毛球累多了，我打了半个小时就不想打了。"
+    ]
+   },
+   {
+    "w": "比赛",
+    "py": "bǐsài",
+    "mean": "trận đấu, cuộc thi (danh từ) / thi đấu (động từ)",
+    "lines": [
+     "Danh từ - trận đấu, cuộc thi; lượng từ 场 (chǎng) hoặc 次: 一场比赛.",
+     "昨天晚上的足球比赛你看了吗？",
+     "这次比赛我们只得了第三名，大家都不太高兴。",
+     "Động từ - thi với nhau xem ai hơn; thường không mang tân ngữ trực tiếp, dùng 跟……比赛.",
+     "一场比赛 yì chǎng bǐsài｜跟……比赛 gēn… bǐsài - thi với…｜参加比赛 cānjiā bǐsài",
+     "我们比赛一下，看谁跑得快。",
+     "明天下午我们班跟二班比赛打篮球。"
+    ]
+   },
+   {
+    "w": "练习",
+    "py": "liànxí",
+    "mean": "luyện tập (động từ) / bài tập (danh từ)",
+    "lines": [
+     "Động từ - luyện tập, trang trọng hơn 练, đứng một mình được: 多练习. Có thể mang thời lượng: 练习两个小时.",
+     "想说好汉语，就得每天练习。",
+     "他每天下午练习两个小时网球。",
+     "Danh từ - bài tập: 做练习 (làm bài tập).",
+     "做练习 zuò liànxí - làm bài tập｜作业 zuòyè - bài tập về nhà｜练 liàn - tập (khẩu ngữ)",
+     "今天的练习有点儿多，我做到十点才做完。",
+     "书上的练习你都做完了吗？"
+    ]
+   },
+   {
+    "w": "好多",
+    "py": "hǎoduō",
+    "mean": "khá nhiều, rất nhiều (số từ)",
+    "lines": [
+     "= 很多 nhưng khẩu ngữ hơn: 好多人、好多年、好多次. Đừng nhầm với 好多了 (đỡ / tốt hơn nhiều, Bài 8): đó là 好 + 多了, không phải số từ.",
+     "很多 hěn duō｜好多了 hǎo duō le - đỡ nhiều rồi｜好几 hǎojǐ - mấy, vài (Bài 4)",
+     "球场上有好多人，我们等一会儿再去吧。",
+     "这个城市我来过好多次了，每次都很开心。"
+    ]
+   },
+   {
+    "w": "几乎",
+    "py": "jīhū",
+    "mean": "hầu như, gần như (phó từ)",
+    "lines": [
+     "Gần như là toàn bộ (hoặc gần như không). Hay đi với 每 / 都 / 没 / 不: 几乎每天、几乎都、几乎没. Khác 差不多 (Bài 8): 差不多 thường đứng trước con số (差不多三年), còn có nghĩa tính từ “xấp xỉ”; 几乎 chỉ là phó từ.",
+     "差不多 chàbuduō (Bài 8)｜几乎每天 jīhū měi tiān - hầu như ngày nào cũng",
+     "他几乎每天都去体育馆锻炼。",
+     "这本书里的字，我几乎都不认识。"
+    ]
+   },
+   {
+    "w": "只是",
+    "py": "zhǐshì",
+    "mean": "chỉ là (phó từ) / nhưng mà (liên từ)",
+    "lines": [
+     "Phó từ - chỉ là, chẳng qua là; làm nhẹ sự việc: 只是 + việc nhỏ / lý do đơn giản. Hay gặp: 只是为了…… (chỉ là để…).",
+     "我只是有点儿累，没生病。",
+     "别担心，他只是发低烧，休息两天就好。",
+     "Liên từ - nhưng mà, chỉ có điều; nhẹ hơn 但是, vế trước nói điểm tốt, vế sau nói một điểm chưa ổn.",
+     "但是 dànshì - nhưng (mạnh hơn)｜只 zhǐ - chỉ｜不过 búguò - có điều",
+     "这件衣服很好看，只是有点儿贵。",
+     "这家饭馆的菜不错，只是离我家太远了。"
+    ]
+   },
+   {
+    "w": "啤酒",
+    "py": "píjiǔ",
+    "mean": "bia (danh từ)",
+    "lines": [
+     "啤 phiên âm từ “beer”, 酒 = rượu. Lượng từ: 一瓶 (chai), 一杯 (cốc). Chú ý: uống rượu bia không được lái xe.",
+     "一瓶啤酒 yì píng píjiǔ - một chai bia｜酒 jiǔ - rượu｜喝酒 hē jiǔ - uống rượu",
+     "天气太热了，来一瓶冰啤酒吧。",
+     "开车的时候不能喝啤酒。"
+    ]
+   },
+   {
+    "w": "回",
+    "py": "huí",
+    "mean": "lần, vụ (lượng từ)",
+    "lines": [
+     "Lượng từ đếm số lần = 次 nhưng khẩu ngữ hơn: 去过两回. Cụm cố định 怎么回事 = chuyện gì vậy? sao thế? Khác động từ 回 (về): 回家.",
+     "次 cì - lần｜怎么回事 zěnme huí shì - chuyện gì vậy｜回家 huí jiā - về nhà (động từ)",
+     "这本书我看过两回了，还想再看一回。",
+     "你的腿怎么回事？昨天还好好的。"
+    ]
+   },
+   {
+    "w": "紧张",
+    "py": "jǐnzhāng",
+    "mean": "căng thẳng, hồi hộp (tính từ)",
+    "lines": [
+     "Nghĩa 1 - tâm trạng hồi hộp, lo lắng trước việc quan trọng:",
+     "明天就要考试了，我有点儿紧张。",
+     "别紧张，你说慢一点儿，大家都在听。",
+     "Nghĩa 2 - thời gian, công việc gấp gáp, eo hẹp: 时间很紧张、工作很紧张.",
+     "不紧张 bù jǐnzhāng｜别紧张 bié jǐnzhāng - đừng hồi hộp｜着急 zháojí - sốt ruột (Bài 1)",
+     "时间很紧张，我们得快点儿走。",
+     "这几天工作很紧张，我每天都很晚才回家。"
+    ]
+   },
+   {
+    "w": "主要",
+    "py": "zhǔyào",
+    "mean": "chủ yếu, chính (tính từ)",
+    "lines": [
+     "Cách 1 - đứng trước danh từ (thường có 的): 主要的问题、主要的球员.",
+     "这个城市主要的问题是车太多。",
+     "米饭和面条是这里主要的饭菜。",
+     "Cách 2 - 主要 + 是 / động từ: nói lý do, nội dung chính.",
+     "主要是 zhǔyào shì - chủ yếu là｜重要 zhòngyào - quan trọng (Bài 1, khác nghĩa!)",
+     "我学汉语，主要是为了以后去中国工作。",
+     "我不想去，主要是没时间。"
+    ]
+   },
+   {
+    "w": "受到",
+    "py": "shòudào",
+    "mean": "bị, chịu, nhận được (động từ)",
+    "lines": [
+     "Chịu tác động TỪ NGƯỜI KHÁC / BÊN NGOÀI, tốt hoặc xấu: 受到影响、受到欢迎、受到关心、受到帮助. Mẫu: 受到 + (ai đó 的) + danh từ. So sánh với 得到, 收到 ở từ số 25.",
+     "受到影响 shòudào yǐngxiǎng - bị ảnh hưởng｜受到欢迎 shòudào huānyíng - được hoan nghênh",
+     "他的书受到了很多人的欢迎。",
+     "来中国以后，我受到了很多朋友的帮助。"
+    ]
+   },
+   {
+    "w": "影响",
+    "py": "yǐngxiǎng",
+    "mean": "sự ảnh hưởng (danh từ) / ảnh hưởng (động từ)",
+    "lines": [
+     "Danh từ - mẫu: 对 + ai/cái gì + 有影响 / 影响很大; 受到……的影响.",
+     "爸爸对我的影响很大。",
+     "玩手机太多，对眼睛有不好的影响。",
+     "Động từ - 影响 + tân ngữ: làm ảnh hưởng đến (thường là xấu).",
+     "对……有影响 duì… yǒu yǐngxiǎng｜影响学习 yǐngxiǎng xuéxí｜受到影响 shòudào yǐngxiǎng",
+     "你小声点儿，别影响大家休息。",
+     "下大雨影响了今天的足球比赛。"
+    ]
+   },
+   {
+    "w": "得分",
+    "py": "défēn",
+    "mean": "ghi điểm (động từ) / tỉ số, điểm (danh từ)",
+    "lines": [
+     "Động từ - ghi điểm, tách được: 得了十分、得了一分.",
+     "他一个人就得了二十分。",
+     "比赛结束前五分钟，我们又得了一分。",
+     "Danh từ - tỉ số, số điểm đạt được; tỉ số đọc là 三比二 (3 - 2).",
+     "三比二 sān bǐ èr - 3:2｜分 fēn - điểm｜第一名 dì yī míng - hạng nhất",
+     "这次比赛的得分是三比二，二班得了第一名。"
+    ]
+   },
+   {
+    "w": "体育",
+    "py": "tǐyù",
+    "mean": "thể dục, thể thao (danh từ)",
+    "lines": [
+     "Chỉ lĩnh vực / môn học thể thao nói chung, thường đứng trước danh từ: 体育课、体育比赛、体育馆. Khác 运动: 运动 là hoạt động cụ thể, làm động từ được (每天运动); 体育 không làm động từ.",
+     "体育课 tǐyù kè - giờ thể dục｜运动 yùndòng - vận động｜体育馆 tǐyùguǎn (Bài 8)",
+     "我从小就对体育很感兴趣。",
+     "他最喜欢看体育比赛，特别是足球。"
+    ]
+   },
+   {
+    "w": "世界",
+    "py": "shìjiè",
+    "mean": "thế giới (danh từ)",
+    "lines": [
+     "Hay dùng 世界上 (trên thế giới) + so sánh nhất: 世界上最……的. Ghép: 世界第一 (số một thế giới), 全世界 (toàn thế giới).",
+     "世界上 shìjiè shang - trên thế giới｜全世界 quán shìjiè｜世界第一 shìjiè dì yī",
+     "他想去世界上很多城市看看。",
+     "这是世界上最高的楼吗？"
+    ]
+   },
+   {
+    "w": "运动员",
+    "py": "yùndòngyuán",
+    "mean": "vận động viên (danh từ)",
+    "lines": [
+     "员 = người làm một nghề / vai trò: 服务员 (Bài 2), 球员 (cầu thủ). 运动员 chỉ người thi đấu thể thao chuyên nghiệp.",
+     "球员 qiúyuán - cầu thủ｜服务员 fúwùyuán (Bài 2)｜网球运动员 wǎngqiú yùndòngyuán",
+     "他从小就想当一个网球运动员。",
+     "这些运动员每天要练习七八个小时。"
+    ]
+   },
+   {
+    "w": "得到",
+    "py": "dédào",
+    "mean": "đạt được, nhận được (động từ)",
+    "lines": [
+     "Có được thứ mình mong muốn, thường là điều tốt, trừu tượng: 得到帮助、得到机会、得到好成绩、得到这个工作.",
+     "找了半年，他终于得到了这个工作。",
+     "这次比赛他得到了第一名，大家都很为他高兴。",
+     "So sánh 得到 / 受到 / 收到 (Bài 5):  得到 - có được điều tốt (成绩、机会);  受到 - chịu tác động từ người khác (影响、欢迎), nói được cả xấu;  收到 - nhận đồ vật được gửi đến (邮件、礼物). 帮助、关心 dùng được với cả 得到 và 受到.",
+     "受到影响 (✓)　得到影响 (✗)｜得到好成绩 (✓)　受到好成绩 (✗)｜收到邮件 (✓)",
+     "这次他受到了天气的影响，没得到第一名。",
+     "我昨天收到了一封邮件，是老师发来的。"
+    ]
+   },
+   {
+    "w": "成绩",
+    "py": "chéngjì",
+    "mean": "thành tích, kết quả, điểm số (danh từ)",
+    "lines": [
+     "Kết quả học tập / thi đấu: 考试成绩、比赛成绩. Tính từ đi kèm: 成绩好 / 不好 / 很高. Động từ đi kèm: 得到成绩、取得 (qǔdé) 成绩.",
+     "考试成绩 kǎoshì chéngjì - điểm thi｜好成绩 hǎo chéngjì - thành tích tốt｜分 fēn - điểm",
+     "他的汉语成绩在我们班是第一。",
+     "这次比赛他的成绩不太好，但是他一点儿也不难过。"
+    ]
+   }
+  ],
+  "grammar": [
+   {
+    "title": "目的复句 “为了……，……”",
+    "sub": "Câu ghép chỉ mục đích: để…, vì…",
+    "intro": "Vế có 为了 nói MỤC ĐÍCH muốn đạt được, vế còn lại nói HÀNH ĐỘNG để đạt mục đích đó. Vế 为了 thường đứng trước, vế hành động đứng sau.",
+    "formula": [
+     "为了",
+     "mục đích",
+     "(chủ ngữ) + hành động"
+    ],
+    "uses": [
+     [
+      "为了 + động từ / cụm động từ",
+      "Mục đích là một việc muốn làm được: 为了考好、为了早点儿到. Mục đích có thể là phủ định: 为了不迟到、为了不感冒.",
+      "为了不迟到，我每天早上六点就起床。"
+     ],
+     [
+      "为了 + danh từ",
+      "Vì ai, vì cái gì: 为了孩子、为了身体. Có thể thêm 的: 为了大家的健康.",
+      "为了孩子，妈妈换了一个离家近的工作。"
+     ],
+     [
+      "……，是为了……",
+      "Đưa mục đích ra sau để nhấn mạnh: “…là để…”. Hỏi mục đích: 你这么做是为了什么？",
+      "我每天跑步，是为了让身体更健康。"
+     ]
+    ],
+    "compare": [
+     [
+      "为了",
+      "MỤC ĐÍCH: điều muốn đạt, thường chưa xảy ra."
+     ],
+     [
+      "因为",
+      "NGUYÊN NHÂN: sự việc đã / đang có thật."
+     ],
+     [
+      "为什么……？",
+      "hỏi nguyên nhân"
+     ],
+     [
+      "……是为了什么？",
+      "hỏi mục đích"
+     ]
+    ],
+    "notes": [
+     [
+      "Chủ ngữ có thể đặt sau dấu phẩy hoặc trước 为了:",
+      "她为了参加比赛，每天都练习。",
+      ""
+     ],
+     [
+      "Không dùng 为了 cho nguyên nhân:",
+      "为了下雨，我们不去了。",
+      "✗ → 因为下雨，我们不去了。✓"
+     ],
+     [
+      "为了 không đi với 所以:",
+      "为了……，所以……",
+      "✗"
+     ]
+    ],
+    "ex": [
+     {
+      "zh": "为了在运动会上跑得更快，他每天下午都去球场练习。",
+      "py": "Wèile zài yùndònghuì shang pǎo de gèng kuài, tā měi tiān xiàwǔ dōu qù qiúchǎng liànxí.",
+      "vi": "Để chạy nhanh hơn ở đại hội thể thao, chiều nào anh ấy cũng ra sân tập luyện."
+     },
+     {
+      "zh": "他每天晚上都练习说汉语，是为了明年去中国工作。",
+      "py": "Tā měi tiān wǎnshang dōu liànxí shuō Hànyǔ, shì wèile míngnián qù Zhōngguó gōngzuò.",
+      "vi": "Tối nào anh ấy cũng luyện nói tiếng Trung, là để sang năm sang Trung Quốc làm việc."
+     },
+     {
+      "zh": "因为他感冒了，所以今天没来比赛。",
+      "py": "Yīnwèi tā gǎnmào le, suǒyǐ jīntiān méi lái bǐsài.",
+      "vi": "Vì anh ấy bị cảm nên hôm nay không đến thi đấu. (nguyên nhân)"
+     },
+     {
+      "zh": "为了不感冒，他出门的时候穿了很多衣服。",
+      "py": "Wèile bù gǎnmào, tā chūmén de shíhou chuānle hěn duō yīfu.",
+      "vi": "Để không bị cảm, lúc ra ngoài anh ấy mặc rất nhiều áo. (mục đích)"
+     }
+    ],
+    "tasks": [
+     {
+      "t": "choice",
+      "q": "Chọn từ đúng: ____ 下雨，比赛不比了。",
+      "opts": [
+       "为了",
+       "因为"
+      ],
+      "a": 1,
+      "exp": "Trời mưa là nguyên nhân có thật → 因为."
+     },
+     {
+      "t": "choice",
+      "q": "Chọn từ đúng: ____ 参加网球比赛，她最近一直在练习。",
+      "opts": [
+       "为了",
+       "因为"
+      ],
+      "a": 0,
+      "exp": "Tham gia thi đấu là mục đích muốn đạt → 为了."
+     },
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "为了身体健康，所以他每天跑步。",
+       "为了身体健康，他每天跑步。"
+      ],
+      "a": 1,
+      "exp": "为了 không đi với 所以."
+     },
+     {
+      "t": "order",
+      "q": "Sắp xếp thành câu đúng:",
+      "tok": [
+       "为了",
+       "准备运动会",
+       "他们",
+       "每天",
+       "都练球"
+      ],
+      "a": "为了准备运动会他们每天都练球"
+     },
+     {
+      "t": "open",
+      "q": "完成句子。Hoàn thành câu.",
+      "items": [
+       [
+        "______________________，我们决定搬家。",
+        "为了离公司近一点儿，我们决定搬家。"
+       ],
+       [
+        "______________________，她每天都去锻炼身体。",
+        "为了身体健康，她每天都去锻炼身体。"
+       ],
+       [
+        "______________________，他们打算坐高铁去上海。",
+        "为了早点儿到，他们打算坐高铁去上海。"
+       ]
+      ]
+     }
+    ],
+    "after": 0,
+    "keys": [
+     0
+    ]
+   },
+   {
+    "title": "可能补语",
+    "sub": "Bổ ngữ khả năng: có làm được / đạt được hay không",
+    "intro": "Bổ ngữ khả năng cho biết điều kiện hoặc năng lực có CHO PHÉP đạt được một kết quả, một hướng nào đó hay không. Cách tạo: chèn 得 (đọc nhẹ “de”) hoặc 不 vào giữa động từ và bổ ngữ kết quả / bổ ngữ xu hướng.",
+    "formula": [
+     "Động từ",
+     "得 / 不",
+     "Bổ ngữ kết quả / xu hướng"
+    ],
+    "uses": [
+     [
+      "Với bổ ngữ kết quả",
+      "看得懂 / 看不懂、听得见 / 听不见、做得完 / 做不完、买得到 / 买不到、找得到 / 找不到、记得住 / 记不住、学得会 / 学不会",
+      "老师说得太快了，我一点儿也听不懂。"
+     ],
+     [
+      "Với bổ ngữ xu hướng",
+      "进得去 / 进不去、回得来 / 回不来、上得去 / 上不去、过得来 / 过不来",
+      "电梯坏了，东西太重，我们拿不上去。"
+     ],
+     [
+      "Dạng cố định (mở rộng)",
+      "V得了 / V不了 (liǎo): làm nổi, làm được: 吃不了、去不了. V得动 / V不动: còn sức / hết sức: 走不动.",
+      "菜太多了，我一个人吃不了。"
+     ],
+     [
+      "Câu hỏi",
+      "看得懂看不懂？ / 看得懂吗？ Dạng khẳng định thường dùng để trả lời câu hỏi.",
+      "A：这么多练习，今天晚上做得完做不完？　B：做得完。"
+     ]
+    ],
+    "compare": [
+     [
+      "门关了，我进不去。",
+      "V不C: muốn làm nhưng không làm nổi"
+     ],
+     [
+      "考试的时候不能说话。",
+      "不能 V: không được phép"
+     ],
+     [
+      "他网球打得很好。",
+      "bổ ngữ trạng thái: đánh giá"
+     ],
+     [
+      "我腿疼，今天打不好网球。",
+      "bổ ngữ khả năng: không thể làm tốt"
+     ],
+     [
+      "这本书我看了，但是没看懂。",
+      "没看懂: lần này đã không hiểu (kết quả)"
+     ],
+     [
+      "这本书我看不懂。",
+      "看不懂: không có khả năng hiểu"
+     ]
+    ],
+    "notes": [
+     [
+      "Dùng nhiều nhất ở dạng phủ định và câu hỏi.",
+      "",
+      ""
+     ],
+     [
+      "Tân ngữ đặt sau bổ ngữ hoặc đưa lên đầu câu:",
+      "我看得懂中文书。／中文书我看得懂。",
+      ""
+     ],
+     [
+      "Không thêm 了 vào giữa:",
+      "看了不懂",
+      "✗"
+     ],
+     [
+      "Không dùng 不能 thay cho bổ ngữ khả năng:",
+      "我不能听懂",
+      "✗ → 我听不懂 ✓"
+     ],
+     [
+      "Phủ định khác nhau:",
+      "说得不好 (nói không hay) ≠ 说不好 (không thể nói tốt)",
+      ""
+     ]
+    ],
+    "ex": [
+     {
+      "zh": "这么多菜，我们两个人吃得完吗？",
+      "py": "Zhème duō cài, wǒmen liǎng ge rén chī de wán ma?",
+      "vi": "Nhiều món thế này, hai chúng ta ăn hết được không?"
+     },
+     {
+      "zh": "路上车太多，我七点以前可能回不来。",
+      "py": "Lùshang chē tài duō, wǒ qī diǎn yǐqián kěnéng huí bu lái.",
+      "vi": "Trên đường nhiều xe quá, trước 7 giờ có lẽ tôi không về kịp."
+     },
+     {
+      "zh": "A：一个星期学得会打网球吗？　B：可能学不会。",
+      "py": "A: Yí ge xīngqī xué de huì dǎ wǎngqiú ma? B: Kěnéng xué bu huì.",
+      "vi": "A: Một tuần có học được chơi quần vợt không? B: Có lẽ không học được."
+     },
+     {
+      "zh": "我没带卡，进不去体育馆。",
+      "py": "Wǒ méi dài kǎ, jìn bu qù tǐyùguǎn.",
+      "vi": "Tôi không mang thẻ nên không vào được nhà thi đấu."
+     }
+    ],
+    "tasks": [
+     {
+      "t": "choice",
+      "q": "“Tôi nghe không hiểu” nói thế nào?",
+      "opts": [
+       "我不能听懂。",
+       "我听不懂。",
+       "我听了不懂。"
+      ],
+      "a": 1,
+      "exp": "Dùng bổ ngữ khả năng V不C: 听不懂."
+     },
+     {
+      "t": "choice",
+      "q": "这里是医院，____ 大声说话。",
+      "opts": [
+       "说不了",
+       "不能"
+      ],
+      "a": 1,
+      "exp": "Không được phép → 不能 V."
+     },
+     {
+      "t": "choice",
+      "q": "这本书里的字我几乎都不认识，____。",
+      "opts": [
+       "没看懂",
+       "看不懂"
+      ],
+      "a": 1,
+      "exp": "Không có khả năng hiểu → 看不懂."
+     },
+     {
+      "t": "order",
+      "q": "Sắp xếp thành câu đúng:",
+      "tok": [
+       "今天的作业",
+       "太多了",
+       "我",
+       "做不完"
+      ],
+      "a": "今天的作业太多了我做不完"
+     },
+     {
+      "t": "open",
+      "q": "完成对话。Hoàn thành hội thoại.",
+      "items": [
+       [
+        "A：我和你妈妈在门口等着你呢。\nB：机场人太多了，我 ______________________。",
+        "机场人太多了，我出不去／找不到你们。"
+       ],
+       [
+        "A：喂？喂？我说话你 ______________________？\nB：没问题，我听得见。",
+        "我说话你听得见吗？"
+       ],
+       [
+        "A：咱们还没做今天的作业呢，半个小时 ______________？\nB：没问题，______________，今天的作业一点儿也不多。",
+        "半个小时做得完吗？——没问题，做得完。"
+       ]
+      ]
+     }
+    ],
+    "after": 1
+   },
+   {
+    "badge": "小语助力",
+    "title": "“接”",
+    "sub": "Nhiều cách dùng của 接",
+    "intro": "接 nghĩa gốc là ĐỠ, NHẬN LẤY thứ người khác đưa hoặc ném tới. Từ đó có nhiều cách dùng.",
+    "uses": [
+     [
+      "接人 · đón người (Bài 1)",
+      "",
+      "我去机场接你。"
+     ],
+     [
+      "接电话 · nghe, nhận cuộc gọi",
+      "",
+      "他在开车，接不了电话。"
+     ],
+     [
+      "接球 · đỡ bóng, đánh trả bóng lại",
+      "",
+      "球太快了，我没接到。"
+     ],
+     [
+      "接不住 · đỡ không được",
+      "Bổ ngữ khả năng, 住 = giữ chắc.",
+      "如果总是接不住球，就太不好意思了。"
+     ]
+    ],
+    "notes": [
+     [
+      "接 ≠ 收到: 接 là chủ động đưa tay đón lấy; 收到 là nhận được đồ gửi tới.",
+      "",
+      ""
+     ]
+    ],
+    "after": 1
+   },
+   {
+    "title": "固定格式 “越A越B”",
+    "sub": "Càng A càng B",
+    "intro": "越A越B: B thay đổi theo sự thay đổi của A.",
+    "formula": [
+     "越",
+     "A",
+     "越",
+     "B"
+    ],
+    "uses": [
+     [
+      "Cùng một chủ ngữ",
+      "Chủ ngữ + 越 + V + 越 + Adj/V: 越跑越快、越看越着急、越学越喜欢.",
+      "这本书越看越有意思，我一个晚上就看完了。"
+     ],
+     [
+      "A, B đều là tính từ",
+      "越快越好 (càng nhanh càng tốt)、越多越好、越便宜越好.",
+      "你的病得马上检查，越快越好。"
+     ],
+     [
+      "Hai chủ ngữ khác nhau",
+      "Mỗi chủ ngữ đứng TRƯỚC 越 của nó.",
+      "你越着急，他越紧张，还是让他慢慢说吧。"
+     ]
+    ],
+    "compare": [
+     [
+      "他越吃越胖。",
+      "越A越B: thay đổi theo hành động / điều kiện A"
+     ],
+     [
+      "他越来越胖。",
+      "越来越 (Bài 6): thay đổi theo thời gian"
+     ],
+     [
+      "他比以前胖了。",
+      "比: chỉ so hai thời điểm"
+     ]
+    ],
+    "notes": [
+     [
+      "Không thêm 很、非常、太 trước B:",
+      "越看越很着急",
+      "✗ → 越看越着急 ✓"
+     ],
+     [
+      "Chủ ngữ không đặt giữa 越 và động từ:",
+      "越他说",
+      "✗ → 他越说 ✓"
+     ],
+     [
+      "B có thể là phủ định hoặc động từ tâm lý:",
+      "越不想去、越喜欢、越担心",
+      ""
+     ],
+     [
+      "A có thể là cụm động từ có tân ngữ:",
+      "越吃外卖越胖",
+      ""
+     ]
+    ],
+    "ex": [
+     {
+      "zh": "他越练越好，现在网球打得特别好。",
+      "py": "Tā yuè liàn yuè hǎo, xiànzài wǎngqiú dǎ de tèbié hǎo.",
+      "vi": "Anh ấy càng tập càng giỏi, bây giờ chơi quần vợt rất hay."
+     },
+     {
+      "zh": "比赛的时间越近，大家越紧张。",
+      "py": "Bǐsài de shíjiān yuè jìn, dàjiā yuè jǐnzhāng.",
+      "vi": "Ngày thi đấu càng gần, mọi người càng căng thẳng."
+     },
+     {
+      "zh": "参加运动会的人越多越好。",
+      "py": "Cānjiā yùndònghuì de rén yuè duō yuè hǎo.",
+      "vi": "Người tham gia đại hội thể thao càng đông càng tốt."
+     },
+     {
+      "zh": "来中国以后，我的汉语越来越好了。",
+      "py": "Lái Zhōngguó yǐhòu, wǒ de Hànyǔ yuè lái yuè hǎo le.",
+      "vi": "Từ khi đến Trung Quốc, tiếng Trung của tôi ngày càng tốt hơn."
+     }
+    ],
+    "tasks": [
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "越看越很着急。",
+       "越看越着急。"
+      ],
+      "a": 1,
+      "exp": "Không thêm 很 trước B."
+     },
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "越他说越快。",
+       "他越说越快。"
+      ],
+      "a": 1,
+      "exp": "Chủ ngữ đứng trước 越."
+     },
+     {
+      "t": "choice",
+      "q": "Nói “Tiếng Trung của tôi ngày càng tốt” (theo thời gian):",
+      "opts": [
+       "我的汉语越来越好。",
+       "我的汉语越学越好。"
+      ],
+      "a": 0,
+      "exp": "Thay đổi theo thời gian, không nêu điều kiện → 越来越."
+     },
+     {
+      "t": "order",
+      "q": "Sắp xếp thành câu đúng:",
+      "tok": [
+       "雨",
+       "越下",
+       "越大"
+      ],
+      "a": "雨越下越大"
+     },
+     {
+      "t": "open",
+      "q": "完成句子。Hoàn thành câu.",
+      "items": [
+       [
+        "我们越说 ______________________。",
+        "我们越说越高兴。"
+       ],
+       [
+        "这个电影越看 ______________________。",
+        "这个电影越看越有意思。"
+       ],
+       [
+        "她 ______________________，我越担心。",
+        "她越不说话，我越担心。"
+       ]
+      ]
+     }
+    ],
+    "after": 2,
+    "keys": [
+     0,
+     2
+    ]
+   }
+  ],
+  "practice": [
+   {
+    "bank": [
+     "世界",
+     "成绩",
+     "球场",
+     "参加",
+     "影响"
+    ],
+    "items": [
+     [
+      "我的腿不舒服，所以没 ___ 这次网球比赛。",
+      "参加"
+     ],
+     [
+      "学校的 ___ 上，每天都有很多同学在那儿做运动。",
+      "球场"
+     ],
+     [
+      "运动员们为了得到好 ___ ，每天要练十多个小时。",
+      "成绩"
+     ],
+     [
+      "受到天气的 ___ ，今天的足球比赛要晚两个小时开始。",
+      "影响"
+     ],
+     [
+      "这位运动员觉得 ___ 上最重要的运动会就是奥运会。",
+      "世界"
+     ]
+    ]
+   },
+   {
+    "bank": [
+     "只是",
+     "几乎",
+     "主要",
+     "得到",
+     "受到"
+    ],
+    "items": [
+     [
+      "A：她游泳游得快吗？\nB：她 ___ 每天都游，现在游得特别快。",
+      "几乎"
+     ],
+     [
+      "A：他们以前每年都是第一名，为什么今年成绩这么不好？\nB：我觉得 ___ 是因为好多老球员病了。",
+      "主要"
+     ],
+     [
+      "A：你打得这么好，是羽毛球运动员吗？\nB：打羽毛球 ___ 我的兴趣，我不是运动员。",
+      "只是"
+     ],
+     [
+      "A： ___ 我爸爸的影响，我十几岁就开始打网球了。\nB：现在你也开始影响我，我也喜欢上了打网球。",
+      "受到"
+     ],
+     [
+      "A：我听说你参加了学校的运动会？\nB：是的。虽然没有 ___ 很好的成绩，但是我认识了很多新朋友。",
+      "得到"
+     ]
+    ]
+   }
+  ],
+  "extra": [
+   {
+    "title": "看图说话",
+    "sub": "Dùng từ ngữ và điểm ngữ pháp của bài để hoàn thành các hội thoại theo tranh.",
+    "tasks": [
+     {
+      "t": "open",
+      "img": "img/tb/3-9-p1.jpg",
+      "q": "图一",
+      "items": [
+       [
+        "A：今天你们去 ______ 吗？",
+        "今天你们去练球吗？"
+       ],
+       [
+        "B：去。为了 ______________，我们每天下课后都去球场练习。",
+        "为了准备运动会，我们每天下课后都去球场练习。"
+       ],
+       [
+        "A：我觉得这次 ______，你们一定能得到好成绩。",
+        "我觉得这次比赛，你们一定能得到好成绩。"
+       ],
+       [
+        "B：谢谢。虽然 ______ 不是最重要的，但是我们也要努力。",
+        "虽然成绩不是最重要的，但是我们也要努力。"
+       ]
+      ]
+     },
+     {
+      "t": "open",
+      "img": "img/tb/3-9-p2.jpg",
+      "q": "图二",
+      "items": [
+       [
+        "A：我看你每天都去打网球，你打得怎么样？\nB：我最近才开始学，打得不太好。\nA：______ 没关系，你的身体越 ______。",
+        "打不好没关系，你的身体越练越好。"
+       ],
+       [
+        "B：你说得对，我运动只是为了 ______。",
+        "我运动只是为了锻炼身体。"
+       ]
+      ]
+     },
+     {
+      "t": "open",
+      "img": "img/tb/3-9-p3.jpg",
+      "q": "图三",
+      "items": [
+       [
+        "A：为了 ______，我没吃饭就来了。没想到到现在一个球也没踢进去。",
+        "为了看这场比赛，我没吃饭就来了。"
+       ],
+       [
+        "B：可能受到 ______，每个运动员都很紧张。",
+        "可能受到天气的影响，每个运动员都很紧张。"
+       ],
+       [
+        "A：他们现在好好休息，一会儿一定会得分的。\nB：我不想看了，越 ______。",
+        "我不想看了，越看越着急。"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "title": "选择正确答案",
+    "sub": "Chọn đáp án đúng.",
+    "tasks": [
+     {
+      "t": "choice",
+      "q": "他 ____ 每天都去体育馆锻炼，很少休息。",
+      "opts": [
+       "几乎",
+       "只是",
+       "主要"
+      ],
+      "a": 0,
+      "exp": "几乎每天 = hầu như ngày nào cũng."
+     },
+     {
+      "t": "choice",
+      "q": "这件衣服很好看，____ 有点儿贵。",
+      "opts": [
+       "几乎",
+       "只是",
+       "好多"
+      ],
+      "a": 1,
+      "exp": "只是 (liên từ) = chỉ có điều, nhẹ hơn 但是."
+     },
+     {
+      "t": "choice",
+      "q": "他的书 ____ 了很多人的欢迎。",
+      "opts": [
+       "得到",
+       "受到",
+       "收到"
+      ],
+      "a": 1,
+      "exp": "受到欢迎 = được hoan nghênh."
+     },
+     {
+      "t": "choice",
+      "q": "我昨天 ____ 了一封老师发来的邮件。",
+      "opts": [
+       "得到",
+       "受到",
+       "收到"
+      ],
+      "a": 2,
+      "exp": "Nhận đồ vật được gửi tới → 收到."
+     },
+     {
+      "t": "choice",
+      "q": "这次比赛他 ____ 了第一名。",
+      "opts": [
+       "得到",
+       "受到",
+       "收到"
+      ],
+      "a": 0,
+      "exp": "Có được điều tốt (thành tích) → 得到."
+     },
+     {
+      "t": "choice",
+      "q": "你小声点儿，别 ____ 大家休息。",
+      "opts": [
+       "影响",
+       "紧张",
+       "参加"
+      ],
+      "a": 0,
+      "exp": "影响 + tân ngữ: làm ảnh hưởng đến."
+     },
+     {
+      "t": "choice",
+      "q": "明天就要考试了，我有点儿 ____。",
+      "opts": [
+       "主要",
+       "紧张",
+       "成绩"
+      ],
+      "a": 1,
+      "exp": "紧张 = hồi hộp, căng thẳng."
+     },
+     {
+      "t": "choice",
+      "q": "这本书我看过两 ____ 了。",
+      "opts": [
+       "回",
+       "场",
+       "张"
+      ],
+      "a": 0,
+      "exp": "回 = lần (khẩu ngữ, như 次)."
+     },
+     {
+      "t": "choice",
+      "q": "你 ____ 过学校的运动会吗？",
+      "opts": [
+       "参观",
+       "参加",
+       "练习"
+      ],
+      "a": 1,
+      "exp": "参加 + hoạt động / sự kiện. 参观 dùng cho nơi chốn."
+     },
+     {
+      "t": "choice",
+      "q": "门太小了，这张桌子 ____。",
+      "opts": [
+       "进不去",
+       "不能进去",
+       "进得不去"
+      ],
+      "a": 0,
+      "exp": "Điều kiện không cho phép → bổ ngữ khả năng 进不去."
+     }
+    ]
+   },
+   {
+    "title": "连词成句",
+    "sub": "Sắp xếp các từ thành câu hoàn chỉnh.",
+    "tasks": [
+     {
+      "t": "order",
+      "q": "（1）",
+      "tok": [
+       "我",
+       "只是",
+       "有点儿累",
+       "没生病"
+      ],
+      "a": "我只是有点儿累没生病"
+     },
+     {
+      "t": "order",
+      "q": "（2）",
+      "tok": [
+       "他",
+       "每天",
+       "练习",
+       "两个小时",
+       "网球"
+      ],
+      "a": "他每天练习两个小时网球"
+     },
+     {
+      "t": "order",
+      "q": "（3）",
+      "tok": [
+       "爸爸",
+       "对我的",
+       "很大",
+       "影响"
+      ],
+      "a": "爸爸对我的影响很大"
+     },
+     {
+      "t": "order",
+      "q": "（4）",
+      "tok": [
+       "这个城市",
+       "我",
+       "来过",
+       "好多次了"
+      ],
+      "a": "这个城市我来过好多次了"
+     },
+     {
+      "t": "order",
+      "q": "（5）",
+      "tok": [
+       "汉语",
+       "越学",
+       "越",
+       "有意思"
+      ],
+      "a": "汉语越学越有意思"
+     },
+     {
+      "t": "order",
+      "q": "（6）",
+      "tok": [
+       "老师",
+       "说得",
+       "太快了",
+       "我",
+       "听不懂"
+      ],
+      "a": "老师说得太快了我听不懂"
+     }
+    ]
+   },
+   {
+    "title": "阅读理解",
+    "sub": "Đọc đoạn văn rồi chọn đáp án đúng.",
+    "tasks": [
+     {
+      "t": "choice",
+      "pass": "我们学校每年十月都开运动会。今年我参加了网球比赛。为了得到好成绩，我几乎每天下课以后都去球场练习两个小时。比赛那天，来看比赛的同学好多，我越打越紧张，好几个球都没接住。虽然最后只得了第三名，但是我一点儿也不难过，因为我认识了很多喜欢网球的新朋友。",
+      "q": "（1）★ 学校什么时候开运动会？",
+      "opts": [
+       "每年十月",
+       "每年十二月",
+       "每个星期"
+      ],
+      "a": 0,
+      "exp": ""
+     },
+     {
+      "t": "choice",
+      "q": "（2）★ 为了得到好成绩，他做了什么？",
+      "opts": [
+       "每天看比赛",
+       "几乎每天去球场练习",
+       "请了一个老师"
+      ],
+      "a": 1,
+      "exp": ""
+     },
+     {
+      "t": "choice",
+      "q": "（3）★ 比赛那天，他为什么没接住好几个球？",
+      "opts": [
+       "他生病了",
+       "他越打越紧张",
+       "球场人太少"
+      ],
+      "a": 1,
+      "exp": ""
+     },
+     {
+      "t": "choice",
+      "q": "（4）★ 他觉得这次比赛怎么样？",
+      "opts": [
+       "很难过",
+       "不想再参加",
+       "认识了新朋友，很高兴"
+      ],
+      "a": 2,
+      "exp": ""
+     }
+    ]
+   },
+   {
+    "title": "翻译",
+    "sub": "Dịch các câu sau sang tiếng Trung, rồi so với câu gợi ý.",
+    "tasks": [
+     {
+      "t": "open",
+      "q": "Dịch sang tiếng Trung:",
+      "items": [
+       [
+        "Để chuẩn bị cho trận đấu, ngày nào họ cũng tập luyện.",
+        "为了准备比赛，他们每天都练习。"
+       ],
+       [
+        "Bài tập nhiều quá, tối nay tôi làm không xong.",
+        "练习太多了，今天晚上我做不完。"
+       ],
+       [
+        "Càng xem càng sốt ruột, tôi không xem nữa.",
+        "越看越着急，我不看了。"
+       ],
+       [
+        "Tôi học tiếng Trung chủ yếu là để sau này sang Trung Quốc làm việc.",
+        "我学汉语，主要是为了以后去中国工作。"
+       ],
+       [
+        "Tuy không đạt được thành tích tốt, nhưng anh ấy rất vui.",
+        "虽然他没有得到好成绩，但是他很高兴。"
+       ]
+      ]
+     }
+    ]
+   }
+  ]
  }
 };
