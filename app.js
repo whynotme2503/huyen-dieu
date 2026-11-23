@@ -822,7 +822,7 @@
     var L = lessonById(a.lesson); if (!L || !L.words.length) { toast("Bài này chưa có từ vựng."); return; }
     curAssign = id; S.lesson = L;
     var sh = a.game && sheetById(a.game);
-    if (sh && window.HD_SHEET) { S = { view: "sheet", lesson: L, game: null }; stopTimer(); setRight(""); var dn = MY.results.some(function (r) { return r.assignmentId === a.id; }); if (dn && window.HD_SHEET.review(sh, { onRecord: record, onExit: function () { renderAssignments(); } })) return; return window.HD_SHEET.start(sh, { onRecord: record, onExit: function () { renderAssignments(); } }); }
+    if (sh && window.HD_SHEET) { S = { view: "sheet", lesson: L, game: null }; stopTimer(); setRight(""); var mine = MY.results.filter(function (r) { return r.assignmentId === a.id; }); if (mine.length && window.HD_SHEET.review(sh, { result: mine.slice().sort(function (x, y) { return String(x.t) < String(y.t) ? -1 : 1; }).pop(), onRecord: record, onExit: function () { renderAssignments(); } })) return; return window.HD_SHEET.start(sh, { onRecord: record, onExit: function () { renderAssignments(); } }); }
     if (a.game && gameById(a.game)) return startGame(a.game);
     if (L.level) VLV = L.level;
     nav("#" + (String(a.lesson) === "all" ? "tong-hop" : "bai-" + a.lesson));

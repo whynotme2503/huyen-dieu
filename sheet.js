@@ -92,8 +92,12 @@
   function okAns(a, v, pre) {
     var nv = norm(v);
     if (/^re:/.test(a)) { try { return new RegExp("^(?:" + a.slice(3) + ")$").test(nv); } catch (e) { return false; } }
-    return (pre || [""]).some(function (p) { return norm(p) + norm(a) === nv; });
+    if ((pre || [""]).some(function (p) { return norm(p) + norm(a) === nv; })) return true;
+    /* câu đọc hiểu: chấp nhận trả lời dài, có thêm chủ ngữ lấy từ chính câu hỏi (vd: Lan妈妈今年四十六岁) */
+    if (pre && PREQ) { var na = norm(a); if (na && nv.length > na.length && nv.slice(-na.length) === na) { var head = nv.slice(0, nv.length - na.length), okc = PREQ + "她他们的有是今年"; return head.split("").every(function (c) { return okc.indexOf(c) >= 0; }); } }
+    return false;
   }
+  var PREQ = "";
   function multiCount(q, v) { var nv = norm(v), seen = {}, k = 0; q.valid.forEach(function (w) { if (!seen[w] && nv.indexOf(norm(w)) >= 0) { seen[w] = 1; k++; } }); return k; }
   function sentOK(q, v) { var t = norm(v); return (Array.isArray(q.a) ? q.a : [q.a]).some(function (w) { return t.indexOf(norm(w)) >= 0; }) && (t.match(/[㐀-鿿]/g) || []).length >= (q.minLen || 6); }
   function grade(q, v) {
@@ -103,13 +107,15 @@
     if (q.type === "order") return norm(v.map(function (k) { return q.pool.filter(function (p) { return p.k === k; })[0].w; }).join("")) === norm(q.a);
     if (q.type === "multi") return multiCount(q, v) >= q.min;
     if (q.fields) return q.fields.every(function (f, i) { return f.a.some(function (a) { return okAns(a, v[i], f.pre || q.pre); }); });
-    return (Array.isArray(q.a) ? q.a : [q.a]).some(function (a) { return okAns(a, v, q.pre); });
+    PREQ = q.pre ? norm(q.q) : "";
+    var r = (Array.isArray(q.a) ? q.a : [q.a]).some(function (a) { return okAns(a, v, q.pre); }); PREQ = ""; return r;
   }
 
   function rkey(sh) { return "hd-shrev:" + (H.session ? H.session.code : "") + ":" + sh.id; }
   function submit(rv) {
     var sh = X.sheet, secs = rv ? rv.secs : Math.floor((Date.now() - X.t0) / 1000), score = 0, per = sh.parts.map(function () { return { ok: 0, n: 0 }; });
-    X.qs.forEach(function (q) { var ok = grade(q, X.ans[q.n]); q.ok = ok; per[q.part].n++; if (ok) { per[q.part].ok++; score++; } });
+    var FX = rv && rv.fixed;
+    X.qs.forEach(function (q) { var ok = FX ? !(q.n in FX) : grade(q, X.ans[q.n]); q.ok = ok; per[q.part].n++; if (ok) { per[q.part].ok++; score++; } });
     var N = X.qs.length, pct = Math.round(score / N * 100);
     if (!rv) { try { localStorage.setItem(rkey(sh), JSON.stringify({ ans: X.ans, secs: secs })); } catch (er) {} }
     var sync = rv ? "Đây là bài làm gần nhất của bạn. Bấm Làm lại nếu muốn làm lượt mới." : X.onRecord({ lesson: sh.lesson, game: sh.id, gameName: sh.title, score: score, total: N, pct: pct, secs: secs, words: X.qs.filter(function (q) { return q.type === "sent" && X.ans[q.n]; }).map(function (q) { return "Câu " + q.n + ": " + String(X.ans[q.n]).replace(/\|/g, "/"); }), wrong: X.qs.filter(function (q) { return !q.ok; }).map(function (q) { return "Câu " + q.n + ": " + userText(q, X.ans[q.n]).replace(/\|/g, "/"); }) });
@@ -118,10 +124,10 @@
     var review = "", cur = -1;
     X.qs.forEach(function (q) {
       if (q.part !== cur) { cur = q.part; review += '<div class="sh-part"><h3>' + esc(sh.parts[cur].title) + " · " + per[cur].ok + "/" + per[cur].n + "</h3></div>"; }
-      var v = X.ans[q.n];
+      var v = X.ans[q.n], ut = FX ? (q.n in FX ? FX[q.n] : "✓ Đúng") : userText(q, v);
       review += '<div class="sh-r ' + (q.ok ? "ok" : "bad") + '"><div class="sh-qt"><span class="sh-n">' + q.n + '</span><span class="sh-qp' + hz(q.q) + '">' + (q.q ? esc(q.q) : q.type === "order" ? "Sắp xếp thành câu đúng" : q.type === "sent" ? esc(q.word) : q.lettersOnly ? "🎧" : esc(q.opts.join("  /  "))) + (q.sub && !hz(q.sub) ? ' <small class="sh-subr">' + esc(q.sub) + "</small>" : "") + (q.vi ? ' <small class="sh-subr">' + esc(q.vi) + "</small>" : "") + '</span><span class="sh-mark">' + (q.ok ? "Đúng" : "Sai") + "</span></div>" +
-        '<div class="sh-ans"><span class="lb">Bạn trả lời</span><span class="' + hz(userText(q, v)).trim() + '">' + esc(userText(q, v)) + "</span></div>" +
-        (q.ok ? "" : '<div class="sh-ans good"><span class="lb">Đáp án</span><span class="' + hz(correctText(q)).trim() + '">' + esc(correctText(q)) + "</span></div>") + (q.exp ? '<div class="sh-ans"><span class="lb">Ghi chú</span><span class="sh-exp">' + esc(q.exp) + "</span></div>" : "") + "</div>";
+        '<div class="sh-ans"><span class="lb">Bạn trả lời</span><span class="' + hz(ut).trim() + '">' + esc(ut) + "</span></div>" +
+        (q.ok && !rv ? "" : '<div class="sh-ans good"><span class="lb">Đáp án</span><span class="' + hz(correctText(q)).trim() + '">' + esc(correctText(q)) + "</span></div>") + (q.exp ? '<div class="sh-ans"><span class="lb">Ghi chú</span><span class="sh-exp">' + esc(q.exp) + "</span></div>" : "") + "</div>";
     });
     H.app.innerHTML = '<div style="display:flex;align-items:center;gap:6px"><button class="back" data-sh="exit">' + H.ICONS.back + "Bài tập</button></div>" +
       '<section class="card" style="margin-top:10px"><div class="result"><div class="eyebrow">' + esc(sh.title) + '</div><div class="score">' + score + "<small>/" + N + '</small></div><h2 class="h1">' + msg + '</h2><div class="stats"><span class="chip">Đúng ' + pct + '%</span><span class="chip">' + H.ICONS.clock + fmt(secs) + "</span></div></div>" +
@@ -174,7 +180,13 @@
     },
     review: function (sheet, opt) {
       var raw; try { raw = JSON.parse(localStorage.getItem(rkey(sheet)) || "null"); } catch (er) { raw = null; }
-      if (!raw || !raw.ans) return false;
+      if (!raw || !raw.ans) {
+        /* máy khác / chưa lưu: dựng lại từ kết quả trên Google Sheet (câu sai kèm bài làm, các câu còn lại tính đúng) */
+        var r = opt.result; if (!r) return false;
+        var fixed = {}; (r.wrong || []).forEach(function (w) { var m = /^Câu (\d+): ([\s\S]*)$/.exec(w); if (m) fixed[+m[1]] = m[2]; });
+        X = { sheet: sheet, qs: flatten(sheet), ans: {}, t0: Date.now(), warned: false, onRecord: opt.onRecord, onExit: opt.onExit, done: true };
+        submit({ secs: r.secs || 0, fixed: fixed }); return true;
+      }
       X = { sheet: sheet, qs: flatten(sheet), ans: raw.ans, t0: Date.now(), warned: false, onRecord: opt.onRecord, onExit: opt.onExit, done: true };
       submit({ secs: raw.secs || 0 }); return true;
     },
