@@ -964,52 +964,52 @@ window.HD_TB = {
       "q": "Dịch sang tiếng Trung:",
       "items": [
        [
-        "Trông anh ấy hơi giống bố anh ấy.",
-        "他看上去有点儿像他爸爸。"
+        "Mẹ tôi năm nay năm mươi tuổi rồi, nhưng trông vẫn rất trẻ.",
+        "我妈妈今年五十岁了，但是看上去还很年轻。"
        ],
        [
-        "Hôm nay trông cô ấy không mệt lắm.",
-        "她今天看起来不太累。"
+        "Chiếc điện thoại mới này trông không đắt lắm.",
+        "这个新手机看起来不太贵。"
        ],
        [
-        "Chị gái tôi trông trẻ hơn trong ảnh.",
-        "我姐姐看起来比照片上年轻。"
+        "Em gái tôi trông giống mẹ, không giống bố.",
+        "我妹妹看起来像妈妈，不像爸爸。"
        ],
        [
-        "Hình như tôi đã thấy chiếc va li này ở đâu đó rồi.",
-        "我好像在哪儿看到过这个箱子。"
+        "Hôm nay trông bạn không vui lắm, bạn sao vậy?",
+        "你今天看上去不太高兴，你怎么了？"
        ],
        [
-        "Đừng sốt ruột, chúng ta tìm ai đó hỏi thử đi.",
-        "别着急，我们找谁问一下吧。"
+        "Tôi muốn mua gì đó cho bố, nhưng không biết nên mua gì.",
+        "我想给爸爸买点儿什么，但是不知道应该买什么。"
        ],
        [
-        "Tôi cứ tưởng hộ chiếu bị mất rồi, hóa ra ở trong va li.",
-        "我还以为护照丢了，原来在箱子里。"
+        "Điện thoại của tôi không thấy đâu, hình như làm rơi ở đâu đó rồi.",
+        "我的手机不见了，好像丢在哪儿了。"
        ],
        [
-        "Cậu thanh niên tóc ngắn mặc áo đen kia là bạn thân của tôi.",
-        "那个穿着黑衣服的短头发的年轻人是我的好朋友。"
+        "Thứ Bảy này chúng mình đi đâu đó chơi nhé.",
+        "这个星期六我们去哪儿玩儿玩儿吧。"
        ],
        [
-        "Chiếc va li màu đen trên đó có ghi số điện thoại của tôi là của tôi.",
-        "那个上面写着我电话号码的黑色箱子是我的。"
+        "Người phụ nữ tóc ngắn đứng ở giữa bức ảnh là cô giáo tiếng Trung của tôi.",
+        "站在照片中间的那个短头发的女的是我的中文老师。"
        ],
        [
-        "Chúng ta nên đứng ở giữa, như vậy họ dễ tìm hơn.",
-        "我们应该站到中间去，这样他们好找一些。"
+        "Tôi rất thích chiếc áo màu trắng mà mẹ mua cho tôi năm ngoái.",
+        "我很喜欢妈妈去年给我买的那件白色的衣服。"
        ],
        [
-        "Anh ấy cao 1m80, trông gầy hơn tôi một chút.",
-        "他身高有一米八，看起来比我瘦一点儿。"
+        "Tôi cứ tưởng bạn đã về nhà rồi.",
+        "我以为你已经回家了。"
        ],
        [
-        "Hành lý của bạn không thấy đâu à? Tôi đưa bạn đến quầy phục vụ hỏi thử nhé.",
-        "你的行李不见了吗？我带你去服务台问问吧。"
+        "Ngày mai bạn nên mang theo hộ chiếu, cái này rất quan trọng.",
+        "明天你应该带上护照，这个很重要。"
        ],
        [
-        "Trong va li có khá nhiều đồ quan trọng, cảm ơn bạn đã giúp tôi tìm thấy nó.",
-        "箱子里有不少重要的东西，谢谢你帮助我找到了它。"
+        "Đừng lo, tôi giúp bạn tìm số điện thoại của anh ấy.",
+        "别着急，我帮你找他的电话号码。"
        ]
       ]
      }
