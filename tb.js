@@ -106,7 +106,21 @@
   /* ---------- luyện tập tổng hợp: chọn từ điền vào chỗ trống ---------- */
   function practice(D) {
     var n = 0, body = D.practice.map(function (grp, gi) {
-      return '<div class="tb-bank">' + grp.bank.map(function (w, j) { return '<span><b>' + LET[j] + '</b> <span class="tb-zh">' + esc(w) + "</span></span>"; }).join("") + "</div>" +
+      var chips = function (key, st, done) { return grp.bank.map(function (w) { return '<button class="tb-chip' + (st.v === w ? " on" : "") + '" data-tb="fill" data-k="' + key + '" data-v="' + esc(w) + '"' + (done ? " disabled" : "") + '><span class="tb-zh">' + esc(w) + "</span></button>"; }).join(""); };
+      if (grp.passage) {
+        var n0 = n, k2 = 0, done = ANS.pdone;
+        var pas = esc(grp.passage).replace(/___/g, function () {
+          var it = grp.items[k2++], key = "p" + (n0 + k2), st = ANS[key] || {};
+          return '<span class="tb-blank' + (st.v ? " fill" : "") + (done ? (st.v === it[1] ? " ok" : " bad") : "") + '"><sup>' + (n0 + k2) + "</sup>" + (st.v ? esc(st.v) : "　　") + "</span>";
+        });
+        var rows = grp.items.map(function (it, j) {
+          n++; var key = "p" + n, st = ANS[key] || {};
+          return '<div class="tb-fill pr"><span class="tb-qn">' + n + '</span><div class="tb-chips">' + chips(key, st, done) + "</div>" + (done && st.v !== it[1] ? '<div class="tb-fb bad">Đáp án: <span class="tb-zh">' + esc(it[1]) + "</span></div>" : "") + "</div>";
+        }).join("");
+        return (grp.title ? '<div class="eyebrow tb-ptitle">' + esc(grp.title) + "</div>" : "") + '<div class="tb-bank">' + grp.bank.map(function (w, j) { return '<span><b>' + LET[j] + '</b> <span class="tb-zh">' + esc(w) + "</span></span>"; }).join("") + "</div>" +
+          '<div class="tb-pass tb-zh tb-cloze">' + pas + "</div>" + rows;
+      }
+      return (grp.title ? '<div class="eyebrow tb-ptitle">' + esc(grp.title) + "</div>" : "") + '<div class="tb-bank">' + grp.bank.map(function (w, j) { return '<span><b>' + LET[j] + '</b> <span class="tb-zh">' + esc(w) + "</span></span>"; }).join("") + "</div>" +
         grp.items.map(function (it) {
           n++; var key = "p" + n, st = ANS[key] || {}, done = ANS.pdone;
           var q = esc(it[0]).replace("___", '<span class="tb-blank' + (st.v ? " fill" : "") + (done ? (st.v === it[1] ? " ok" : " bad") : "") + '">' + (st.v ? esc(st.v) : "　　") + "</span>").replace(/\n/g, "<br>");
@@ -117,7 +131,7 @@
     }).join("");
     var total = n, score = 0, k = 0;
     D.practice.forEach(function (g) { g.items.forEach(function (it) { k++; if ((ANS["p" + k] || {}).v === it[1]) score++; }); });
-    return '<section class="card tb-card" id="tb-prac"><div class="tb-head"><span class="tb-badge prac">Luyện tập</span><h2 class="tb-h2">选词填空</h2><p class="tb-sub">Chọn từ thích hợp điền vào chỗ trống.</p></div>' + body +
+    return '<section class="card tb-card" id="tb-prac"><div class="tb-head"><span class="tb-badge prac">Luyện tập</span><h2 class="tb-h2">选词填空</h2><p class="tb-sub">Chọn từ thích hợp điền vào chỗ trống' + (D.practice.some(function (g) { return g.passage; }) ? " trong câu và trong đoạn văn" : "") + '.</p></div>' + body +
       '<div class="tb-pfoot">' + (ANS.pdone ? '<span class="tb-score">Đúng ' + score + "/" + total + '</span><button class="btn ghost" data-tb="preset">Làm lại</button>' : '<button class="btn" data-tb="pcheck">Kiểm tra đáp án</button>') + "</div></section>";
   }
 
@@ -134,10 +148,36 @@
       '<p class="tb-help">Bấm ' + H.ICONS.speaker + ' để nghe từng câu. Chữ <span class="nw">gạch chân</span> là từ mới của bài, bấm vào để xem nghĩa.</p>' +
       D.texts.map(function (tx, i) { return textCard(tx, i, V, D) + D.grammar.map(function (g, gi) { return gAfter(g, gi) === i ? grammarCard(g, gi) : ""; }).join(""); }).join("") +
       (D.practice && D.practice.length ? '<div class="tb-sec">练习 · Luyện tập tổng hợp</div>' + practice(D) : "") +
-      (D.extra && D.extra.length ? '<div class="tb-sec">补充练习 · Bài tập thêm</div>' + D.extra.map(function (x, xi) {
+      (D.extra && D.extra.length ? '<div class="tb-sec">补充练习 · Bài tập thêm</div><div id="tb-xsec" class="tb-xsec">' + D.extra.map(function (x, xi) {
         return '<section class="card tb-card" id="tb-extra-' + (xi + 1) + '"><div class="tb-head"><span class="tb-badge prac">Bài tập thêm ' + (xi + 1) + '</span><h2 class="tb-h2">' + esc(x.title) + "</h2>" + (x.sub ? '<p class="tb-sub">' + esc(x.sub) + "</p>" : "") + "</div>" + x.tasks.map(function (tk, k) { return task(tk, "e" + xi + "-" + k); }).join("") + "</section>";
-      }).join("") : "") + "</div>";
+      }).join("") + '<div class="card tb-card tb-submit" id="tb-submit"></div></div>' : "") + "</div>";
     return true;
+  }
+  function xKey() { return "hd-tbx:" + (H.session ? H.session.code : "") + ":" + CUR; }
+  function xLoad() { try { return JSON.parse(localStorage.getItem(xKey()) || "null"); } catch (e) { return null; } }
+  function xBoxes() { return [].slice.call(document.querySelectorAll("#tb-xsec .tb-in")); }
+  function xPaint() {
+    var box = document.getElementById("tb-submit"); if (!box) return;
+    var sv = xLoad(), root = document.getElementById("tb-xsec");
+    if (sv) {
+      xBoxes().forEach(function (el, i) { el.value = sv.ans[i] || ""; el.readOnly = true; el.style.height = "auto"; el.style.height = el.scrollHeight + "px"; });
+      root.classList.add("done");
+      box.innerHTML = '<div class="tb-subok">✓ Đã nộp bài lúc ' + esc(new Date(sv.t).toLocaleString("vi-VN")) + '. Câu gợi ý đã hiện ở dưới mỗi câu để bạn tự so sánh.</div><p class="sub" id="sync" style="margin:6px 0 0">' + esc(sv.msg || "") + '</p><button class="btn ghost" data-tb="xredo">Làm lại</button>';
+    } else {
+      root.classList.remove("done");
+      xBoxes().forEach(function (el) { el.readOnly = false; });
+      box.innerHTML = '<p class="sub" style="margin:0 0 10px">Làm xong các câu tự viết ở trên thì bấm <b>Nộp bài</b>. Bài làm sẽ gửi cho giáo viên, sau đó câu gợi ý mới hiện ra.</p><button class="btn" data-tb="xsubmit">Nộp bài</button>';
+    }
+  }
+  function xSubmit() {
+    var els = xBoxes(), ans = els.map(function (el) { return el.value.trim(); }), filled = ans.filter(Boolean).length;
+    if (!filled) { H.toast("Bạn chưa viết câu nào."); return; }
+    if (filled < ans.length && !window.confirm("Còn " + (ans.length - filled) + " câu chưa viết. Vẫn nộp bài?")) return;
+    var D = window.HD_TB[CUR], words = [];
+    ans.forEach(function (a, i) { words.push((i + 1) + ". " + (a || "(bỏ trống)").replace(/\|/g, "/").replace(/\n/g, " ")); });
+    var msg = H.record ? H.record({ lesson: CUR, game: "tb-extra", gameName: "Bài tập thêm · " + (H.lname ? H.lname(CUR) : CUR), score: filled, total: ans.length, pct: Math.round(filled * 100 / ans.length), secs: 0, words: words, wrong: [] }) : "";
+    try { localStorage.setItem(xKey(), JSON.stringify({ t: Date.now(), ans: ans, msg: msg })); } catch (e) { /* bỏ qua */ }
+    H.sfx && H.sfx("win"); xPaint();
   }
   function repaintTask(key) {
     var D = window.HD_TB[CUR], m = /^g(\d+)-(\d+)$/.exec(key), el = document.getElementById("tk-" + key);
@@ -162,6 +202,8 @@
     if (a === "redo") { ANS[k] = {}; return repaintTask(k); }
     if (a === "fill") { ANS[k] = { v: b.dataset.v }; return repaintPractice(); }
     if (a === "pcheck") { ANS.pdone = true; H.sfx("win"); repaintPractice(); return; }
+    if (a === "xsubmit") return xSubmit();
+    if (a === "xredo") { try { localStorage.removeItem(xKey()); } catch (er) { /* bỏ qua */ } xBoxes().forEach(function (el) { el.value = ""; }); return xPaint(); }
     if (a === "preset") { Object.keys(ANS).forEach(function (x) { if (/^p/.test(x)) delete ANS[x]; }); return repaintPractice(); }
   }
   function taskOf(key) { var ml = /^l(\d+)-(\d+)$/.exec(key); if (ml) return window.HD_TB[CUR].texts[+ml[1]].listen[+ml[2]]; var me = /^e(\d+)-(\d+)$/.exec(key); if (me) return window.HD_TB[CUR].extra[+me[1]].tasks[+me[2]]; var m = /^g(\d+)-(\d+)$/.exec(key); return window.HD_TB[CUR].grammar[+m[1]].tasks[+m[2]]; }
@@ -170,6 +212,6 @@
   window.HD_TBV = {
     has: function (id) { return !!(window.HD_TB || {})[id]; },
     init: function (host) { H = host; H.app.addEventListener("click", onClick); H.app.addEventListener("input", onInput); },
-    render: function (id) { ANS = {}; return render(id); }
+    render: function (id) { ANS = {}; var ok = render(id); if (ok) xPaint(); return ok; }
   };
 })();

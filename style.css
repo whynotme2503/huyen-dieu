@@ -887,3 +887,16 @@ textarea.sh-input { resize: vertical; }
 .mq-scope{text-transform:none;letter-spacing:0;margin-left:6px;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:700}
 .tb-badge.tip{background:#fff3cf;color:#8a6410}.tb-timg{display:block;max-width:100%;max-height:260px;border-radius:12px;margin:4px 0 10px}
 .tb-pass{white-space:pre-line;font-size:19px;line-height:1.7;background:var(--surface);border-radius:12px;padding:12px 14px;margin-bottom:10px;border-left:3px solid var(--c2)}.tb-tq.big{font-size:19px;font-weight:400}
+.tb-xsec:not(.done) .tb-open .tb-qa{display:none}
+.tb-xsec.done .tb-open .tb-qa{display:block}
+.tb-xsec.done .tb-open .tb-qa>summary{display:none}
+.tb-xsec.done .tb-open .tb-qa .tb-zh{background:var(--good-bg);border-radius:8px;padding:6px 10px}
+.tb-xsec.done .tb-open .tb-qa .tb-zh::before{content:"Gợi ý: ";font:600 13px var(--f-ui);color:var(--good)}
+.tb-in[readonly]{background:var(--surface-2)}
+.tb-submit{text-align:center}
+.tb-subok{color:var(--good);font-weight:700;margin-bottom:4px}
+.tb-cloze{line-height:2.2}
+.tb-cloze .tb-blank sup{font:700 11px var(--f-ui);color:var(--ink-3);margin-right:2px}
+.tb-fill.pr{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:6px 0}
+.tb-fill.pr .tb-chips{margin:0}
+.tb-ptitle{margin-top:18px}
