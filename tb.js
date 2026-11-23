@@ -55,7 +55,7 @@
       (t.img ? '<div class="tb-media"><img src="' + esc(t.img) + '" alt="" loading="lazy"><div class="tb-scene">' + sent(t.scene) + "</div></div>" : t.scene ? '<div class="tb-media"><div class="tb-scene">' + sent(t.scene) + "</div></div>" : "") +
       (t.audio ? '<audio class="tb-audio" controls preload="none" src="' + esc(t.audio) + '"></audio>' : "") +
       (listen ? '<div class="tb-prac tb-listen"><div class="eyebrow">听两遍对话，选择正确答案 · Nghe hai lượt rồi chọn đáp án đúng</div>' + listen + "</div>" : "") +
-      (listen ? '<details class="tb-det tb-script"' + (t.open ? " open" : "") + '><summary>Xem lời bài khóa</summary><div class="tb-lines">' + lines + "</div></details>" : '<div class="tb-lines">' + lines + "</div>") +
+      (listen ? '<details class="tb-det tb-script"' + (t.open ? " open" : "") + '><summary><span class="ic">📖</span><span><b>Xem lời bài khóa</b><small>Nghe và làm câu hỏi trước, rồi bấm vào đây để đọc lời thoại</small></span></summary><div class="tb-lines">' + lines + "</div></details>" : '<div class="tb-lines">' + lines + "</div>") +
       (ws.length ? '<details class="tb-det"><summary>Giải thích từ mới (' + ws.length + ")</summary>" + ws.map(function (w, k) { return wordCard(w, t.words[0] + k + 1); }).join("") + "</details>" : "") +
       ((t.qs || []).length ? '<div class="tb-qs"><div class="eyebrow">读后回答问题 · Đọc rồi trả lời câu hỏi</div>' + t.qs.map(function (q, k) {
         return '<div class="tb-q"><div class="tb-qq"><span class="tb-qn">' + (k + 1) + '</span><span class="tb-zh">' + esc(q[0]) + '</span></div><details class="tb-qa"><summary>Xem gợi ý trả lời</summary><div class="tb-zh">' + esc(q[1]) + '</div><div class="tb-vi show">' + esc(q[2]) + "</div></details></div>";

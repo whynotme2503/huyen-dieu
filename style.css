@@ -900,3 +900,13 @@ textarea.sh-input { resize: vertical; }
 .tb-fill.pr{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:6px 0}
 .tb-fill.pr .tb-chips{margin:0}
 .tb-ptitle{margin-top:18px}
+.tb-script{border:1.5px dashed var(--accent);background:var(--accent-soft)}
+.tb-script>summary{display:flex;align-items:center;gap:12px;padding:14px 16px;color:var(--ink)}
+.tb-script>summary::before{content:none}
+.tb-script>summary .ic{font-size:22px}
+.tb-script>summary b{display:block;color:var(--accent);font-size:16px}
+.tb-script>summary small{color:var(--ink-2);font-weight:400}
+.tb-script>summary::after{content:"▾";margin-left:auto;color:var(--accent);font-size:18px;transition:transform .2s}
+.tb-script[open]>summary::after{transform:rotate(180deg)}
+.tb-script[open]{background:var(--surface);border-style:solid;border-color:var(--line)}
+.tb-script[open]>summary small{display:none}
