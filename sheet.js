@@ -16,7 +16,7 @@
     sheet.parts.forEach(function (p, pi) {
       p.items.forEach(function (it) {
         n++;
-        var q = { n: n, part: pi, type: it.sent ? "sent" : it.opts ? "choice" : it.w ? "order" : it.valid ? "multi" : "type", img: it.img || null, pass: it.pass || "", py: it.py || "", word: it.word || "", lettersOnly: !!it.opts && it.opts.every(function (o, j) { return o === LET[j]; }), valid: it.valid || null, min: it.min || 0, pre: it.pre || null, vi: it.vi || "", q: it.q || (it.sent ? it.word : "") || "", opts: it.opts || null, a: it.a, fields: it.fields || null, exp: it.exp || "", ph: p.ph || "Gõ chữ Hán tại đây", sub: it.sub || "" };
+        var q = { n: n, part: pi, type: it.sent ? "sent" : it.opts ? "choice" : it.w ? "order" : it.valid ? "multi" : "type", img: it.img || null, pass: it.pass || "", py: it.py || "", word: it.word || "", lettersOnly: !!it.opts && it.opts.every(function (o, j) { return o === LET[j]; }), valid: it.valid || null, min: it.min || 0, pre: it.pre || null, vi: it.vi || "", q: it.q || (it.sent ? it.word : "") || "", opts: it.opts || null, a: it.a, show: it.show || "", fields: it.fields || null, exp: it.exp || "", ph: p.ph || "Gõ chữ Hán tại đây", sub: it.sub || "" };
         if (q.type === "order") q.pool = shuffle(it.w.map(function (w, k) { return { w: w, k: k }; }));
         qs.push(q);
       });
@@ -77,7 +77,7 @@
     if (q.type === "order") return q.a;
     if (q.fields) return q.fields.map(function (f) { return f.a[0]; }).join("  →  ");
     if (q.type === "multi") return "Cần ít nhất " + q.min + " từ, ví dụ: " + q.valid.join("、");
-    return Array.isArray(q.a) ? q.a[0] : q.a;
+    return q.show || (Array.isArray(q.a) ? q.a[0] : q.a);
   }
   function userText(q, v) {
     if (!isDone(q, v)) return "(chưa trả lời)";
@@ -87,7 +87,13 @@
     if (q.type === "multi") return v + "  (đúng " + multiCount(q, v) + "/" + q.min + " từ cần có)";
     return v;
   }
-  function okAns(a, v, pre) { var nv = norm(v); return (pre || [""]).some(function (p) { return norm(p) + norm(a) === nv; }); }
+  /* Đáp án bắt đầu bằng "re:" là biểu thức chính quy, so với câu trả lời đã bỏ dấu câu/khoảng trắng (chữ thường).
+     Dùng cho câu có nhiều cách trả lời đúng (thứ tự, chủ ngữ, câu dài/ngắn). */
+  function okAns(a, v, pre) {
+    var nv = norm(v);
+    if (/^re:/.test(a)) { try { return new RegExp("^(?:" + a.slice(3) + ")$").test(nv); } catch (e) { return false; } }
+    return (pre || [""]).some(function (p) { return norm(p) + norm(a) === nv; });
+  }
   function multiCount(q, v) { var nv = norm(v), seen = {}, k = 0; q.valid.forEach(function (w) { if (!seen[w] && nv.indexOf(norm(w)) >= 0) { seen[w] = 1; k++; } }); return k; }
   function sentOK(q, v) { var t = norm(v); return (Array.isArray(q.a) ? q.a : [q.a]).some(function (w) { return t.indexOf(norm(w)) >= 0; }) && (t.match(/[㐀-鿿]/g) || []).length >= (q.minLen || 6); }
   function grade(q, v) {
@@ -152,7 +158,7 @@
     sheet.parts.forEach(function (p, pi) {
       p.items.forEach(function (it) {
         n++;
-        var c = it.sent ? "Câu có từ " + (Array.isArray(it.a) ? it.a[0] : it.a) : it.opts ? (it.opts.every(function (o, j) { return o === LET[j]; }) ? LET[it.a] : LET[it.a] + ". " + it.opts[it.a]) : it.w ? it.a : it.fields ? it.fields.map(function (f) { return f.a[0]; }).join(" → ") : it.valid ? "Cần ít nhất " + it.min + " từ: " + it.valid.join("、") : (Array.isArray(it.a) ? it.a[0] : it.a);
+        var c = it.sent ? "Câu có từ " + (Array.isArray(it.a) ? it.a[0] : it.a) : it.opts ? (it.opts.every(function (o, j) { return o === LET[j]; }) ? LET[it.a] : LET[it.a] + ". " + it.opts[it.a]) : it.w ? it.a : it.fields ? it.fields.map(function (f) { return f.a[0]; }).join(" → ") : it.valid ? "Cần ít nhất " + it.min + " từ: " + it.valid.join("、") : (it.show || (Array.isArray(it.a) ? it.a[0] : it.a));
         out.push({ n: n, part: p.title, q: it.q || it.word || (it.w ? it.w.join(" / ") : "") || it.vi || "", correct: c });
       });
     });
