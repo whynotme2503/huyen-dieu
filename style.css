@@ -910,3 +910,4 @@ textarea.sh-input { resize: vertical; }
 .tb-script[open]>summary::after{transform:rotate(180deg)}
 .tb-script[open]{background:var(--surface);border-style:solid;border-color:var(--line)}
 .tb-script[open]>summary small{display:none}
+.sh-pass{white-space:pre-line}.sh-letters{grid-template-columns:repeat(auto-fit,minmax(56px,1fr))}
