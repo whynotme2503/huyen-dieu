@@ -992,8 +992,8 @@ window.HD_TB = {
         "这个星期六我们去哪儿玩儿玩儿吧。"
        ],
        [
-        "Người phụ nữ tóc ngắn đứng ở giữa bức ảnh là cô giáo tiếng Trung của tôi.",
-        "站在照片中间的那个短头发的女的是我的中文老师。"
+        "Người tóc ngắn đứng ở giữa bức ảnh là cô giáo tiếng Trung của tôi.",
+        "站在照片中间的那个短头发的人是我的中文老师。"
        ],
        [
         "Tôi rất thích chiếc áo màu trắng mà mẹ mua cho tôi năm ngoái.",
