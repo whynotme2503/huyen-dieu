@@ -1610,6 +1610,332 @@ window.HD_SHEETS = [
         ]
       }
     ]
+  },
+  {
+    "id": "sheet-h1-1-py",
+    "lesson": 1,
+    "title": "Pinyin",
+    "intro": "Bấm nút Nghe ở mỗi câu (nghe lại bao nhiêu lần cũng được) rồi chọn phiên âm đúng. Làm xong bấm Nộp bài để xem đáp án và giải thích.",
+    "parts": [
+      {
+        "title": "Phần I — Thanh mẫu (câu 1–7)",
+        "note": "Vận mẫu và thanh điệu của ba đáp án giống nhau, chỉ khác phụ âm đầu.",
+        "items": [
+          {
+            "q": "Cặp đối lập: x / sh / s",
+            "opts": [
+              "xīwàng",
+              "shīwàng",
+              "sīwàng"
+            ],
+            "a": 0,
+            "audio": "audio/py/h1-1-1.mp3",
+            "pyopts": true,
+            "exp": "希望 xīwàng — bẫy nặng: shīwàng là từ thật (失望)"
+          },
+          {
+            "q": "Cặp đối lập: z / zh / c",
+            "opts": [
+              "zhìjǐ",
+              "cìjǐ",
+              "zìjǐ"
+            ],
+            "a": 2,
+            "audio": "audio/py/h1-1-2.mp3",
+            "pyopts": true,
+            "exp": "自己 zìjǐ — z đầu lưỡi, không cuốn (zh) và không bật hơi (c)"
+          },
+          {
+            "q": "Cặp đối lập: n / l",
+            "opts": [
+              "lǔnì",
+              "nǔlì",
+              "lǔlì"
+            ],
+            "a": 1,
+            "audio": "audio/py/h1-1-3.mp3",
+            "pyopts": true,
+            "exp": "努力 nǔlì — n đi trước, l đi sau — dễ bị đảo"
+          },
+          {
+            "q": "Cặp đối lập: k / g, p / b",
+            "opts": [
+              "gěpà",
+              "kěbà",
+              "kěpà"
+            ],
+            "a": 2,
+            "audio": "audio/py/h1-1-4.mp3",
+            "pyopts": true,
+            "exp": "可怕 kěpà — cả hai âm đều bật hơi"
+          },
+          {
+            "q": "Cặp đối lập: d / t",
+            "opts": [
+              "tìtú",
+              "dìtú",
+              "dìdú"
+            ],
+            "a": 1,
+            "audio": "audio/py/h1-1-5.mp3",
+            "pyopts": true,
+            "exp": "地图 dìtú — d không bật hơi, t bật hơi"
+          },
+          {
+            "q": "Cặp đối lập: f / h, x / j",
+            "opts": [
+              "xìnghú",
+              "xìngfú",
+              "jìngfú"
+            ],
+            "a": 1,
+            "audio": "audio/py/h1-1-6.mp3",
+            "pyopts": true,
+            "exp": "幸福 xìngfú — f môi–răng, h sát vòm mềm"
+          },
+          {
+            "q": "Cặp đối lập: r / l, h / k",
+            "opts": [
+              "lánhòu",
+              "ránkòu",
+              "ránhòu"
+            ],
+            "a": 2,
+            "audio": "audio/py/h1-1-7.mp3",
+            "pyopts": true,
+            "exp": "然后 ránhòu — r cuốn lưỡi, người Việt hay đọc thành l"
+          }
+        ]
+      },
+      {
+        "title": "Phần II — Vận mẫu (câu 8–15)",
+        "note": "Thanh mẫu và thanh điệu giống nhau, chỉ khác phần vận.",
+        "items": [
+          {
+            "q": "Cặp đối lập: -n / -ng",
+            "opts": [
+              "zhēngzhèng",
+              "zhēnzhèn",
+              "zhēnzhèng"
+            ],
+            "a": 2,
+            "audio": "audio/py/h1-1-8.mp3",
+            "pyopts": true,
+            "exp": "真正 zhēnzhèng — âm 1 đuôi -n, âm 2 đuôi -ng"
+          },
+          {
+            "q": "Cặp đối lập: in / ing",
+            "opts": [
+              "xīngqíng",
+              "xīnqíng",
+              "xīnqín"
+            ],
+            "a": 1,
+            "audio": "audio/py/h1-1-9.mp3",
+            "pyopts": true,
+            "exp": "心情 xīnqíng — in rồi ing — đúng thứ tự này"
+          },
+          {
+            "q": "Cặp đối lập: an / ang",
+            "opts": [
+              "bāngmáng",
+              "bānmáng",
+              "bāngmán"
+            ],
+            "a": 0,
+            "audio": "audio/py/h1-1-10.mp3",
+            "pyopts": true,
+            "exp": "帮忙 bāngmáng — cả hai âm đều đuôi -ng"
+          },
+          {
+            "q": "Cặp đối lập: ai / ei, ao / ou",
+            "opts": [
+              "hòuléi",
+              "hàolái",
+              "hòulái"
+            ],
+            "a": 2,
+            "audio": "audio/py/h1-1-11.mp3",
+            "pyopts": true,
+            "exp": "后来 hòulái — hòu (không phải hào), lái (không phải léi)"
+          },
+          {
+            "q": "Cặp đối lập: ü / i, ao / ou",
+            "opts": [
+              "xūyào",
+              "xūyòu",
+              "xīyào"
+            ],
+            "a": 0,
+            "audio": "audio/py/h1-1-12.mp3",
+            "pyopts": true,
+            "exp": "需要 xūyào — xū là ü, môi tròn; yào đuôi -ao"
+          },
+          {
+            "q": "Cặp đối lập: uo / ou, ao / ou",
+            "opts": [
+              "dōushǎo",
+              "duōshǎo",
+              "duōshǒu"
+            ],
+            "a": 1,
+            "audio": "audio/py/h1-1-13.mp3",
+            "pyopts": true,
+            "exp": "多少 duōshǎo — duō (uo) rất dễ nghe thành dōu (ou)"
+          },
+          {
+            "q": "Cặp đối lập: üe / ie, ing / ong",
+            "opts": [
+              "juédìng",
+              "jiédìng",
+              "juédòng"
+            ],
+            "a": 0,
+            "audio": "audio/py/h1-1-14.mp3",
+            "pyopts": true,
+            "exp": "决定 juédìng — jué là üe, không phải ie"
+          },
+          {
+            "q": "Cặp đối lập: uan / uang, in / ing",
+            "opts": [
+              "huánjìn",
+              "huángjìng",
+              "huánjìng"
+            ],
+            "a": 2,
+            "audio": "audio/py/h1-1-15.mp3",
+            "pyopts": true,
+            "exp": "环境 huánjìng — uan rồi ing — hai đuôi khác nhau"
+          }
+        ]
+      },
+      {
+        "title": "Phần III — Tổng hợp (câu 16–25)",
+        "note": "Ba đáp án khác nhau ở cả thanh mẫu, vận mẫu và thanh điệu — phải nghe đủ ba tầng mới loại đúng.",
+        "items": [
+          {
+            "q": "",
+            "opts": [
+              "lǎoshī",
+              "láoshí",
+              "lāosī"
+            ],
+            "a": 0,
+            "audio": "audio/py/h1-1-16.mp3",
+            "pyopts": true,
+            "exp": "老师 lǎoshī — thanh 3 + 1; bẫy láoshí là 2 + 2"
+          },
+          {
+            "q": "",
+            "opts": [
+              "gòngzuō",
+              "gōngzhuò",
+              "gōngzuò"
+            ],
+            "a": 2,
+            "audio": "audio/py/h1-1-17.mp3",
+            "pyopts": true,
+            "exp": "工作 gōngzuò — 1 + 4; zuò không cuốn lưỡi"
+          },
+          {
+            "q": "",
+            "opts": [
+              "liànxí",
+              "niànxī",
+              "liánxǐ"
+            ],
+            "a": 0,
+            "audio": "audio/py/h1-1-18.mp3",
+            "pyopts": true,
+            "exp": "练习 liànxí — 4 + 2; đầu l rõ ràng"
+          },
+          {
+            "q": "",
+            "opts": [
+              "lǐyōu",
+              "lǜyóu",
+              "nǜyóu"
+            ],
+            "a": 1,
+            "audio": "audio/py/h1-1-19.mp3",
+            "pyopts": true,
+            "exp": "旅游 lǜyóu — l + ü thanh 3, rồi thanh 2"
+          },
+          {
+            "q": "",
+            "opts": [
+              "tūrán",
+              "dūrán",
+              "tūlǎn"
+            ],
+            "a": 0,
+            "audio": "audio/py/h1-1-20.mp3",
+            "pyopts": true,
+            "exp": "突然 tūrán — 1 + 2; t bật hơi, r cuốn lưỡi"
+          },
+          {
+            "q": "",
+            "opts": [
+              "lóngyī",
+              "róngyí",
+              "róngyì"
+            ],
+            "a": 2,
+            "audio": "audio/py/h1-1-21.mp3",
+            "pyopts": true,
+            "exp": "容易 róngyì — 2 + 4; bẫy lớn nhất là róngyí (2 + 2)"
+          },
+          {
+            "q": "",
+            "opts": [
+              "liúnǎi",
+              "niúnài",
+              "niúnǎi"
+            ],
+            "a": 2,
+            "audio": "audio/py/h1-1-22.mp3",
+            "pyopts": true,
+            "exp": "牛奶 niúnǎi — 2 + 3; thanh 3 xuống rồi lên"
+          },
+          {
+            "q": "",
+            "opts": [
+              "zhǔnbèi",
+              "zūnbēi",
+              "chǔnbèi"
+            ],
+            "a": 0,
+            "audio": "audio/py/h1-1-23.mp3",
+            "pyopts": true,
+            "exp": "准备 zhǔnbèi — zh cuốn lưỡi, đuôi -n, thanh 3 + 4"
+          },
+          {
+            "q": "",
+            "opts": [
+              "xīngxiān",
+              "xīnxiān",
+              "xīnxián"
+            ],
+            "a": 1,
+            "audio": "audio/py/h1-1-24.mp3",
+            "pyopts": true,
+            "exp": "新鲜 xīnxiān — cả hai thanh 1; bẫy xián ở thanh 2"
+          },
+          {
+            "q": "",
+            "opts": [
+              "shuǐjiào",
+              "shuìjiào",
+              "suìjiào"
+            ],
+            "a": 1,
+            "audio": "audio/py/h1-1-25.mp3",
+            "pyopts": true,
+            "exp": "睡觉 shuìjiào"
+          }
+        ]
+      }
+    ]
   }
 ];
 
