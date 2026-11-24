@@ -162,9 +162,11 @@
     if (sv) {
       xBoxes().forEach(function (el, i) { el.value = sv.ans[i] || ""; el.readOnly = true; el.style.height = "auto"; el.style.height = el.scrollHeight + "px"; });
       root.classList.add("done");
+      [].forEach.call(root.querySelectorAll(".tb-open .tb-qa"), function (d) { d.open = true; });
       box.innerHTML = '<div class="tb-subok">✓ Đã nộp bài lúc ' + esc(new Date(sv.t).toLocaleString("vi-VN")) + '. Câu gợi ý đã hiện ở dưới mỗi câu để bạn tự so sánh.</div><p class="sub" id="sync" style="margin:6px 0 0">' + esc(sv.msg || "") + '</p><button class="btn ghost" data-tb="xredo">Làm lại</button>';
     } else {
       root.classList.remove("done");
+      [].forEach.call(root.querySelectorAll(".tb-open .tb-qa"), function (d) { d.open = false; });
       xBoxes().forEach(function (el) { el.readOnly = false; });
       box.innerHTML = '<p class="sub" style="margin:0 0 10px">Làm xong các câu tự viết ở trên thì bấm <b>Nộp bài</b>. Bài làm sẽ gửi cho giáo viên, sau đó câu gợi ý mới hiện ra.</p><button class="btn" data-tb="xsubmit">Nộp bài</button>';
     }
