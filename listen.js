@@ -40,7 +40,9 @@
     if (H.lvOK && !H.lvOK(H.level())) H.setLevel(H.maxLv());
     var rows = H.LESSONS.filter(function (l) { return l.words.length && l.level === H.level(); }).map(function (l) {
       var n = pool(l.id).length;
-      return '<button class="ln-les" data-llesson="' + esc(l.id) + '"' + (n < 4 ? " disabled" : "") + '><span class="ln-n">' + esc(l.num) + '</span><span class="ln-t"><b>Bài ' + esc(l.num) + "</b><small>" + esc(l.topic || l.title || "") + "</small></span><span class=\"ln-c\">" + n + " câu</span></button>";
+      var dc = (window.HD_DICT || {})[String(l.id)];
+      return '<button class="ln-les" data-llesson="' + esc(l.id) + '"' + (n < 4 ? " disabled" : "") + '><span class="ln-n">' + esc(l.num) + '</span><span class="ln-t"><b>Bài ' + esc(l.num) + "</b><small>" + esc(l.topic || l.title || "") + "</small></span><span class=\"ln-c\">" + n + " câu</span></button>" +
+        (dc ? '<button class="ln-les ln-dict" data-ldict="' + esc(l.id) + '"><span class="ln-n">✍</span><span class="ln-t"><b>Bài ' + esc(l.num) + " · " + esc(dc.title) + "</b><small>Nghe rồi gõ lại câu bằng chữ Hán</small></span><span class=\"ln-c\">" + dc.items.length + " câu</span></button>" : "");
     }).join("");
     var nAll = pool("all").length;
     var mx = H.maxLv ? H.maxLv() : 1, tabs = "";
@@ -94,9 +96,54 @@
       (miss ? '<div class="miss"><div class="eyebrow" style="margin-bottom:6px">Câu cần nghe lại</div>' + miss + "</div>" : "") + "</section>";
   }
 
+  /* ---------- Nghe – gõ câu ---------- */
+  var AU = null;
+  function dnorm(s) { return String(s || "").replace(/[\s　。，、！？；：“”‘’「」（）….,!?;:"'()\-]/g, ""); }
+  function dplay(slow) { var q = ST.qs[ST.i]; try { if (AU) AU.pause(); AU = new Audio(q.audio); AU.playbackRate = slow ? 0.7 : 1; AU.play(); } catch (e) { /* bỏ qua */ } }
+  function dstart(id) {
+    var D = (window.HD_DICT || {})[String(id)]; if (!D) return picker();
+    ST = { mode: "dict", lesson: String(id), title: D.title, qs: D.items.map(function (x) { return { zh: x.zh, audio: x.audio, val: "", res: null }; }), i: 0, score: 0, t0: Date.now(), done: false };
+    dpaint(true);
+  }
+  function dpaint(auto) {
+    var q = ST.qs[ST.i], n = ST.qs.length, done = q.res !== null;
+    H.app.innerHTML = '<div style="display:flex;align-items:center;gap:6px"><button class="back" data-lpick="1">' + H.ICONS.back + esc(H.lname(ST.lesson)) + '</button><span class="chip" style="margin-left:auto">Câu ' + (ST.i + 1) + "/" + n + '</span></div>' +
+      '<section class="card ln-card"><div class="eyebrow">Luyện nghe · ' + esc(ST.title) + '</div><p class="sub" style="margin:4px 0 12px">Nghe rồi gõ lại cả câu bằng chữ Hán. Không cần gõ dấu câu. Nghe lại bao nhiêu lần cũng được.</p>' +
+      '<div class="ln-spk"><button class="mq-spk" data-dplay="1">' + H.ICONS.speaker + ' Nghe</button><button class="btn ghost small" data-dslow="1">Nghe chậm</button></div>' +
+      '<input class="t-input ln-in" id="ln-in" lang="zh-CN" autocomplete="off" placeholder="Gõ câu bạn nghe được…" value="' + esc(q.val) + '"' + (done ? " readonly" : "") + ">" +
+      (done ? '<div class="ln-fb">' + (q.res ? '<b class="ok">Chính xác!</b>' : '<b class="no">Chưa đúng.</b><div class="ln-you">Bạn gõ: ' + esc(q.val || "(bỏ trống)") + "</div>") + '<div class="ln-zh">' + esc(q.zh) + '</div></div><button class="btn" data-dnext="1">' + (ST.i + 1 >= n ? "Xem kết quả" : "Câu tiếp") + "</button>"
+        : '<button class="btn" data-dchk="1">Kiểm tra</button>') + "</section>";
+    var inp = document.getElementById("ln-in"); if (inp && !done) inp.focus(); var nb = H.app.querySelector("[data-dnext]"); if (nb) nb.focus();
+    if (auto) setTimeout(function () { if (H.view() === "listen" && ST && ST.mode === "dict" && !ST.done) dplay(false); }, 250);
+  }
+  function dcheck() {
+    var q = ST.qs[ST.i], inp = document.getElementById("ln-in"); q.val = inp ? inp.value.trim() : "";
+    if (!q.val && !window.confirm("Bạn chưa gõ gì. Bỏ qua câu này?")) return;
+    q.res = !!q.val && dnorm(q.val) === dnorm(q.zh); if (q.res) { ST.score++; H.sfx("ok"); } else H.sfx("no");
+    dpaint(false);
+  }
+  function dfinish() {
+    ST.done = true;
+    var n = ST.qs.length, pct = Math.round(ST.score / n * 100), secs = Math.floor((Date.now() - ST.t0) / 1000);
+    var bad = ST.qs.map(function (q, i) { return { q: q, i: i }; }).filter(function (x) { return !x.q.res; });
+    var sync = H.record({ lesson: ST.lesson, game: "listen-dict", gameName: "Nghe – gõ câu", score: ST.score, total: n, pct: pct, secs: secs, words: [], wrong: bad.map(function (x) { return "Câu " + (x.i + 1) + ": " + (x.q.val || "(bỏ trống)") + " → " + x.q.zh; }) });
+    var msg = pct === 100 ? "Nghe và gõ đúng hết, quá giỏi!" : pct >= 70 ? "Khá tốt rồi, xem lại các câu sai nhé." : "Nghe lại từng câu và gõ thêm vài lượt nữa nhé.";
+    H.app.innerHTML = '<section class="card" style="margin-top:10px"><div class="result"><div class="eyebrow">Luyện nghe · ' + esc(H.lname(ST.lesson)) + " · " + esc(ST.title) + '</div><div class="score">' + ST.score + "<small>/" + n + '</small></div><h2 class="h1">' + msg + '</h2><div class="sync" id="sync">' + esc(sync || "") + '</div><div class="row" style="justify-content:center;gap:8px;margin-top:10px"><button class="btn" data-dagain="1">Làm lại</button><button class="btn ghost" data-lpick="1">Chọn bài khác</button></div></div>' +
+      (bad.length ? '<div class="miss"><div class="eyebrow" style="margin-bottom:6px">Câu cần nghe lại</div>' + bad.map(function (x) {
+        return '<div class="sr-ex"><button class="tb-spk" data-dsay="' + esc(x.q.audio) + '" aria-label="Nghe">' + H.ICONS.speaker + '</button><span class="zh">' + (x.i + 1) + ". " + esc(x.q.zh) + '</span><span class="vi">Bạn gõ: ' + esc(x.q.val || "(bỏ trống)") + "</span></div>";
+      }).join("") + "</div>" : "") + "</section>";
+  }
+
   function onClick(e) {
     if (H.view() !== "listen") return;
     var t = e.target.closest("button"); if (!t) return;
+    if (t.dataset.ldict) return dstart(t.dataset.ldict);
+    if (t.dataset.dplay) return dplay(false);
+    if (t.dataset.dslow) return dplay(true);
+    if (t.dataset.dchk) return dcheck();
+    if (t.dataset.dnext) { if (ST.i + 1 >= ST.qs.length) return dfinish(); ST.i++; return dpaint(true); }
+    if (t.dataset.dagain) return dstart(ST.lesson);
+    if (t.dataset.dsay) { try { if (AU) AU.pause(); AU = new Audio(t.dataset.dsay); AU.play(); } catch (er) { /* bỏ qua */ } return; }
     if (t.dataset.lplay) return say(false);
     if (t.dataset.lslow) return say(true);
     if (t.dataset.lo) return pick(+t.dataset.lo);
@@ -107,5 +154,10 @@
     if (t.dataset.llesson) return start(t.dataset.llesson);
   }
 
-  window.HD_LISTEN = { init: function (host) { H = host; H.app.addEventListener("click", onClick); }, render: picker };
+  function onKey(e) {
+    if (H.view() !== "listen" || !ST || ST.mode !== "dict" || e.key !== "Enter" || e.isComposing) return;
+    if (e.target.id !== "ln-in") return;
+    e.preventDefault(); var q = ST.qs[ST.i]; if (q.res === null) dcheck(); else { if (ST.i + 1 >= ST.qs.length) dfinish(); else { ST.i++; dpaint(true); } }
+  }
+  window.HD_LISTEN = { init: function (host) { H = host; H.app.addEventListener("click", onClick); H.app.addEventListener("keydown", onKey); }, render: picker };
 })();

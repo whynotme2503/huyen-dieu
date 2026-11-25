@@ -77,6 +77,10 @@ Học sinh chỉ xem được Từ vựng, Bài khóa, Luyện nghe và Tra từ
 
 "Bài tập nhỏ hôm nay" ở trang chủ lấy từ trong phạm vi bài giáo viên đã giao xa nhất (ví dụ đã giao tới HSK 1 Bài 7 thì câu hỏi lấy từ Bài 1–7 của HSK 1). Chưa giao bài nào thì lấy từ các bài của trình độ lớp.
 
+## Luyện nghe – gõ câu
+
+Trong mục Luyện nghe, bài nào có bài nghe chép (hiện có HSK1 Bài 4) sẽ có thêm dòng "Nghe – gõ câu". Học sinh nghe từng câu (có nghe chậm), gõ lại bằng chữ Hán, không tính dấu câu. Kết quả gửi về Google Sheet, câu sai ghi rõ học sinh đã gõ gì. Dữ liệu ở `dict.js`, file nghe ở `audio/dict/`.
+
 ## Tra từ và lời chúc hằng ngày
 
 - **Tra từ** (thanh điều hướng): học sinh gõ chữ Hán, pinyin (có hoặc không dấu) hoặc nghĩa tiếng Việt. Kết quả có nghĩa, ví dụ, ghi chú ngữ pháp, nghe đọc, xem thứ tự nét và luyện viết. Ví dụ và ngữ pháp nằm ở `HD_EXTRA` trong `data.js`, khóa là chữ Hán của từ. Khi thêm từ mới ở bài sau, thêm cả mục tương ứng vào `HD_EXTRA` để từ đó có ví dụ.

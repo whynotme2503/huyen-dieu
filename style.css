@@ -914,3 +914,7 @@ textarea.sh-input { resize: vertical; }
 .sh-play{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;margin-right:8px;border-radius:999px;border:1.5px solid var(--accent);background:var(--accent-soft);color:var(--accent);font:700 13px var(--f-ui);cursor:pointer;vertical-align:middle}
 .sh-play svg{width:16px;height:16px}.sh-play.on{background:var(--accent);color:var(--accent-ink)}
 .sh-q .sh-opts .sh-opt .py,.sh-pyopt{font-family:var(--f-py);font-size:18px}
+.ln-dict{border-style:dashed;border-color:var(--accent);margin-top:-4px}
+.ln-dict .ln-n{background:var(--accent);color:var(--accent-ink)}
+.ln-in{width:100%;font:400 22px var(--f-tb,var(--f-han));padding:12px 14px;margin:14px 0 10px}
+.ln-you{color:var(--bad);margin-top:4px}
