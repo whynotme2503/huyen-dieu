@@ -25,6 +25,7 @@
     var open = H.LESSONS.filter(function (l) { return l.words.length; }), out = [], seen = {};
     open.forEach(function (l, i) {
       if (id === "all" ? l.level !== H.level() : String(l.id) !== String(id)) return;
+      if ((window.HD_DICT || {})[String(l.id)]) return;
       lessonPool(i, open).forEach(function (s) { var k = norm(s.zh); if (!seen[k]) { seen[k] = 1; out.push(s); } });
     });
     return out;
@@ -41,7 +42,8 @@
     var rows = H.LESSONS.filter(function (l) { return l.words.length && l.level === H.level(); }).map(function (l) {
       var n = pool(l.id).length;
       var dc = (window.HD_DICT || {})[String(l.id)];
-      return '<button class="ln-les" data-llesson="' + esc(l.id) + '"' + (n < 4 ? " disabled" : "") + '><span class="ln-n">' + esc(l.num) + '</span><span class="ln-t"><b>Bài ' + esc(l.num) + "</b><small>" + esc(l.topic || l.title || "") + "</small></span><span class=\"ln-c\">" + n + " câu</span></button>" +
+      if (dc) return '<button class="ln-les ln-dict" data-ldict="' + esc(l.id) + '"><span class="ln-n">' + esc(l.num) + '</span><span class="ln-t"><b>Bài ' + esc(l.num) + "</b><small>" + esc(dc.title) + " · nghe rồi gõ lại câu bằng chữ Hán</small></span><span class=\"ln-c\">" + dc.items.length + " câu</span></button>";
+      return '<button class="ln-les" data-llesson=""' + esc(l.id) + '"' + (n < 4 ? " disabled" : "") + '><span class="ln-n">' + esc(l.num) + '</span><span class="ln-t"><b>Bài ' + esc(l.num) + "</b><small>" + esc(l.topic || l.title || "") + "</small></span><span class=\"ln-c\">" + n + " câu</span></button>" +
         (dc ? '<button class="ln-les ln-dict" data-ldict="' + esc(l.id) + '"><span class="ln-n">✍</span><span class="ln-t"><b>Bài ' + esc(l.num) + " · " + esc(dc.title) + "</b><small>Nghe rồi gõ lại câu bằng chữ Hán</small></span><span class=\"ln-c\">" + dc.items.length + " câu</span></button>" : "");
     }).join("");
     var nAll = pool("all").length;
