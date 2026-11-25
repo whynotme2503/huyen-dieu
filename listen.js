@@ -42,7 +42,7 @@
     var rows = H.LESSONS.filter(function (l) { return l.words.length && l.level === H.level(); }).map(function (l) {
       var n = pool(l.id).length;
       var dc = (window.HD_DICT || {})[String(l.id)];
-      if (dc) return '<button class="ln-les ln-dict" data-ldict="' + esc(l.id) + '"><span class="ln-n">' + esc(l.num) + '</span><span class="ln-t"><b>Bài ' + esc(l.num) + "</b><small>" + esc(dc.title) + " · nghe rồi gõ lại câu bằng chữ Hán</small></span><span class=\"ln-c\">" + dc.items.length + " câu</span></button>";
+      if (dc) return '<button class="ln-les ln-dict" data-ldict="' + esc(l.id) + '"><span class="ln-n">' + esc(l.num) + '</span><span class="ln-t"><b>Bài ' + esc(l.num) + "</b><small>" + esc(dc.topic ? dc.topic + " · " : "") + "nghe rồi gõ lại câu bằng chữ Hán</small></span><span class=\"ln-c\">" + dc.items.length + " câu</span></button>";
       return '<button class="ln-les" data-llesson=""' + esc(l.id) + '"' + (n < 4 ? " disabled" : "") + '><span class="ln-n">' + esc(l.num) + '</span><span class="ln-t"><b>Bài ' + esc(l.num) + "</b><small>" + esc(l.topic || l.title || "") + "</small></span><span class=\"ln-c\">" + n + " câu</span></button>" +
         (dc ? '<button class="ln-les ln-dict" data-ldict="' + esc(l.id) + '"><span class="ln-n">✍</span><span class="ln-t"><b>Bài ' + esc(l.num) + " · " + esc(dc.title) + "</b><small>Nghe rồi gõ lại câu bằng chữ Hán</small></span><span class=\"ln-c\">" + dc.items.length + " câu</span></button>" : "");
     }).join("");
@@ -101,6 +101,8 @@
   /* ---------- Nghe – gõ câu ---------- */
   var AU = null;
   function dnorm(s) { return String(s || "").replace(/[\s　。，、！？；：“”‘’「」（）….,!?;:"'()\-]/g, ""); }
+  /* So khớp: bỏ dấu câu/khoảng trắng; 他 = 她 (đại từ chỉ người); 儿 tùy chọn ở 面条儿, 有点儿, 一点儿, 玩儿. */
+  function dkey(s) { return dnorm(s).replace(/她/g, "他").replace(/(面条|有点|一点|玩)儿/g, "$1"); }
   function dplay(slow) { var q = ST.qs[ST.i]; try { if (AU) AU.pause(); AU = new Audio(q.audio); AU.playbackRate = slow ? 0.7 : 1; AU.play(); } catch (e) { /* bỏ qua */ } }
   function dstart(id) {
     var D = (window.HD_DICT || {})[String(id)]; if (!D) return picker();
@@ -121,7 +123,7 @@
   function dcheck() {
     var q = ST.qs[ST.i], inp = document.getElementById("ln-in"); q.val = inp ? inp.value.trim() : "";
     if (!q.val && !window.confirm("Bạn chưa gõ gì. Bỏ qua câu này?")) return;
-    q.res = !!q.val && dnorm(q.val) === dnorm(q.zh); if (q.res) { ST.score++; H.sfx("ok"); } else H.sfx("no");
+    q.res = !!q.val && dkey(q.val) === dkey(q.zh); if (q.res) { ST.score++; H.sfx("ok"); } else H.sfx("no");
     dpaint(false);
   }
   function dfinish() {
