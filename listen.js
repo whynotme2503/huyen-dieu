@@ -43,7 +43,7 @@
       var n = pool(l.id).length;
       var dc = (window.HD_DICT || {})[String(l.id)];
       if (dc) return '<button class="ln-les ln-dict" data-ldict="' + esc(l.id) + '"><span class="ln-n">' + esc(l.num) + '</span><span class="ln-t"><b>Bài ' + esc(l.num) + "</b><small>" + esc(dc.topic ? dc.topic + " · " : "") + "nghe rồi gõ lại câu bằng chữ Hán</small></span><span class=\"ln-c\">" + dc.items.length + " câu</span></button>";
-      return '<button class="ln-les" data-llesson=""' + esc(l.id) + '"' + (n < 4 ? " disabled" : "") + '><span class="ln-n">' + esc(l.num) + '</span><span class="ln-t"><b>Bài ' + esc(l.num) + "</b><small>" + esc(l.topic || l.title || "") + "</small></span><span class=\"ln-c\">" + n + " câu</span></button>" +
+      return '<button class="ln-les" data-llesson="' + esc(l.id) + '"' + (n < 4 ? " disabled" : "") + '><span class="ln-n">' + esc(l.num) + '</span><span class="ln-t"><b>Bài ' + esc(l.num) + "</b><small>" + esc(l.topic || l.title || "") + "</small></span><span class=\"ln-c\">" + n + " câu</span></button>" +
         (dc ? '<button class="ln-les ln-dict" data-ldict="' + esc(l.id) + '"><span class="ln-n">✍</span><span class="ln-t"><b>Bài ' + esc(l.num) + " · " + esc(dc.title) + "</b><small>Nghe rồi gõ lại câu bằng chữ Hán</small></span><span class=\"ln-c\">" + dc.items.length + " câu</span></button>" : "");
     }).join("");
     var nAll = pool("all").length;

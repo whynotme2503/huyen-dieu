@@ -164,31 +164,31 @@ window.HD_DICT = {
   "items": [
    {
     "zh": "现在几点？现在是上午八点半，我要去上课。",
-    "audio": "audio/dict/h1-7-1.mp3"
+    "audio": "audio/dict/h1-7b-1.mp3"
    },
    {
     "zh": "我早上八点上课，下午两点下课，晚上在家休息。",
-    "audio": "audio/dict/h1-7-2.mp3"
+    "audio": "audio/dict/h1-7b-2.mp3"
    },
    {
     "zh": "晚上我们去电影院看电影，好吗？",
-    "audio": "audio/dict/h1-7-3.mp3"
+    "audio": "audio/dict/h1-7b-3.mp3"
    },
    {
     "zh": "我在医院工作，我爸爸也在那边的店里工作，我们很忙。",
-    "audio": "audio/dict/h1-7-4.mp3"
+    "audio": "audio/dict/h1-7b-4.mp3"
    },
    {
     "zh": "我上午十点上班，下午六点下班，这是我的事。",
-    "audio": "audio/dict/h1-7-5.mp3"
+    "audio": "audio/dict/h1-7b-5.mp3"
    },
    {
     "zh": "三十分钟后，我们在电影院里见，好吗？",
-    "audio": "audio/dict/h1-7-6.mp3"
+    "audio": "audio/dict/h1-7b-6.mp3"
    },
    {
     "zh": "我姐姐在医院工作，她也很喜欢看电影。",
-    "audio": "audio/dict/h1-7-7.mp3"
+    "audio": "audio/dict/h1-7b-7.mp3"
    }
   ]
  },
