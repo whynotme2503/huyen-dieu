@@ -160,8 +160,7 @@
       if (q.type === "trans") {
         review += '<div class="sh-r ' + (q.ok ? "ok" : "bad") + '"><div class="sh-qt"><span class="sh-n">' + q.n + '</span><span class="sh-qp sh-trvi">' + esc(q.vi) + '</span><span class="sh-mark">Khớp ' + Math.round(q.td.r * 100) + "%</span></div>" +
           '<div class="sh-ans sh-tr"><span class="lb">Bài làm</span><span class="hz sh-diff">' + (X.ans[q.n] ? q.td.html : "(chưa trả lời)") + "</span></div>" +
-          '<div class="sh-ans good sh-tr"><span class="lb">Đáp án</span><span class="hz">' + esc(q.a) + "</span></div>" +
-          '<div class="sh-ans"><span class="lb">Ghi chú</span><span class="sh-exp">Chữ xanh: khớp với đáp án. Chữ đỏ: khác đáp án (có thể là cách dịch khác vẫn đúng, đối chiếu lại với đáp án nhé). Không tính dấu câu.</span></div></div>';
+          '<div class="sh-ans good sh-tr"><span class="lb">Đáp án</span><span class="hz">' + esc(q.a) + "</span></div>" + "</div>";
         return;
       }
       var v = X.ans[q.n], ut = FX ? (q.n in FX ? FX[q.n] : "✓ Đúng") : userText(q, v);
