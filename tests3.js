@@ -6715,5 +6715,23 @@ window.HD_SHEETS = (window.HD_SHEETS || []).concat([
     ]
    }
   ]
- }
+ },
+{
+ "id": "sheet-h3-2-dich",
+ "lesson": "3-2",
+ "title": "HSK3 Bài 2-Luyện dịch",
+ "intro": "Dịch đoạn văn sau sang tiếng Trung. Bấm Nộp bài để xem đáp án: chữ xanh là phần khớp với đáp án, chữ đỏ là phần khác đáp án. Không tính dấu câu.",
+ "parts": [
+  {
+   "title": "翻译 · Dịch Việt → Trung",
+   "items": [
+    {
+     "trans": true,
+     "vi": "Hôm qua, một người bạn lâu rồi không gặp đến nhà tôi ăn cơm. Vừa bước vào cửa cô ấy đã nói vừa đói vừa mệt, tôi liền lấy ngay cho cô ấy một cốc nước uống. Tôi hỏi cô ấy muốn ăn gì, cô ấy nói cái gì cũng thích ăn, không cần khách sáo quá, tôi làm gì thì cô ấy ăn nấy. Tôi hỏi cô ấy muốn ăn cơm hay mì, cô ấy nói cả hai cô đều thích, bảo tôi chọn món nào đơn giản là được. Tôi nhớ cô ấy thích ăn thịt gà, nên hôm đó tôi làm cơm gà và mì, đều vừa nóng vừa ngon. Cô ấy nếm thử, nói so với gọi đồ ăn giao tận nơi thì tiện hơn nhiều, cũng ngon hơn ăn ở ngoài. Ăn xong, tôi lấy ra một miếng bánh kem, cô ấy nói quá tuyệt, hôm nay thật vui. Cuối cùng cô ấy còn nói, lần sau không cần làm nhiều món như vậy, đơn giản một chút cũng được, quan trọng nhất là có thể cùng bạn bè ăn cơm với nhau.",
+     "a": "昨天，一个好久没见的朋友来我家吃饭。她一进门就说又饿又累，我马上给她拿了一杯饮料。我问她想吃什么，她说什么都爱吃，不用太客气，我做什么她就吃什么。我问她想吃米饭还是面条儿，她说两个她都喜欢，让我选一个简单的就可以。我记得她爱吃鸡肉，所以那天我做了鸡肉饭和面条儿，都又热又好吃。她尝了尝，说比叫外卖方便多了，也比在外面吃饭好吃。吃完饭，我拿出一块蛋糕，她说太好了，今天真高兴。最后她还说，下次不用做那么多菜，简单一点儿也可以，最重要的是能跟朋友一起吃饭。"
+    }
+   ]
+  }
+ ]
+}
 ]);

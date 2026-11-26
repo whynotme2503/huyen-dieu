@@ -918,3 +918,13 @@ textarea.sh-input { resize: vertical; }
 .ln-dict .ln-n{background:var(--accent);color:var(--accent-ink)}
 .ln-in{width:100%;font:400 22px var(--f-tb,var(--f-han));padding:12px 14px;margin:14px 0 10px}
 .ln-you{color:var(--bad);margin-top:4px}
+/* Luyện dịch: bài làm tô màu theo đáp án */
+.sh-trans { min-height: 180px; line-height: 1.7; }
+.sh-tr { display: block; }
+.sh-tr .lb { display: block; margin-bottom: 4px; }
+.sh-tr .hz { font-size: 17px; line-height: 1.9; }
+.sh-diff .td-ok { color: #1f7a3a; background: #e3f4e8; }
+.sh-diff .td-bad { color: #c62828; background: #fde4e4; }
+.sh-q:has(.sh-trans) .sh-vi { font-size: 16px; line-height: 1.75; color: var(--ink); background: var(--paper-2, #f4f1ea); padding: 12px 14px; border-radius: 10px; margin: 8px 0 10px; }
+.sh-q:has(.sh-trans) .sh-input { margin-left: 0; width: 100%; }
+.sh-trvi { line-height: 1.6 !important; font-size: 15px; }

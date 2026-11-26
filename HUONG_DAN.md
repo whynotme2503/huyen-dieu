@@ -143,3 +143,7 @@ Bảng giáo viên > Bài tập > mở một bài đã giao (bài tập soạn s
 - **Cần dán Code.gs mới và Deploy → Phiên bản mới** (có thêm cột "Trình độ" trong tab Lop, tự thêm khi tạo/đổi trình độ lớp).
 
 - HSK 3: chưa có âm thanh thu sẵn và chưa có câu ví dụ, nên mục Luyện nghe và ô tìm kiếm cho HSK 3 còn rất ít nội dung; các trò chơi từ vựng vẫn dùng giọng đọc của thiết bị.
+
+## Luyện dịch đoạn văn (HSK3 Bài 2-Luyện dịch)
+
+Phiếu bài tập soạn sẵn kiểu dịch Việt → Trung (trong `tests3.js`, mục có `"trans": true`). Học sinh chỉ thấy khi giáo viên giao. Nộp bài xong sẽ hiện đáp án; bài làm được tô xanh ở chữ khớp với đáp án, đỏ ở chữ khác đáp án. Điểm là % khớp (không tính dấu câu, 他/她 như nhau, 儿 sau 面条/有点/一点/玩 có hay không đều được).

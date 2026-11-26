@@ -16,7 +16,7 @@
     sheet.parts.forEach(function (p, pi) {
       p.items.forEach(function (it) {
         n++;
-        var q = { n: n, part: pi, type: it.sent ? "sent" : it.opts ? "choice" : it.w ? "order" : it.valid ? "multi" : "type", img: it.img || null, pass: it.pass || "", py: it.py || "", word: it.word || "", lettersOnly: !!it.opts && it.opts.every(function (o, j) { return o === LET[j]; }), valid: it.valid || null, min: it.min || 0, pre: it.pre || null, vi: it.vi || "", q: it.q || (it.sent ? it.word : "") || "", opts: it.opts || null, a: it.a, show: it.show || "", audio: it.audio || "", fields: it.fields || null, exp: it.exp || "", ph: p.ph || "Gõ chữ Hán tại đây", sub: it.sub || "" };
+        var q = { n: n, part: pi, type: it.trans ? "trans" : it.sent ? "sent" : it.opts ? "choice" : it.w ? "order" : it.valid ? "multi" : "type", img: it.img || null, pass: it.pass || "", py: it.py || "", word: it.word || "", lettersOnly: !!it.opts && it.opts.every(function (o, j) { return o === LET[j]; }), valid: it.valid || null, min: it.min || 0, pre: it.pre || null, vi: it.vi || "", q: it.q || (it.sent ? it.word : "") || "", opts: it.opts || null, a: it.a, show: it.show || "", audio: it.audio || "", fields: it.fields || null, exp: it.exp || "", ph: p.ph || "Gõ chữ Hán tại đây", sub: it.sub || "" };
         if (q.type === "order") q.pool = shuffle(it.w.map(function (w, k) { return { w: w, k: k }; }));
         qs.push(q);
       });
@@ -47,6 +47,8 @@
     } else if (q.fields) {
       v = v || [];
       body = q.fields.map(function (f, i) { return '<label class="sh-fl"><span class="t-sub">' + esc(f.label) + '</span><input class="sh-input hz" data-sh="type" data-n="' + q.n + '" data-f="' + i + '" value="' + esc(v[i] || "") + '" placeholder="' + esc(q.ph) + '" autocomplete="off" autocapitalize="off" spellcheck="false" lang="zh"></label>'; }).join("");
+    } else if (q.type === "trans") {
+      body = '<textarea class="sh-input hz sh-trans" rows="9" data-sh="type" data-n="' + q.n + '" placeholder="Viết bản dịch tiếng Trung của bạn…" autocomplete="off" autocapitalize="off" spellcheck="false" lang="zh">' + esc(v || "") + "</textarea>";
     } else if (q.type === "sent") {
       body = '<textarea class="sh-input hz" rows="2" data-sh="type" data-n="' + q.n + '" placeholder="' + esc(q.ph) + '" autocomplete="off" autocapitalize="off" spellcheck="false" lang="zh">' + esc(v || "") + "</textarea>";
     } else {
@@ -62,7 +64,7 @@
       html += qHTML(q);
     });
     H.app.innerHTML = '<div style="display:flex;align-items:center;gap:6px"><button class="back" data-sh="exit">' + H.ICONS.back + "Bài tập</button></div>" +
-      '<section class="card sh-card" style="margin-top:10px"><div class="eyebrow">' + esc(sh.title) + '</div><h1 class="h1" style="margin:4px 0 6px">' + X.qs.length + ' câu</h1><p class="sub" style="margin:0 0 14px">' + (sh.intro ? esc(sh.intro) : "Làm hết các phần rồi bấm “Nộp bài”. Phần gõ chữ Hán không cần chú ý dấu câu.") + '</p>' + (sh.audio ? '<div class="sh-audio" id="sh-audio"><b>Bản ghi âm phần Nghe</b><audio controls preload="none" src="' + esc(sh.audio) + '"></audio></div>' : "") + html +
+      '<section class="card sh-card" style="margin-top:10px"><div class="eyebrow">' + esc(sh.title) + '</div><h1 class="h1" style="margin:4px 0 6px">' + (X.qs.every(function (q) { return q.type === "trans"; }) ? "Luyện dịch đoạn văn" : X.qs.length + " câu") + '</h1><p class="sub" style="margin:0 0 14px">' + (sh.intro ? esc(sh.intro) : "Làm hết các phần rồi bấm “Nộp bài”. Phần gõ chữ Hán không cần chú ý dấu câu.") + '</p>' + (sh.audio ? '<div class="sh-audio" id="sh-audio"><b>Bản ghi âm phần Nghe</b><audio controls preload="none" src="' + esc(sh.audio) + '"></audio></div>' : "") + html +
       '<div class="afoot"><span class="t-sub" id="sh-left">' + (left ? "Còn " + left + " câu chưa làm" : "Đã làm hết các câu") + '</span><button class="btn" data-sh="submit" style="margin-left:auto" id="sh-submit">Nộp bài</button></div></section>';
   }
 
@@ -89,6 +91,30 @@
     if (q.type === "multi") return v + "  (đúng " + multiCount(q, v) + "/" + q.min + " từ cần có)";
     return v;
   }
+  /* Luyện dịch: so bài làm với đáp án theo từng chữ Hán (dãy con chung dài nhất).
+     Không tính dấu câu; 他 = 她; 儿 sau 面条/有点/一点/玩 có hay không đều được.
+     Trả về r = 2·(số chữ khớp) / (số chữ bài làm + số chữ đáp án) và HTML bài làm tô xanh (khớp) / đỏ (khác). */
+  function tSeq(t) {
+    var cs = Array.from(String(t || "")), out = [];
+    cs.forEach(function (c, i) {
+      if (!/[㐀-鿿A-Za-z0-9]/.test(c)) return;
+      if (c === "儿") { var pv = out.map(function (x) { return x.c; }).join("").slice(-2); if (/(面条|有点|一点)$/.test(pv) || pv.slice(-1) === "玩") { out.push({ i: i, c: c, opt: true }); return; } }
+      out.push({ i: i, c: c, k: c === "她" ? "他" : c.toLowerCase() });
+    });
+    return { cs: cs, seq: out };
+  }
+  function tDiff(v, a) {
+    var U = tSeq(v), A = tSeq(a), us = U.seq.filter(function (x) { return !x.opt; }), as = A.seq.filter(function (x) { return !x.opt; });
+    var n = us.length, m = as.length, D = [], i, j;
+    for (i = 0; i <= n; i++) { D.push(new Array(m + 1).fill(0)); }
+    for (i = n - 1; i >= 0; i--) for (j = m - 1; j >= 0; j--) D[i][j] = us[i].k === as[j].k ? D[i + 1][j + 1] + 1 : Math.max(D[i + 1][j], D[i][j + 1]);
+    var hit = {}; i = 0; j = 0;
+    while (i < n && j < m) { if (us[i].k === as[j].k) { hit[us[i].i] = 1; i++; j++; } else if (D[i + 1][j] >= D[i][j + 1]) i++; else j++; }
+    var mark = {}; U.seq.forEach(function (x) { mark[x.i] = x.opt ? "ok" : hit[x.i] ? "ok" : "bad"; });
+    var html = U.cs.map(function (c, k) { return mark[k] ? '<span class="td-' + mark[k] + '">' + esc(c) + "</span>" : esc(c); }).join("");
+    var tot = n + m;
+    return { r: tot ? 2 * D[0][0] / tot : 0, html: html };
+  }
   /* Đáp án bắt đầu bằng "re:" là biểu thức chính quy, so với câu trả lời đã bỏ dấu câu/khoảng trắng (chữ thường).
      Dùng cho câu có nhiều cách trả lời đúng (thứ tự, chủ ngữ, câu dài/ngắn). */
   function okAns(a, v, pre) {
@@ -104,6 +130,7 @@
   function sentOK(q, v) { var t = norm(v); return (Array.isArray(q.a) ? q.a : [q.a]).some(function (w) { return t.indexOf(norm(w)) >= 0; }) && (t.match(/[㐀-鿿]/g) || []).length >= (q.minLen || 6); }
   function grade(q, v) {
     if (q.type === "sent") return true; /* câu viết tự do: luôn tính đúng */
+    if (q.type === "trans") return tDiff(v || "", q.a).r >= 0.9;
     if (!isDone(q, v)) return false;
     if (q.type === "choice") return v === q.a;
     if (q.type === "order") return norm(v.map(function (k) { return q.pool.filter(function (p) { return p.k === k; })[0].w; }).join("")) === norm(q.a);
@@ -117,22 +144,33 @@
   function submit(rv) {
     var sh = X.sheet, secs = rv ? rv.secs : Math.floor((Date.now() - X.t0) / 1000), score = 0, per = sh.parts.map(function () { return { ok: 0, n: 0 }; });
     var FX = rv && rv.fixed;
-    X.qs.forEach(function (q) { var ok = FX ? !(q.n in FX) : grade(q, X.ans[q.n]); q.ok = ok; per[q.part].n++; if (ok) { per[q.part].ok++; score++; } });
+    var allT = X.qs.every(function (q) { return q.type === "trans"; }), tsum = 0;
+    X.qs.forEach(function (q) {
+      if (q.type === "trans") { var tv = FX ? (FX[q.n] !== undefined ? FX[q.n] : "") : (X.ans[q.n] || ""); if (FX) X.ans[q.n] = tv === "(chưa trả lời)" ? "" : tv; q.td = tDiff(X.ans[q.n] || "", q.a); tsum += q.td.r; }
+      var ok = q.type === "trans" ? q.td.r >= 0.9 : FX ? !(q.n in FX) : grade(q, X.ans[q.n]); q.ok = ok; per[q.part].n++; if (ok) { per[q.part].ok++; score++; } });
     var N = X.qs.length, pct = Math.round(score / N * 100);
+    if (allT) { pct = Math.round(tsum / N * 100); score = pct; N = 100; }
     if (!rv) { try { localStorage.setItem(rkey(sh), JSON.stringify({ ans: X.ans, secs: secs })); } catch (er) {} }
-    var sync = rv ? "Đây là bài làm gần nhất của bạn. Bấm Làm lại nếu muốn làm lượt mới." : X.onRecord({ lesson: sh.lesson, game: sh.id, gameName: sh.title, score: score, total: N, pct: pct, secs: secs, words: X.qs.filter(function (q) { return q.type === "sent" && X.ans[q.n]; }).map(function (q) { return "Câu " + q.n + ": " + String(X.ans[q.n]).replace(/\|/g, "/"); }), wrong: X.qs.filter(function (q) { return !q.ok; }).map(function (q) { return "Câu " + q.n + ": " + userText(q, X.ans[q.n]).replace(/\|/g, "/"); }) });
+    var sync = rv ? "Đây là bài làm gần nhất của bạn. Bấm Làm lại nếu muốn làm lượt mới." : X.onRecord({ lesson: sh.lesson, game: sh.id, gameName: sh.title, score: score, total: N, pct: pct, secs: secs, words: X.qs.filter(function (q) { return q.type === "sent" && X.ans[q.n]; }).map(function (q) { return "Câu " + q.n + ": " + String(X.ans[q.n]).replace(/\|/g, "/"); }), wrong: X.qs.filter(function (q) { return !q.ok || q.type === "trans"; }).map(function (q) { return "Câu " + q.n + ": " + userText(q, X.ans[q.n]).replace(/\|/g, "/").replace(/\n/g, " "); }) });
     if (!rv) H.sfx(pct >= 70 ? "win" : "meh");
     var msg = pct === 100 ? "Tuyệt vời, đúng hết!" : pct >= 80 ? "Rất tốt!" : pct >= 50 ? "Khá ổn, xem lại các câu sai bên dưới nhé." : "Cần ôn thêm, xem đáp án bên dưới rồi làm lại nhé.";
     var review = "", cur = -1;
     X.qs.forEach(function (q) {
-      if (q.part !== cur) { cur = q.part; review += '<div class="sh-part"><h3>' + esc(sh.parts[cur].title) + " · " + per[cur].ok + "/" + per[cur].n + "</h3></div>"; }
+      if (q.part !== cur) { cur = q.part; review += '<div class="sh-part"><h3>' + esc(sh.parts[cur].title) + (allT ? "" : " · " + per[cur].ok + "/" + per[cur].n) + "</h3></div>"; }
+      if (q.type === "trans") {
+        review += '<div class="sh-r ' + (q.ok ? "ok" : "bad") + '"><div class="sh-qt"><span class="sh-n">' + q.n + '</span><span class="sh-qp sh-trvi">' + esc(q.vi) + '</span><span class="sh-mark">Khớp ' + Math.round(q.td.r * 100) + "%</span></div>" +
+          '<div class="sh-ans sh-tr"><span class="lb">Bài làm</span><span class="hz sh-diff">' + (X.ans[q.n] ? q.td.html : "(chưa trả lời)") + "</span></div>" +
+          '<div class="sh-ans good sh-tr"><span class="lb">Đáp án</span><span class="hz">' + esc(q.a) + "</span></div>" +
+          '<div class="sh-ans"><span class="lb">Ghi chú</span><span class="sh-exp">Chữ xanh: khớp với đáp án. Chữ đỏ: khác đáp án (có thể là cách dịch khác vẫn đúng, đối chiếu lại với đáp án nhé). Không tính dấu câu.</span></div></div>';
+        return;
+      }
       var v = X.ans[q.n], ut = FX ? (q.n in FX ? FX[q.n] : "✓ Đúng") : userText(q, v);
       review += '<div class="sh-r ' + (q.ok ? "ok" : "bad") + '"><div class="sh-qt"><span class="sh-n">' + q.n + '</span>' + playBtn(q) + '<span class="sh-qp' + hz(q.q) + '">' + (q.q ? esc(q.q) : q.type === "order" ? "Sắp xếp thành câu đúng" : q.type === "sent" ? esc(q.word) : q.lettersOnly ? "🎧" : esc(q.opts.join("  /  "))) + (q.sub && !hz(q.sub) ? ' <small class="sh-subr">' + esc(q.sub) + "</small>" : "") + (q.vi ? ' <small class="sh-subr">' + esc(q.vi) + "</small>" : "") + '</span><span class="sh-mark">' + (q.ok ? "Đúng" : "Sai") + "</span></div>" +
         '<div class="sh-ans"><span class="lb">Bạn trả lời</span><span class="' + hz(ut).trim() + '">' + esc(ut) + "</span></div>" +
         (q.ok && !rv ? "" : '<div class="sh-ans good"><span class="lb">Đáp án</span><span class="' + hz(correctText(q)).trim() + '">' + esc(correctText(q)) + "</span></div>") + (q.exp ? '<div class="sh-ans"><span class="lb">Ghi chú</span><span class="sh-exp">' + esc(q.exp) + "</span></div>" : "") + "</div>";
     });
     H.app.innerHTML = '<div style="display:flex;align-items:center;gap:6px"><button class="back" data-sh="exit">' + H.ICONS.back + "Bài tập</button></div>" +
-      '<section class="card" style="margin-top:10px"><div class="result"><div class="eyebrow">' + esc(sh.title) + '</div><div class="score">' + score + "<small>/" + N + '</small></div><h2 class="h1">' + msg + '</h2><div class="stats"><span class="chip">Đúng ' + pct + '%</span><span class="chip">' + H.ICONS.clock + fmt(secs) + "</span></div></div>" +
+      '<section class="card" style="margin-top:10px"><div class="result"><div class="eyebrow">' + esc(sh.title) + '</div><div class="score">' + score + "<small>/" + N + '</small></div><h2 class="h1">' + msg + '</h2><div class="stats"><span class="chip">' + (allT ? "Khớp đáp án " : "Đúng ") + pct + '%</span><span class="chip">' + H.ICONS.clock + fmt(secs) + "</span></div></div>" +
       '<div class="sync" id="sync">' + sync + '</div><div class="rbtns"><button class="btn" data-sh="again">Làm lại</button><button class="btn ghost" data-sh="exit">Về trang Bài tập</button></div></section>' +
       '<section class="card" style="margin-top:14px"><div class="eyebrow" style="margin-bottom:8px">Đáp án chi tiết</div>' + review + "</section>";
     X.done = true; window.scrollTo(0, 0);
