@@ -1061,6 +1061,3010 @@ window.HD_TB = {
    }
   ]
  },
+ "3-2": {
+  "zh": "你们想吃什么就点什么",
+  "py": "Nǐmen xiǎng chī shénme jiù diǎn shénme",
+  "vi": "Các bạn muốn ăn gì thì gọi món đó",
+  "texts": [
+   {
+    "title": "课文一",
+    "scene": {
+     "zh": "在饭馆，王一雪、刘明、白家月和李文在点菜。",
+     "py": "Zài fànguǎn, Wáng Yīxuě, Liú Míng, Bái Jiāyuè hé Lǐ Wén zài diǎn cài.",
+     "vi": "Ở nhà hàng, Vương Nhất Tuyết, Lưu Minh, Bạch Gia Nguyệt và Lý Văn đang gọi món."
+    },
+    "img": "img/tb/3-2-1.jpg",
+    "audio": "audio/tb/3-2-1.mp3",
+    "words": [
+     0,
+     7
+    ],
+    "lines": [
+     {
+      "who": "王一雪",
+      "zh": "家月、李文，你们看看菜单，想吃点儿什么？",
+      "py": "Jiāyuè, Lǐ Wén, nǐmen kànkan càidān, xiǎng chī diǎnr shénme?",
+      "vi": "Gia Nguyệt, Lý Văn, hai em xem thực đơn đi, muốn ăn gì nào?"
+     },
+     {
+      "who": "李文",
+      "zh": "谢谢一雪姐，我都可以，你们点吧。",
+      "py": "Xièxie Yīxuě jiě, wǒ dōu kěyǐ, nǐmen diǎn ba.",
+      "vi": "Cảm ơn chị Nhất Tuyết, em ăn gì cũng được, mọi người gọi đi ạ."
+     },
+     {
+      "who": "白家月",
+      "zh": "飞了这么远，现在还真是又饿又渴。",
+      "py": "Fēile zhème yuǎn, xiànzài hái zhēnshi yòu è yòu kě.",
+      "vi": "Bay xa thế này, giờ em thật sự vừa đói vừa khát."
+     },
+     {
+      "who": "王一雪",
+      "zh": "那多点点儿，别客气。你们喝什么饮料？",
+      "py": "Nà duō diǎn diǎnr, bié kèqi. Nǐmen hē shénme yǐnliào?",
+      "vi": "Vậy gọi nhiều một chút, đừng khách sáo. Các em uống gì?"
+     },
+     {
+      "who": "白家月",
+      "zh": "好久没喝中国茶，也好久没吃饺子了。我想喝绿茶、吃饺子，可以吗？",
+      "py": "Hǎojiǔ méi hē Zhōngguó chá, yě hǎojiǔ méi chī jiǎozi le. Wǒ xiǎng hē lǜchá, chī jiǎozi, kěyǐ ma?",
+      "vi": "Lâu lắm rồi em không uống trà Trung Quốc, cũng lâu rồi không ăn sủi cảo. Em muốn uống trà xanh, ăn sủi cảo, được không ạ?"
+     },
+     {
+      "who": "王一雪",
+      "zh": "没问题。你们看看还想吃什么。",
+      "py": "Méi wèntí. Nǐmen kànkan hái xiǎng chī shénme.",
+      "vi": "Không vấn đề gì. Các em xem còn muốn ăn gì nữa."
+     }
+    ],
+    "qs": [
+     [
+      "白家月现在觉得怎么样？",
+      "她又饿又渴。",
+      "Cô ấy vừa đói vừa khát."
+     ],
+     [
+      "白家月想喝什么？",
+      "她想喝绿茶。",
+      "Cô ấy muốn uống trà xanh."
+     ],
+     [
+      "王一雪要点什么？",
+      "绿茶和饺子，因为白家月想喝绿茶、吃饺子。",
+      "Trà xanh và sủi cảo, vì Bạch Gia Nguyệt muốn uống trà xanh, ăn sủi cảo."
+     ]
+    ]
+   },
+   {
+    "title": "课文二",
+    "scene": {
+     "zh": "在饭馆，王一雪、刘明、白家月和李文一起吃饭。",
+     "py": "Zài fànguǎn, Wáng Yīxuě, Liú Míng, Bái Jiāyuè hé Lǐ Wén yìqǐ chī fàn.",
+     "vi": "Ở nhà hàng, Vương Nhất Tuyết, Lưu Minh, Bạch Gia Nguyệt và Lý Văn cùng ăn cơm."
+    },
+    "img": "img/tb/3-2-2.jpg",
+    "audio": "audio/tb/3-2-2.mp3",
+    "words": [
+     7,
+     18
+    ],
+    "lines": [
+     {
+      "who": "王一雪",
+      "zh": "服务员，再给我们拿一双筷子、一个勺子和一个碗。",
+      "py": "Fúwùyuán, zài gěi wǒmen ná yì shuāng kuàizi, yí ge sháozi hé yí ge wǎn.",
+      "vi": "Phục vụ ơi, lấy thêm cho chúng tôi một đôi đũa, một cái thìa và một cái bát."
+     },
+     {
+      "who": "服务员",
+      "zh": "好的，请等一下，我马上去拿。",
+      "py": "Hǎo de, qǐng děng yíxià, wǒ mǎshàng qù ná.",
+      "vi": "Vâng, xin chờ một chút, tôi đi lấy ngay."
+     },
+     {
+      "who": "王一雪",
+      "zh": "这家饭馆的服务很热情，菜也都做得很好吃。你们尝尝，看喜不喜欢这些菜。",
+      "py": "Zhè jiā fànguǎn de fúwù hěn rèqíng, cài yě dōu zuò de hěn hǎochī. Nǐmen chángchang, kàn xǐ bu xǐhuan zhèxiē cài.",
+      "vi": "Nhà hàng này phục vụ rất nhiệt tình, món nào cũng nấu rất ngon. Các em nếm thử xem có thích những món này không."
+     },
+     {
+      "who": "白家月",
+      "zh": "哪个菜都好吃。您点的这些菜真不错。",
+      "py": "Nǎge cài dōu hǎochī. Nín diǎn de zhèxiē cài zhēn búcuò.",
+      "vi": "Món nào cũng ngon. Những món chị gọi thật tuyệt."
+     },
+     {
+      "who": "王一雪",
+      "zh": "这里的饭菜又便宜又好吃，我们经常来，服务员都记住我们爱吃的菜了。",
+      "py": "Zhèli de fàncài yòu piányi yòu hǎochī, wǒmen jīngcháng lái, fúwùyuán dōu jìzhù wǒmen ài chī de cài le.",
+      "vi": "Cơm nước ở đây vừa rẻ vừa ngon, bọn chị hay đến, nhân viên phục vụ nhớ hết những món bọn chị thích ăn rồi."
+     },
+     {
+      "who": "服务员",
+      "zh": "王姐，您经常来吃饭，今天送您一些水果，请慢用。",
+      "py": "Wáng jiě, nín jīngcháng lái chī fàn, jīntiān sòng nín yìxiē shuǐguǒ, qǐng màn yòng.",
+      "vi": "Chị Vương, chị thường đến ăn, hôm nay nhà hàng tặng chị ít hoa quả, mời chị dùng ngon miệng."
+     }
+    ],
+    "qs": [
+     [
+      "王一雪觉得这家饭馆怎么样？",
+      "服务很热情，菜也都做得很好吃，又便宜又好吃。",
+      "Phục vụ rất nhiệt tình, món nào cũng ngon, vừa rẻ vừa ngon."
+     ],
+     [
+      "白家月觉得这家饭馆的菜怎么样？",
+      "她觉得哪个菜都好吃。",
+      "Cô ấy thấy món nào cũng ngon."
+     ],
+     [
+      "服务员为什么送了一些水果？",
+      "因为王一雪经常来吃饭。",
+      "Vì Vương Nhất Tuyết thường đến ăn."
+     ]
+    ]
+   },
+   {
+    "title": "课文三",
+    "scene": {
+     "zh": "在饭馆，王一雪、刘明、白家月和李文继续边吃边聊。",
+     "py": "Zài fànguǎn, Wáng Yīxuě, Liú Míng, Bái Jiāyuè hé Lǐ Wén jìxù biān chī biān liáo.",
+     "vi": "Ở nhà hàng, Vương Nhất Tuyết, Lưu Minh, Bạch Gia Nguyệt và Lý Văn tiếp tục vừa ăn vừa trò chuyện."
+    },
+    "img": "img/tb/3-2-3.jpg",
+    "audio": "audio/tb/3-2-3.mp3",
+    "words": [
+     18,
+     24
+    ],
+    "lines": [
+     {
+      "who": "白家月",
+      "zh": "这个鸡肉饭太好吃了，我要再来吃一次。",
+      "py": "Zhège jīròu fàn tài hǎochī le, wǒ yào zài lái chī yí cì.",
+      "vi": "Món cơm gà này ngon quá, em phải đến ăn thêm lần nữa."
+     },
+     {
+      "who": "李文",
+      "zh": "你可以拿走这张菜单，看看下次还吃点儿什么。",
+      "py": "Nǐ kěyǐ názǒu zhè zhāng càidān, kànkan xià cì hái chī diǎnr shénme.",
+      "vi": "Cậu có thể cầm tờ thực đơn này về, xem lần sau ăn thêm món gì."
+     },
+     {
+      "who": "王一雪",
+      "zh": "不用拿菜单，在手机上就能看到，也可以选好了让他们给你送。",
+      "py": "Búyòng ná càidān, zài shǒujī shang jiù néng kàndào, yě kěyǐ xuǎnhǎole ràng tāmen gěi nǐ sòng.",
+      "vi": "Không cần cầm thực đơn, trên điện thoại là xem được, cũng có thể chọn xong rồi để họ mang đến cho em."
+     },
+     {
+      "who": "白家月",
+      "zh": "他们家还能送外卖？",
+      "py": "Tāmen jiā hái néng sòng wàimài?",
+      "vi": "Nhà hàng này còn giao đồ ăn tận nơi ạ?"
+     },
+     {
+      "who": "王一雪",
+      "zh": "对，现在很多饭馆都能送外卖，想吃什么就点什么。",
+      "py": "Duì, xiànzài hěn duō fànguǎn dōu néng sòng wàimài, xiǎng chī shénme jiù diǎn shénme.",
+      "vi": "Đúng vậy, bây giờ nhiều nhà hàng đều giao đồ ăn tận nơi, muốn ăn gì thì gọi nấy."
+     },
+     {
+      "who": "白家月",
+      "zh": "那真是太方便了！",
+      "py": "Nà zhēnshi tài fāngbiàn le!",
+      "vi": "Vậy thì tiện quá!"
+     }
+    ],
+    "qs": [
+     [
+      "白家月为什么要再来吃一次？",
+      "因为这个鸡肉饭太好吃了。",
+      "Vì món cơm gà này ngon quá."
+     ],
+     [
+      "这家饭馆可以怎么点菜？",
+      "可以在手机上看菜单，选好了让他们送外卖。",
+      "Có thể xem thực đơn trên điện thoại, chọn xong để họ giao tận nơi."
+     ],
+     [
+      "听说很多饭馆都能送外卖，白家月觉得怎么样？",
+      "她觉得真是太方便了。",
+      "Cô ấy thấy thật là tiện quá."
+     ]
+    ]
+   },
+   {
+    "title": "课文四",
+    "scene": {
+     "zh": "在李文家，李文在写日记。",
+     "py": "Zài Lǐ Wén jiā, Lǐ Wén zài xiě rìjì.",
+     "vi": "Ở nhà Lý Văn, Lý Văn đang viết nhật ký."
+    },
+    "img": "img/tb/3-2-4.jpg",
+    "audio": "audio/tb/3-2-4.mp3",
+    "words": [
+     24,
+     28
+    ],
+    "prose": true,
+    "lines": [
+     {
+      "who": "",
+      "zh": "这些年在国外，我很少自己做饭。",
+      "py": "Zhèxiē nián zài guówài, wǒ hěn shǎo zìjǐ zuò fàn.",
+      "vi": "Mấy năm nay ở nước ngoài, tôi rất ít khi tự nấu ăn."
+     },
+     {
+      "who": "",
+      "zh": "早饭我吃一个面包，有时候吃一块蛋糕，再喝一杯咖啡。",
+      "py": "Zǎofàn wǒ chī yí ge miànbāo, yǒu shíhou chī yí kuài dàngāo, zài hē yì bēi kāfēi.",
+      "vi": "Bữa sáng tôi ăn một cái bánh mì, có khi ăn một miếng bánh ngọt, rồi uống một cốc cà phê."
+     },
+     {
+      "who": "",
+      "zh": "午饭和晚饭也都在外面吃。",
+      "py": "Wǔfàn hé wǎnfàn yě dōu zài wàimian chī.",
+      "vi": "Bữa trưa và bữa tối cũng đều ăn ở ngoài."
+     },
+     {
+      "who": "",
+      "zh": "快要考试的时候又忙又累，没时间出去吃饭，家里又什么吃的都没有，我可能好几天只吃方便面。",
+      "py": "Kuàiyào kǎoshì de shíhou yòu máng yòu lèi, méi shíjiān chūqu chī fàn, jiā li yòu shénme chī de dōu méiyǒu, wǒ kěnéng hǎo jǐ tiān zhǐ chī fāngbiànmiàn.",
+      "vi": "Lúc sắp thi vừa bận vừa mệt, không có thời gian ra ngoài ăn, trong nhà lại chẳng có gì ăn, có khi mấy ngày liền tôi chỉ ăn mì ăn liền."
+     },
+     {
+      "who": "",
+      "zh": "现在回到中国了，每天能吃到妈妈做的饭，我真是太高兴了！",
+      "py": "Xiànzài huídào Zhōngguó le, měi tiān néng chīdào māma zuò de fàn, wǒ zhēnshi tài gāoxìng le!",
+      "vi": "Bây giờ về Trung Quốc rồi, ngày nào cũng được ăn cơm mẹ nấu, tôi thật sự vui quá!"
+     },
+     {
+      "who": "",
+      "zh": "有时候妈妈只做几个简单的菜，我也非常爱吃，因为什么都没有妈妈做的饭好吃。",
+      "py": "Yǒu shíhou māma zhǐ zuò jǐ ge jiǎndān de cài, wǒ yě fēicháng ài chī, yīnwèi shénme dōu méiyǒu māma zuò de fàn hǎochī.",
+      "vi": "Có khi mẹ chỉ nấu vài món đơn giản, tôi cũng rất thích ăn, vì chẳng có gì ngon bằng cơm mẹ nấu."
+     }
+    ],
+    "qs": [
+     [
+      "李文在国外经常做饭吗？",
+      "不经常，他很少自己做饭。",
+      "Không, cậu ấy rất ít khi tự nấu ăn."
+     ],
+     [
+      "李文为什么好几天只吃方便面？",
+      "因为快要考试的时候又忙又累，没时间出去吃饭，家里又什么吃的都没有。",
+      "Vì lúc sắp thi vừa bận vừa mệt, không có thời gian ra ngoài ăn, trong nhà lại chẳng có gì ăn."
+     ],
+     [
+      "回到中国后什么事让他非常高兴？",
+      "每天能吃到妈妈做的饭。",
+      "Ngày nào cũng được ăn cơm mẹ nấu."
+     ]
+    ]
+   }
+  ],
+  "words": [
+   {
+    "w": "菜单",
+    "py": "càidān",
+    "mean": "thực đơn (danh từ)",
+    "lines": [
+     "Lượng từ hay dùng: 张 (học ở từ số 20). 看菜单 = xem thực đơn, 点菜 = gọi món.",
+     "点菜 diǎn cài - gọi món｜菜单上 càidān shang - trên thực đơn",
+     "这家饭馆的菜单上有很多中国菜。",
+     "我以为这个菜单上没有饺子，看完发现有。"
+    ]
+   },
+   {
+    "w": "又",
+    "py": "yòu",
+    "mean": "lại; vừa… (phó từ)",
+    "lines": [
+     "Cách 1 - việc ĐÃ lặp lại: động tác xảy ra thêm một lần nữa trong quá khứ.",
+     "他昨天来过，今天又来了。",
+     "Cách 2 - 又…又… : hai đặc điểm cùng tồn tại (xem kĩ ở 语法点 1).",
+     "再 zài - lại (việc CHƯA xảy ra). So sánh: 他明天再来。／ 他昨天又来了。",
+     "这家饭馆的菜又好吃又便宜。"
+    ]
+   },
+   {
+    "w": "饿",
+    "py": "è",
+    "mean": "đói (tính từ)",
+    "lines": [
+     "Làm vị ngữ phải có 很、太、非常…: 我很饿。Không nói 我饿。",
+     "饿了 è le - đói rồi｜不饿 bú è - không đói",
+     "我早上没吃饭，现在非常饿。",
+     "他又饿又累，想快点儿回家休息。"
+    ]
+   },
+   {
+    "w": "渴",
+    "py": "kě",
+    "mean": "khát (tính từ)",
+    "lines": [
+     "Dùng như 饿: phía trước cần phó từ mức độ.",
+     "口渴 kǒukě - khát nước",
+     "走了这么远的路，我又饿又渴。",
+     "你渴不渴？我去给你拿一杯水。"
+    ]
+   },
+   {
+    "w": "客气",
+    "py": "kèqi",
+    "mean": "khách sáo, giữ lễ (tính từ / động từ)",
+    "lines": [
+     "Tính từ - tả thái độ lịch sự, khách sáo với người khác:",
+     "王老师对学生很客气，大家都喜欢他。",
+     "他很客气，每次来都带一些水果给我们。",
+     "Động từ - bảo người khác đừng giữ ý, thường ở dạng 别客气 / 太客气了:",
+     "不客气 bú kèqi - không có gì (đáp lại lời cảm ơn)",
+     "多吃点儿，别客气，这些菜都是给你点的。",
+     "你带了这么多东西来，真是太客气了。"
+    ]
+   },
+   {
+    "w": "饮料",
+    "py": "yǐnliào",
+    "mean": "đồ uống (danh từ)",
+    "lines": [
+     "Chỉ chung các loại nước uống: 茶、咖啡、牛奶… đều là 饮料.",
+     "喝饮料 hē yǐnliào - uống nước｜冷饮 lěngyǐn - đồ uống lạnh",
+     "你们想喝什么饮料？茶和咖啡都有。",
+     "我渴了，我们去商店买点儿饮料吧。"
+    ]
+   },
+   {
+    "w": "好久",
+    "py": "hǎojiǔ",
+    "mean": "lâu, rất lâu (tính từ)",
+    "lines": [
+     "Hay dùng trong mẫu 好久没 + động từ + 了 = lâu rồi không làm gì.",
+     "好久不见 hǎojiǔ bú jiàn - lâu rồi không gặp",
+     "我好久没喝中国茶了，今天真想喝一杯。",
+     "好久不见，你的头发短了，看起来很年轻。"
+    ]
+   },
+   {
+    "w": "服务",
+    "py": "fúwù",
+    "mean": "phục vụ (động từ)",
+    "lines": [
+     "Cũng dùng như danh từ: 服务很好 / 服务不太好. Bài 1 đã học 服务台.",
+     "服务台 fúwùtái - quầy phục vụ ｜服务好 fúwù hǎo - phục vụ tốt",
+     "这家饭馆的服务很好，我们经常来吃饭。",
+     "她在服务台工作，每天都要服务很多人。"
+    ]
+   },
+   {
+    "w": "员",
+    "py": "yuán",
+    "mean": "hậu tố chỉ người (hậu tố)",
+    "lines": [
+     "Không đứng một mình. Ghép sau danh từ hoặc động từ để chỉ người làm việc đó: 服务 + 员 → 服务员.",
+     "服务员 fúwùyuán - nhân viên phục vụ｜运动员 yùndòngyuán - vận động viên｜售货员 shòuhuòyuán - nhân viên bán hàng",
+     "服务员，我们想点菜，请给我们一个菜单。",
+     "这家饭馆的服务员都很年轻，大家都喜欢他们。"
+    ]
+   },
+   {
+    "w": "双",
+    "py": "shuāng",
+    "mean": "đôi (lượng từ)",
+    "lines": [
+     "Dùng cho vật đi thành cặp: 一双筷子、一双手、一双眼睛、一双鞋.",
+     "一双手 yì shuāng shǒu｜一双眼睛 yì shuāng yǎnjing",
+     "她有一双又大又漂亮的眼睛。",
+     "他那双手又长又瘦，像他妈妈的手。"
+    ]
+   },
+   {
+    "w": "筷子",
+    "py": "kuàizi",
+    "mean": "đũa (danh từ)",
+    "lines": [
+     "Lượng từ: 双. Một chiếc đũa nói là 一根筷子, một đôi là 一双筷子.",
+     "一双筷子 yì shuāng kuàizi",
+     "服务员，请再给我们拿一双筷子。",
+     "这双筷子是我从中国带回来的。"
+    ]
+   },
+   {
+    "w": "勺子",
+    "py": "sháozi",
+    "mean": "thìa, muỗng (danh từ)",
+    "lines": [
+     "Lượng từ: 个.",
+     "小勺子 xiǎo sháozi - thìa nhỏ",
+     "我还不太会拿筷子，请给我一个勺子。",
+     "弟弟太小了，吃饭的时候要给他一个勺子。"
+    ]
+   },
+   {
+    "w": "碗",
+    "py": "wǎn",
+    "mean": "bát (danh từ / lượng từ)",
+    "lines": [
+     "Danh từ - cái bát; Lượng từ - đơn vị đong thức ăn: 一碗米饭.",
+     "一碗饭 yì wǎn fàn｜洗碗 xǐ wǎn - rửa bát",
+     "服务员，再给我们拿一个碗和一双筷子。",
+     "我今天很饿，吃了两碗米饭。"
+    ]
+   },
+   {
+    "w": "马上",
+    "py": "mǎshàng",
+    "mean": "ngay lập tức (phó từ)",
+    "lines": [
+     "Đứng trước động từ, hay đi với 就: 马上就……。",
+     "马上就 mǎshàng jiù - ngay lập tức sẽ…",
+     "请等一下，我马上去给你拿。",
+     "他发现箱子不见了，马上去了服务台。"
+    ]
+   },
+   {
+    "w": "热情",
+    "py": "rèqíng",
+    "mean": "nhiệt tình (tính từ)",
+    "lines": [
+     "Tả thái độ nồng nhiệt với người khác: 对……很热情.",
+     "不热情 bú rèqíng - không nhiệt tình",
+     "这家饭馆的服务员都很热情，服务也很好。",
+     "她对每个人都很热情，所以朋友非常多。"
+    ]
+   },
+   {
+    "w": "尝",
+    "py": "cháng",
+    "mean": "nếm, thử (động từ)",
+    "lines": [
+     "Hay dùng dạng lặp 尝尝 hoặc 尝一尝 = nếm thử một chút.",
+     "尝尝 chángchang｜尝一尝 cháng yi cháng",
+     "这些菜你尝尝，看喜不喜欢。",
+     "我妈妈做的饭很好吃，下次你来家里尝一尝。"
+    ]
+   },
+   {
+    "w": "记",
+    "py": "jì",
+    "mean": "nhớ, ghi nhớ (động từ)",
+    "lines": [
+     "Thường thêm 住 để chỉ kết quả: 记住 = nhớ được.",
+     "记住 jìzhù - nhớ được, ghi nhớ",
+     "服务员已经记住了我们爱吃的菜。",
+     "这家饭馆的名字很长，我没记住。"
+    ]
+   },
+   {
+    "w": "用",
+    "py": "yòng",
+    "mean": "dùng, sử dụng (động từ)",
+    "lines": [
+     "Mẫu thường gặp: 用 + công cụ + động từ = dùng cái gì để làm gì.",
+     "好用 hǎoyòng - dễ dùng｜不用 búyòng - không cần (từ số 21)",
+     "中国人吃饭都用筷子，我也想学。",
+     "这个手机我用了三年了，还很好用。"
+    ]
+   },
+   {
+    "w": "鸡",
+    "py": "jī",
+    "mean": "gà (danh từ)",
+    "lines": [
+     "Ít khi dùng một mình, hay ghép: 鸡肉、鸡蛋、鸡肉饭.",
+     "鸡肉 jīròu - thịt gà｜鸡蛋 jīdàn - trứng gà",
+     "我早上吃了两个鸡蛋，喝了一杯牛奶。",
+     "这家饭馆的鸡肉饭又好吃又便宜。"
+    ]
+   },
+   {
+    "w": "张",
+    "py": "zhāng",
+    "mean": "tờ, bức, cái (lượng từ)",
+    "lines": [
+     "Dùng cho vật có mặt phẳng: 一张菜单、一张照片、一张桌子、一张票.",
+     "一张照片 yì zhāng zhàopiàn｜一张桌子 yì zhāng zhuōzi",
+     "这张照片上的年轻人就是我哥哥。",
+     "你可以拿走这张菜单，看看下次还想吃什么。"
+    ]
+   },
+   {
+    "w": "不用",
+    "py": "búyòng",
+    "mean": "không cần (phó từ)",
+    "lines": [
+     "= 不需要. Khác 不能 (không được phép) và 别 (đừng, ngăn lại).",
+     "不用谢 búyòng xiè - không cần cảm ơn",
+     "不用拿菜单，在手机上就能看到。",
+     "我自己能拿，你不用帮我。"
+    ]
+   },
+   {
+    "w": "选",
+    "py": "xuǎn",
+    "mean": "chọn, lựa chọn (động từ)",
+    "lines": [
+     "Thêm 好 để chỉ kết quả: 选好了 = chọn xong rồi.",
+     "选好 xuǎnhǎo - chọn xong｜选一个 xuǎn yí ge",
+     "菜单上的菜太多了，我不知道选哪个。",
+     "你选好了就告诉我，我马上给服务员打电话。"
+    ]
+   },
+   {
+    "w": "外卖",
+    "py": "wàimài",
+    "mean": "đồ ăn giao tận nơi (danh từ) / bán mang đi (động từ)",
+    "lines": [
+     "Danh từ - món ăn đặt về nhà: 点外卖、叫外卖、送外卖.",
+     "今天太累了，我们点个外卖吧。",
+     "他很忙，中午经常在手机上叫外卖。",
+     "Động từ - cửa hàng nhận bán mang đi, giao tận nơi:",
+     "点外卖 diǎn wàimài｜送外卖 sòng wàimài - giao đồ ăn",
+     "这家饭馆也外卖，你在手机上选好就能送到。"
+    ]
+   },
+   {
+    "w": "方便",
+    "py": "fāngbiàn",
+    "mean": "thuận tiện, tiện lợi (tính từ)",
+    "lines": [
+     "Tả việc dễ làm, không mất công. Cũng dùng để hỏi lịch sự: 你方便的时候……。",
+     "不方便 bù fāngbiàn - bất tiện｜方便面 fāngbiànmiàn - mì ăn liền (từ số 27)",
+     "在手机上点外卖又快又方便。",
+     "我家离学校很近，走路去上学很方便。"
+    ]
+   },
+   {
+    "w": "蛋糕",
+    "py": "dàngāo",
+    "mean": "bánh ngọt, bánh kem (danh từ)",
+    "lines": [
+     "Lượng từ: 块 (một miếng) hoặc 个 (một cái).",
+     "生日蛋糕 shēngrì dàngāo - bánh sinh nhật｜一块蛋糕 yí kuài dàngāo",
+     "我早上吃了一块蛋糕，喝了一杯咖啡。",
+     "今天是妹妹的生日，妈妈买了一个很大的蛋糕。"
+    ]
+   },
+   {
+    "w": "只",
+    "py": "zhǐ",
+    "mean": "chỉ (phó từ)",
+    "lines": [
+     "Đứng trước động từ, giới hạn phạm vi. Chữ 只 còn đọc zhī, làm lượng từ cho động vật: 一只猫.",
+     "只有 zhǐyǒu - chỉ có｜只 zhī (lượng từ): 一只猫 yì zhī māo",
+     "家里什么吃的都没有，我只喝了一杯牛奶。",
+     "他很忙，每天只睡五个小时。"
+    ]
+   },
+   {
+    "w": "方便面",
+    "py": "fāngbiànmiàn",
+    "mean": "mì ăn liền (danh từ)",
+    "lines": [
+     "Ghép từ 方便 (tiện) + 面 (mì). Đếm bằng 碗: 一碗方便面.",
+     "吃方便面 chī fāngbiànmiàn｜一碗方便面 yì wǎn fāngbiànmiàn",
+     "我太忙了，晚饭只吃了一碗方便面。",
+     "方便面又快又方便，但是不能天天吃。"
+    ]
+   },
+   {
+    "w": "简单",
+    "py": "jiǎndān",
+    "mean": "đơn giản (tính từ)",
+    "lines": [
+     "Tả việc dễ, không mất nhiều công: 简单的菜、简单的问题、很简单.",
+     "简单的菜 jiǎndān de cài｜不简单 bù jiǎndān - không đơn giản; giỏi thật",
+     "这个问题很简单，我一看就知道了。",
+     "妈妈做了几个简单的菜，我们都很爱吃。"
+    ]
+   }
+  ],
+  "grammar": [
+   {
+    "title": "并列复句 “又……又……”",
+    "sub": "Vừa… vừa…",
+    "intro": "Cấu trúc 又……又…… đi với TÍNH TỪ, cho biết người hoặc sự vật cùng lúc mang hai đặc điểm.",
+    "formula": [
+     "又 + tính từ 1",
+     "又 + tính từ 2"
+    ],
+    "keys": [
+     0,
+     1
+    ],
+    "uses": [
+     [
+      "Hai tính từ cùng chiều",
+      "Cùng khen hoặc cùng chê: 又便宜又好吃、又高又漂亮、又饿又渴、又忙又累.",
+      "这个饭馆的菜又便宜又好吃。"
+     ],
+     [
+      "Với động từ",
+      "Hai việc làm cùng một lúc.",
+      "他又说又笑。"
+     ]
+    ],
+    "compare": [
+     [
+      "又……又……",
+      "hai đặc điểm cùng có"
+     ],
+     [
+      "他又来了。",
+      "又 một mình: việc ĐÃ lặp lại (lại đến)"
+     ],
+     [
+      "他明天再来。",
+      "再: việc lặp lại CHƯA xảy ra"
+     ]
+    ],
+    "notes": [
+     [
+      "Hai tính từ phải cùng chiều (cùng khen hoặc cùng chê):",
+      "又便宜又不好吃",
+      "✗ → 又便宜又好吃 ✓"
+     ],
+     [
+      "Không thêm 很 trước 又:",
+      "很又饿又渴",
+      "✗ → 又饿又渴 ✓"
+     ]
+    ],
+    "ex": [
+     {
+      "zh": "我现在还真是又饿又渴。",
+      "py": "Wǒ xiànzài hái zhēnshi yòu è yòu kě.",
+      "vi": "Bây giờ tôi thật sự vừa đói vừa khát."
+     },
+     {
+      "zh": "那个女孩儿又高又漂亮。",
+      "py": "Nàge nǚháir yòu gāo yòu piàoliang.",
+      "vi": "Cô gái đó vừa cao vừa xinh."
+     },
+     {
+      "zh": "这个饭馆的菜又便宜又好吃。",
+      "py": "Zhège fànguǎn de cài yòu piányi yòu hǎochī.",
+      "vi": "Món ăn ở nhà hàng này vừa rẻ vừa ngon."
+     },
+     {
+      "zh": "他又累又饿，很想快点儿回家。",
+      "py": "Tā yòu lèi yòu è, hěn xiǎng kuài diǎnr huí jiā.",
+      "vi": "Anh ấy vừa mệt vừa đói, rất muốn nhanh chóng về nhà."
+     }
+    ],
+    "tasks": [
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "这家饭馆的菜又便宜又不好吃。",
+       "这家饭馆的菜又便宜又好吃。"
+      ],
+      "a": 1,
+      "exp": "Hai tính từ phải cùng chiều: 便宜 và 好吃 đều là khen."
+     },
+     {
+      "t": "choice",
+      "q": "他昨天来了，今天 ____ 来了。",
+      "opts": [
+       "又",
+       "再"
+      ],
+      "a": 0,
+      "exp": "Việc lặp lại đã xảy ra → 又."
+     },
+     {
+      "t": "choice",
+      "q": "今天太晚了，你明天 ____ 来吧。",
+      "opts": [
+       "又",
+       "再"
+      ],
+      "a": 1,
+      "exp": "Việc lặp lại chưa xảy ra → 再."
+     },
+     {
+      "t": "order",
+      "q": "Sắp xếp thành câu đúng:",
+      "tok": [
+       "他",
+       "又累",
+       "又饿",
+       "很想",
+       "快点儿回家"
+      ],
+      "a": "他又累又饿很想快点儿回家"
+     },
+     {
+      "t": "open",
+      "q": "改写句子。Dùng “又……又……” viết lại câu.",
+      "items": [
+       [
+        "他的新家很大，也很干净 (gānjìng, sạch sẽ)。",
+        "他的新家又大又干净。"
+       ],
+       [
+        "他写汉字写得很快，也很漂亮。",
+        "他写汉字写得又快又漂亮。"
+       ],
+       [
+        "这个超市里的东西很多，也很便宜。",
+        "这个超市里的东西又多又便宜。"
+       ]
+      ]
+     }
+    ],
+    "after": 0
+   },
+   {
+    "title": "疑问代词的非疑问用法（2）",
+    "sub": "Chỉ toàn bộ: ai cũng…, gì cũng…, đâu cũng…",
+    "intro": "Đại từ nghi vấn 谁、什么、哪、哪儿、怎么… còn dùng để chỉ TOÀN BỘ, bất kỳ người nào, cái nào cũng vậy. Phía sau thường có 都 đi kèm. Câu này không phải câu hỏi.",
+    "formula": [
+     "đại từ nghi vấn",
+     "都 / 也",
+     "động từ / tính từ"
+    ],
+    "keys": [
+     0,
+     1
+    ],
+    "uses": [
+     [
+      "谁 · bất kỳ ai",
+      "",
+      "这家饭馆的菜，谁尝了都说好吃。"
+     ],
+     [
+      "什么 · bất kỳ cái gì",
+      "",
+      "我什么菜都喜欢吃。"
+     ],
+     [
+      "哪 / 哪个 · bất kỳ cái nào",
+      "",
+      "哪个菜都好吃。"
+     ],
+     [
+      "哪儿 · bất kỳ đâu",
+      "",
+      "今天太累了，我哪儿都不想去。"
+     ],
+     [
+      "什么时候 / 怎么 · lúc nào, cách nào cũng",
+      "",
+      "你想什么时候来都没问题。"
+     ]
+    ],
+    "compare": [
+     [
+      "你想吃什么？",
+      "câu hỏi"
+     ],
+     [
+      "我什么都想吃。",
+      "trần thuật: gì cũng muốn ăn (toàn bộ)"
+     ],
+     [
+      "我想吃点儿什么。",
+      "trần thuật: muốn ăn gì đó (Bài 1)"
+     ]
+    ],
+    "notes": [
+     [
+      "Dạng phủ định dùng 都 hoặc 也:",
+      "家里什么吃的都没有。／我谁也不认识。",
+      ""
+     ],
+     [
+      "都 đứng SAU đại từ nghi vấn:",
+      "我都什么喜欢",
+      "✗ → 我什么都喜欢 ✓"
+     ]
+    ],
+    "ex": [
+     {
+      "zh": "哪个菜都好吃。",
+      "py": "Nǎge cài dōu hǎochī.",
+      "vi": "Món nào cũng ngon."
+     },
+     {
+      "zh": "这些饮料，我喝哪个都可以。",
+      "py": "Zhèxiē yǐnliào, wǒ hē nǎge dōu kěyǐ.",
+      "vi": "Mấy loại đồ uống này, tôi uống loại nào cũng được."
+     },
+     {
+      "zh": "我下午有时间，你想什么时候来都没问题。",
+      "py": "Wǒ xiàwǔ yǒu shíjiān, nǐ xiǎng shénme shíhou lái dōu méi wèntí.",
+      "vi": "Buổi chiều tôi rảnh, bạn muốn đến lúc nào cũng được."
+     },
+     {
+      "zh": "这家饭馆的菜，谁尝了都说好吃。",
+      "py": "Zhè jiā fànguǎn de cài, shéi chángle dōu shuō hǎochī.",
+      "vi": "Món ăn của nhà hàng này, ai nếm cũng khen ngon."
+     }
+    ],
+    "tasks": [
+     {
+      "t": "choice",
+      "q": "“Món nào cũng ngon” nói thế nào?",
+      "opts": [
+       "都哪个菜好吃。",
+       "哪个菜都好吃。"
+      ],
+      "a": 1,
+      "exp": "都 đứng sau đại từ nghi vấn."
+     },
+     {
+      "t": "choice",
+      "q": "我今天很累，____ 都不想去。",
+      "opts": [
+       "谁",
+       "哪儿",
+       "什么"
+      ],
+      "a": 1,
+      "exp": "Không muốn đi bất kỳ đâu → 哪儿都不想去."
+     },
+     {
+      "t": "choice",
+      "q": "这个问题很简单，____ 都知道。",
+      "opts": [
+       "谁",
+       "哪儿",
+       "怎么"
+      ],
+      "a": 0,
+      "exp": "Ai cũng biết → 谁都知道."
+     },
+     {
+      "t": "order",
+      "q": "Sắp xếp thành câu đúng:",
+      "tok": [
+       "这些饮料",
+       "我",
+       "喝哪个",
+       "都可以"
+      ],
+      "a": "这些饮料我喝哪个都可以"
+     },
+     {
+      "t": "open",
+      "q": "改写句子。Dùng từ trong ngoặc viết lại câu.",
+      "items": [
+       [
+        "我喜欢吃中国菜，也喜欢吃外国菜。（什么）",
+        "我什么菜都喜欢吃。"
+       ],
+       [
+        "小李很会做饭，大家都喜欢吃他做的饭。（谁）",
+        "小李做的饭，谁都喜欢吃。"
+       ],
+       [
+        "饭馆不太远，我们打车、坐公交车、走路去都可以。（怎么）",
+        "饭馆不太远，我们怎么去都可以。"
+       ]
+      ]
+     }
+    ],
+    "after": 1
+   },
+   {
+    "title": "疑问代词的非疑问用法（3）",
+    "sub": "Hai đại từ nghi vấn hô ứng: …gì thì… nấy",
+    "intro": "Dùng HAI đại từ nghi vấn GIỐNG NHAU ở hai vế, hô ứng trước sau, cùng chỉ một người, một vật, một cách, một lúc hay một nơi. Vế sau có 就.",
+    "formula": [
+     "vế 1 … đại từ X …",
+     "（chủ ngữ）+ 就 … đại từ X …"
+    ],
+    "keys": [
+     0,
+     1
+    ],
+    "uses": [
+     [
+      "Hai vế CÙNG chủ ngữ",
+      "Vế sau lược bỏ chủ ngữ.",
+      "你们想吃什么就点什么。"
+     ],
+     [
+      "Hai vế KHÁC chủ ngữ",
+      "Chủ ngữ vế sau đặt TRƯỚC 就.",
+      "你想去哪儿，我们就去哪儿。"
+     ]
+    ],
+    "compare": [
+     [
+      "什么……什么",
+      "gì… nấy"
+     ],
+     [
+      "哪儿……哪儿",
+      "đâu… đấy"
+     ],
+     [
+      "哪个……哪个",
+      "cái nào… cái đó"
+     ],
+     [
+      "谁……谁",
+      "ai… người đó"
+     ],
+     [
+      "怎么……怎么",
+      "thế nào… thế ấy"
+     ],
+     [
+      "什么时候……什么时候",
+      "lúc nào… lúc ấy"
+     ]
+    ],
+    "notes": [
+     [
+      "Hai đại từ phải giống hệt nhau:",
+      "你想吃什么就点哪个",
+      "✗ → 你想吃什么就点什么 ✓"
+     ],
+     [
+      "Khác chủ ngữ thì chủ ngữ vế sau đứng trước 就:",
+      "你想去哪儿，就我们去哪儿",
+      "✗ → 我们就去哪儿 ✓"
+     ]
+    ],
+    "ex": [
+     {
+      "zh": "你们想吃什么就点什么。",
+      "py": "Nǐmen xiǎng chī shénme jiù diǎn shénme.",
+      "vi": "Các bạn muốn ăn gì thì gọi nấy."
+     },
+     {
+      "zh": "你觉得哪个好看就买哪个。",
+      "py": "Nǐ juéde nǎge hǎokàn jiù mǎi nǎge.",
+      "vi": "Bạn thấy cái nào đẹp thì mua cái đó."
+     },
+     {
+      "zh": "你想去哪儿，我们就去哪儿。",
+      "py": "Nǐ xiǎng qù nǎr, wǒmen jiù qù nǎr.",
+      "vi": "Bạn muốn đi đâu, chúng ta sẽ đi đó."
+     },
+     {
+      "zh": "你什么时候方便，我们就什么时候来。",
+      "py": "Nǐ shénme shíhou fāngbiàn, wǒmen jiù shénme shíhou lái.",
+      "vi": "Lúc nào bạn tiện, chúng tôi sẽ đến lúc đó."
+     }
+    ],
+    "tasks": [
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "你想去哪儿，就我们去哪儿。",
+       "你想去哪儿，我们就去哪儿。"
+      ],
+      "a": 1,
+      "exp": "Hai vế khác chủ ngữ → chủ ngữ 我们 đứng trước 就."
+     },
+     {
+      "t": "choice",
+      "q": "你喜欢哪个，就买 ____。",
+      "opts": [
+       "什么",
+       "哪个",
+       "哪儿"
+      ],
+      "a": 1,
+      "exp": "Hai đại từ phải giống nhau: 哪个……哪个."
+     },
+     {
+      "t": "choice",
+      "q": "谁先到，____ 就先点菜。",
+      "opts": [
+       "谁",
+       "什么",
+       "哪儿"
+      ],
+      "a": 0,
+      "exp": "谁……谁: ai đến trước thì người đó gọi món trước."
+     },
+     {
+      "t": "order",
+      "q": "Sắp xếp thành câu đúng:",
+      "tok": [
+       "你",
+       "什么时候",
+       "方便",
+       "我们",
+       "就",
+       "什么时候",
+       "来"
+      ],
+      "a": "你什么时候方便我们就什么时候来"
+     },
+     {
+      "t": "open",
+      "q": "完成对话。Hoàn thành hội thoại.",
+      "items": [
+       [
+        "A：这是菜单，我们点什么？\nB：________________________________",
+        "你想吃什么就点什么。"
+       ],
+       [
+        "A：我们怎么去电影院？\nB：________________________________",
+        "你想怎么去，我们就怎么去。"
+       ],
+       [
+        "A：我什么时候去找你？\nB：________________________________",
+        "你什么时候有时间就什么时候来。"
+       ]
+      ]
+     }
+    ],
+    "after": 2
+   },
+   {
+    "badge": "小语助力",
+    "title": "上 / 下 + 量词",
+    "sub": "Lần trước, lần sau, tháng trước, tháng sau…",
+    "intro": "Cấu trúc 上 / 下 + lượng từ dùng để chỉ TRÌNH TỰ THỜI GIAN: 上 = đã qua (trước đó), 下 = sắp tới (sau đó).",
+    "uses": [
+     [
+      "上次 · lần trước　｜　下次 · lần sau",
+      "",
+      "你可以拿走这张菜单，看看下次还吃点儿什么。"
+     ],
+     [
+      "上个星期 · tuần trước　｜　下个星期 · tuần sau",
+      "",
+      "上个星期我很忙，这个星期好一点儿。"
+     ],
+     [
+      "上个月 · tháng trước　｜　下个月 · tháng sau",
+      "",
+      "我下个月去北京看朋友。"
+     ]
+    ],
+    "notes": [
+     [
+      "Với 次 không cần 个 (上次、下次); với 星期、月 thì có 个 (上个月).",
+      "上次来的时候，这家饭馆的人没有这么多。",
+      ""
+     ]
+    ],
+    "after": 2
+   }
+  ],
+  "practice": [
+   {
+    "bank": [
+     "尝",
+     "只",
+     "菜单",
+     "记",
+     "用"
+    ],
+    "items": [
+     [
+      "我觉得 ___ 筷子吃饭更方便。",
+      "用"
+     ],
+     [
+      "你 ___ 住那个饭馆的名字了吗？",
+      "记"
+     ],
+     [
+      "她现在很饿，早上 ___ 吃了一块蛋糕。",
+      "只"
+     ],
+     [
+      "___ 上有好几个新菜，你看看我们吃哪个？",
+      "菜单"
+     ],
+     [
+      "我妈妈会做中国菜，下次你们来我家 ___ 一下她做的菜。",
+      "尝"
+     ]
+    ]
+   },
+   {
+    "bank": [
+     "饿",
+     "不用",
+     "简单",
+     "好久",
+     "马上"
+    ],
+    "items": [
+     [
+      "A：我还不太会用筷子，你们有勺子吗？\nB：有，你等一下，我 ___ 给你拿。",
+      "马上"
+     ],
+     [
+      "A：我找服务员要一下菜单，咱们点菜。\nB：在手机上就可以点菜， ___ 要菜单。",
+      "不用"
+     ],
+     [
+      "A：我太 ___ 了，不想做饭了，我们叫个外卖，怎么样？\nB：没问题，你想吃什么，我们就点什么。",
+      "饿"
+     ],
+     [
+      "A：你想去哪个饭馆吃饭？\nB：我 ___ 没吃饺子了，去楼下的饺子馆吧。",
+      "好久"
+     ],
+     [
+      "A：你下班回家自己做饭吗？\nB：不做饭，我就吃碗方便面。方便面是最 ___ 的晚饭。",
+      "简单"
+     ]
+    ]
+   },
+   {
+    "title": "短文填空 · Điền từ vào đoạn văn",
+    "bank": [
+     "热情",
+     "菜单",
+     "又",
+     "什么",
+     "蛋糕",
+     "外卖",
+     "点",
+     "筷子"
+    ],
+    "passage": "上个星期六，我和朋友去了一家新饭馆。服务员很___，马上给我们拿来了___。我们都很饿，就点了很多菜。这家饭馆的菜___便宜又好吃，我们___菜都喜欢。吃完饭，服务员还送了我们一块___。朋友说：“这里的菜太好吃了，下次我们再来吧。”服务员说：“我们也能送___，你们想吃什么就___什么。”",
+    "items": [
+     [
+      null,
+      "热情"
+     ],
+     [
+      null,
+      "菜单"
+     ],
+     [
+      null,
+      "又"
+     ],
+     [
+      null,
+      "什么"
+     ],
+     [
+      null,
+      "蛋糕"
+     ],
+     [
+      null,
+      "外卖"
+     ],
+     [
+      null,
+      "点"
+     ]
+    ]
+   }
+  ],
+  "extra": [
+   {
+    "title": "看图说话",
+    "sub": "Dùng từ ngữ và điểm ngữ pháp của bài để hoàn thành các hội thoại theo tranh.",
+    "tasks": [
+     {
+      "t": "open",
+      "img": "img/tb/3-2-p1.jpg",
+      "q": "图一",
+      "items": [
+       [
+        "A：这是菜单，你看看， ______ 就点什么。",
+        "你想吃什么就点什么。"
+       ],
+       [
+        "B：谢谢，您点吧，我 ______ 都可以。",
+        "我吃什么都可以。"
+       ],
+       [
+        "A：我发现有不少新菜，你想不想 ______？\nB：好，这些菜看起来很好吃。",
+        "你想不想尝尝？"
+       ]
+      ]
+     },
+     {
+      "t": "open",
+      "img": "img/tb/3-2-p2.jpg",
+      "q": "图二",
+      "items": [
+       [
+        "A：今天我有点儿累，不想做饭，点个 ______ 吧。",
+        "点个外卖吧。"
+       ],
+       [
+        "B：好，我来点。______________________。\nA：我吃什么都可以。",
+        "你想吃什么，我就点什么。"
+       ],
+       [
+        "A：我们现在点，什么时候能送到？\nB：应该很快，我看看。______ 就能到。",
+        "二十分钟就能到。"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "title": "选择正确答案",
+    "sub": "Chọn đáp án đúng.",
+    "tasks": [
+     {
+      "t": "choice",
+      "q": "我早上没吃饭，现在很 ____。",
+      "opts": [
+       "客气",
+       "饿",
+       "简单"
+      ],
+      "a": 1,
+      "exp": "Không ăn sáng → đói: 饿."
+     },
+     {
+      "t": "choice",
+      "q": "走了这么远的路，我很 ____，想喝点儿水。",
+      "opts": [
+       "渴",
+       "饿",
+       "热情"
+      ],
+      "a": 0,
+      "exp": "Muốn uống nước → khát: 渴."
+     },
+     {
+      "t": "choice",
+      "q": "服务员，请给我们拿一 ____ 筷子。",
+      "opts": [
+       "张",
+       "碗",
+       "双"
+      ],
+      "a": 2,
+      "exp": "Vật đi thành đôi → 双."
+     },
+     {
+      "t": "choice",
+      "q": "我今天很饿，吃了两 ____ 米饭。",
+      "opts": [
+       "碗",
+       "双",
+       "张"
+      ],
+      "a": 0,
+      "exp": "碗 làm lượng từ: 一碗米饭."
+     },
+     {
+      "t": "choice",
+      "q": "你可以拿走这 ____ 菜单。",
+      "opts": [
+       "双",
+       "张",
+       "碗"
+      ],
+      "a": 1,
+      "exp": "Vật mỏng, phẳng → 张."
+     },
+     {
+      "t": "choice",
+      "q": "A：要我帮你拿吗？　B：____，我自己能拿。",
+      "opts": [
+       "不能",
+       "没有",
+       "不用"
+      ],
+      "a": 2,
+      "exp": "不用 = không cần."
+     },
+     {
+      "t": "choice",
+      "q": "他昨天来过，今天 ____ 来了。",
+      "opts": [
+       "又",
+       "再",
+       "只"
+      ],
+      "a": 0,
+      "exp": "Việc lặp lại đã xảy ra → 又."
+     },
+     {
+      "t": "choice",
+      "q": "这家饭馆的服务员都很 ____，服务也很好。",
+      "opts": [
+       "简单",
+       "热情",
+       "方便"
+      ],
+      "a": 1,
+      "exp": "热情 = nhiệt tình."
+     },
+     {
+      "t": "choice",
+      "q": "我 ____ 没吃饺子了，今天很想吃。",
+      "opts": [
+       "马上",
+       "只",
+       "好久"
+      ],
+      "a": 2,
+      "exp": "好久没 + V + 了 = lâu rồi không…"
+     },
+     {
+      "t": "choice",
+      "q": "这个手机我 ____ 了三年了，还很好用。",
+      "opts": [
+       "用",
+       "选",
+       "尝"
+      ],
+      "a": 0,
+      "exp": "用 = dùng."
+     }
+    ]
+   },
+   {
+    "title": "连词成句",
+    "sub": "Sắp xếp các từ thành câu hoàn chỉnh.",
+    "tasks": [
+     {
+      "t": "order",
+      "q": "（1）",
+      "tok": [
+       "这家饭馆的菜",
+       "又",
+       "便宜",
+       "又好吃"
+      ],
+      "a": "这家饭馆的菜又便宜又好吃"
+     },
+     {
+      "t": "order",
+      "q": "（2）",
+      "tok": [
+       "你",
+       "想买什么",
+       "就",
+       "买什么"
+      ],
+      "a": "你想买什么就买什么"
+     },
+     {
+      "t": "order",
+      "q": "（3）",
+      "tok": [
+       "服务员",
+       "马上",
+       "给我们",
+       "拿来了",
+       "一双筷子"
+      ],
+      "a": "服务员马上给我们拿来了一双筷子"
+     },
+     {
+      "t": "order",
+      "q": "（4）",
+      "tok": [
+       "我",
+       "什么",
+       "都",
+       "想吃"
+      ],
+      "a": "我什么都想吃"
+     },
+     {
+      "t": "order",
+      "q": "（5）",
+      "tok": [
+       "我",
+       "好久",
+       "没见",
+       "我的老师了"
+      ],
+      "a": "我好久没见我的老师了"
+     },
+     {
+      "t": "order",
+      "q": "（6）",
+      "tok": [
+       "他",
+       "每天",
+       "只睡",
+       "五个小时"
+      ],
+      "a": "他每天只睡五个小时"
+     }
+    ]
+   },
+   {
+    "title": "阅读理解",
+    "sub": "Đọc đoạn văn rồi chọn đáp án đúng.",
+    "tasks": [
+     {
+      "t": "choice",
+      "pass": "我的朋友小林很会做饭。上个星期天，她请我去她家吃饭。她做了好几个菜，有鸡肉、鱼，还有面条。每个菜都又好看又好吃，我哪个菜都喜欢。吃完饭，她还给我拿了一块蛋糕。我问她：“你做的饭为什么这么好吃？”她说：“我妈妈很会做饭，我常常看她做饭，就学会了。”以后我也想跟她学做饭，不想每天只吃方便面了。",
+      "q": "（1）★ 小林什么时候请“我”吃饭？",
+      "opts": [
+       "上个星期六",
+       "上个星期天",
+       "这个星期天"
+      ],
+      "a": 1,
+      "exp": ""
+     },
+     {
+      "t": "choice",
+      "q": "（2）★ “我”觉得小林做的菜怎么样？",
+      "opts": [
+       "又好看又好吃",
+       "有点儿简单",
+       "不太好吃"
+      ],
+      "a": 0,
+      "exp": ""
+     },
+     {
+      "t": "choice",
+      "q": "（3）★ 小林是跟谁学做饭的？",
+      "opts": [
+       "饭馆的服务员",
+       "她妈妈",
+       "她的老师"
+      ],
+      "a": 1,
+      "exp": ""
+     },
+     {
+      "t": "choice",
+      "q": "（4）★ “我”以后想做什么？",
+      "opts": [
+       "每天吃方便面",
+       "跟小林学做饭",
+       "去饭馆工作"
+      ],
+      "a": 1,
+      "exp": ""
+     }
+    ]
+   },
+   {
+    "title": "翻译",
+    "sub": "Dịch các câu sau sang tiếng Trung (ôn 又……又……, đại từ nghi vấn chỉ toàn bộ và hô ứng, 上 / 下 + lượng từ), rồi so với câu gợi ý.",
+    "tasks": [
+     {
+      "t": "open",
+      "q": "Dịch sang tiếng Trung:",
+      "items": [
+       [
+        "Căn phòng này vừa to vừa đẹp.",
+        "这个房间又大又漂亮。"
+       ],
+       [
+        "Hôm nay tôi vừa bận vừa mệt, không muốn nấu cơm.",
+        "我今天又忙又累，不想做饭。"
+       ],
+       [
+        "Hôm nay tôi rất mệt, chẳng muốn đi đâu cả.",
+        "今天我很累，哪儿都不想去。"
+       ],
+       [
+        "Câu hỏi này rất đơn giản, ai cũng biết.",
+        "这个问题很简单，谁都知道。"
+       ],
+       [
+        "Ai đến trước thì người đó gọi món.",
+        "谁先到，谁就点菜。"
+       ],
+       [
+        "Lúc nào bạn có thời gian thì lúc đó chúng ta đi.",
+        "你什么时候有时间，我们就什么时候去。"
+       ],
+       [
+        "Lâu lắm rồi tôi không gặp anh ấy.",
+        "我好久没见他了。"
+       ],
+       [
+        "Em trai tôi còn nhỏ, ăn cơm phải dùng thìa.",
+        "我弟弟还小，吃饭要用勺子。"
+       ],
+       [
+        "Bạn chờ tôi một chút, tôi đến ngay.",
+        "你等我一下，我马上就到。"
+       ],
+       [
+        "Không cần đến nhà hàng, gọi đồ ăn giao tận nơi rất tiện.",
+        "不用去饭馆，点外卖很方便。"
+       ],
+       [
+        "Sáng nay tôi chỉ ăn một miếng bánh ngọt.",
+        "今天早上我只吃了一块蛋糕。"
+       ],
+       [
+        "Lần sau chúng ta lại đến nhà hàng này nhé.",
+        "下次我们再来这家饭馆吧。"
+       ]
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "3-3": {
+  "zh": "这个小区挺好的",
+  "py": "Zhège xiǎoqū tǐng hǎo de",
+  "vi": "Khu dân cư này khá tốt",
+  "texts": [
+   {
+    "title": "课文一",
+    "scene": {
+     "zh": "在家里，刘明和王一雪在聊天儿。",
+     "py": "Zài jiā li, Liú Míng hé Wáng Yīxuě zài liáotiānr.",
+     "vi": "Ở nhà, Lưu Minh và Vương Nhất Tuyết đang trò chuyện."
+    },
+    "img": "img/tb/3-3-1.jpg",
+    "audio": "audio/tb/3-3-1.mp3",
+    "words": [
+     0,
+     11
+    ],
+    "lines": [
+     {
+      "who": "王一雪",
+      "zh": "小雪的初中离家有点儿远，咱们换一个近点儿的房子吧。",
+      "py": "Xiǎoxuě de chūzhōng lí jiā yǒudiǎnr yuǎn, zánmen huàn yí ge jìn diǎnr de fángzi ba.",
+      "vi": "Trường cấp hai của Tiểu Tuyết hơi xa nhà, mình đổi sang một căn nhà gần hơn đi anh."
+     },
+     {
+      "who": "刘明",
+      "zh": "好啊，我上网看看。你觉得这个小区怎么样？",
+      "py": "Hǎo a, wǒ shàngwǎng kànkan. Nǐ juéde zhège xiǎoqū zěnmeyàng?",
+      "vi": "Được, anh lên mạng xem thử. Em thấy khu dân cư này thế nào?"
+     },
+     {
+      "who": "王一雪",
+      "zh": "环境挺好的，离地铁站还不远。",
+      "py": "Huánjìng tǐng hǎo de, lí dìtiězhàn hái bù yuǎn.",
+      "vi": "Môi trường khá tốt, lại không xa ga tàu điện ngầm."
+     },
+     {
+      "who": "刘明",
+      "zh": "房子里面也不错，空调和洗衣机都是新的。",
+      "py": "Fángzi lǐmian yě búcuò, kōngtiáo hé xǐyījī dōu shì xīn de.",
+      "vi": "Bên trong nhà cũng không tệ, điều hòa và máy giặt đều mới."
+     },
+     {
+      "who": "王一雪",
+      "zh": "是不错，但是我不喜欢住一层。",
+      "py": "Shì búcuò, dànshì wǒ bù xǐhuan zhù yī céng.",
+      "vi": "Đúng là không tệ, nhưng em không thích ở tầng trệt."
+     },
+     {
+      "who": "刘明",
+      "zh": "这个一层带一个小花园，我觉得咱们可以去看看。",
+      "py": "Zhège yī céng dài yí ge xiǎo huāyuán, wǒ juéde zánmen kěyǐ qù kànkan.",
+      "vi": "Tầng trệt này có kèm một vườn hoa nhỏ, anh thấy mình có thể đến xem thử."
+     }
+    ],
+    "qs": [
+     [
+      "他们为什么要换房子？",
+      "因为小雪的初中离家有点儿远。",
+      "Vì trường cấp hai của Tiểu Tuyết hơi xa nhà."
+     ],
+     [
+      "王一雪觉得新小区怎么样？",
+      "她觉得环境挺好的，离地铁站还不远。",
+      "Cô ấy thấy môi trường khá tốt, lại không xa ga tàu điện ngầm."
+     ],
+     [
+      "刘明为什么喜欢这个房子？",
+      "因为房子里面不错，空调和洗衣机都是新的，一层还带一个小花园。",
+      "Vì bên trong nhà không tệ, điều hòa và máy giặt đều mới, tầng trệt còn có vườn hoa nhỏ."
+     ]
+    ]
+   },
+   {
+    "title": "课文二",
+    "scene": {
+     "zh": "在新家，王一雪在收拾房间，刘明进来了。",
+     "py": "Zài xīn jiā, Wáng Yīxuě zài shōushi fángjiān, Liú Míng jìnlai le.",
+     "vi": "Ở nhà mới, Vương Nhất Tuyết đang dọn dẹp phòng, Lưu Minh bước vào."
+    },
+    "img": "img/tb/3-3-2.jpg",
+    "audio": "audio/tb/3-3-2.mp3",
+    "words": [
+     11,
+     17
+    ],
+    "lines": [
+     {
+      "who": "王一雪",
+      "zh": "我今天早上来的时候，灯还开着。",
+      "py": "Wǒ jīntiān zǎoshang lái de shíhou, dēng hái kāizhe.",
+      "vi": "Sáng nay lúc em đến, đèn vẫn còn bật."
+     },
+     {
+      "who": "刘明",
+      "zh": "我这几天忙坏了，可能走的时候忘关了。",
+      "py": "Wǒ zhè jǐ tiān máng huài le, kěnéng zǒu de shíhou wàng guān le.",
+      "vi": "Mấy hôm nay anh bận tối mắt, chắc lúc về quên tắt."
+     },
+     {
+      "who": "王一雪",
+      "zh": "冰箱不能用，这些吃的东西放在哪儿？",
+      "py": "Bīngxiāng bù néng yòng, zhèxiē chī de dōngxi fàng zài nǎr?",
+      "vi": "Tủ lạnh không dùng được, mấy đồ ăn này để ở đâu đây?"
+     },
+     {
+      "who": "刘明",
+      "zh": "不可能吧？冰箱是新买的，我来看看。",
+      "py": "Bù kěnéng ba? Bīngxiāng shì xīn mǎi de, wǒ lái kànkan.",
+      "vi": "Không thể nào? Tủ lạnh mới mua mà, để anh xem."
+     },
+     {
+      "who": "王一雪",
+      "zh": "洗衣机也坏了吗？",
+      "py": "Xǐyījī yě huài le ma?",
+      "vi": "Máy giặt cũng hỏng rồi à?"
+     },
+     {
+      "who": "刘明",
+      "zh": "没坏，但是卫生间没打扫好，还不能洗衣服。",
+      "py": "Méi huài, dànshì wèishēngjiān méi dǎsǎo hǎo, hái bù néng xǐ yīfu.",
+      "vi": "Không hỏng, nhưng nhà vệ sinh chưa dọn xong nên chưa giặt đồ được."
+     },
+     {
+      "who": "王一雪",
+      "zh": "星期天我们真的能搬家吗？",
+      "py": "Xīngqītiān wǒmen zhēn de néng bānjiā ma?",
+      "vi": "Chủ nhật mình thật sự chuyển nhà được không?"
+     }
+    ],
+    "qs": [
+     [
+      "他们家的冰箱怎么了？",
+      "冰箱不能用了。",
+      "Tủ lạnh không dùng được."
+     ],
+     [
+      "为什么不能洗衣服？",
+      "因为卫生间没打扫好。",
+      "Vì nhà vệ sinh chưa dọn xong."
+     ],
+     [
+      "你觉得星期天他们能不能搬家？为什么？",
+      "可能不能，因为冰箱不能用，卫生间也还没打扫好。",
+      "Có lẽ không được, vì tủ lạnh không dùng được, nhà vệ sinh cũng chưa dọn xong."
+     ]
+    ]
+   },
+   {
+    "title": "课文三",
+    "scene": {
+     "zh": "在家里，刘明和王一雪在客厅聊天儿。",
+     "py": "Zài jiā li, Liú Míng hé Wáng Yīxuě zài kètīng liáotiānr.",
+     "vi": "Ở nhà, Lưu Minh và Vương Nhất Tuyết đang trò chuyện trong phòng khách."
+    },
+    "img": "img/tb/3-3-3.jpg",
+    "audio": "audio/tb/3-3-3.mp3",
+    "words": [
+     17,
+     23
+    ],
+    "lines": [
+     {
+      "who": "王一雪",
+      "zh": "这个月花了不少钱。",
+      "py": "Zhège yuè huāle bù shǎo qián.",
+      "vi": "Tháng này tiêu nhiều tiền quá."
+     },
+     {
+      "who": "刘明",
+      "zh": "是的，我们买了很多搬家时要用的东西。",
+      "py": "Shì de, wǒmen mǎile hěn duō bānjiā shí yào yòng de dōngxi.",
+      "vi": "Đúng vậy, mình đã mua rất nhiều đồ cần dùng khi chuyển nhà."
+     },
+     {
+      "who": "王一雪",
+      "zh": "咱们办张信用卡吧，花的钱可以慢慢还。听说中国银行的服务不错，办了信用卡买东西还能便宜。",
+      "py": "Zánmen bàn zhāng xìnyòngkǎ ba, huā de qián kěyǐ mànmàn huán. Tīngshuō Zhōngguó Yínháng de fúwù búcuò, bànle xìnyòngkǎ mǎi dōngxi hái néng piányi.",
+      "vi": "Mình làm một cái thẻ tín dụng đi, tiền tiêu rồi có thể trả từ từ. Nghe nói Ngân hàng Trung Quốc phục vụ tốt, làm thẻ tín dụng xong mua đồ còn được rẻ hơn."
+     },
+     {
+      "who": "刘明",
+      "zh": "好啊！中国银行很近，走路几分钟就能到。咱们什么时候去？",
+      "py": "Hǎo a! Zhōngguó Yínháng hěn jìn, zǒulù jǐ fēnzhōng jiù néng dào. Zánmen shénme shíhou qù?",
+      "vi": "Được đấy! Ngân hàng Trung Quốc rất gần, đi bộ mấy phút là tới. Khi nào mình đi?"
+     },
+     {
+      "who": "王一雪",
+      "zh": "今天下午？",
+      "py": "Jīntiān xiàwǔ?",
+      "vi": "Chiều nay nhé?"
+     },
+     {
+      "who": "刘明",
+      "zh": "我下午要去医院，很晚才能回来。",
+      "py": "Wǒ xiàwǔ yào qù yīyuàn, hěn wǎn cái néng huílai.",
+      "vi": "Chiều anh phải đi bệnh viện, rất muộn mới về được."
+     },
+     {
+      "who": "王一雪",
+      "zh": "那我下午自己去吧。",
+      "py": "Nà wǒ xiàwǔ zìjǐ qù ba.",
+      "vi": "Vậy chiều em tự đi nhé."
+     }
+    ],
+    "qs": [
+     [
+      "王一雪为什么想办信用卡？",
+      "因为这个月花了不少钱，用信用卡花的钱可以慢慢还，买东西还能便宜。",
+      "Vì tháng này tiêu nhiều tiền, tiền tiêu bằng thẻ tín dụng có thể trả từ từ, mua đồ còn được rẻ hơn."
+     ],
+     [
+      "王一雪想什么时候去银行？",
+      "今天下午。",
+      "Chiều nay."
+     ],
+     [
+      "刘明为什么今天不能去银行？",
+      "因为他下午要去医院，很晚才能回来。",
+      "Vì chiều anh ấy phải đi bệnh viện, rất muộn mới về được."
+     ]
+    ]
+   },
+   {
+    "title": "课文四",
+    "scene": {
+     "zh": "在家里，刘明和王一雪讨论搬家计划。",
+     "py": "Zài jiā li, Liú Míng hé Wáng Yīxuě tǎolùn bānjiā jìhuà.",
+     "vi": "Ở nhà, Lưu Minh và Vương Nhất Tuyết bàn kế hoạch chuyển nhà."
+    },
+    "img": "img/tb/3-3-4.jpg",
+    "audio": "audio/tb/3-3-4.mp3",
+    "words": [
+     23,
+     26
+    ],
+    "lines": [
+     {
+      "who": "刘明",
+      "zh": "我觉得这个星期就能搬家。我明天去买一些纸箱，很快就能准备好。搬家那天，我想请几位朋友来帮忙，最多一天就能搬完。",
+      "py": "Wǒ juéde zhège xīngqī jiù néng bānjiā. Wǒ míngtiān qù mǎi yìxiē zhǐxiāng, hěn kuài jiù néng zhǔnbèi hǎo. Bānjiā nà tiān, wǒ xiǎng qǐng jǐ wèi péngyou lái bāngmáng, zuì duō yì tiān jiù néng bānwán.",
+      "vi": "Anh nghĩ tuần này là chuyển nhà được rồi. Mai anh đi mua ít thùng giấy, chuẩn bị nhanh thôi. Hôm chuyển nhà anh muốn mời mấy người bạn đến giúp, nhiều nhất một ngày là chuyển xong."
+     },
+     {
+      "who": "王一雪",
+      "zh": "我觉得下个月才能搬家。这周开始准备，下周去打扫新家，这么多事情最少需要两个星期才能做完。搬家那天，我们应该找一家搬家公司。",
+      "py": "Wǒ juéde xià ge yuè cái néng bānjiā. Zhè zhōu kāishǐ zhǔnbèi, xià zhōu qù dǎsǎo xīn jiā, zhème duō shìqing zuì shǎo xūyào liǎng ge xīngqī cái néng zuòwán. Bānjiā nà tiān, wǒmen yīnggāi zhǎo yì jiā bānjiā gōngsī.",
+      "vi": "Em nghĩ tháng sau mới chuyển được. Tuần này bắt đầu chuẩn bị, tuần sau đi dọn nhà mới, nhiều việc thế này ít nhất cần hai tuần mới làm xong. Hôm chuyển nhà mình nên thuê một công ty chuyển nhà."
+     }
+    ],
+    "qs": [
+     [
+      "刘明明天去买什么？",
+      "他去买一些纸箱。",
+      "Anh ấy đi mua ít thùng giấy."
+     ],
+     [
+      "王一雪打算下周做什么？",
+      "她打算下周去打扫新家。",
+      "Cô ấy định tuần sau đi dọn nhà mới."
+     ],
+     [
+      "刘明打算找谁搬家？王一雪呢？",
+      "刘明想请几位朋友来帮忙，王一雪觉得应该找一家搬家公司。",
+      "Lưu Minh muốn mời mấy người bạn đến giúp, Vương Nhất Tuyết thấy nên thuê công ty chuyển nhà."
+     ]
+    ]
+   }
+  ],
+  "words": [
+   {
+    "w": "初中",
+    "py": "chūzhōng",
+    "mean": "trung học cơ sở, cấp hai (danh từ)",
+    "lines": [
+     "Hệ thống trường học: 小学 (tiểu học) → 初中 (cấp hai) → 高中 (cấp ba) → 大学 (đại học).",
+     "小学 xiǎoxué - tiểu học｜高中 gāozhōng - cấp ba｜上初中 shàng chūzhōng - học cấp hai",
+     "我妹妹今年上初中，学校离家不太远。",
+     "他的初中有点儿远，每天坐公共汽车去。"
+    ]
+   },
+   {
+    "w": "咱们",
+    "py": "zánmen",
+    "mean": "chúng ta (đại từ)",
+    "lines": [
+     "咱们 NHẤT ĐỊNH bao gồm cả người nghe. 我们 thì có thể gồm hoặc không gồm người nghe. 咱们 rất khẩu ngữ, hay dùng ở miền Bắc Trung Quốc.",
+     "我们 wǒmen - chúng tôi / chúng ta",
+     "咱们一起去吃饭吧，我知道一家很好的饭馆。",
+     "时间不早了，咱们快走吧。"
+    ]
+   },
+   {
+    "w": "换",
+    "py": "huàn",
+    "mean": "thay, đổi (động từ)",
+    "lines": [
+     "换 + danh từ = đổi cái gì đó lấy cái khác. Thường dùng: 换衣服、换房子、换车、换钱.",
+     "换车 huàn chē - đổi xe, chuyển tuyến｜换钱 huàn qián - đổi tiền",
+     "这件衣服有点儿短，我想换一件大的。",
+     "我的手机用了三年了，咱们去换一个新的吧。"
+    ]
+   },
+   {
+    "w": "房子",
+    "py": "fángzi",
+    "mean": "nhà, căn nhà (danh từ)",
+    "lines": [
+     "房子 là cả ngôi nhà hoặc căn hộ. 房间 chỉ MỘT phòng bên trong. 家 là nhà theo nghĩa tổ ấm, gia đình.",
+     "房间 fángjiān - căn phòng｜新房子 xīn fángzi - nhà mới",
+     "咱们换一个离学校近一点儿的房子吧。",
+     "这个房子很新，里面的东西也都是新的。"
+    ]
+   },
+   {
+    "w": "小区",
+    "py": "xiǎoqū",
+    "mean": "khu dân cư, khu nhà ở (danh từ)",
+    "lines": [
+     "Một cụm nhà ở có cổng, có sân, chỗ để xe và cửa hàng. Phần lớn người thành thị Trung Quốc sống trong 小区.",
+     "小区门口 xiǎoqū ménkǒu - cổng khu dân cư｜住在小区里 zhù zài xiǎoqū li",
+     "这个小区里有商店，买东西很方便。",
+     "我们的小区离地铁站不远，走路十分钟就到。"
+    ]
+   },
+   {
+    "w": "环境",
+    "py": "huánjìng",
+    "mean": "môi trường (danh từ)",
+    "lines": [
+     "Chỉ hoàn cảnh xung quanh: khu ở, nhà hàng, trường học, thiên nhiên. Hay nói 环境好 / 环境不错.",
+     "学习环境 xuéxí huánjìng｜环境好 huánjìng hǎo - môi trường tốt",
+     "这个小区的环境很好，我们都喜欢住在这儿。",
+     "这家饭馆的菜很好吃，环境也不错。"
+    ]
+   },
+   {
+    "w": "挺",
+    "py": "tǐng",
+    "mean": "khá, rất (phó từ)",
+    "lines": [
+     "Phó từ chỉ mức độ, rất thông dụng trong khẩu ngữ. Hầu như luôn đi với 的 ở cuối câu. Xem kĩ ở 语法点 1.",
+     "挺……的 tǐng…de｜挺好的 tǐng hǎo de｜挺方便的 tǐng fāngbiàn de",
+     "这个小区的环境挺好的。",
+     "这家饭馆的菜挺好吃的，我们经常来。"
+    ]
+   },
+   {
+    "w": "空调",
+    "py": "kōngtiáo",
+    "mean": "máy điều hoà (danh từ)",
+    "lines": [
+     "开空调 = bật điều hoà, 关空调 = tắt điều hoà (关 học ở từ số 13).",
+     "开空调 kāi kōngtiáo - bật điều hoà｜空调坏了 kōngtiáo huài le",
+     "房间里有点儿热，咱们开空调吧。",
+     "新房子里的空调是新买的，挺好用的。"
+    ]
+   },
+   {
+    "w": "洗衣机",
+    "py": "xǐyījī",
+    "mean": "máy giặt (danh từ)",
+    "lines": [
+     "Ghép từ 洗 (giặt) + 衣 (quần áo) + 机 (máy). Cùng kiểu: 洗碗机 (máy rửa bát), 咖啡机 (máy pha cà phê).",
+     "洗衣服 xǐ yīfu - giặt quần áo｜洗碗机 xǐwǎnjī - máy rửa bát",
+     "家里的洗衣机坏了，衣服只能自己洗。",
+     "这个房子里的空调和洗衣机都是新的。"
+    ]
+   },
+   {
+    "w": "层",
+    "py": "céng",
+    "mean": "tầng (lượng từ)",
+    "lines": [
+     "Đếm tầng nhà: 一层、二层、三层. 住一层 ở Trung Quốc là ở tầng trệt, không phải tầng một kiểu Việt Nam.",
+     "一层 yì céng - tầng trệt｜楼 lóu - toà nhà, lầu",
+     "我不喜欢住一层，想换到上面去。",
+     "这个房子有两层，我们住在第二层。"
+    ]
+   },
+   {
+    "w": "花园",
+    "py": "huāyuán",
+    "mean": "vườn hoa (danh từ)",
+    "lines": [
+     "Ghép từ 花 (hoa) + 园 (vườn). Nhà có 花园 thường ở tầng trệt hoặc là nhà riêng.",
+     "小花园 xiǎo huāyuán - vườn nhỏ｜花 huā - hoa",
+     "这个一层带一个小花园，我们可以去看看。",
+     "她家的花园挺大的，里面有很多花。"
+    ]
+   },
+   {
+    "w": "灯",
+    "py": "dēng",
+    "mean": "đèn (danh từ)",
+    "lines": [
+     "开灯 = bật đèn, 关灯 = tắt đèn. Lượng từ: 个.",
+     "开灯 kāi dēng - bật đèn｜灯坏了 dēng huài le - đèn hỏng",
+     "房间里太黑了，请开一下灯。",
+     "我今天早上来的时候，灯还开着。"
+    ]
+   },
+   {
+    "w": "关",
+    "py": "guān",
+    "mean": "tắt, đóng (động từ)",
+    "lines": [
+     "关 + đồ điện = tắt (关灯、关空调、关电视). 关 + cửa, cửa sổ = đóng (关门). Trái nghĩa đều là 开.",
+     "关门 guān mén - đóng cửa｜关上 guānshàng - đóng lại, tắt đi",
+     "走的时候要关灯，也要关空调。",
+     "外面很冷，你去关一下门吧。"
+    ]
+   },
+   {
+    "w": "冰箱",
+    "py": "bīngxiāng",
+    "mean": "tủ lạnh (danh từ)",
+    "lines": [
+     "Ghép từ 冰 (băng, đá) + 箱 (thùng, hòm). Đồ ăn để 在冰箱里.",
+     "冰箱里 bīngxiāng li - trong tủ lạnh｜冰箱坏了 bīngxiāng huài le",
+     "冰箱坏了，里面的东西都不能吃了。",
+     "冰箱里有鸡蛋和牛奶，你饿了就自己拿。"
+    ]
+   },
+   {
+    "w": "卫生间",
+    "py": "wèishēngjiān",
+    "mean": "nhà vệ sinh (danh từ)",
+    "lines": [
+     "Cách nói lịch sự, dùng cả ở nhà và nơi công cộng. Một cách nói khác là 洗手间.",
+     "洗手间 xǐshǒujiān - nhà vệ sinh (cách nói khác)",
+     "这个房子有两个卫生间，我觉得挺方便的。",
+     "卫生间里没有灯，晚上看不见。"
+    ]
+   },
+   {
+    "w": "打扫",
+    "py": "dǎsǎo",
+    "mean": "dọn dẹp, quét dọn (động từ)",
+    "lines": [
+     "打扫 + 房间 / 卫生间 / 花园. Thêm 好 để chỉ kết quả: 打扫好 = dọn xong.",
+     "打扫房间 dǎsǎo fángjiān｜打扫好 dǎsǎohǎo - dọn xong",
+     "卫生间还没打扫好，现在还不能用。",
+     "星期天我们一起打扫房子，三个小时就打扫好了。"
+    ]
+   },
+   {
+    "w": "搬家",
+    "py": "bānjiā",
+    "mean": "chuyển nhà (động từ ly hợp)",
+    "lines": [
+     "Là động từ ly hợp: 搬 + 家. Tách ra được - 搬过一次家 (✓), nhưng KHÔNG nói 搬家一次 (✗).",
+     "搬家公司 bānjiā gōngsī - công ty chuyển nhà｜搬过家 bānguo jiā - từng chuyển nhà",
+     "星期天我们真的能搬家吗？",
+     "我们下个月搬家，现在要打扫新房子。"
+    ]
+   },
+   {
+    "w": "办",
+    "py": "bàn",
+    "mean": "làm, xử lý (động từ)",
+    "lines": [
+     "办 + việc giấy tờ / thủ tục: 办信用卡、办护照、办事. Không dùng cho việc chân tay.",
+     "办事 bànshì - làm việc, giải quyết việc｜办好 bànhǎo - làm xong",
+     "我下午有一些事情要办，不能和你们一起去。",
+     "办护照的时候要带两张照片。"
+    ]
+   },
+   {
+    "w": "信用卡",
+    "py": "xìnyòngkǎ",
+    "mean": "thẻ tín dụng (danh từ)",
+    "lines": [
+     "Lượng từ: 张. 办信用卡 = làm thẻ; 用信用卡 = dùng thẻ để trả tiền.",
+     "办信用卡 bàn xìnyòngkǎ｜用信用卡 yòng xìnyòngkǎ",
+     "咱们办一张信用卡吧，买东西方便一些。",
+     "我没带钱，可以用信用卡吗？"
+    ]
+   },
+   {
+    "w": "还",
+    "py": "huán",
+    "mean": "trả, hoàn trả (động từ)",
+    "lines": [
+     "Chữ 还 có hai âm: hái = vẫn, còn (đã quen) và huán = trả lại. Thường dùng: 还书、还钱、还信用卡.",
+     "还书 huán shū - trả sách｜还钱 huán qián - trả tiền｜还给 huán gěi - trả cho ai",
+     "这本书不是我的，明天我要还给朋友。",
+     "用信用卡花的钱，下个月要还。"
+    ]
+   },
+   {
+    "w": "听说",
+    "py": "tīngshuō",
+    "mean": "nghe nói (động từ)",
+    "lines": [
+     "Đứng đầu câu hoặc ngay sau chủ ngữ, dẫn lại thông tin nghe được: 听说 + cả một mệnh đề.",
+     "我听说 wǒ tīngshuō｜听说过 tīngshuōguo - từng nghe nói",
+     "听说这家饭馆的菜挺好吃的，咱们去尝尝吧。",
+     "我听说他下个月要搬家，是真的吗？"
+    ]
+   },
+   {
+    "w": "银行",
+    "py": "yínháng",
+    "mean": "ngân hàng (danh từ)",
+    "lines": [
+     "Chú ý chữ 行 ở đây đọc là háng, không đọc xíng. 去银行办信用卡 / 还钱.",
+     "中国银行 Zhōngguó Yínháng｜银行卡 yínhángkǎ - thẻ ngân hàng",
+     "中国银行很近，走路几分钟就能到。",
+     "我要去银行办一张信用卡。"
+    ]
+   },
+   {
+    "w": "才",
+    "py": "cái",
+    "mean": "(mãi)… mới (phó từ)",
+    "lines": [
+     "Đứng trước động từ, nói việc xảy ra MUỘN hoặc chậm theo cảm nhận người nói. Trái với 就. Xem kĩ ở 语法点 3.",
+     "就 jiù - (sớm, nhanh) - cặp đối lập với 才",
+     "我下午要去医院，很晚才能回来。",
+     "他每天八点上班，今天九点才来。"
+    ]
+   },
+   {
+    "w": "纸",
+    "py": "zhǐ",
+    "mean": "giấy (danh từ)",
+    "lines": [
+     "Lượng từ: 张. 纸箱 = thùng giấy, thứ hay dùng khi chuyển nhà.",
+     "一张纸 yì zhāng zhǐ｜纸箱 zhǐxiāng - thùng giấy",
+     "请给我一张纸，我要写一下你的号码。",
+     "搬家要用很多纸箱，明天我去买一些。"
+    ]
+   },
+   {
+    "w": "搬",
+    "py": "bān",
+    "mean": "chuyển, bê, khiêng (động từ)",
+    "lines": [
+     "搬 + đồ nặng = bê, khiêng (搬箱子). 搬 + 家 = chuyển chỗ ở. Khác 带 (mang theo) và 拿 (cầm, đồ nhẹ).",
+     "搬东西 bān dōngxi - bê đồ｜搬进去 bān jìnqu - chuyển vào",
+     "这个箱子太重了，我们两个人一起搬吧。",
+     "搬家那天，我想请几位朋友来帮忙。"
+    ]
+   },
+   {
+    "w": "需要",
+    "py": "xūyào",
+    "mean": "cần, cần thiết (động từ)",
+    "lines": [
+     "Động từ - 需要 + danh từ hoặc + động từ: 需要帮助、需要两个小时.",
+     "搬家需要很多时间，咱们这个星期就开始准备。",
+     "你需要帮助吗？我可以帮你搬东西。",
+     "Danh từ - chỉ nhu cầu, cái mà người ta cần:",
+     "需要帮助 xūyào bāngzhù｜不需要 bù xūyào - không cần",
+     "买什么样的房子，要看每家人的需要。"
+    ]
+   }
+  ],
+  "grammar": [
+   {
+    "title": "程度副词 “挺”（挺……的）",
+    "sub": "Khá…, …lắm (khẩu ngữ)",
+    "intro": "挺 là phó từ chỉ mức độ, rất thông dụng trong khẩu ngữ. Nghĩa gần với 很 nhưng nhẹ hơn, mang sắc thái đánh giá chủ quan, thân mật. Chữ 的 ở cuối gần như cố định: 挺好 vẫn đúng, nhưng 挺好的 mới là cách nói tự nhiên.",
+    "formula": [
+     "挺",
+     "tính từ / động từ chỉ tâm lý",
+     "的"
+    ],
+    "keys": [
+     0,
+     2
+    ],
+    "uses": [
+     [
+      "挺 + tính từ + 的",
+      "挺好的、挺远的、挺方便的、挺热情的、挺简单的",
+      "这个小区环境挺好的。"
+     ],
+     [
+      "挺 + động từ chỉ tâm lý + 的",
+      "挺喜欢的、挺想的、挺爱的",
+      "买这个吧，我挺喜欢这个颜色的。"
+     ]
+    ],
+    "compare": [
+     [
+      "有点儿",
+      "hơi (thường là không vừa ý)"
+     ],
+     [
+      "挺……的",
+      "khá, …lắm"
+     ],
+     [
+      "很",
+      "rất"
+     ],
+     [
+      "非常",
+      "vô cùng"
+     ],
+     [
+      "太……了",
+      "quá"
+     ]
+    ],
+    "notes": [
+     [
+      "Không dùng với động từ hành động:",
+      "我挺吃饭。",
+      "✗"
+     ],
+     [
+      "Không đặt 不 trước 挺:",
+      "不挺好的",
+      "✗ → 不太好 / 挺不好的 ✓"
+     ],
+     [
+      "Không dùng trong câu hỏi với 吗:",
+      "挺好吗？",
+      "✗ → 好吗？／怎么样？ ✓"
+     ],
+     [
+      "Không dùng trong câu so sánh với 比:",
+      "这个比那个挺好。",
+      "✗"
+     ],
+     [
+      "挺 chỉ dùng ở câu khẳng định. 挺好的 nghe nhẹ nhàng, lịch sự hơn 很好, nên người Trung Quốc rất hay dùng khi khen.",
+      "",
+      ""
+     ]
+    ],
+    "ex": [
+     {
+      "zh": "这个小区环境挺好的。",
+      "py": "Zhège xiǎoqū huánjìng tǐng hǎo de.",
+      "vi": "Môi trường của khu dân cư này khá tốt."
+     },
+     {
+      "zh": "这家饭馆的菜挺好吃的。",
+      "py": "Zhè jiā fànguǎn de cài tǐng hǎochī de.",
+      "vi": "Món ăn của nhà hàng này khá ngon."
+     },
+     {
+      "zh": "买这个吧，我挺喜欢这个颜色的。",
+      "py": "Mǎi zhège ba, wǒ tǐng xǐhuan zhège yánsè de.",
+      "vi": "Mua cái này đi, mình khá thích màu này."
+     },
+     {
+      "zh": "新房子离学校挺近的，走路十几分钟就到。",
+      "py": "Xīn fángzi lí xuéxiào tǐng jìn de, zǒulù shí jǐ fēnzhōng jiù dào.",
+      "vi": "Nhà mới khá gần trường, đi bộ mười mấy phút là tới."
+     }
+    ],
+    "tasks": [
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "这个房子不挺大的。",
+       "这个房子挺大的。"
+      ],
+      "a": 1,
+      "exp": "Không đặt 不 trước 挺."
+     },
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "这个挺好的。",
+       "这个比那个挺好。"
+      ],
+      "a": 0,
+      "exp": "挺 không dùng trong câu so sánh với 比."
+     },
+     {
+      "t": "choice",
+      "q": "Mức độ từ thấp đến cao là:",
+      "opts": [
+       "非常 → 挺 → 有点儿",
+       "有点儿 → 挺 → 非常",
+       "挺 → 有点儿 → 非常"
+      ],
+      "a": 1,
+      "exp": "有点儿 ＜ 挺……的 ＜ 很 ＜ 非常 ＜ 太……了."
+     },
+     {
+      "t": "order",
+      "q": "Sắp xếp thành câu đúng:",
+      "tok": [
+       "新房子",
+       "离学校",
+       "挺近的"
+      ],
+      "a": "新房子离学校挺近的"
+     },
+     {
+      "t": "open",
+      "q": "用“挺……的”回答问题。Dùng “挺……的” trả lời câu hỏi.",
+      "items": [
+       [
+        "你爱游泳吗？",
+        "我挺爱游泳的。"
+       ],
+       [
+        "你的床舒服吗？",
+        "我的床挺舒服的。"
+       ],
+       [
+        "你觉得现在的天气怎么样？",
+        "现在的天气挺好的。"
+       ]
+      ]
+     }
+    ],
+    "after": 0
+   },
+   {
+    "title": "程度补语（1）“……坏了”",
+    "sub": "…muốn chết, …lả người (mức độ rất cao)",
+    "intro": "坏了 đặt SAU tính từ hoặc động từ chỉ tâm lý, làm bổ ngữ chỉ mức độ. Nó nói mức độ RẤT cao, mang giọng cường điệu của khẩu ngữ. Câu có 坏了 luôn nói chuyện ĐÃ xảy ra.",
+    "formula": [
+     "tính từ / động từ chỉ tâm lý",
+     "坏了"
+    ],
+    "uses": [
+     [
+      "Cảm giác khó chịu (hay gặp nhất)",
+      "累坏了、饿坏了、渴坏了、忙坏了、急坏了",
+      "打扫了一天的房子，我们都累坏了。"
+     ],
+     [
+      "Cảm xúc vui rất mạnh (ít gặp hơn)",
+      "高兴坏了 = mừng quýnh lên",
+      "听说明天不上课，孩子们高兴坏了。"
+     ]
+    ],
+    "compare": [
+     [
+      "我累坏了。",
+      "tính từ + 坏了 → mức độ: mệt lả rồi"
+     ],
+     [
+      "冰箱坏了。",
+      "đồ vật + 坏了 → bị hỏng"
+     ]
+    ],
+    "notes": [
+     [
+      "了 ở cuối là bắt buộc:",
+      "我累坏。",
+      "✗ → 我累坏了。✓"
+     ],
+     [
+      "Không thêm phó từ mức độ phía trước:",
+      "我很累坏了。",
+      "✗"
+     ],
+     [
+      "Không dùng cho việc chưa xảy ra:",
+      "明天我会累坏了。",
+      "✗"
+     ]
+    ],
+    "ex": [
+     {
+      "zh": "我这几天忙坏了。",
+      "py": "Wǒ zhè jǐ tiān máng huài le.",
+      "vi": "Mấy hôm nay tôi bận tối mắt."
+     },
+     {
+      "zh": "我渴坏了，哪里能买水？",
+      "py": "Wǒ kě huài le, nǎli néng mǎi shuǐ?",
+      "vi": "Tôi khát khô cổ rồi, chỗ nào mua được nước?"
+     },
+     {
+      "zh": "这几天非常忙，大家都累坏了。",
+      "py": "Zhè jǐ tiān fēicháng máng, dàjiā dōu lèi huài le.",
+      "vi": "Mấy hôm nay rất bận, mọi người đều mệt lả."
+     },
+     {
+      "zh": "打扫了一天的房子，我们都累坏了。",
+      "py": "Dǎsǎole yì tiān de fángzi, wǒmen dōu lèi huài le.",
+      "vi": "Dọn nhà cả ngày, chúng tôi đều mệt lả."
+     },
+     {
+      "zh": "对比：冰箱坏了，里面的东西都不能吃了。",
+      "py": "Duìbǐ: Bīngxiāng huài le, lǐmian de dōngxi dōu bù néng chī le.",
+      "vi": "So sánh: Tủ lạnh hỏng rồi, đồ bên trong đều không ăn được nữa."
+     }
+    ],
+    "tasks": [
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "我很饿坏了。",
+       "我饿坏了。"
+      ],
+      "a": 1,
+      "exp": "Không thêm 很 trước tính từ + 坏了."
+     },
+     {
+      "t": "choice",
+      "q": "Câu nào nói về đồ bị HỎNG?",
+      "opts": [
+       "我们都忙坏了。",
+       "洗衣机坏了。"
+      ],
+      "a": 1,
+      "exp": "Chủ ngữ là đồ vật, 坏了 đứng một mình → hỏng."
+     },
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "我累坏了。",
+       "我累坏。"
+      ],
+      "a": 0,
+      "exp": "了 ở cuối là bắt buộc."
+     },
+     {
+      "t": "order",
+      "q": "Sắp xếp thành câu đúng:",
+      "tok": [
+       "这几天",
+       "大家",
+       "都",
+       "累坏了"
+      ],
+      "a": "这几天大家都累坏了"
+     },
+     {
+      "t": "open",
+      "q": "完成句子。Hoàn thành câu.",
+      "items": [
+       [
+        "今天搬家，我和刘明都 ______________________ 。",
+        "今天搬家，我和刘明都累坏了。"
+       ],
+       [
+        "我今天没吃午饭和晚饭，______________________ 。",
+        "我今天没吃午饭和晚饭，饿坏了。"
+       ],
+       [
+        "房间里没有空调，我们都 ______________________ 。",
+        "房间里没有空调，我们都热坏了。"
+       ]
+      ]
+     }
+    ],
+    "after": 1
+   },
+   {
+    "title": "“就” 和 “才”",
+    "sub": "就: sớm, nhanh — 才: muộn, chậm",
+    "intro": "就 và 才 đều là phó từ, đứng TRƯỚC động từ. 就 = người nói thấy việc xảy ra SỚM, nhanh, dễ dàng. 才 = người nói thấy việc xảy ra MUỘN, chậm, khó khăn. Đây là đánh giá chủ quan: cùng một mốc giờ vẫn dùng được cả hai.",
+    "formula": [
+     "thời gian / số lượng",
+     "就 / 才",
+     "động từ"
+    ],
+    "uses": [
+     [
+      "就 · sớm, nhanh, dễ",
+      "Việc đã xảy ra thường có 了 ở cuối.",
+      "我早上五点就起床了。"
+     ],
+     [
+      "才 · muộn, chậm, khó",
+      "Không có 了 ở cuối.",
+      "他每天八点上班，今天九点才来。"
+     ],
+     [
+      "Đi với số lượng",
+      "就: chỉ cần ít (nhanh) — 才: cần nhiều (lâu).",
+      "中国银行很近，走路几分钟就能到。"
+     ]
+    ],
+    "compare": [
+     [
+      "他六点就起床了。",
+      "mới 6 giờ đã dậy (cho là sớm)"
+     ],
+     [
+      "他六点才起床。",
+      "mãi 6 giờ mới dậy (cho là muộn)"
+     ],
+     [
+      "走路几分钟就能到。",
+      "chỉ mấy phút, nhanh"
+     ],
+     [
+      "坐火车五个小时才能到。",
+      "tận 5 tiếng, lâu"
+     ]
+    ],
+    "notes": [
+     [
+      "才 không đi với 了:",
+      "我八点才起床了。",
+      "✗ → 我八点才起床。✓"
+     ],
+     [
+      "Mẫu hay gặp 一……就……: vừa… là…",
+      "我一到家就打扫房间。",
+      ""
+     ]
+    ],
+    "ex": [
+     {
+      "zh": "中国银行很近，走路几分钟就能到。",
+      "py": "Zhōngguó Yínháng hěn jìn, zǒulù jǐ fēnzhōng jiù néng dào.",
+      "vi": "Ngân hàng Trung Quốc rất gần, đi bộ mấy phút là tới."
+     },
+     {
+      "zh": "我下午要去医院，很晚才能回来。",
+      "py": "Wǒ xiàwǔ yào qù yīyuàn, hěn wǎn cái néng huílai.",
+      "vi": "Chiều tôi phải đi bệnh viện, rất muộn mới về được."
+     },
+     {
+      "zh": "我早上五点就起床了。",
+      "py": "Wǒ zǎoshang wǔ diǎn jiù qǐchuáng le.",
+      "vi": "Mới năm giờ sáng tôi đã dậy rồi."
+     },
+     {
+      "zh": "坐火车去北京，五个小时才能到。",
+      "py": "Zuò huǒchē qù Běijīng, wǔ ge xiǎoshí cái néng dào.",
+      "vi": "Đi tàu hỏa đến Bắc Kinh, năm tiếng mới tới."
+     },
+     {
+      "zh": "对比：他七点就来了。／他七点才来。",
+      "py": "Duìbǐ: Tā qī diǎn jiù lái le. / Tā qī diǎn cái lái.",
+      "vi": "So sánh: Mới bảy giờ anh ấy đã đến. / Mãi bảy giờ anh ấy mới đến."
+     }
+    ],
+    "tasks": [
+     {
+      "t": "choice",
+      "q": "八点上课，他七点 ____ 到学校了。",
+      "opts": [
+       "才",
+       "就"
+      ],
+      "a": 1,
+      "exp": "Đến trước giờ học → sớm → 就, có 了 ở cuối."
+     },
+     {
+      "t": "choice",
+      "q": "我等了他一个小时，他 ____ 来。",
+      "opts": [
+       "就",
+       "才"
+      ],
+      "a": 1,
+      "exp": "Chờ lâu → muộn → 才, không có 了."
+     },
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "我十点才起床了。",
+       "我十点才起床。"
+      ],
+      "a": 1,
+      "exp": "才 không đi với 了."
+     },
+     {
+      "t": "order",
+      "q": "Sắp xếp thành câu đúng:",
+      "tok": [
+       "走路",
+       "十分钟",
+       "就",
+       "能到"
+      ],
+      "a": "走路十分钟就能到"
+     },
+     {
+      "t": "open",
+      "q": "完成对话。Hoàn thành hội thoại.",
+      "items": [
+       [
+        "A：你昨天几点回的家？\nB：______________________________",
+        "我昨天晚上十一点才回家。"
+       ],
+       [
+        "A：这本书你是什么时候看完的？\nB：______________________________",
+        "我两天就看完了。"
+       ],
+       [
+        "A：你觉得搬家要准备多长时间？\nB：______________________________",
+        "我觉得一个星期就能准备好。"
+       ]
+      ]
+     }
+    ],
+    "after": 2
+   }
+  ],
+  "practice": [
+   {
+    "bank": [
+     "才",
+     "挺",
+     "办",
+     "关",
+     "还"
+    ],
+    "items": [
+     [
+      "你走的时候要 ___ 灯。",
+      "关"
+     ],
+     [
+      "我要去银行 ___ 一张信用卡。",
+      "办"
+     ],
+     [
+      "搬家要准备的东西 ___ 多的。",
+      "挺"
+     ],
+     [
+      "这本书不是我的，明天我要 ___ 给朋友。",
+      "还"
+     ],
+     [
+      "我太忙了，没时间打扫新家，可能下个月 ___ 搬家。",
+      "才"
+     ]
+    ]
+   },
+   {
+    "bank": [
+     "环境",
+     "需要",
+     "搬家",
+     "听说",
+     "打扫"
+    ],
+    "items": [
+     [
+      "A：你去哪儿了？怎么这么晚才回来？\nB：我一直在 ___ 新家，今天真是累坏了。",
+      "打扫"
+     ],
+     [
+      "A：这个小区离学校有点儿远。\nB：虽然有点儿远，但是我们很喜欢这个小区的 ___ 。",
+      "环境"
+     ],
+     [
+      "A：你知道她为什么不喜欢这个房子吗？\nB：我 ___ 她不喜欢住一层。",
+      "听说"
+     ],
+     [
+      "A：这个小区明天不能 ___ ，你知道吗？\nB：我知道，我已经告诉搬家公司的人了，他们下周一再来。",
+      "搬家"
+     ],
+     [
+      "A：她家真大，还有个大花园。\nB：因为她家人多， ___ 一个大房子。",
+      "需要"
+     ]
+    ]
+   },
+   {
+    "title": "短文填空 · Điền từ vào đoạn văn",
+    "bank": [
+     "搬家",
+     "小区",
+     "挺",
+     "准备",
+     "打扫",
+     "累",
+     "才",
+     "信用卡"
+    ],
+    "passage": "我们家上个月___了。新家在一个新___里，环境___好的，离银行和地铁站都很近。搬家以前，我们___了两个星期，买了很多纸箱，还___了每一个房间。搬家那天，我和爸爸都___坏了，晚上十点___吃晚饭。看到新房子，我们都很高兴。",
+    "items": [
+     [
+      null,
+      "搬家"
+     ],
+     [
+      null,
+      "小区"
+     ],
+     [
+      null,
+      "挺"
+     ],
+     [
+      null,
+      "准备"
+     ],
+     [
+      null,
+      "打扫"
+     ],
+     [
+      null,
+      "累"
+     ],
+     [
+      null,
+      "才"
+     ]
+    ]
+   }
+  ],
+  "extra": [
+   {
+    "title": "看图说话",
+    "sub": "Dùng từ ngữ và điểm ngữ pháp của bài để hoàn thành các hội thoại theo tranh.",
+    "tasks": [
+     {
+      "t": "open",
+      "img": "img/tb/3-3-p1.jpg",
+      "q": "图一",
+      "items": [
+       [
+        "A：这个 ______ 很新，买东西方便吗？",
+        "这个小区很新，买东西方便吗？"
+       ],
+       [
+        "B：______ 就有一个大超市。",
+        "走路几分钟就有一个大超市。"
+       ],
+       [
+        "A：那真的 ______。我也喜欢这里的环境，每家都有一个小花园。",
+        "那真的挺方便的。"
+       ],
+       [
+        "B：是。后面的房子有两层，______ 再上去看看。",
+        "咱们再上去看看。"
+       ]
+      ]
+     },
+     {
+      "t": "open",
+      "img": "img/tb/3-3-p2.jpg",
+      "q": "图二",
+      "items": [
+       [
+        "A：你知道 ____________________？\nB：用护照就能办，你想在哪家银行办？",
+        "你知道怎么办信用卡吗？"
+       ],
+       [
+        "A：北京银行不错，今天下午我 ______。",
+        "今天下午我想去办一张。"
+       ],
+       [
+        "B：我也听说 ______，咱们一起去吧。",
+        "我也听说北京银行的服务挺好的，咱们一起去吧。"
+       ]
+      ]
+     },
+     {
+      "t": "open",
+      "img": "img/tb/3-3-p3.jpg",
+      "q": "图三",
+      "items": [
+       [
+        "A：你们已经 ______？",
+        "你们已经搬家了吗？"
+       ],
+       [
+        "B：还没有，我们 ____________________，也买了很多东西，每天都非常累。",
+        "我们每天都在打扫新家，也买了很多东西，每天都非常累。"
+       ],
+       [
+        "A：我们什么时候去你的新家看看？\nB：好啊，______ 就 ______，到时候来我家吃饭吧。",
+        "下个星期就能搬好，到时候来我家吃饭吧。"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "title": "选择正确答案",
+    "sub": "Chọn đáp án đúng.",
+    "tasks": [
+     {
+      "t": "choice",
+      "q": "房间里太黑了，请开一下 ____。",
+      "opts": [
+       "冰箱",
+       "灯",
+       "花园"
+      ],
+      "a": 1,
+      "exp": "开灯 = bật đèn."
+     },
+     {
+      "t": "choice",
+      "q": "你走的时候要 ____ 空调。",
+      "opts": [
+       "关",
+       "换",
+       "搬"
+      ],
+      "a": 0,
+      "exp": "关 + đồ điện = tắt."
+     },
+     {
+      "t": "choice",
+      "q": "牛奶放在 ____ 里吧。",
+      "opts": [
+       "洗衣机",
+       "卫生间",
+       "冰箱"
+      ],
+      "a": 2,
+      "exp": "Đồ ăn uống để trong 冰箱."
+     },
+     {
+      "t": "choice",
+      "q": "这件衣服有点儿小，我想 ____ 一件大的。",
+      "opts": [
+       "还",
+       "换",
+       "办"
+      ],
+      "a": 1,
+      "exp": "换 = đổi cái khác."
+     },
+     {
+      "t": "choice",
+      "q": "我要去银行 ____ 一张信用卡。",
+      "opts": [
+       "办",
+       "还",
+       "搬"
+      ],
+      "a": 0,
+      "exp": "办 + thủ tục, giấy tờ."
+     },
+     {
+      "t": "choice",
+      "q": "我们家住在第五 ____。",
+      "opts": [
+       "张",
+       "层",
+       "双"
+      ],
+      "a": 1,
+      "exp": "层 = tầng."
+     },
+     {
+      "t": "choice",
+      "q": "这个小区的 ____ 挺好的，有很多花。",
+      "opts": [
+       "需要",
+       "信用卡",
+       "环境"
+      ],
+      "a": 2,
+      "exp": "环境 = môi trường xung quanh."
+     },
+     {
+      "t": "choice",
+      "q": "他每天八点上班，今天十点 ____ 来。",
+      "opts": [
+       "才",
+       "就",
+       "挺"
+      ],
+      "a": 0,
+      "exp": "Đến muộn → 才 (không có 了)."
+     },
+     {
+      "t": "choice",
+      "q": "中国银行很近，走路五分钟 ____ 能到。",
+      "opts": [
+       "才",
+       "挺",
+       "就"
+      ],
+      "a": 2,
+      "exp": "Chỉ mất ít thời gian → 就."
+     },
+     {
+      "t": "choice",
+      "q": "____ 他下个月要搬家，是真的吗？",
+      "opts": [
+       "打扫",
+       "听说",
+       "需要"
+      ],
+      "a": 1,
+      "exp": "听说 + mệnh đề = nghe nói…"
+     }
+    ]
+   },
+   {
+    "title": "连词成句",
+    "sub": "Sắp xếp các từ thành câu hoàn chỉnh.",
+    "tasks": [
+     {
+      "t": "order",
+      "q": "（1）",
+      "tok": [
+       "这个小区",
+       "环境",
+       "挺好的"
+      ],
+      "a": "这个小区环境挺好的"
+     },
+     {
+      "t": "order",
+      "q": "（2）",
+      "tok": [
+       "打扫了",
+       "一天",
+       "我们都",
+       "累坏了"
+      ],
+      "a": "打扫了一天我们都累坏了"
+     },
+     {
+      "t": "order",
+      "q": "（3）",
+      "tok": [
+       "他",
+       "晚上十一点",
+       "才",
+       "回家"
+      ],
+      "a": "他晚上十一点才回家"
+     },
+     {
+      "t": "order",
+      "q": "（4）",
+      "tok": [
+       "搬家",
+       "需要",
+       "很多",
+       "纸箱"
+      ],
+      "a": "搬家需要很多纸箱"
+     },
+     {
+      "t": "order",
+      "q": "（5）",
+      "tok": [
+       "你",
+       "走的时候",
+       "要",
+       "关灯"
+      ],
+      "a": "你走的时候要关灯"
+     },
+     {
+      "t": "order",
+      "q": "（6）",
+      "tok": [
+       "我",
+       "想",
+       "换",
+       "一个大一点儿的房子"
+      ],
+      "a": "我想换一个大一点儿的房子"
+     }
+    ]
+   },
+   {
+    "title": "阅读理解",
+    "sub": "Đọc đoạn văn rồi chọn đáp án đúng.",
+    "tasks": [
+     {
+      "t": "choice",
+      "pass": "小王在一家银行工作。他家离银行挺远的，坐地铁要一个多小时才能到，所以他想换一个近一点儿的房子。上个星期，他找到了一个新小区，环境挺好的，走路十分钟就能到银行。房子在三层，空调、冰箱和洗衣机都是新的。小王非常喜欢，马上就想搬家。搬家那天，他请了几位朋友来帮忙，一个下午就搬完了。",
+      "q": "（1）★ 小王在哪儿工作？",
+      "opts": [
+       "医院",
+       "银行",
+       "饭馆"
+      ],
+      "a": 1,
+      "exp": ""
+     },
+     {
+      "t": "choice",
+      "q": "（2）★ 小王为什么想换房子？",
+      "opts": [
+       "房子太小",
+       "家离银行挺远",
+       "房子里没有空调"
+      ],
+      "a": 1,
+      "exp": ""
+     },
+     {
+      "t": "choice",
+      "q": "（3）★ 新房子在几层？",
+      "opts": [
+       "一层",
+       "三层",
+       "五层"
+      ],
+      "a": 1,
+      "exp": ""
+     },
+     {
+      "t": "choice",
+      "q": "（4）★ 搬家用了多长时间？",
+      "opts": [
+       "一个下午",
+       "一天",
+       "一个星期"
+      ],
+      "a": 0,
+      "exp": ""
+     }
+    ]
+   },
+   {
+    "title": "翻译",
+    "sub": "Dịch các câu sau sang tiếng Trung (ôn 挺……的, ……坏了, 就 và 才), rồi so với câu gợi ý.",
+    "tasks": [
+     {
+      "t": "open",
+      "q": "Dịch sang tiếng Trung:",
+      "items": [
+       [
+        "Căn phòng này khá rộng, tôi khá thích.",
+        "这个房间挺大的，我挺喜欢的。"
+       ],
+       [
+        "Hôm nay tôi chưa ăn gì cả, đói lả rồi.",
+        "我今天什么都没吃，饿坏了。"
+       ],
+       [
+        "Nghe tin được nghỉ học, các em học sinh mừng quýnh lên.",
+        "听说不上课了，学生们高兴坏了。"
+       ],
+       [
+        "Mới sáu giờ anh ấy đã dậy rồi.",
+        "他六点就起床了。"
+       ],
+       [
+        "Mãi mười một giờ tối tôi mới về đến nhà.",
+        "我晚上十一点才回到家。"
+       ],
+       [
+        "Nghe nói gần trường có một khu dân cư mới, môi trường khá tốt.",
+        "听说学校旁边有一个新小区，环境挺好的。"
+       ],
+       [
+        "Lúc đi nhớ tắt điều hòa nhé.",
+        "走的时候要关空调。"
+       ],
+       [
+        "Tôi cần một cái thùng giấy, bạn có không?",
+        "我需要一个纸箱，你有吗？"
+       ],
+       [
+        "Ngày mai tôi phải ra ngân hàng làm thẻ tín dụng.",
+        "明天我要去银行办信用卡。"
+       ],
+       [
+        "Tiền bạn đưa tôi, tuần sau tôi trả.",
+        "你给我的钱，我下个星期还你。"
+       ],
+       [
+        "Máy giặt hỏng rồi, tôi phải tự giặt quần áo.",
+        "洗衣机坏了，我要自己洗衣服。"
+       ]
+      ]
+     }
+    ]
+   }
+  ]
+ },
  "1": {
   "zh": "AI小语，你好！",
   "py": "AI Xiǎoyǔ, nǐ hǎo!",
