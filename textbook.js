@@ -10858,5 +10858,2010 @@ window.HD_TB = {
     ]
    }
   ]
+ },
+ "3-10": {
+  "zh": "你明天再把书还给我",
+  "py": "Nǐ míngtiān zài bǎ shū huán gěi wǒ",
+  "vi": "Ngày mai em trả lại sách cho cô nhé",
+  "texts": [
+   {
+    "title": "课文一",
+    "scene": {
+     "zh": "在教室里，刘小雪跟同学聊学习方法。",
+     "py": "Zài jiàoshì li, Liú Xiǎoxuě gēn tóngxué liáo xuéxí fāngfǎ.",
+     "vi": "Trong lớp học, Lưu Tiểu Tuyết trò chuyện với bạn cùng lớp về phương pháp học."
+    },
+    "img": "img/tb/3-10-1.jpg",
+    "audio": "audio/tb/3-10-1.mp3",
+    "words": [
+     0,
+     9
+    ],
+    "lines": [
+     {
+      "who": "同学",
+      "zh": "你的数学越来越好，能不能介绍一下学习方法？",
+      "py": "Nǐ de shùxué yuè lái yuè hǎo, néng bu néng jièshào yíxià xuéxí fāngfǎ?",
+      "vi": "Môn Toán của cậu ngày càng giỏi, giới thiệu cho mình phương pháp học được không?"
+     },
+     {
+      "who": "刘小雪",
+      "zh": "没有什么特别的方法，认真听课，认真记笔记。",
+      "py": "Méiyǒu shénme tèbié de fāngfǎ, rènzhēn tīng kè, rènzhēn jì bǐjì.",
+      "vi": "Không có phương pháp gì đặc biệt đâu, chăm chú nghe giảng, ghi chép cẩn thận."
+     },
+     {
+      "who": "同学",
+      "zh": "我看过你的笔记，记得非常清楚。",
+      "py": "Wǒ kànguo nǐ de bǐjì, jì de fēicháng qīngchu.",
+      "vi": "Mình từng xem vở ghi của cậu, ghi rất rõ ràng."
+     },
+     {
+      "who": "刘小雪",
+      "zh": "老师写在黑板上的题都很重要，所以我会把这些题都记在本子上。",
+      "py": "Lǎoshī xiě zài hēibǎn shang de tí dōu hěn zhòngyào, suǒyǐ wǒ huì bǎ zhèxiē tí dōu jì zài běnzi shang.",
+      "vi": "Những bài thầy cô viết trên bảng đều rất quan trọng, nên mình chép hết những bài đó vào vở."
+     },
+     {
+      "who": "同学",
+      "zh": "你说得对。我没有记笔记的习惯。",
+      "py": "Nǐ shuō de duì. Wǒ méiyǒu jì bǐjì de xíguàn.",
+      "vi": "Cậu nói đúng. Mình không có thói quen ghi chép."
+     },
+     {
+      "who": "刘小雪",
+      "zh": "笔记挺重要的，我每天写作业以前，都要看一遍。",
+      "py": "Bǐjì tǐng zhòngyào de, wǒ měi tiān xiě zuòyè yǐqián, dōu yào kàn yí biàn.",
+      "vi": "Vở ghi khá quan trọng đấy, ngày nào trước khi làm bài tập về nhà mình cũng xem lại một lượt."
+     },
+     {
+      "who": "同学",
+      "zh": "这个方法真好！我以后也试试，希望能提高成绩。",
+      "py": "Zhège fāngfǎ zhēn hǎo! Wǒ yǐhòu yě shìshi, xīwàng néng tígāo chéngjì.",
+      "vi": "Cách này hay thật! Sau này mình cũng thử, hy vọng có thể nâng cao thành tích."
+     }
+    ],
+    "qs": [
+     [
+      "刘小雪的数学为什么越来越好？",
+      "因为她认真听课，认真记笔记。",
+      "Vì cô ấy chăm chú nghe giảng, ghi chép cẩn thận."
+     ],
+     [
+      "刘小雪觉得老师写在黑板上的题重要吗？",
+      "很重要，所以她把这些题都记在本子上。",
+      "Rất quan trọng, nên cô ấy chép hết những bài đó vào vở."
+     ],
+     [
+      "刘小雪的同学打算怎么做？为什么？",
+      "他以后也要试试记笔记，写作业以前看一遍，因为他希望能提高成绩。",
+      "Bạn ấy định sau này cũng thử ghi chép, xem lại trước khi làm bài, vì muốn nâng cao thành tích."
+     ]
+    ]
+   },
+   {
+    "title": "课文二",
+    "scene": {
+     "zh": "在教室里，刘小雪跟同学聊昨天的考试。",
+     "py": "Zài jiàoshì li, Liú Xiǎoxuě gēn tóngxué liáo zuótiān de kǎoshì.",
+     "vi": "Trong lớp học, Lưu Tiểu Tuyết trò chuyện với bạn về bài thi hôm qua."
+    },
+    "img": "img/tb/3-10-2.jpg",
+    "audio": "audio/tb/3-10-2.mp3",
+    "words": [
+     9,
+     18
+    ],
+    "lines": [
+     {
+      "who": "同学",
+      "zh": "小雪，昨天的考试，你考得怎么样？",
+      "py": "Xiǎoxuě, zuótiān de kǎoshì, nǐ kǎo de zěnmeyàng?",
+      "vi": "Tiểu Tuyết, bài thi hôm qua cậu làm thế nào?"
+     },
+     {
+      "who": "刘小雪",
+      "zh": "我觉得历史有点儿难，你呢？",
+      "py": "Wǒ juéde lìshǐ yǒudiǎnr nán, nǐ ne?",
+      "vi": "Mình thấy môn Lịch sử hơi khó, còn cậu?"
+     },
+     {
+      "who": "同学",
+      "zh": "数学考试我没看清楚要求，做错了好几个题，考得挺差的。",
+      "py": "Shùxué kǎoshì wǒ méi kàn qīngchu yāoqiú, zuòcuòle hǎo jǐ ge tí, kǎo de tǐng chà de.",
+      "vi": "Bài thi Toán mình không đọc kỹ yêu cầu, làm sai mấy câu liền, thi khá tệ."
+     },
+     {
+      "who": "刘小雪",
+      "zh": "明天还有考试呢，别想那么多了，先复习外语吧。",
+      "py": "Míngtiān hái yǒu kǎoshì ne, bié xiǎng nàme duō le, xiān fùxí wàiyǔ ba.",
+      "vi": "Mai còn thi nữa mà, đừng nghĩ nhiều thế, ôn ngoại ngữ trước đi."
+     },
+     {
+      "who": "同学",
+      "zh": "外语作业里有几个问题，我可以问问你吗？",
+      "py": "Wàiyǔ zuòyè li yǒu jǐ ge wèntí, wǒ kěyǐ wènwen nǐ ma?",
+      "vi": "Bài tập ngoại ngữ có mấy câu, mình hỏi cậu được không?"
+     },
+     {
+      "who": "刘小雪",
+      "zh": "当然可以。在学习上，遇到什么问题都可以问我。",
+      "py": "Dāngrán kěyǐ. Zài xuéxí shang, yùdào shénme wèntí dōu kěyǐ wèn wǒ.",
+      "vi": "Đương nhiên là được. Về chuyện học, gặp vấn đề gì cậu cũng có thể hỏi mình."
+     },
+     {
+      "note": "…… (Hai bạn cùng xem bài tập.)"
+     },
+     {
+      "who": "刘小雪",
+      "zh": "不好意思，这几个题我也不会。咱们还是一起去办公室问问李老师吧。",
+      "py": "Bù hǎoyìsi, zhè jǐ ge tí wǒ yě bú huì. Zánmen háishi yìqǐ qù bàngōngshì wènwen Lǐ lǎoshī ba.",
+      "vi": "Xin lỗi, mấy câu này mình cũng không biết làm. Hay là chúng mình cùng lên văn phòng hỏi cô Lý đi."
+     }
+    ],
+    "qs": [
+     [
+      "明天还有什么考试？",
+      "外语考试。",
+      "Thi ngoại ngữ."
+     ],
+     [
+      "同学要问刘小雪什么问题？",
+      "外语作业里的几个问题。",
+      "Mấy câu trong bài tập ngoại ngữ."
+     ],
+     [
+      "刘小雪和同学为什么一起去办公室？",
+      "因为这几个题刘小雪也不会，她们要去问李老师。",
+      "Vì mấy câu này Tiểu Tuyết cũng không biết làm, họ đi hỏi cô Lý."
+     ]
+    ]
+   },
+   {
+    "title": "课文三",
+    "scene": {
+     "zh": "在李老师办公室，刘小雪跟同学问问题。",
+     "py": "Zài Lǐ lǎoshī bàngōngshì, Liú Xiǎoxuě gēn tóngxué wèn wèntí.",
+     "vi": "Ở văn phòng cô Lý, Lưu Tiểu Tuyết và bạn hỏi bài."
+    },
+    "img": "img/tb/3-10-3.jpg",
+    "audio": "audio/tb/3-10-3.mp3",
+    "words": [
+     18,
+     24
+    ],
+    "lines": [
+     {
+      "who": "同学",
+      "zh": "李老师，书上有几个问题，我们想问问您。",
+      "py": "Lǐ lǎoshī, shū shang yǒu jǐ ge wèntí, wǒmen xiǎng wènwen nín.",
+      "vi": "Cô Lý ơi, trong sách có mấy câu, chúng em muốn hỏi cô ạ."
+     },
+     {
+      "who": "李老师",
+      "zh": "好，坐下说吧，哪个题不会？",
+      "py": "Hǎo, zuòxia shuō ba, nǎge tí bú huì?",
+      "vi": "Được, ngồi xuống nói nào, câu nào không biết làm?"
+     },
+     {
+      "who": "同学",
+      "zh": "书上第五页的这个对话我看不懂，小雪也不明白。",
+      "py": "Shū shang dì wǔ yè de zhège duìhuà wǒ kàn bu dǒng, Xiǎoxuě yě bù míngbai.",
+      "vi": "Bài hội thoại ở trang 5 em đọc không hiểu, Tiểu Tuyết cũng không hiểu."
+     },
+     {
+      "who": "李老师",
+      "zh": "我课上讲过这几句话，再给你们讲一遍。",
+      "py": "Wǒ kè shang jiǎngguo zhè jǐ jù huà, zài gěi nǐmen jiǎng yí biàn.",
+      "vi": "Mấy câu này cô đã giảng trên lớp rồi, cô giảng lại cho các em một lượt nữa."
+     },
+     {
+      "note": "（李老师给学生讲题。）Cô Lý giảng bài cho học sinh."
+     },
+     {
+      "who": "同学",
+      "zh": "我终于懂了。这些句子一点儿也不难。",
+      "py": "Wǒ zhōngyú dǒng le. Zhèxiē jùzi yìdiǎnr yě bù nán.",
+      "vi": "Cuối cùng em cũng hiểu rồi. Những câu này chẳng khó chút nào."
+     },
+     {
+      "who": "刘小雪",
+      "zh": "我也明白了，谢谢您，李老师。",
+      "py": "Wǒ yě míngbai le, xièxie nín, Lǐ lǎoshī.",
+      "vi": "Em cũng hiểu rồi, cảm ơn cô Lý ạ."
+     },
+     {
+      "who": "李老师",
+      "zh": "我这本书上还有几个练习，你们回家也做一做，明天再把书还给我。",
+      "py": "Wǒ zhè běn shū shang hái yǒu jǐ ge liànxí, nǐmen huí jiā yě zuò yi zuò, míngtiān zài bǎ shū huán gěi wǒ.",
+      "vi": "Quyển sách này của cô còn mấy bài luyện tập, các em về nhà làm thử, mai trả sách lại cho cô nhé."
+     }
+    ],
+    "qs": [
+     [
+      "刘小雪的同学听明白了吗？",
+      "听明白了，他说这些句子一点儿也不难。",
+      "Hiểu rồi, bạn ấy nói những câu này chẳng khó chút nào."
+     ],
+     [
+      "李老师上课的时候讲过这几句话吗？",
+      "讲过。",
+      "Đã giảng rồi."
+     ],
+     [
+      "李老师为什么给他们一本书？",
+      "因为书上还有几个练习，她让他们回家做一做。",
+      "Vì trong sách còn mấy bài luyện tập, cô bảo các em về nhà làm."
+     ]
+    ]
+   },
+   {
+    "title": "课文四",
+    "scene": {
+     "zh": "在家里，刘小雪在写邮件。",
+     "py": "Zài jiā li, Liú Xiǎoxuě zài xiě yóujiàn.",
+     "vi": "Ở nhà, Lưu Tiểu Tuyết đang viết email."
+    },
+    "img": "img/tb/3-10-4.jpg",
+    "audio": "audio/tb/3-10-4.mp3",
+    "words": [
+     24,
+     28
+    ],
+    "prose": true,
+    "lines": [
+     {
+      "who": "",
+      "zh": "家月姐姐：你最近怎么样？忙不忙？",
+      "py": "Jiāyuè jiějie: Nǐ zuìjìn zěnmeyàng? Máng bu máng?",
+      "vi": "Chị Gia Nguyệt: Dạo này chị thế nào? Có bận không ạ?"
+     },
+     {
+      "who": "",
+      "zh": "我现在上初中二年级，学习越来越忙，后年就要考高中了。",
+      "py": "Wǒ xiànzài shàng chūzhōng èr niánjí, xuéxí yuè lái yuè máng, hòunián jiù yào kǎo gāozhōng le.",
+      "vi": "Bây giờ em đang học năm thứ hai cấp hai, việc học ngày càng bận, năm sau nữa là thi lên cấp ba rồi."
+     },
+     {
+      "who": "",
+      "zh": "中国的学校一般是小学六年，初中三年，高中三年。",
+      "py": "Zhōngguó de xuéxiào yìbān shì xiǎoxué liù nián, chūzhōng sān nián, gāozhōng sān nián.",
+      "vi": "Trường học ở Trung Quốc thường là tiểu học sáu năm, cấp hai ba năm, cấp ba ba năm."
+     },
+     {
+      "who": "",
+      "zh": "妈妈说想考上好大学，就得上一个好高中；为了考上好高中，初中就得有一个不错的成绩，所以我现在非常努力。",
+      "py": "Māma shuō xiǎng kǎoshang hǎo dàxué, jiù děi shàng yí ge hǎo gāozhōng; wèile kǎoshang hǎo gāozhōng, chūzhōng jiù děi yǒu yí ge búcuò de chéngjì, suǒyǐ wǒ xiànzài fēicháng nǔlì.",
+      "vi": "Mẹ nói muốn đỗ đại học tốt thì phải học một trường cấp ba tốt; để đỗ cấp ba tốt thì hồi cấp hai phải có thành tích khá, nên bây giờ em rất chăm chỉ."
+     },
+     {
+      "who": "",
+      "zh": "家月姐姐，你知道吗？在你的影响下，我也开始喜欢拍照了。",
+      "py": "Jiāyuè jiějie, nǐ zhīdào ma? Zài nǐ de yǐngxiǎng xià, wǒ yě kāishǐ xǐhuan pāizhào le.",
+      "vi": "Chị Gia Nguyệt, chị biết không? Nhờ ảnh hưởng của chị, em cũng bắt đầu thích chụp ảnh rồi."
+     },
+     {
+      "who": "",
+      "zh": "下次你再来北京，我给你看看我照的照片。",
+      "py": "Xià cì nǐ zài lái Běijīng, wǒ gěi nǐ kànkan wǒ zhào de zhàopiàn.",
+      "vi": "Lần sau chị lại đến Bắc Kinh, em cho chị xem ảnh em chụp nhé."
+     }
+    ],
+    "qs": [
+     [
+      "刘小雪现在读几年级？",
+      "初中二年级。",
+      "Năm thứ hai cấp hai."
+     ],
+     [
+      "中国的学校一般是怎么样的？",
+      "小学六年，初中三年，高中三年。",
+      "Tiểu học sáu năm, cấp hai ba năm, cấp ba ba năm."
+     ],
+     [
+      "在白家月的影响下，刘小雪开始喜欢做什么了？",
+      "她开始喜欢拍照了。",
+      "Cô ấy bắt đầu thích chụp ảnh."
+     ]
+    ]
+   }
+  ],
+  "words": [
+   {
+    "w": "数学",
+    "py": "shùxué",
+    "mean": "môn Toán, toán học (danh từ)",
+    "lines": [
+     "Tên môn học. Học / thi môn nào thì nói 学数学、考数学; giờ học là 数学课. Các môn khác: 汉语、历史 (từ số 10).",
+     "数学课 shùxué kè - giờ Toán｜数学老师 shùxué lǎoshī｜考数学 kǎo shùxué - thi Toán",
+     "我弟弟对数学特别感兴趣，每次考试都是第一名。",
+     "明天上午有数学考试，今天晚上我得好好准备一下。"
+    ]
+   },
+   {
+    "w": "认真",
+    "py": "rènzhēn",
+    "mean": "chăm chỉ, nghiêm túc (tính từ)",
+    "lines": [
+     "Làm vị ngữ (他很认真) hoặc đứng trước động từ (认真听、认真检查). Nói về thái độ cẩn thận, không qua loa. Khác 努力 (từ số 28) là bỏ nhiều sức.",
+     "认真地 rènzhēn de｜不认真 bú rènzhēn｜认真检查 rènzhēn jiǎnchá - kiểm tra kĩ",
+     "他做什么事都很认真，老师和同学都很喜欢他。",
+     "考试的时候要认真，别着急。"
+    ]
+   },
+   {
+    "w": "笔记",
+    "py": "bǐjì",
+    "mean": "ghi chép (danh từ)",
+    "lines": [
+     "Nội dung ghi lại khi nghe giảng / đọc sách. Động từ đi kèm: 记笔记 (ghi chép), 看笔记. 笔记本 = quyển vở; 笔记本电脑 = máy tính xách tay.",
+     "记笔记 jì bǐjì - ghi chép｜笔记本 bǐjìběn - vở ghi｜笔记本电脑 - laptop",
+     "上课的时候，他一直在本子上记笔记。",
+     "你的笔记可以给我看看吗？我上星期生病没来。"
+    ]
+   },
+   {
+    "w": "清楚",
+    "py": "qīngchu",
+    "mean": "rõ ràng (tính từ) / hiểu rõ, biết rõ (động từ)",
+    "lines": [
+     "Tính từ - rõ ràng, hay làm bổ ngữ: 听清楚、看清楚、说清楚、写得很清楚.",
+     "你说得太快了，我没听清楚。",
+     "他的字写得很清楚，大家都看得懂。",
+     "Động từ - biết rõ, nắm rõ một việc: 我不清楚 = tôi không rõ (lịch sự hơn 我不知道).",
+     "不清楚 bù qīngchu - không rõ｜看清楚 kàn qīngchu｜说清楚 shuō qīngchu",
+     "这件事我也不太清楚，你去问问他吧。",
+     "你清楚他为什么没来吗？"
+    ]
+   },
+   {
+    "w": "黑板",
+    "py": "hēibǎn",
+    "mean": "bảng đen (danh từ)",
+    "lines": [
+     "Viết lên bảng nói 在黑板上写; chữ trên bảng: 黑板上的字. Bảng trắng là 白板 (báibǎn).",
+     "白板 báibǎn - bảng trắng｜黑板上 hēibǎn shang - trên bảng",
+     "老师在黑板上写了几个汉字，让我们读一读。",
+     "我坐在后面，看不清楚黑板上的字。"
+    ]
+   },
+   {
+    "w": "把",
+    "py": "bǎ",
+    "mean": "giới từ",
+    "lines": [
+     "Đưa tân ngữ XÁC ĐỊNH lên trước động từ để nói ta tác động gì lên nó: 把 + tân ngữ + động từ + thành phần khác. Học kĩ ở 语法点 1 và 3. 把 còn là lượng từ cho đồ có tay cầm: 一把椅子.",
+     "一把椅子 yì bǎ yǐzi - một cái ghế｜把……放在 bǎ… fàng zài",
+     "我把你的手机放在桌子上了。",
+     "他把车停在学校门口，就进去了。"
+    ]
+   },
+   {
+    "w": "作业",
+    "py": "zuòyè",
+    "mean": "bài tập về nhà (danh từ)",
+    "lines": [
+     "Bài thầy cô giao về nhà: 写作业 / 做作业、交作业 (nộp). 练习 (Bài 9) là bài luyện tập nói chung, có thể làm ngay trên lớp.",
+     "写作业 xiě zuòyè｜交作业 jiāo zuòyè - nộp bài｜练习 liànxí (Bài 9)",
+     "今天的作业不多，半个小时就写得完。",
+     "老师说明天上课以前要检查作业。"
+    ]
+   },
+   {
+    "w": "遍",
+    "py": "biàn",
+    "mean": "lượt (lượng từ)",
+    "lines": [
+     "Đếm số lần làm TỪ ĐẦU ĐẾN CUỐI một việc: 看一遍、读两遍、再说一遍. 次 chỉ đếm số lần. Đi đâu / gặp ai chỉ dùng 次: 去过三次北京 (✓)　去过三遍北京 (✗).",
+     "次 cì - lần｜再说一遍 zài shuō yí biàn - nói lại lần nữa｜一遍又一遍",
+     "这本书我从头到尾看了两遍。",
+     "我没听清楚，你能再说一遍吗？"
+    ]
+   },
+   {
+    "w": "提高",
+    "py": "tígāo",
+    "mean": "nâng cao (động từ)",
+    "lines": [
+     "Tân ngữ thường là 水平、成绩: 提高汉语水平. Có thể làm vị ngữ: 成绩提高了很多. Khác 高 (tính từ, cao).",
+     "提高水平 tígāo shuǐpíng｜提高成绩 tígāo chéngjì｜越来越高 yuè lái yuè gāo",
+     "为了提高汉语水平，他每天都跟中国朋友用汉语说话。",
+     "这个月他学习很认真，成绩提高了很多。"
+    ]
+   },
+   {
+    "w": "历史",
+    "py": "lìshǐ",
+    "mean": "môn Lịch sử, lịch sử (danh từ)",
+    "lines": [
+     "Vừa là tên môn học (历史课), vừa chỉ lịch sử. Nói tuổi đời: 有 + số năm + 的历史.",
+     "历史课 lìshǐ kè｜中国历史 Zhōngguó lìshǐ｜有……年的历史",
+     "北京是一个有三千多年历史的城市。",
+     "我对中国历史很感兴趣，常看这方面的书。"
+    ]
+   },
+   {
+    "w": "难",
+    "py": "nán",
+    "mean": "khó, khó khăn (tính từ)",
+    "lines": [
+     "Cách 1 - làm vị ngữ: 这个题很难. Cách 2 - 难 + động từ = khó làm việc đó: 难写、难懂、难做. Đừng nhầm: 难过 (buồn, Bài 5), 难看 (xấu, Bài 5) là từ riêng.",
+     "难写 nán xiě - khó viết｜不难 bù nán｜难过 nánguò - buồn (Bài 5)",
+     "这次数学考试太难了，很多人都没考好。",
+     "汉字很难写，但是越写越有意思。"
+    ]
+   },
+   {
+    "w": "要求",
+    "py": "yāoqiú",
+    "mean": "yêu cầu, đòi hỏi (động từ) / yêu cầu (danh từ)",
+    "lines": [
+     "Động từ - 要求 + người + làm gì:",
+     "老师要求我们每天写一百个汉字。",
+     "医生要求他每天晚上十点以前睡觉。",
+     "Danh từ - điều kiện, đòi hỏi: 要求很高、有什么要求、看清楚要求.",
+     "要求很高 yāoqiú hěn gāo｜有什么要求 yǒu shénme yāoqiú｜请求 qǐngqiú - thỉnh cầu",
+     "这个工作的要求很高，要会说汉语和英语。",
+     "你还有什么要求，可以告诉我。"
+    ]
+   },
+   {
+    "w": "差",
+    "py": "chà",
+    "mean": "kém (tính từ) / thiếu (động từ)",
+    "lines": [
+     "Tính từ - kém, tệ: 成绩差、服务差. Trái nghĩa: 好.",
+     "他的数学很差，但是历史学得特别好。",
+     "这家宾馆的服务太差了，我们换一家吧。",
+     "Động từ - còn thiếu: 差 + số lượng. Nói giờ: 差五分八点 = 8 giờ kém 5. 差不多 (Bài 8) cũng từ nghĩa này.",
+     "差五分八点 chà wǔ fēn bā diǎn｜还差 hái chà - còn thiếu｜差不多 chàbuduō (Bài 8)",
+     "现在差五分八点，我们快走吧。",
+     "我们班一共三十个人，还差两个人没来。"
+    ]
+   },
+   {
+    "w": "复习",
+    "py": "fùxí",
+    "mean": "ôn tập (động từ)",
+    "lines": [
+     "Ôn lại bài ĐÃ HỌC. Học trước bài chưa học là 预习 (yùxí). 练习 (Bài 9) là luyện tập kĩ năng.",
+     "预习 yùxí - chuẩn bị bài｜练习 liànxí (Bài 9)｜复习一下 fùxí yíxià",
+     "考试以前，我们得好好复习一下。",
+     "我每天晚上都复习一下今天学的汉字。"
+    ]
+   },
+   {
+    "w": "外语",
+    "py": "wàiyǔ",
+    "mean": "ngoại ngữ (danh từ)",
+    "lines": [
+     "Tiếng nước ngoài nói chung. Tên tiếng cụ thể dùng 语 hoặc 文: 汉语 / 中文、英语.",
+     "学外语 xué wàiyǔ｜外国 wàiguó - nước ngoài｜英语 Yīngyǔ - tiếng Anh",
+     "学外语最重要的是多听多说。",
+     "他会说三种外语，汉语说得特别好。"
+    ]
+   },
+   {
+    "w": "当然",
+    "py": "dāngrán",
+    "mean": "đương nhiên, dĩ nhiên (phó từ)",
+    "lines": [
+     "Khẳng định chắc chắn, hay dùng để trả lời: 当然可以、当然了. Trong câu đứng trước động từ / tính từ: 当然能来.",
+     "当然可以 dāngrán kěyǐ｜当然了 dāngrán le｜一定 yídìng - nhất định",
+     "A：你明天能来参加比赛吗？B：当然能来！",
+     "他在中国住了十年，汉语当然说得很好。"
+    ]
+   },
+   {
+    "w": "遇到",
+    "py": "yùdào",
+    "mean": "gặp, gặp phải (động từ)",
+    "lines": [
+     "Gặp TÌNH CỜ, không hẹn trước: 遇到朋友. Gặp phải chuyện: 遇到问题 / 遇到困难. Hẹn nhau gặp thì không dùng 遇到.",
+     "遇到问题 yùdào wèntí｜遇到困难 yùdào kùnnan - gặp khó khăn｜看到 kàndào",
+     "我在超市遇到了以前的同学。",
+     "做作业的时候遇到不会的题，可以先看看笔记。"
+    ]
+   },
+   {
+    "w": "办公室",
+    "py": "bàngōngshì",
+    "mean": "văn phòng, phòng làm việc (danh từ)",
+    "lines": [
+     "办公 = làm việc (công vụ), 室 = phòng. Lượng từ 间 / 个. Phòng học là 教室 (室 cùng nghĩa).",
+     "教室 jiàoshì - phòng học｜在办公室 zài bàngōngshì｜公司 gōngsī - công ty",
+     "李老师在办公室吗？我有几个问题想问她。",
+     "我们公司的办公室在八楼，从窗户能看到很多高楼。"
+    ]
+   },
+   {
+    "w": "页",
+    "py": "yè",
+    "mean": "trang (lượng từ)",
+    "lines": [
+     "Đếm trang giấy, sách. Trang thứ mấy dùng 第: 第二十页. Mở sách ra: 打开书.",
+     "第……页 dì… yè - trang số…｜一页 yí yè｜打开书 dǎkāi shū",
+     "请大家打开书，看第二十页。",
+     "这本书一共三百多页，我一个星期就看完了。"
+    ]
+   },
+   {
+    "w": "对话",
+    "py": "duìhuà",
+    "mean": "đối thoại, hội thoại (động từ / danh từ)",
+    "lines": [
+     "Động từ - nói chuyện qua lại (thường dùng trong lớp học): 用汉语对话. Danh từ - bài hội thoại: 这个对话、读对话.",
+     "用汉语对话 yòng Hànyǔ duìhuà｜课文 kèwén - bài khoá｜聊天儿 liáotiānr",
+     "下面请两个同学用汉语对话。",
+     "这个对话很有意思，我们一起读一读吧。"
+    ]
+   },
+   {
+    "w": "明白",
+    "py": "míngbai",
+    "mean": "hiểu (động từ) / rõ ràng (tính từ)",
+    "lines": [
+     "Động từ - hiểu ra (ý, lý do, chuyện): 明白你的意思. Gần 懂; 懂 hay nói về hiểu ngôn ngữ, kiến thức (听懂、看懂), 明白 hay nói về hiểu ý, hiểu chuyện.",
+     "我明白你的意思了，你别着急。",
+     "你明白他为什么这么做吗？",
+     "Tính từ - rõ ràng, dễ hiểu: 说得很明白. Gần 清楚.",
+     "明白了 míngbai le｜不明白 bù míngbai｜懂 dǒng - hiểu｜清楚 qīngchu",
+     "这件事他说得很明白，你别再问了。"
+    ]
+   },
+   {
+    "w": "讲",
+    "py": "jiǎng",
+    "mean": "giảng, giải thích; kể (động từ)",
+    "lines": [
+     "Giảng bài, giải thích: 讲课、讲题、讲语法. Kể: 讲故事. 给 + người + 讲 = giảng / kể cho ai.",
+     "讲课 jiǎng kè - giảng bài｜讲故事 jiǎng gùshi - kể chuyện｜说 shuō",
+     "王老师讲得很清楚，大家都听明白了。",
+     "我没听懂，老师又给我讲了一遍。"
+    ]
+   },
+   {
+    "w": "句",
+    "py": "jù",
+    "mean": "câu (lượng từ)",
+    "lines": [
+     "Lượng từ của 话: 一句话、几句汉语. Câu thông dụng: 一句话也不说 = không nói câu nào.",
+     "一句话 yí jù huà｜几句 jǐ jù｜句子 jùzi (từ số 24)",
+     "他一句话也没说，就走了。",
+     "这几句汉语你会说吗？"
+    ]
+   },
+   {
+    "w": "句子",
+    "py": "jùzi",
+    "mean": "câu (danh từ)",
+    "lines": [
+     "Danh từ chỉ câu văn, câu nói. Không đi ngay sau số đếm; đếm bằng 个: 一个句子. Còn 句 đi thẳng sau số: 一句话.",
+     "一个句子 yí ge jùzi｜长句子 cháng jùzi - câu dài｜句 jù",
+     "这个句子太长了，我看了好几遍才明白。",
+     "请用这个词说一个句子。"
+    ]
+   },
+   {
+    "w": "年级",
+    "py": "niánjí",
+    "mean": "khối lớp (danh từ)",
+    "lines": [
+     "Số + 年级: 一年级、二年级. Hỏi: 上几年级？ / 读几年级？ Phân biệt 班 (lớp cụ thể): 二年级三班 = lớp 3 khối 2.",
+     "几年级 jǐ niánjí｜班 bān - lớp｜上学 shàngxué - đi học",
+     "你弟弟今年上几年级？",
+     "我们年级一共有三百多个学生。"
+    ]
+   },
+   {
+    "w": "后年",
+    "py": "hòunián",
+    "mean": "năm sau nữa (danh từ)",
+    "lines": [
+     "Dãy năm: 前年 (năm kia) - 去年 - 今年 - 明年 - 后年. Giống dãy ngày: 前天 - 昨天 - 今天 - 明天 - 后天.",
+     "前年 qiánnián - năm kia｜明年 míngnián｜后天 hòutiān - ngày kia",
+     "我哥哥后年就要去中国上大学了。",
+     "他们打算后年结婚，现在正在认真准备。"
+    ]
+   },
+   {
+    "w": "一般",
+    "py": "yìbān",
+    "mean": "bình thường, phổ biến (tính từ)",
+    "lines": [
+     "Cách 1 - đứng trước động từ = thường thường, thông thường: 我一般七点起床.",
+     "我一般早上七点起床，八点去上课。",
+     "星期天他一般在家休息，不常出去。",
+     "Cách 2 - làm vị ngữ = bình thường, tầm tầm (đánh giá không cao): 很一般.",
+     "很一般 hěn yìbān - bình thường thôi｜一般来说 yìbān lái shuō - nói chung｜不怎么样 (Bài 8)",
+     "这家饭馆的菜很一般，不太好吃。"
+    ]
+   },
+   {
+    "w": "努力",
+    "py": "nǔlì",
+    "mean": "chăm chỉ (tính từ) / nỗ lực (động từ)",
+    "lines": [
+     "Tính từ - 很努力、努力学习 (đứng trước động từ). Khác 认真 (từ số 2): 认真 là cẩn thận, 努力 là bỏ nhiều sức.",
+     "他学习很努力，每天都学到很晚。",
+     "只要努力学习，你的汉语一定能提高。",
+     "Động từ - cố gắng, nỗ lực; có thể mang thời lượng hoặc 一下: 努力了三年、再努力一下.",
+     "努力学习 nǔlì xuéxí｜再努力一下 zài nǔlì yíxià｜认真 rènzhēn",
+     "他努力了三年，终于考上了好大学。",
+     "我们再努力一下，今天一定能做完。"
+    ]
+   }
+  ],
+  "grammar": [
+   {
+    "title": "“把”字句（1）",
+    "sub": "Đổi vị trí của vật: 把 + vật + V + 在 / 到 + nơi chốn",
+    "intro": "Câu chữ 把 nói: chủ ngữ TÁC ĐỘNG lên một người / vật XÁC ĐỊNH, khiến nó THAY ĐỔI VỊ TRÍ. 把 kéo tân ngữ lên TRƯỚC động từ, sau động từ là 在 / 到 + nơi chốn.",
+    "formula": [
+     "chủ ngữ",
+     "把 + tân ngữ",
+     "động từ",
+     "在 / 到 + nơi chốn"
+    ],
+    "keys": [
+     1,
+     3
+    ],
+    "uses": [
+     [
+      "V + 在 + nơi chốn",
+      "Sau hành động, vật NẰM LẠI ở đó.",
+      "我把书放在桌子上了。"
+     ],
+     [
+      "V + 到 + nơi chốn",
+      "Vật được ĐƯA / CHUYỂN TỚI đó.",
+      "他把孩子送到学校了。"
+     ],
+     [
+      "Vì sao phải dùng 把?",
+      "Sau động từ đã có 在 / 到 + nơi chốn thì tân ngữ không đứng sau động từ được nữa: 我放书在桌子上 ✗.",
+      "我把书放在桌子上。"
+     ]
+    ],
+    "compare": [
+     [
+      "书在桌子上。",
+      "chỉ nói vị trí"
+     ],
+     [
+      "我把书放在桌子上了。",
+      "nói hành động làm đổi vị trí"
+     ],
+     [
+      "Động từ hay gặp",
+      "放、写、记、停、搬、送、带、拿"
+     ]
+    ],
+    "notes": [
+     [
+      "Tân ngữ phải XÁC ĐỊNH (người nghe biết là cái nào):",
+      "把一本书放在桌子上",
+      "✗ → 把这本书放在桌子上 ✓"
+     ],
+     [
+      "Động từ phải tác động được lên vật, không dùng 是、有、喜欢、知道、觉得…",
+      "我把汉语很喜欢",
+      "✗"
+     ],
+     [
+      "Động từ không đứng một mình, phải có thành phần đi sau:",
+      "我把书放",
+      "✗ → 我把书放在包里 ✓"
+     ],
+     [
+      "没 / 别 / 不要 / 能 / 要 / 会 / 应该 / 得 đặt TRƯỚC 把:",
+      "我把书没放在包里",
+      "✗ → 我没把书放在包里 ✓"
+     ],
+     [
+      "了 đặt cuối câu, sau nơi chốn. 都 / 已经 đứng trước 把 hoặc ngay trước động từ:",
+      "我已经把车停在学校门口了。",
+      ""
+     ]
+    ],
+    "ex": [
+     {
+      "zh": "我把你的手机放在桌子上了，你自己去拿吧。",
+      "py": "Wǒ bǎ nǐ de shǒujī fàng zài zhuōzi shang le, nǐ zìjǐ qù ná ba.",
+      "vi": "Tôi để điện thoại của bạn trên bàn rồi, bạn tự đi lấy nhé."
+     },
+     {
+      "zh": "他把车停在学校门口，就进去上课了。",
+      "py": "Tā bǎ chē tíng zài xuéxiào ménkǒu, jiù jìnqu shàng kè le.",
+      "vi": "Anh ấy đỗ xe ở cổng trường rồi vào học."
+     },
+     {
+      "zh": "请把这些椅子搬到教室外面。",
+      "py": "Qǐng bǎ zhèxiē yǐzi bāndào jiàoshì wàimian.",
+      "vi": "Hãy chuyển những cái ghế này ra ngoài lớp học."
+     },
+     {
+      "zh": "爸爸把孩子送到学校以后，就去上班了。",
+      "py": "Bàba bǎ háizi sòngdào xuéxiào yǐhòu, jiù qù shàngbān le.",
+      "vi": "Bố đưa con đến trường xong thì đi làm."
+     },
+     {
+      "zh": "我没把钱包放在包里，可能忘在饭馆了。",
+      "py": "Wǒ méi bǎ qiánbāo fàng zài bāo li, kěnéng wàng zài fànguǎn le.",
+      "vi": "Tôi không để ví trong túi, có lẽ quên ở nhà hàng rồi."
+     },
+     {
+      "zh": "你别把衣服放在床上，太乱了。",
+      "py": "Nǐ bié bǎ yīfu fàng zài chuáng shang, tài luàn le.",
+      "vi": "Bạn đừng để quần áo trên giường, bừa quá."
+     },
+     {
+      "zh": "上课以前，我们得把手机放在包里。",
+      "py": "Shàng kè yǐqián, wǒmen děi bǎ shǒujī fàng zài bāo li.",
+      "vi": "Trước giờ học, chúng ta phải cất điện thoại vào túi."
+     },
+     {
+      "zh": "对比：你的笔记在桌子上。／我把你的笔记放在桌子上了。",
+      "py": "Duìbǐ: Nǐ de bǐjì zài zhuōzi shang. / Wǒ bǎ nǐ de bǐjì fàng zài zhuōzi shang le.",
+      "vi": "So sánh: Vở ghi của bạn ở trên bàn (chỉ nói vị trí). / Tôi để vở ghi của bạn trên bàn rồi (nói hành động)."
+     }
+    ],
+    "tasks": [
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "我放书在桌子上了。",
+       "我把书放在桌子上了。"
+      ],
+      "a": 1,
+      "exp": "Sau động từ có 在 + nơi chốn thì phải dùng 把 đưa tân ngữ lên trước."
+     },
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "我把这本书放在包里了。",
+       "我把一本书放在包里了。"
+      ],
+      "a": 0,
+      "exp": "Tân ngữ của 把 phải xác định: 这本书, không nói 一本书."
+     },
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "我把书没放在包里。",
+       "我没把书放在包里。"
+      ],
+      "a": 1,
+      "exp": "没 đặt trước 把."
+     },
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "你可以把车停在这里。",
+       "你把车可以停在这里。"
+      ],
+      "a": 0,
+      "exp": "Động từ năng nguyện 可以 đặt trước 把."
+     },
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "请你把这些东西放。",
+       "请你把这些东西放在桌子上。"
+      ],
+      "a": 1,
+      "exp": "Động từ không đứng một mình, phải có 在 + nơi chốn."
+     },
+     {
+      "t": "choice",
+      "q": "他把孩子送 ____ 学校了。",
+      "opts": [
+       "在",
+       "到",
+       "给"
+      ],
+      "a": 1,
+      "exp": "Đưa tới một nơi → V + 到 + nơi chốn."
+     },
+     {
+      "t": "choice",
+      "q": "我把你的手机放 ____ 桌子上了。",
+      "opts": [
+       "给",
+       "到",
+       "在"
+      ],
+      "a": 2,
+      "exp": "Vật nằm lại ở đó → V + 在 + nơi chốn."
+     },
+     {
+      "t": "order",
+      "q": "Sắp xếp thành câu đúng:",
+      "tok": [
+       "我",
+       "把",
+       "你的笔记",
+       "放在",
+       "桌子上了"
+      ],
+      "a": "我把你的笔记放在桌子上了"
+     },
+     {
+      "t": "order",
+      "q": "Sắp xếp thành câu đúng:",
+      "tok": [
+       "你",
+       "别",
+       "把",
+       "衣服",
+       "放在床上"
+      ],
+      "a": "你别把衣服放在床上"
+     },
+     {
+      "t": "order",
+      "q": "Sắp xếp thành câu đúng:",
+      "tok": [
+       "请",
+       "把",
+       "这些椅子",
+       "搬到",
+       "教室外面"
+      ],
+      "a": "请把这些椅子搬到教室外面"
+     },
+     {
+      "t": "open",
+      "q": "完成句子。Hoàn thành câu.",
+      "items": [
+       [
+        "我好像把校园卡 ______________________。",
+        "我好像把校园卡忘在教室里了。"
+       ],
+       [
+        "司机把我们的行李 ______________________。",
+        "司机把我们的行李放在车上了。"
+       ],
+       [
+        "检票的时候我才发现，没把护照 ______________________。",
+        "检票的时候我才发现，没把护照带在身上。／没把护照放在包里。"
+       ]
+      ]
+     },
+     {
+      "t": "open",
+      "q": "改成“把”字句。Viết lại thành câu chữ 把.",
+      "items": [
+       [
+        "那些书，你放在桌子上吧。",
+        "你把那些书放在桌子上吧。"
+       ],
+       [
+        "我的车，我已经停在学校门口了。",
+        "我已经把我的车停在学校门口了。"
+       ],
+       [
+        "老师写的那几个汉字，他都记在本子上了。",
+        "他把老师写的那几个汉字都记在本子上了。"
+       ]
+      ]
+     },
+     {
+      "t": "open",
+      "q": "改错。Tìm lỗi sai và sửa lại.",
+      "items": [
+       [
+        "我把书没放在桌子上。",
+        "我没把书放在桌子上。"
+       ],
+       [
+        "我放你的笔记在桌子上了。",
+        "我把你的笔记放在桌子上了。"
+       ],
+       [
+        "我把一本书放在桌子上了。",
+        "我把这本书放在桌子上了。"
+       ],
+       [
+        "请你把这些东西放。",
+        "请你把这些东西放在桌子上。"
+       ]
+      ]
+     }
+    ],
+    "after": 0
+   },
+   {
+    "title": "固定格式 “在……上 / 中 / 下”",
+    "sub": "Về mặt… / Trong… / Dưới (sự…)",
+    "intro": "Giới từ 在 + từ phương vị 上 / 中 / 下 tạo cụm cố định. Ở đây KHÔNG chỉ vị trí thật (trên / trong / dưới) mà chỉ phạm vi, quá trình, điều kiện. Cả cụm thường đứng ĐẦU CÂU, sau đó là dấu phẩy.",
+    "formula": [
+     "在 + …… + 上 / 中 / 下",
+     "，",
+     "phần còn lại của câu"
+    ],
+    "keys": [
+     0
+    ],
+    "uses": [
+     [
+      "在……上 · về mặt, về phương diện",
+      "在学习上、在工作上、在生活上、在这个问题上",
+      "在学习上，他是我们班最认真的学生。"
+     ],
+     [
+      "在……中 · trong (một quá trình, một khoảng thời gian)",
+      "Trước 中 thường là danh từ chỉ hoạt động: 在比赛中、在考试中、在学习中. Nghĩa gần 在……的时候.",
+      "在这次考试中，他的数学成绩提高了很多。"
+     ],
+     [
+      "在 + ai đó 的 + động từ hai âm tiết + 下 · dưới (sự giúp đỡ, ảnh hưởng, yêu cầu…), nhờ có",
+      "在老师的帮助下、在大家的关心下、在妈妈的要求下",
+      "在大家的关心下，爷爷很快就出院了。"
+     ]
+    ],
+    "compare": [
+     [
+      "上",
+      "phương diện: 在学习上 (về học tập)"
+     ],
+     [
+      "中",
+      "quá trình / thời gian: 在比赛中 (trong trận đấu)"
+     ],
+     [
+      "下",
+      "điều kiện, nguyên nhân: 在他的影响下 (dưới ảnh hưởng của anh ấy)"
+     ]
+    ],
+    "notes": [
+     [
+      "在……下 bắt buộc có định ngữ (ai đó + 的):",
+      "在帮助下",
+      "✗ → 在朋友的帮助下 ✓"
+     ],
+     [
+      "Lỗi hay gặp:",
+      "在老师的帮助上 ／ 在工作下 ／ 在比赛上",
+      "✗ → 在老师的帮助下 ／ 在工作上 ／ 在比赛中 ✓"
+     ]
+    ],
+    "ex": [
+     {
+      "zh": "在学习上，他是我们班最认真的学生。",
+      "py": "Zài xuéxí shang, tā shì wǒmen bān zuì rènzhēn de xuésheng.",
+      "vi": "Về mặt học tập, cậu ấy là học sinh chăm chỉ nhất lớp chúng tôi."
+     },
+     {
+      "zh": "在这件事上，我跟你的想法不一样。",
+      "py": "Zài zhè jiàn shì shang, wǒ gēn nǐ de xiǎngfǎ bù yíyàng.",
+      "vi": "Về chuyện này, suy nghĩ của tôi khác bạn."
+     },
+     {
+      "zh": "在这次考试中，他的数学成绩提高了很多。",
+      "py": "Zài zhè cì kǎoshì zhōng, tā de shùxué chéngjì tígāole hěn duō.",
+      "vi": "Trong kỳ thi lần này, điểm Toán của cậu ấy tăng lên rất nhiều."
+     },
+     {
+      "zh": "在这次旅游中，我学到了很多课上没学过的汉语。",
+      "py": "Zài zhè cì lǚyóu zhōng, wǒ xuédàole hěn duō kè shang méi xuéguo de Hànyǔ.",
+      "vi": "Trong chuyến du lịch này, tôi học được nhiều câu tiếng Trung chưa học trên lớp."
+     },
+     {
+      "zh": "在大家的关心下，爷爷很快就出院了。",
+      "py": "Zài dàjiā de guānxīn xià, yéye hěn kuài jiù chūyuàn le.",
+      "vi": "Nhờ sự quan tâm của mọi người, ông nội đã nhanh chóng xuất viện."
+     },
+     {
+      "zh": "在李老师的要求下，大家每天都复习一个小时。",
+      "py": "Zài Lǐ lǎoshī de yāoqiú xià, dàjiā měi tiān dōu fùxí yí ge xiǎoshí.",
+      "vi": "Theo yêu cầu của cô Lý, ngày nào mọi người cũng ôn bài một tiếng."
+     },
+     {
+      "zh": "在医生的帮助下，他的腿已经好多了。",
+      "py": "Zài yīshēng de bāngzhù xià, tā de tuǐ yǐjīng hǎo duō le.",
+      "vi": "Nhờ sự giúp đỡ của bác sĩ, chân anh ấy đã đỡ hơn nhiều rồi."
+     }
+    ],
+    "tasks": [
+     {
+      "t": "choice",
+      "q": "在工作 ____，他是一个很认真的人。",
+      "opts": [
+       "上",
+       "中",
+       "下"
+      ],
+      "a": 0,
+      "exp": "Về mặt công việc → 在工作上."
+     },
+     {
+      "t": "choice",
+      "q": "在大家的帮助 ____，我们班得了第一名。",
+      "opts": [
+       "上",
+       "中",
+       "下"
+      ],
+      "a": 2,
+      "exp": "Nhờ sự giúp đỡ → 在……的帮助下."
+     },
+     {
+      "t": "choice",
+      "q": "在这次运动会 ____，我认识了很多新朋友。",
+      "opts": [
+       "上",
+       "中",
+       "下"
+      ],
+      "a": 1,
+      "exp": "Trong một hoạt động → 在……中."
+     },
+     {
+      "t": "choice",
+      "q": "在吃饭这件事 ____，我和妈妈的想法差不多。",
+      "opts": [
+       "上",
+       "中",
+       "下"
+      ],
+      "a": 0,
+      "exp": "Về chuyện gì đó → 在……上."
+     },
+     {
+      "t": "choice",
+      "q": "在老师的要求 ____，我们每天都要复习半个小时。",
+      "opts": [
+       "上",
+       "中",
+       "下"
+      ],
+      "a": 2,
+      "exp": "Theo yêu cầu của ai → 在……的要求下."
+     },
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "在帮助下，我学会了游泳。",
+       "在哥哥的帮助下，我学会了游泳。"
+      ],
+      "a": 1,
+      "exp": "在……下 phải có định ngữ: 哥哥的."
+     },
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "在比赛中，他跑得最快。",
+       "在比赛上，他跑得最快。"
+      ],
+      "a": 0,
+      "exp": "Trong trận đấu (quá trình) → 在比赛中."
+     },
+     {
+      "t": "order",
+      "q": "Sắp xếp thành câu đúng:",
+      "tok": [
+       "在学习上，",
+       "她是",
+       "我们班",
+       "最努力的学生"
+      ],
+      "a": "在学习上她是我们班最努力的学生"
+     },
+     {
+      "t": "order",
+      "q": "Sắp xếp thành câu đúng:",
+      "tok": [
+       "在妈妈的影响下，",
+       "我",
+       "也",
+       "喜欢",
+       "做饭了"
+      ],
+      "a": "在妈妈的影响下我也喜欢做饭了"
+     },
+     {
+      "t": "open",
+      "q": "完成句子。Hoàn thành câu.",
+      "items": [
+       [
+        "在 ______________________，我和弟弟都对足球感兴趣了。",
+        "在爸爸的影响下，我和弟弟都对足球感兴趣了。"
+       ],
+       [
+        "在生活上，我帮助她；______________________，她帮助我。",
+        "在学习上，她帮助我。"
+       ],
+       [
+        "他非常热情，______________________，我们玩得很开心。",
+        "在他的帮助下，我们玩得很开心。"
+       ]
+      ]
+     }
+    ],
+    "after": 1
+   },
+   {
+    "title": "“把”字句（2）",
+    "sub": "Chuyển vật cho ai: 把 + vật + V + 给 + người",
+    "intro": "Câu chữ 把 loại 2 nói: qua một hành động, vật XÁC ĐỊNH được CHUYỂN từ người này sang người khác. Các điều kiện giống 把 (1): vật phải xác định; 没 / 别 / 能 / 要… đặt trước 把.",
+    "formula": [
+     "chủ ngữ",
+     "把 + vật",
+     "động từ",
+     "给 + người"
+    ],
+    "keys": [
+     1,
+     3
+    ],
+    "uses": [
+     [
+      "把 + vật + V + 给 + người",
+      "Động từ hay gặp: 还、送、交、带、发、介绍、拿.",
+      "我把这本书还给老师了。"
+     ],
+     [
+      "把 + vật + V + 给 + người + 看 / 听",
+      "Đưa cho ai xem / nghe.",
+      "你能把你的笔记拿给我看看吗？"
+     ]
+    ],
+    "compare": [
+     [
+      "送给她一件衣服",
+      "vật CHƯA xác định (một cái áo nào đó)"
+     ],
+     [
+      "把这件衣服送给她",
+      "vật ĐÃ xác định (đúng cái áo này)"
+     ],
+     [
+      "把 (1): V + 在 / 到 + NƠI CHỐN",
+      "đổi vị trí: 我把书放在桌子上了。"
+     ],
+     [
+      "把 (2): V + 给 + NGƯỜI",
+      "chuyển cho ai: 我把书还给老师了。"
+     ]
+    ],
+    "notes": [
+     [
+      "Thiếu 给:",
+      "我把书还老师",
+      "✗ → 我把书还给老师 ✓"
+     ],
+     [
+      "Sai trật tự:",
+      "我还给老师把书",
+      "✗ → 我把书还给老师 ✓"
+     ],
+     [
+      "Vật không xác định thì không dùng 把:",
+      "把一件衣服送给她",
+      "✗ → 送给她一件衣服 ✓"
+     ]
+    ],
+    "ex": [
+     {
+      "zh": "我已经把作业交给老师了。",
+      "py": "Wǒ yǐjīng bǎ zuòyè jiāo gěi lǎoshī le.",
+      "vi": "Tôi đã nộp bài tập cho thầy rồi."
+     },
+     {
+      "zh": "这本书看完以后，你记得把它还给小王。",
+      "py": "Zhè běn shū kànwán yǐhòu, nǐ jìde bǎ tā huán gěi Xiǎo Wáng.",
+      "vi": "Đọc xong quyển này, bạn nhớ trả lại cho Tiểu Vương nhé."
+     },
+     {
+      "zh": "我还没把照片发给他，晚上再发吧。",
+      "py": "Wǒ hái méi bǎ zhàopiàn fā gěi tā, wǎnshang zài fā ba.",
+      "vi": "Tôi chưa gửi ảnh cho anh ấy, tối gửi vậy."
+     },
+     {
+      "zh": "你能把你的笔记拿给我看看吗？",
+      "py": "Nǐ néng bǎ nǐ de bǐjì ná gěi wǒ kànkan ma?",
+      "vi": "Bạn có thể đưa vở ghi cho tôi xem không?"
+     },
+     {
+      "zh": "我想送给妈妈一件衣服。",
+      "py": "Wǒ xiǎng sòng gěi māma yí jiàn yīfu.",
+      "vi": "Tôi muốn tặng mẹ một chiếc áo (chưa xác định)."
+     },
+     {
+      "zh": "我想把这件衣服送给妈妈。",
+      "py": "Wǒ xiǎng bǎ zhè jiàn yīfu sòng gěi māma.",
+      "vi": "Tôi muốn tặng mẹ chiếc áo này (đã xác định)."
+     }
+    ],
+    "tasks": [
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "我把书还老师了。",
+       "我把书还给老师了。"
+      ],
+      "a": 1,
+      "exp": "Thiếu 给: 还给老师."
+     },
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "我把照片还没发给他。",
+       "我还没把照片发给他。"
+      ],
+      "a": 1,
+      "exp": "还没 đặt trước 把."
+     },
+     {
+      "t": "choice",
+      "q": "“Tôi muốn tặng mẹ chiếc áo này” nói thế nào?",
+      "opts": [
+       "我想把一件衣服送给妈妈。",
+       "我想把这件衣服送给妈妈。"
+      ],
+      "a": 1,
+      "exp": "Vật đã xác định (这件衣服) mới dùng 把."
+     },
+     {
+      "t": "choice",
+      "q": "我把作业 ____ 老师了。",
+      "opts": [
+       "交给",
+       "交到",
+       "交在"
+      ],
+      "a": 0,
+      "exp": "Chuyển cho người → V + 给 + người."
+     },
+     {
+      "t": "choice",
+      "q": "请把这些椅子搬 ____ 教室外面。",
+      "opts": [
+       "给",
+       "到"
+      ],
+      "a": 1,
+      "exp": "Chuyển tới nơi chốn → V + 到 + nơi chốn."
+     },
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "我还给老师把书了。",
+       "我把书还给老师了。"
+      ],
+      "a": 1,
+      "exp": "Trật tự: 把 + vật + V + 给 + người."
+     },
+     {
+      "t": "order",
+      "q": "（1）连词成句",
+      "tok": [
+       "已经",
+       "照片",
+       "把",
+       "发给你了",
+       "我"
+      ],
+      "a": "我已经把照片发给你了"
+     },
+     {
+      "t": "order",
+      "q": "（2）连词成句",
+      "tok": [
+       "笔记",
+       "他",
+       "拿给我",
+       "把",
+       "没"
+      ],
+      "a": "他没把笔记拿给我"
+     },
+     {
+      "t": "order",
+      "q": "（3）连词成句",
+      "tok": [
+       "介绍给我",
+       "你的朋友",
+       "吗",
+       "你",
+       "把",
+       "能"
+      ],
+      "a": "你能把你的朋友介绍给我吗"
+     },
+     {
+      "t": "order",
+      "q": "（4）连词成句",
+      "tok": [
+       "把",
+       "放在",
+       "她的作业",
+       "老师",
+       "桌子上了"
+      ],
+      "a": "老师把她的作业放在桌子上了"
+     },
+     {
+      "t": "open",
+      "q": "完成句子。Hoàn thành câu.",
+      "items": [
+       [
+        "我想把这些吃的 ______________________。",
+        "我想把这些吃的带给奶奶。"
+       ],
+       [
+        "我把今天上课的笔记 ______________________。",
+        "我把今天上课的笔记发给你了。"
+       ],
+       [
+        "今天是妈妈的生日，我要把这些花 ______________________。",
+        "今天是妈妈的生日，我要把这些花送给妈妈。"
+       ]
+      ]
+     },
+     {
+      "t": "open",
+      "q": "看情况，用“把”字句说一句话。Dùng câu chữ 把 nói một câu theo tình huống.",
+      "items": [
+       [
+        "Bạn mượn vở ghi của Tiểu Vương, hôm nay muốn trả lại.",
+        "小王，我把你的笔记还给你。"
+       ],
+       [
+        "Cô giáo nhờ bạn đặt những quyển sách này lên bàn trong văn phòng.",
+        "我把这些书放在办公室的桌子上了。"
+       ],
+       [
+        "Bạn chưa đưa bức ảnh hôm qua cho mẹ xem.",
+        "我还没把昨天的照片拿给妈妈看。"
+       ]
+      ]
+     }
+    ],
+    "after": 2
+   }
+  ],
+  "practice": [
+   {
+    "bank": [
+     "遍",
+     "难",
+     "差",
+     "讲",
+     "清楚"
+    ],
+    "items": [
+     [
+      "我再说一 ___ ，请大家认真听。",
+      "遍"
+     ],
+     [
+      "你的汉字写得太 ___ 了，要多练习才能写得好。",
+      "差"
+     ],
+     [
+      "老师上课说什么我没听 ___ ，你再告诉我一下吧。",
+      "清楚"
+     ],
+     [
+      "李老师，可以给我 ___ 一下我做错的这几个题吗？",
+      "讲"
+     ],
+     [
+      "今天这几个题有点儿 ___ ，好多同学都没听明白。",
+      "难"
+     ]
+    ]
+   },
+   {
+    "bank": [
+     "认真",
+     "复习",
+     "提高",
+     "要求",
+     "当然"
+    ],
+    "items": [
+     [
+      "A：今天的作业你写完了吗？\nB：没有，老师 ___ 写500个字，我只写了一半。",
+      "要求"
+     ],
+     [
+      "A：你有什么 ___ 外语水平的好方法吗？\nB：没什么特别的，多听多说就行了。",
+      "提高"
+     ],
+     [
+      "A：你还在想考试的事吗？一次考试没考好没关系。\nB：好，我不想了。我以后会好好 ___ 的。",
+      "复习"
+     ],
+     [
+      "A：我高中的时候没遇到好老师，所以成绩越来越差。\nB：老师 ___ 重要，但是自己的努力也很重要。",
+      "当然"
+     ],
+     [
+      "A：这次你数学考试考了100分，你是怎么做到的？\nB：做完以后，我又 ___ 地检查了一遍。",
+      "认真"
+     ]
+    ]
+   },
+   {
+    "title": "短文填空 · Điền từ vào đoạn văn",
+    "bank": [
+     "差",
+     "难",
+     "办公室",
+     "认真",
+     "笔记",
+     "下",
+     "遍",
+     "提高",
+     "句子"
+    ],
+    "passage": "我上初中一年级。上个月的数学考试，我考得很___。我觉得数学太___了，就去___找王老师。王老师说：“你上课的时候要___听，还要记___。”在老师的帮助___，我每天写作业以前都把笔记看一___。这次考试，我的成绩___了很多。",
+    "items": [
+     [
+      null,
+      "差"
+     ],
+     [
+      null,
+      "难"
+     ],
+     [
+      null,
+      "办公室"
+     ],
+     [
+      null,
+      "认真"
+     ],
+     [
+      null,
+      "笔记"
+     ],
+     [
+      null,
+      "下"
+     ],
+     [
+      null,
+      "遍"
+     ],
+     [
+      null,
+      "提高"
+     ]
+    ]
+   }
+  ],
+  "extra": [
+   {
+    "title": "看图说话",
+    "sub": "Dùng từ ngữ và điểm ngữ pháp của bài để hoàn thành các hội thoại theo tranh.",
+    "tasks": [
+     {
+      "t": "open",
+      "img": "img/tb/3-10-p1.jpg",
+      "q": "图一",
+      "items": [
+       [
+        "A：你觉得汉字难写吗？\nB：______，除了我，同学们也觉得汉字不好写。",
+        "我觉得挺难写的／当然难写"
+       ],
+       [
+        "A：我有一个好办法，我把 ______________，有时间就看看。",
+        "我把难写的汉字都写在本子上，有时间就看看。"
+       ],
+       [
+        "B：谢谢你把这个好办法 ______。",
+        "谢谢你把这个好办法介绍给我。"
+       ]
+      ]
+     },
+     {
+      "t": "open",
+      "img": "img/tb/3-10-p2.jpg",
+      "q": "图二",
+      "items": [
+       [
+        "A：听说这次考试你的成绩 ______。\nB：对，这还要谢谢您的帮助。",
+        "听说这次考试你的成绩提高了很多。"
+       ],
+       [
+        "A：别客气。最重要的是 ______________。",
+        "最重要的是你自己很努力。"
+       ],
+       [
+        "B：在 ______ 下，我越来越喜欢历史课了。",
+        "在您的帮助下，我越来越喜欢历史课了。"
+       ]
+      ]
+     },
+     {
+      "t": "open",
+      "img": "img/tb/3-10-p3.jpg",
+      "q": "图三",
+      "items": [
+       [
+        "A：昨天的外语作业 ______，我好几个题都不会写。",
+        "昨天的外语作业太难了"
+       ],
+       [
+        "B：你可以把 ______________，我帮你看看。\nA：行，就是这几个题不会。",
+        "你可以把作业拿给我，我帮你看看。"
+       ],
+       [
+        "B：这几个句子老师上课讲过，我把 ______________，你先自己学一下。",
+        "我把我的笔记拿给你，你先自己学一下。"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "title": "“把”字句专练",
+    "sub": "Ôn kỹ hai loại câu chữ 把: 把 + vật + V + 在 / 到 + nơi chốn và 把 + vật + V + 给 + người.",
+    "tasks": [
+     {
+      "t": "choice",
+      "q": "我把钱包忘 ____ 饭馆里了。",
+      "opts": [
+       "给",
+       "在",
+       "到"
+      ],
+      "a": 1,
+      "exp": "Vật nằm lại ở đó → 忘在 + nơi chốn."
+     },
+     {
+      "t": "choice",
+      "q": "你能把这张照片发 ____ 我吗？",
+      "opts": [
+       "在",
+       "到",
+       "给"
+      ],
+      "a": 2,
+      "exp": "Chuyển cho người → 发给 + người."
+     },
+     {
+      "t": "choice",
+      "q": "爸爸把车开 ____ 学校门口了。",
+      "opts": [
+       "到",
+       "给"
+      ],
+      "a": 0,
+      "exp": "Đưa tới nơi chốn → 开到 + nơi chốn."
+     },
+     {
+      "t": "choice",
+      "q": "这本书我看完了，明天 ____。",
+      "opts": [
+       "还给你把书",
+       "把书还给你",
+       "把一本书还给你"
+      ],
+      "a": 1,
+      "exp": "把 + vật xác định + V + 给 + người."
+     },
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "我把作业没交给老师。",
+       "我没交给老师把作业。",
+       "我没把作业交给老师。"
+      ],
+      "a": 2,
+      "exp": "没 đặt trước 把."
+     },
+     {
+      "t": "choice",
+      "q": "Câu nào SAI?",
+      "opts": [
+       "我把你的手机放在包里了。",
+       "我把汉语很喜欢。",
+       "我把照片发给妈妈了。"
+      ],
+      "a": 1,
+      "exp": "喜欢 không tác động lên vật, không dùng 把."
+     },
+     {
+      "t": "choice",
+      "q": "请大家 ____ 手机放在包里。",
+      "opts": [
+       "把",
+       "给",
+       "在"
+      ],
+      "a": 0,
+      "exp": "Đưa tân ngữ 手机 lên trước động từ → 把."
+     },
+     {
+      "t": "choice",
+      "q": "Câu nào đúng?",
+      "opts": [
+       "他把孩子送学校了。",
+       "他把孩子送到学校了。"
+      ],
+      "a": 1,
+      "exp": "Thiếu 到: 送到学校."
+     },
+     {
+      "t": "open",
+      "q": "改成“把”字句。Viết lại thành câu chữ 把.",
+      "items": [
+       [
+        "你的衣服，我放在床上了。",
+        "我把你的衣服放在床上了。"
+       ],
+       [
+        "这些照片，我已经发给妈妈了。",
+        "我已经把这些照片发给妈妈了。"
+       ],
+       [
+        "老师的书，我明天还给她。",
+        "我明天把老师的书还给她。"
+       ],
+       [
+        "孩子，爸爸已经送到学校了。",
+        "爸爸已经把孩子送到学校了。"
+       ],
+       [
+        "这个句子，你写在黑板上吧。",
+        "你把这个句子写在黑板上吧。"
+       ],
+       [
+        "那本历史书，我没带到学校。",
+        "我没把那本历史书带到学校。"
+       ]
+      ]
+     },
+     {
+      "t": "open",
+      "q": "改错。Tìm lỗi sai và sửa lại.",
+      "items": [
+       [
+        "我放钱包在包里了。",
+        "我把钱包放在包里了。"
+       ],
+       [
+        "他把一个本子送给我了。",
+        "他送给我一个本子。／他把那个本子送给我了。"
+       ],
+       [
+        "我把作业没交给老师。",
+        "我没把作业交给老师。"
+       ],
+       [
+        "请把这些书放。",
+        "请把这些书放在桌子上。"
+       ],
+       [
+        "我把书还老师了。",
+        "我把书还给老师了。"
+       ],
+       [
+        "在老师的帮助上，我的成绩提高了。",
+        "在老师的帮助下，我的成绩提高了。"
+       ],
+       [
+        "在比赛上，他认识了很多朋友。",
+        "在比赛中，他认识了很多朋友。"
+       ],
+       [
+        "在帮助下，我学会了游泳。",
+        "在朋友的帮助下，我学会了游泳。"
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "title": "选择正确答案",
+    "sub": "Chọn đáp án đúng (từ vựng của bài).",
+    "tasks": [
+     {
+      "t": "choice",
+      "q": "这本书我看了两 ____。",
+      "opts": [
+       "遍",
+       "页",
+       "句"
+      ],
+      "a": 0,
+      "exp": "遍: một lượt từ đầu đến cuối."
+     },
+     {
+      "t": "choice",
+      "q": "请大家打开书，看第二十 ____。",
+      "opts": [
+       "遍",
+       "页",
+       "句"
+      ],
+      "a": 1,
+      "exp": "页 = trang."
+     },
+     {
+      "t": "choice",
+      "q": "他一 ____ 话也没说就走了。",
+      "opts": [
+       "个",
+       "页",
+       "句"
+      ],
+      "a": 2,
+      "exp": "一句话 = một câu nói."
+     },
+     {
+      "t": "choice",
+      "q": "你弟弟今年上几 ____？",
+      "opts": [
+       "办公室",
+       "年级",
+       "历史"
+      ],
+      "a": 1,
+      "exp": "上几年级 = học lớp mấy."
+     },
+     {
+      "t": "choice",
+      "q": "我 ____ 早上七点起床。",
+      "opts": [
+       "当然",
+       "努力",
+       "一般"
+      ],
+      "a": 2,
+      "exp": "一般 + động từ = thường thường."
+     },
+     {
+      "t": "choice",
+      "q": "这家饭馆的菜很 ____，不太好吃。",
+      "opts": [
+       "一般",
+       "认真",
+       "清楚"
+      ],
+      "a": 0,
+      "exp": "很一般 = bình thường thôi."
+     },
+     {
+      "t": "choice",
+      "q": "老师又讲了一遍，我终于 ____ 了。",
+      "opts": [
+       "提高",
+       "明白",
+       "复习"
+      ],
+      "a": 1,
+      "exp": "明白 = hiểu ra."
+     },
+     {
+      "t": "choice",
+      "q": "现在 ____ 五分八点，我们快走吧。",
+      "opts": [
+       "难",
+       "要求",
+       "差"
+      ],
+      "a": 2,
+      "exp": "差五分八点 = 8 giờ kém 5."
+     },
+     {
+      "t": "choice",
+      "q": "我在超市 ____ 了以前的同学。",
+      "opts": [
+       "遇到",
+       "复习",
+       "讲"
+      ],
+      "a": 0,
+      "exp": "遇到 = gặp tình cờ."
+     }
+    ]
+   },
+   {
+    "title": "连词成句",
+    "sub": "Sắp xếp các từ thành câu hoàn chỉnh.",
+    "tasks": [
+     {
+      "t": "order",
+      "q": "（1）",
+      "tok": [
+       "我",
+       "把",
+       "作业",
+       "交给",
+       "老师了"
+      ],
+      "a": "我把作业交给老师了"
+     },
+     {
+      "t": "order",
+      "q": "（2）",
+      "tok": [
+       "请你",
+       "把",
+       "这个句子",
+       "写在",
+       "黑板上"
+      ],
+      "a": "请你把这个句子写在黑板上"
+     },
+     {
+      "t": "order",
+      "q": "（3）",
+      "tok": [
+       "在老师的帮助下，",
+       "我的数学",
+       "提高了",
+       "很多"
+      ],
+      "a": "在老师的帮助下我的数学提高了很多"
+     },
+     {
+      "t": "order",
+      "q": "（4）",
+      "tok": [
+       "他",
+       "没",
+       "把",
+       "手机",
+       "带到学校"
+      ],
+      "a": "他没把手机带到学校"
+     },
+     {
+      "t": "order",
+      "q": "（5）",
+      "tok": [
+       "你",
+       "能",
+       "再说",
+       "一遍",
+       "吗"
+      ],
+      "a": "你能再说一遍吗"
+     },
+     {
+      "t": "order",
+      "q": "（6）",
+      "tok": [
+       "在这次考试中，",
+       "他",
+       "考得",
+       "最好"
+      ],
+      "a": "在这次考试中他考得最好"
+     }
+    ]
+   },
+   {
+    "title": "阅读理解",
+    "sub": "Đọc đoạn văn rồi chọn đáp án đúng.",
+    "tasks": [
+     {
+      "t": "choice",
+      "pass": "小林上初中二年级。以前她的数学很差，每次考试都考得不好。去年，她遇到了一位很好的数学老师——王老师。王老师上课讲得很清楚，还要求学生们认真记笔记。小林把王老师写在黑板上的题都记在本子上，每天写作业以前都看一遍。遇到不明白的题，她就去办公室问王老师。在王老师的帮助下，小林的数学成绩提高了很多。这次考试，她考了九十八分，是班里的第一名。",
+      "q": "（1）★ 小林现在上几年级？",
+      "opts": [
+       "初中一年级",
+       "初中二年级",
+       "高中二年级"
+      ],
+      "a": 1,
+      "exp": ""
+     },
+     {
+      "t": "choice",
+      "q": "（2）★ 王老师要求学生们做什么？",
+      "opts": [
+       "认真记笔记",
+       "每天问问题",
+       "多看历史书"
+      ],
+      "a": 0,
+      "exp": ""
+     },
+     {
+      "t": "choice",
+      "q": "（3）★ 遇到不明白的题，小林怎么做？",
+      "opts": [
+       "看笔记",
+       "问同学",
+       "去办公室问王老师"
+      ],
+      "a": 2,
+      "exp": ""
+     },
+     {
+      "t": "choice",
+      "q": "（4）★ 下面哪句话是对的？",
+      "opts": [
+       "小林的数学一直很好",
+       "小林的成绩提高了很多",
+       "这次考试小林考得很差"
+      ],
+      "a": 1,
+      "exp": ""
+     }
+    ]
+   },
+   {
+    "title": "翻译",
+    "sub": "Dịch các câu sau sang tiếng Trung (ôn câu chữ 把 và 在……上 / 中 / 下), rồi so với câu gợi ý.",
+    "tasks": [
+     {
+      "t": "open",
+      "q": "Dịch sang tiếng Trung:",
+      "items": [
+       [
+        "Tôi để vở ghi của bạn trên bàn rồi.",
+        "我把你的笔记放在桌子上了。"
+       ],
+       [
+        "Đừng để điện thoại trên ghế.",
+        "别把手机放在椅子上。"
+       ],
+       [
+        "Tôi không mang sách đến trường.",
+        "我没把书带到学校。"
+       ],
+       [
+        "Bố đưa em gái đến bệnh viện rồi.",
+        "爸爸把妹妹送到医院了。"
+       ],
+       [
+        "Bạn có thể trả quyển sách này cho cô Lý không?",
+        "你能把这本书还给李老师吗？"
+       ],
+       [
+        "Tôi đã gửi những bức ảnh hôm qua cho mẹ rồi.",
+        "我已经把昨天的照片发给妈妈了。"
+       ],
+       [
+        "Hãy viết câu này lên bảng.",
+        "请把这个句子写在黑板上。"
+       ],
+       [
+        "Về mặt công việc, anh ấy rất nghiêm túc.",
+        "在工作上，他很认真。"
+       ],
+       [
+        "Trong kỳ thi lần này, tôi đã làm sai mấy câu.",
+        "在这次考试中，我做错了好几个题。"
+       ],
+       [
+        "Nhờ sự giúp đỡ của các bạn, tiếng Trung của tôi tiến bộ rất nhiều.",
+        "在朋友们的帮助下，我的汉语提高了很多。"
+       ],
+       [
+        "Bài thi Lịch sử lần này khó quá.",
+        "这次历史考试太难了。"
+       ],
+       [
+        "Thường thì tối nào tôi cũng ôn bài một tiếng.",
+        "我一般每天晚上复习一个小时。"
+       ]
+      ]
+     }
+    ]
+   }
+  ]
  }
 };
