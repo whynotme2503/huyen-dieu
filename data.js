@@ -3463,3 +3463,6 @@ window.HD_LESSONS3 = [
     ["发展", "fāzhǎn", "phát triển", "", "đgt."]
   ] }
 ];
+
+/* HSK1 · Bài 6 (1): nghe – gõ lại đoạn văn, chấm theo % chữ khớp (sheet.js, kiểu trans). Chỉ hiện khi giáo viên giao. */
+window.HD_SHEETS = (window.HD_SHEETS || []).concat([{"id": "sheet-b6-1", "lesson": 6, "title": "Bài 6 (1)", "audio": "audio/sheet/h1-6-1.mp3", "intro": "Nghe đoạn ghi âm rồi gõ lại toàn bộ bằng chữ Hán (nghe bao nhiêu lần cũng được). Nộp bài xong sẽ hiện đáp án: chữ xanh là đúng, chữ đỏ là sai. Không tính dấu câu.", "parts": [{"title": "听写 · Nghe – gõ lại", "items": [{"trans": true, "q": "Nghe rồi gõ lại toàn bộ đoạn văn bằng chữ Hán.", "a": "大家好！我是你们的新同学，很高兴认识大家。我是中国人，我的女朋友是越南人，她也会中文。我家有四口人：爸爸、妈妈、哥哥，没有姐姐，也没有弟弟妹妹。爸爸今年五十岁，他很忙，工作很多。妈妈不太忙，很喜欢做饭，也会做很多菜，有法国菜，中国菜和越南菜。我们星期天休息，不上班。星期日我喜欢做饭：包饺子，做面条。我也喜欢和妈妈去超市，买一些东西。星期一，我很忙，工作很多，不休息。今年我有新电脑，真好看，我很喜欢它，明年我想买一个新手机。谢谢大家！"}]}]}]);

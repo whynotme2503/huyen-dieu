@@ -48,7 +48,7 @@
       v = v || [];
       body = q.fields.map(function (f, i) { return '<label class="sh-fl"><span class="t-sub">' + esc(f.label) + '</span><input class="sh-input hz" data-sh="type" data-n="' + q.n + '" data-f="' + i + '" value="' + esc(v[i] || "") + '" placeholder="' + esc(q.ph) + '" autocomplete="off" autocapitalize="off" spellcheck="false" lang="zh"></label>'; }).join("");
     } else if (q.type === "trans") {
-      body = '<textarea class="sh-input hz sh-trans" rows="9" data-sh="type" data-n="' + q.n + '" placeholder="Viết bản dịch tiếng Trung của bạn…" autocomplete="off" autocapitalize="off" spellcheck="false" lang="zh">' + esc(v || "") + "</textarea>";
+      body = '<textarea class="sh-input hz sh-trans" rows="9" data-sh="type" data-n="' + q.n + '" placeholder="' + (q.vi ? "Viết bản dịch tiếng Trung của bạn…" : "Nghe rồi gõ lại bằng chữ Hán…") + '" autocomplete="off" autocapitalize="off" spellcheck="false" lang="zh">' + esc(v || "") + "</textarea>";
     } else if (q.type === "sent") {
       body = '<textarea class="sh-input hz" rows="2" data-sh="type" data-n="' + q.n + '" placeholder="' + esc(q.ph) + '" autocomplete="off" autocapitalize="off" spellcheck="false" lang="zh">' + esc(v || "") + "</textarea>";
     } else {
@@ -64,7 +64,7 @@
       html += qHTML(q);
     });
     H.app.innerHTML = '<div style="display:flex;align-items:center;gap:6px"><button class="back" data-sh="exit">' + H.ICONS.back + "Bài tập</button></div>" +
-      '<section class="card sh-card" style="margin-top:10px"><div class="eyebrow">' + esc(sh.title) + '</div><h1 class="h1" style="margin:4px 0 6px">' + (X.qs.every(function (q) { return q.type === "trans"; }) ? "Luyện dịch đoạn văn" : X.qs.length + " câu") + '</h1><p class="sub" style="margin:0 0 14px">' + (sh.intro ? esc(sh.intro) : "Làm hết các phần rồi bấm “Nộp bài”. Phần gõ chữ Hán không cần chú ý dấu câu.") + '</p>' + (sh.audio ? '<div class="sh-audio" id="sh-audio"><b>Bản ghi âm phần Nghe</b><audio controls preload="none" src="' + esc(sh.audio) + '"></audio></div>' : "") + html +
+      '<section class="card sh-card" style="margin-top:10px"><div class="eyebrow">' + esc(sh.title) + '</div><h1 class="h1" style="margin:4px 0 6px">' + (X.qs.every(function (q) { return q.type === "trans"; }) ? (sh.audio ? "Nghe – gõ lại đoạn văn" : "Luyện dịch đoạn văn") : X.qs.length + " câu") + '</h1><p class="sub" style="margin:0 0 14px">' + (sh.intro ? esc(sh.intro) : "Làm hết các phần rồi bấm “Nộp bài”. Phần gõ chữ Hán không cần chú ý dấu câu.") + '</p>' + (sh.audio ? '<div class="sh-audio" id="sh-audio"><b>Bản ghi âm phần Nghe</b><audio controls preload="none" src="' + esc(sh.audio) + '"></audio></div>' : "") + html +
       '<div class="afoot"><span class="t-sub" id="sh-left">' + (left ? "Còn " + left + " câu chưa làm" : "Đã làm hết các câu") + '</span><button class="btn" data-sh="submit" style="margin-left:auto" id="sh-submit">Nộp bài</button></div></section>';
   }
 
@@ -158,7 +158,8 @@
     X.qs.forEach(function (q) {
       if (q.part !== cur) { cur = q.part; review += '<div class="sh-part"><h3>' + esc(sh.parts[cur].title) + (allT ? "" : " · " + per[cur].ok + "/" + per[cur].n) + "</h3></div>"; }
       if (q.type === "trans") {
-        review += '<div class="sh-r ' + (q.ok ? "ok" : "bad") + '"><div class="sh-qt"><span class="sh-n">' + q.n + '</span><span class="sh-qp sh-trvi">' + esc(q.vi) + '</span><span class="sh-mark">Khớp ' + Math.round(q.td.r * 100) + "%</span></div>" +
+        review += '<div class="sh-r ' + (q.ok ? "ok" : "bad") + '"><div class="sh-qt"><span class="sh-n">' + q.n + '</span><span class="sh-qp sh-trvi">' + esc(q.vi || q.q) + '</span><span class="sh-mark">Khớp ' + Math.round(q.td.r * 100) + "%</span></div>" +
+          (sh.audio && !q.vi ? '<div class="sh-audio"><audio controls preload="none" src="' + esc(sh.audio) + '"></audio></div>' : "") +
           '<div class="sh-ans sh-tr"><span class="lb">Bài làm</span><span class="hz sh-diff">' + (X.ans[q.n] ? q.td.html : "(chưa trả lời)") + "</span></div>" +
           '<div class="sh-ans good sh-tr"><span class="lb">Đáp án</span><span class="hz">' + esc(q.a) + "</span></div>" + "</div>";
         return;
